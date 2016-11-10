@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="intent_btn_tv_call">CALL</string>
+    <string name="intent_btn_tv_message">MESSAGE</string>
+    <string name="intent_btn_tv_mail">MAIL</string>
+    <string name="intent_btn_tv_web">WEB</string>
+    <string name="intent_btn_tv_GGPlay">STORE</string>
+    <string name="intent_btn_tv_Map">MAP</string>
+    <string name="intent_btn_tv_Camera">CAMERA</string>
+    <string name="intent_btn_tv_Galery">GALERY</string>
 </resources>

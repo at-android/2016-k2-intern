@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="Intent_tv_color_text">#ffffff</color>
+    <color name="caculator_btn_text_color_press">#141827</color>
+    <color name="caculator_button">#0e111c</color>
 </resources>
