@@ -1,22 +1,20 @@
 package vn.asiantech.training;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final int RESULT_LOAD_IMG = 1;
-    private static final int CAMERA_TAKE_PICTURE = 1;
+    private static final int PICK_Camera_IMAGE = 2;
     Button btCall;
     Button btSendSMS;
     Button btSendMail;
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button btGetImages;
     Button btTakePictures;
     ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openGoogleMap();
+            }
+        });
+        btOpenGooglePlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGooglePlay();
             }
         });
         btGetImages.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openGooglePlay() {
         //Emalator have not google play
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps")));
     }
 
     public void openGoogleMap() {
@@ -134,22 +140,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void takePicute() {
-        File destination;
-        String name = "abcd";
-        destination = new File(Environment
-                .getExternalStorageDirectory(), name + ".jpg");
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, PICK_Camera_IMAGE);
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(destination));
-        startActivityForResult(intent, CAMERA_TAKE_PICTURE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
             Uri uri = data.getData();
 
@@ -160,15 +160,9 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         } else {
-            if (requestCode == CAMERA_TAKE_PICTURE && resultCode == RESULT_OK && data.getData() != null) {
-                Uri uri = data.getData();
-                Bitmap image = null;
-                try {
-                    image = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                imageView.setImageBitmap(image);
+            if (requestCode == 2 && resultCode == RESULT_OK) {
+                Bitmap imageData = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(imageData);
             }
         }
 
