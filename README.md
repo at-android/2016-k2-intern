@@ -1,1 +1,1 @@
-# 2016-k2-intern
+# This is repo for internship practice
