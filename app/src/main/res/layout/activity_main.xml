@@ -4,14 +4,68 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="vn.asiantech.training.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btCall"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World everyone ! " />
+        android:text="@string/bt_call_phone" />
+
+    <Button
+        android:id="@+id/btSendSMS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btCall"
+        android:text="@string/bt_send_sms" />
+
+    <Button
+        android:id="@+id/btSendMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btSendSMS"
+        android:text="@string/bt_send_mail" />
+
+    <Button
+        android:id="@+id/btOpenWeb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btSendMail"
+        android:text="@string/bt_open_web" />
+
+    <Button
+        android:id="@+id/btOpenGGplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btOpenWeb"
+        android:text="@string/bt_open_gg_play" />
+
+    <Button
+        android:id="@+id/btOpenGGmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btOpenGGplay"
+        android:text="@string/bt_open_gg_map" />
+
+    <Button
+        android:id="@+id/btGetImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btOpenGGmap"
+        android:text="@string/bt_get_img" />
+
+    <Button
+        android:id="@+id/btTakePic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btGetImg"
+        android:text="@string/bt_take_pic" />
+
+    <ImageView
+        android:id="@+id/imgShow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btTakePic"
+        android:background="@color/colorPrimary"
+        android:contentDescription="@string/err_images" />
 </RelativeLayout>

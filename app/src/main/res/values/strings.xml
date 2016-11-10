@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="bt_call_phone">Call</string>
+    <string name="bt_send_sms">Send SMS</string>
+    <string name="bt_send_mail">Send Mail</string>
+    <string name="bt_open_web">Open Website</string>
+    <string name="bt_open_gg_play">Open Google Play</string>
+    <string name="bt_open_gg_map">Open Google Map</string>
+    <string name="bt_get_img">Get images</string>
+    <string name="bt_take_pic">Take Picture</string>
+    <string name="err_images">error</string>
 </resources>
