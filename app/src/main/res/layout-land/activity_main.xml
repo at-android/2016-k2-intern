@@ -9,7 +9,6 @@
     tools:context="vn.asiantech.training.MainActivity">
 
     <TextView
-
         android:id="@+id/tvExpress"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,6 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/call_tv_number_1"
+            android:textSize="@dimen/call_land_tv_number_size"
             tools:ignore="NestedWeights" />
 
         <TextView
@@ -39,7 +39,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_2" />
+            android:text="@string/call_tv_number_2"
+            android:textSize="@dimen/call_land_tv_number_size" />
 
         <TextView
             android:id="@+id/tvNumber3"
@@ -47,7 +48,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_3" />
+            android:text="@string/call_tv_number_3"
+            android:textSize="@dimen/call_land_tv_number_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,6 +65,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/call_tv_number_4"
+            android:textSize="@dimen/call_land_tv_number_size"
             tools:ignore="NestedWeights" />
 
         <TextView
@@ -71,7 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_5" />
+            android:text="@string/call_tv_number_5"
+            android:textSize="@dimen/call_land_tv_number_size" />
 
         <TextView
             android:id="@+id/tvNumber6"
@@ -79,7 +83,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_6" />
+            android:text="@string/call_tv_number_6"
+            android:textSize="@dimen/call_land_tv_number_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,6 +100,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/call_tv_number_7"
+            android:textSize="@dimen/call_land_tv_number_size"
             tools:ignore="NestedWeights" />
 
         <TextView
@@ -103,7 +109,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_8" />
+            android:text="@string/call_tv_number_8"
+            android:textSize="@dimen/call_land_tv_number_size" />
 
         <TextView
             android:id="@+id/tvNumber9"
@@ -111,7 +118,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_9" />
+            android:text="@string/call_tv_number_9"
+            android:textSize="@dimen/call_land_tv_number_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -127,6 +135,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/call_tv_number_start"
+            android:textSize="@dimen/call_land_tv_number_size"
             tools:ignore="NestedWeights" />
 
         <TextView
@@ -135,7 +144,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_0" />
+            android:text="@string/call_tv_number_0"
+            android:textSize="@dimen/call_land_tv_number_size" />
 
         <TextView
             android:id="@+id/tvNumberShape"
@@ -143,7 +153,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/call_tv_number_shape" />
+            android:text="@string/call_tv_number_shape"
+            android:textSize="@dimen/call_land_tv_number_size" />
     </LinearLayout>
 
     <LinearLayout

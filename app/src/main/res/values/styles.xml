@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextViewNumberCall">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/call_tv_number_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">@dimen/call_tv_number_margin_right_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/call_tv_number_margin_right_bottom</item>
+        <item name="android:background">@color/call_tv_number_background</item>
+    </style>
+
+
 </resources>
