@@ -1,7 +1,9 @@
 package vn.asiantech.training;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,12 +13,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Locale;
 
 import static android.net.Uri.parse;
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvCall:
-                makeCall();
+                launchCallApp();
                 break;
             case R.id.tvMessage:
                 sendSMS("01645484112", "test Send Message");
@@ -171,4 +176,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    private void launchCallApp() {
+        Intent intent = new Intent(Intent.ACTION_CALL,null);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        List list = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
+        if (list.size() > 0) {
+            Intent chooser = Intent.createChooser(intent, "Choose");
+            startActivity(chooser);
+        }
+    }
+
 }
