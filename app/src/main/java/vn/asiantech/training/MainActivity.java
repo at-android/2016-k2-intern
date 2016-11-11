@@ -20,14 +20,14 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent myInten = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01239543423"));
                 startActivity(myInten);
+                waitData();
             }
         });
-        waitData();
     }
 
     public void waitData() {
         Intent intent = getIntent();
-        if (intent.getData() != null) {
+        if (intent.getData() != null && Intent.ACTION_DIAL.equals(intent.getAction())) {
             Log.d("intent received", intent.getData().toString());
             String phoneNumber = intent.getData().toString();
             phoneNumber = phoneNumber.substring(4);
