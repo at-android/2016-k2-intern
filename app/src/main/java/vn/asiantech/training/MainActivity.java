@@ -18,6 +18,8 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import static android.net.Uri.parse;
+
 public class MainActivity extends AppCompatActivity {
     private TextView mTvCall;
     private TextView mTvMessage;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:01645484112"));
+                callIntent.setData(parse("tel:01645484112"));
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
@@ -100,6 +102,13 @@ public class MainActivity extends AppCompatActivity {
                 lauchPlayStore();
             }
         });
+
+        mTvMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lauchMap();
+            }
+        });
     }
 
     private void sendSMS(String phoneNumber, String message) {
@@ -123,13 +132,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void lauchPlayStore() {
-        final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://play.google.com/store/apps/"));
-        startActivity(intent);
-
+        final String appPackageName = getPackageName();
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 
     private void lauchWeb() {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vnexpress.net"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, parse("http://www.vnexpress.net"));
         startActivity(intent);
     }
 
@@ -138,6 +150,13 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, REQUEST_CAMERA);
         }
+    }
+
+    private void lauchMap() {
+        Uri uri = parse("google.streetview:cbll=46.414382,10.013988");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setPackage("com.google.android.apps.maps");
+        startActivity(intent);
     }
 
     private void lauchGalery() {
