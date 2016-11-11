@@ -3,6 +3,7 @@ package vn.asiantech.training;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_call:
-                doMakeCall();
+                choseManyCall();
                 break;
             case R.id.btn_message:
                 doSendMessage();
@@ -85,10 +87,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void choseManyCall(){
+        Intent mainIntent = new Intent(Intent.ACTION_DIAL, null);
+        mainIntent.addCategory(Intent.CATEGORY_DEFAULT);
+        List<ResolveInfo> pkgAppsList = getApplicationContext().getPackageManager().queryIntentActivities(mainIntent, 0);
+        if (pkgAppsList.size() > 0) {
+            Intent chooser = Intent.createChooser(mainIntent, "Choose");
+            Log.i("info", chooser.toString());
+            startActivity(chooser);
+        }
+    }
     public void doMakeCall() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:0934972902"));
+        callIntent.setData(Uri.parse("tel:0934888706"));
         startActivity(callIntent);
     }
 
@@ -96,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //    int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         try {
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage("0934972902", null, "bla bla", null, null);
+            smsManager.sendTextMessage("0934888706", null, "bla bla", null, null);
             Toast.makeText(getApplicationContext(), "SMS Sent!",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
