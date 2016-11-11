@@ -5,4 +5,6 @@
     <dimen name="main_layout_show_number_height">150dp</dimen>
     <dimen name="main_bt_text_size">32sp</dimen>
     <dimen name="main_bt_margin_around">2dp</dimen>
+    <dimen name="txt_numberphone_size">100sp</dimen>
+    <dimen name="txt_numberphone_martop">15dp</dimen>
 </resources>

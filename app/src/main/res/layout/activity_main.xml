@@ -12,6 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_layout_show_number_height">
 
+        <TextView
+            android:id="@+id/txtNumberPhone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/txt_numberphone_martop"
+            android:gravity="end"
+            android:text="@string/number0"
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_numberphone_size" />
     </RelativeLayout>
 
     <LinearLayout
