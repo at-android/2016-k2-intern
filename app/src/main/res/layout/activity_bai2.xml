@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bai2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+
+    tools:context="vn.asiantech.training.Bai2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/bai2_tv"
+            style="@style/bai2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bai2_btnOne"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_1" />
+
+            <Button
+                android:id="@+id/bai2_btnTwo"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_2" />
+
+            <Button
+                android:id="@+id/bai2_btnThree"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bai2_btnFour"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_4" />
+
+            <Button
+                android:id="@+id/bai2_btnFive"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_5" />
+
+            <Button
+                android:id="@+id/bai2_btnSix"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_6" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bai2_btnSeven"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_7" />
+
+            <Button
+                android:id="@+id/bai2_btnEight"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_8" />
+
+            <Button
+                android:id="@+id/bai2_btnNine"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_9" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bai2_btnStar"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_sao" />
+
+            <Button
+                android:id="@+id/bai2_btnZero"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_0" />
+
+            <Button
+                android:id="@+id/bai2_btnSharp"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Bai2_btn_thang" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bai2_imgBtnPhoneCall"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/main_img_descrip"
+                android:src="@drawable/ic_video_call_green_500_24dp"
+                android:text="@string/Bai2_btn_1" />
+
+            <ImageButton
+                android:id="@+id/bai2_imgBtnCall"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/main_img_descrip"
+                android:src="@drawable/ic_call_green_500_24dp"
+                android:text="@string/Bai2_btn_2" />
+
+            <ImageButton
+                android:id="@+id/bai2_imgBtnBack"
+                style="@style/bai2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/main_img_descrip"
+                android:src="@drawable/ic_backspace_light_blue_200_18dp"
+                android:text="@string/Bai2_btn_3" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
