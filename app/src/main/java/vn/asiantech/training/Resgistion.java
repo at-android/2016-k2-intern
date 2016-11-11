@@ -40,12 +40,10 @@ public class Resgistion extends Activity {
                 if (b == false) {
                     pass.setInputType(InputType.TYPE_CLASS_TEXT |
                             InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    ;
                 }
                 if (b == true) {
                     pass.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
-                // Toast.makeText(RegistrationAcitvity.this, b+"", Toast.LENGTH_SHORT).show();
             }
         });
     }
