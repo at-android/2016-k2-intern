@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0e111c"
+    android:background="@color/caculator_button"
     tools:context="vn.asiantech.training.MainActivity">
 
     <ImageView
@@ -14,6 +14,8 @@
         android:layout_weight="1.5"
         android:src="@drawable/photo"
         android:background="#ffffff"
+        android:id="@+id/imvPicture"
+        android:layout_marginTop="@dimen/intent_imv_margin_top"
         />
     <LinearLayout
         android:layout_width="match_parent"
