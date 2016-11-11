@@ -93,5 +93,3 @@ out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
-app/libs/
-app/src/main/res/drawable/
