@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#4f4488</color>
+    <color name="colorPrimaryDark">#4f4488</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="button_pressed">#141827</color>
+    <color name="button_focused">#0e111c</color>
+    <color name="button_default">#0e111c</color>
+    <color name="facebook_backgound">#3b5998</color>
+    <color name="facebook_button">#223b78</color>
+    <color name="signin_color">#b585d9</color>
+    <color name="button_get_start_color">#b585d9</color>
 </resources>

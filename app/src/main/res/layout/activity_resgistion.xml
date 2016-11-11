@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_resgistion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.Resgistion">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_resgistration"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="0dp"
+            android:paddingLeft="@dimen/text_resgistration_padleft"
+            android:paddingRight="0dp"
+            android:paddingStart="@dimen/text_resgistration_padleft"
+            android:paddingTop="@dimen/text_resgistration_padtop"
+            android:text="@string/registration"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_resgistration_size"
+            android:typeface="normal" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/img_x_height"
+            android:layout_marginEnd="@dimen/img_x_mar_right"
+            android:layout_marginRight="@dimen/img_x_mar_right"
+            android:layout_marginTop="@dimen/img_x_mar_top"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:contentDescription="@null"
+            android:cropToPadding="false"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_close" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout02"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginEnd="@dimen/layout_reg_content_mar_right"
+        android:layout_marginLeft="@dimen/layout_reg_content_mar_left"
+        android:layout_marginRight="@dimen/layout_reg_content_mar_right"
+        android:layout_marginStart="@dimen/layout_reg_content_mar_left"
+        android:layout_marginTop="@dimen/layout_reg_content_martop"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/layout_reg_content_pad_right"
+        android:paddingLeft="@dimen/layout_reg_content_pad_left"
+        android:paddingRight="@dimen/layout_reg_content_pad_right"
+        android:paddingStart="@dimen/layout_reg_content_pad_left">
+
+        <EditText
+            android:id="@+id/edMailRes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_mail"
+            android:drawablePadding="@dimen/edt_username_padding"
+            android:drawableStart="@drawable/ic_mail"
+            android:ems="10"
+            android:hint="@string/hint_username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edUserRes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/edt_reg_username_martop"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawablePadding="@dimen/edt_username_padding"
+            android:drawableStart="@drawable/ic_person"
+            android:ems="10"
+            android:hint="@string/user"
+            android:inputType="textPersonName" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edPassRes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edt_reg_username_martop"
+                android:drawableLeft="@drawable/ic_lock"
+                android:drawablePadding="@dimen/edt_username_padding"
+                android:drawableStart="@drawable/ic_lock"
+                android:ems="10"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+            <Switch
+                android:id="@+id/switchOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginBottom="@dimen/switch_mar_bot" />
+        </FrameLayout>
+
+
+        <RadioGroup
+            android:id="@+id/idRadioGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/radio_mar_top"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/female" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btGetStarRes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_get_start"
+            android:background="@color/button_get_start_color"
+            android:text="@string/button_get_started"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/button_get_start_text_size"
+            android:typeface="normal" />
+
+        <Button
+            android:id="@+id/btLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_get_start"
+            android:background="@color/button_get_start_color"
+            android:text="@string/button_log_out"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/button_get_start_text_size"
+            android:typeface="normal"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</RelativeLayout>
