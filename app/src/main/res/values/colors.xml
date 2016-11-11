@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="Intent_tv_color_text">#ffffff</color>
+    <color name="intent_tv_color_text">#ffffff</color>
     <color name="caculator_btn_text_color_press">#00aed3</color>
     <color name="caculator_button">#1c2238</color>
 </resources>

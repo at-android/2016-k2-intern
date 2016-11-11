@@ -4,113 +4,117 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/caculator_button"
+    android:orientation="vertical"
     tools:context="vn.asiantech.training.MainActivity">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="1.5"
-        android:src="@drawable/photo"
-        android:background="#ffffff"
         android:id="@+id/imvPicture"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/intent_imv_margin_top"
-        />
+        android:layout_weight="1.5"
+        android:background="@android:color/white"
+        android:contentDescription="@null"
+        android:src="@drawable/photo" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
+        android:padding="@dimen/intent_layout_padding">
+
         <TextView
+            android:id="@+id/tvCall"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/intent_btn_tv_call"
-            android:id="@+id/tvCall"
-            />
+            tools:ignore="NestedWeights" />
+
         <TextView
+            android:id="@+id/tvMessage"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/intent_btn_tv_message"
-            android:id="@+id/tvMessage"
-            />
+            android:text="@string/intent_btn_tv_message" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
+        android:padding="@dimen/intent_layout_padding">
+
         <TextView
+            android:id="@+id/tvMail"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/intent_btn_tv_mail"
-            android:id="@+id/tvMail"
-            />
+            tools:ignore="NestedWeights" />
+
         <TextView
+            android:id="@+id/tvWeb"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/intent_btn_tv_web"
-            android:id="@+id/tvWeb"
-            />
+            android:text="@string/intent_btn_tv_web" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
+        android:padding="20dp">
+
         <TextView
+            android:id="@+id/tvStore"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/intent_btn_tv_GGPlay"
-            android:id="@+id/tvStore"
-            />
+            tools:ignore="NestedWeights" />
+
         <TextView
+            android:id="@+id/tvMap"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/intent_btn_tv_Map"
-            android:id="@+id/tvMap"
-            />
+            android:text="@string/intent_btn_tv_Map" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
+        android:padding="@dimen/intent_layout_padding">
+
         <TextView
+            android:id="@+id/tvCamera"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/intent_btn_tv_Camera"
-            android:id="@+id/tvCamera"
-            />
+            tools:ignore="NestedWeights" />
+
         <TextView
+            android:id="@+id/tvGalery"
             style="@style/ButtonIntent"
-            android:layout_width="1dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/intent_btn_tv_Galery"
-            android:id="@+id/tvGalery"
-            />
+            android:text="@string/intent_btn_tv_Galery" />
     </LinearLayout>
 </LinearLayout>

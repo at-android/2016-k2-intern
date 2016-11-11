@@ -20,7 +20,7 @@ import java.io.InputStream;
 
 import static android.net.Uri.parse;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTvCall;
     private TextView mTvMessage;
     private TextView mTvMail;
@@ -48,67 +48,24 @@ public class MainActivity extends AppCompatActivity {
         mTvGalery = (TextView) findViewById(R.id.tvGalery);
         mImvPicture = (ImageView) findViewById(R.id.imvPicture);
 
-        mTvCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(parse("tel:01645484112"));
-                if (ActivityCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent);
-            }
-        });
+        mTvCall.setOnClickListener(this);
+        mTvMessage.setOnClickListener(this);
+        mTvMail.setOnClickListener(this);
+        mTvWeb.setOnClickListener(this);
+        mTvGalery.setOnClickListener(this);
+        mTvCamera.setOnClickListener(this);
+        mTvStore.setOnClickListener(this);
+        mTvMap.setOnClickListener(this);
+    }
 
-        mTvMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendSMS("01645484112", "test Send Message");
-            }
-        });
-
-        mTvMail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendMail();
-            }
-        });
-
-        mTvWeb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lauchWeb();
-            }
-        });
-
-        mTvGalery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lauchGalery();
-            }
-        });
-
-        mTvCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lauchCamera();
-            }
-        });
-
-        mTvStore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lauchPlayStore();
-            }
-        });
-
-        mTvMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lauchMap();
-            }
-        });
+    private void makeCall() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(parse("tel:01645484112"));
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
     }
 
     private void sendSMS(String phoneNumber, String message) {
@@ -126,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         email.putExtra(Intent.EXTRA_SUBJECT, subject);
         email.putExtra(Intent.EXTRA_TEXT, message);
 
-        //need this to prompts email client only
         email.setType("message/rfc822");
         startActivity(Intent.createChooser(email, "Choose an Email client :"));
     }
@@ -183,5 +139,36 @@ public class MainActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
             mImvPicture.setImageBitmap(bitmap);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tvCall:
+                makeCall();
+                break;
+            case R.id.tvMessage:
+                sendSMS("01645484112", "test Send Message");
+                break;
+            case R.id.tvMail:
+                sendMail();
+                break;
+            case R.id.tvWeb:
+                lauchWeb();
+                break;
+            case R.id.tvStore:
+                lauchPlayStore();
+                break;
+            case R.id.tvMap:
+                lauchMap();
+                break;
+            case R.id.tvCamera:
+                lauchCamera();
+                break;
+            case R.id.tvGalery:
+                lauchGalery();
+                break;
+        }
+
     }
 }

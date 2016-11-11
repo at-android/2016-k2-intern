@@ -11,16 +11,16 @@
     <style name="ButtonIntent">
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/Intent_tv_size_text</item>
-        <item name="android:textColor">@color/Intent_tv_color_text</item>
+        <item name="android:textSize">@dimen/intent_tv_size_text</item>
+        <item name="android:textColor">@color/intent_tv_color_text</item>
         <item name="android:background">@drawable/animationbutton</item>
     </style>
 
     <style name="ButtonIntentLand">
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/Intent_land_tv_size_text</item>
-        <item name="android:textColor">@color/Intent_tv_color_text</item>
+        <item name="android:textSize">@dimen/intent_land_tv_size_text</item>
+        <item name="android:textColor">@color/intent_tv_color_text</item>
         <item name="android:background">@drawable/animationbutton</item>
     </style>
 
