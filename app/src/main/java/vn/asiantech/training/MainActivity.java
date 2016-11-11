@@ -20,9 +20,9 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent myInten = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01239543423"));
                 startActivity(myInten);
-                waitData();
             }
         });
+        waitData();
     }
 
     public void waitData() {
@@ -36,4 +36,5 @@ public class MainActivity extends Activity {
             Log.d("intent received", "null intent received");
         }
     }
+
 }
