@@ -6,80 +6,80 @@
     tools:context="vn.asiantech.training.DemoIntentFilter">
 
     <Button
-        android:id="@+id/Btncall"
+        android:id="@+id/btnCall"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
         android:text="@string/btn_call" />
 
     <Button
-        android:id="@+id/Btnmessage"
+        android:id="@+id/btnMessage"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/Btncall"
-        android:layout_toRightOf="@+id/Btncall"
+        android:layout_toEndOf="@+id/btnCall"
+        android:layout_toRightOf="@+id/btnCall"
         android:text="@string/btn_message"
         tools:ignore="RtlCompat" />
 
     <Button
-        android:id="@+id/BtnsendEmail"
+        android:id="@+id/btnSendemail"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/Btnmessage"
-        android:layout_toRightOf="@+id/Btnmessage"
+        android:layout_toEndOf="@+id/btnMessage"
+        android:layout_toRightOf="@+id/btnMessage"
         android:text="@string/btn_sendMail" />
 
     <Button
-        android:id="@+id/BtnlaunchWeb"
+        android:id="@+id/btnLaunchweb"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/BtnopenGGstore"
+        android:layout_below="@+id/btnOpenggstore"
         android:text="@string/btn_launchWeb" />
 
     <Button
-        android:id="@+id/BtnopenGGstore"
+        android:id="@+id/btnOpenggstore"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Btncall"
+        android:layout_below="@+id/btnCall"
         android:text="@string/btn_openGGstore" />
 
     <Button
-        android:id="@+id/BtnopenGGmap"
+        android:id="@+id/btnOpenggmap"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Btnmessage"
-        android:layout_toEndOf="@+id/BtnopenGGstore"
-        android:layout_toRightOf="@+id/BtnopenGGstore"
+        android:layout_below="@+id/btnMessage"
+        android:layout_toEndOf="@+id/btnOpenggstore"
+        android:layout_toRightOf="@+id/btnOpenggstore"
         android:text="@string/btn_openGGmap" />
 
     <Button
-        android:id="@+id/BtnopenGallery"
+        android:id="@+id/btnOpengallery"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/BtnsendEmail"
-        android:layout_toEndOf="@+id/BtnopenGGmap"
-        android:layout_toRightOf="@+id/BtnopenGGmap"
+        android:layout_below="@+id/btnSendemail"
+        android:layout_toEndOf="@+id/btnOpenggmap"
+        android:layout_toRightOf="@+id/btnOpenggmap"
         android:text="@string/btn_openGallery" />
 
     <Button
-        android:id="@+id/Btncamera"
+        android:id="@+id/btnCamera"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/BtnopenGallery"
-        android:layout_toEndOf="@+id/BtnlaunchWeb"
-        android:layout_toRightOf="@+id/BtnlaunchWeb"
+        android:layout_below="@+id/btnOpengallery"
+        android:layout_toEndOf="@+id/btnLaunchweb"
+        android:layout_toRightOf="@+id/btnLaunchweb"
         android:text="@string/btn_camera" />
 
     <ImageView
         android:id="@+id/Imgdisplay"
         style="@style/activity_demo_img_style"
-        android:layout_below="@+id/BtnlaunchWeb"
+        android:layout_below="@+id/btnLaunchweb"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

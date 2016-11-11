@@ -34,7 +34,6 @@ public class DemoIntentFilter extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_intent_filter);
         init();
-
     }
 
     public void init() {
@@ -133,6 +132,4 @@ public class DemoIntentFilter extends AppCompatActivity implements View.OnClickL
             }
         }
     }
-
-
 }
