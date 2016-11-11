@@ -37,14 +37,14 @@ public class DemoIntentFilter extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
-        mBtncall = (Button) findViewById(R.id.Btncall);
-        mBtnlaunchWeb = (Button) findViewById(R.id.BtnlaunchWeb);
-        mBtnmessage = (Button) findViewById(R.id.Btnmessage);
-        mBtnopenGallery = (Button) findViewById(R.id.BtnopenGallery);
-        mBtnopenGGmap = (Button) findViewById(R.id.BtnopenGGmap);
-        mBtnopenGGstore = (Button) findViewById(R.id.BtnopenGGstore);
-        mBtnsendEmail = (Button) findViewById(R.id.BtnsendEmail);
-        mBtncamera = (Button) findViewById(R.id.Btncamera);
+        mBtncall = (Button) findViewById(R.id.btnCall);
+        mBtnlaunchWeb = (Button) findViewById(R.id.btnLaunchweb);
+        mBtnmessage = (Button) findViewById(R.id.btnMessage);
+        mBtnopenGallery = (Button) findViewById(R.id.btnOpengallery);
+        mBtnopenGGmap = (Button) findViewById(R.id.btnOpenggmap);
+        mBtnopenGGstore = (Button) findViewById(R.id.btnOpenggstore);
+        mBtnsendEmail = (Button) findViewById(R.id.btnSendemail);
+        mBtncamera = (Button) findViewById(R.id.btnCamera);
         mImgdisplay = (ImageView) findViewById(R.id.Imgdisplay);
         mBtncall.setOnClickListener(this);
         mBtnlaunchWeb.setOnClickListener(this);
