@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvPhonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/activity_tv_fontsize"
+        tools:text="abc" />
+
+    <LinearLayout
+        style="@style/activity_DemoPhoneCall"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnN1"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n1" />
+
+        <Button
+            android:id="@+id/btnN2"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n2" />
+
+        <Button
+            android:id="@+id/btnN3"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n3" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/activity_DemoPhoneCall"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnN4"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n4" />
+
+        <Button
+            android:id="@+id/btnN5"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n5" />
+
+        <Button
+            android:id="@+id/btnN6"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n6" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/activity_DemoPhoneCall"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnN7"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n7" />
+
+        <Button
+            android:id="@+id/btnN8"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n8" />
+
+        <Button
+            android:id="@+id/btnN9"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n9" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/activity_DemoPhoneCall"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_start" />
+
+        <Button
+            android:id="@+id/btnN0"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_n0" />
+
+        <Button
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:text="@string/btn_sharp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/activity_DemoPhoneCall"
+        android:orientation="horizontal">
+
+        <ImageButton
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:src="@drawable/ic_people_green_500_24dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/ibtnCall"
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:src="@drawable/ic_call_green_500_24dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            style="@style/activity_DemoPhoneCall_Btn_style"
+            android:src="@drawable/ic_exit_to_app_red_500_24dp"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+</LinearLayout>
