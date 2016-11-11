@@ -16,4 +16,5 @@
     <string name="female">Female</string>
     <string name="button_get_started">GET STARTED</string>
     <string name="button_log_out">Log out</string>
+    <string name="txt_default">Not Value</string>
 </resources>

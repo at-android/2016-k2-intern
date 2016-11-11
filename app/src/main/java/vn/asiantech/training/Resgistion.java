@@ -27,16 +27,11 @@ public class Resgistion extends Activity {
         btGetstarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button btLogOut = (Button) findViewById(R.id.btLogOut);
-                btLogOut.setVisibility(View.VISIBLE);
-                btLogOut.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent myIntent = new Intent(Resgistion.this, MainActivity.class);
-                        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(myIntent);
-                    }
-                });
+                Intent myInten = new Intent(Resgistion.this, Information.class);
+                myInten.putExtra("name", name.getText().toString());
+                myInten.putExtra("mail", mail.getText().toString());
+                myInten.putExtra("pass", pass.getText().toString());
+                startActivity(myInten);
             }
         });
         swonPW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

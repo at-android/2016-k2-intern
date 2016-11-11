@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.Information">
+
+    <TextView
+        android:id="@+id/txtMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_default"
+        android:textSize="@dimen/txt_size_default" />
+
+    <TextView
+        android:id="@+id/txtUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMail"
+        android:text="@string/txt_default"
+        android:textSize="@dimen/txt_size_default" />
+
+    <TextView
+        android:id="@+id/txtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUser"
+        android:text="@string/txt_default"
+        android:textSize="@dimen/txt_size_default" />
+
+    <Button
+        android:id="@+id/btLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPassword"
+        android:layout_marginTop="@dimen/button_get_start"
+        android:background="@color/button_get_start_color"
+        android:text="@string/button_log_out"
+        android:textColor="@android:color/background_light"
+        android:textSize="@dimen/button_get_start_text_size"
+        android:typeface="normal" />
+</RelativeLayout>

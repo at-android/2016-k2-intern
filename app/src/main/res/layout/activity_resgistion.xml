@@ -142,17 +142,6 @@
             android:textSize="@dimen/button_get_start_text_size"
             android:typeface="normal" />
 
-        <Button
-            android:id="@+id/btLogOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/button_get_start"
-            android:background="@color/button_get_start_color"
-            android:text="@string/button_log_out"
-            android:textColor="@android:color/background_light"
-            android:textSize="@dimen/button_get_start_text_size"
-            android:typeface="normal"
-            android:visibility="invisible" />
     </LinearLayout>
 
 </RelativeLayout>

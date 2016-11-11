@@ -53,6 +53,7 @@
     <dimen name="button_get_start">20dp</dimen>
     <dimen name="button_get_start_text_size">20sp</dimen>
     <dimen name="radio_mar_top">10dp</dimen>
-    <dimen name="text_resgistration_size">36sp</dimen>
+    <dimen name="text_resgistration_size">24sp</dimen>
     <dimen name="action_bar_resgistration">100dp</dimen>
+    <dimen name="txt_size_default">50sp</dimen>
 </resources>
