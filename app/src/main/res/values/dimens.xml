@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="Intent_tv_size_text">30sp</dimen>
     <dimen name="intent_imv_margin_top">3dp</dimen>
+    <dimen name="Intent_land_tv_size_text">20sp</dimen>
 </resources>
