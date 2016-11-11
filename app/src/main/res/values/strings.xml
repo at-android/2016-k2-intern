@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btn_call">Call</string>
+    <string name="btn_message">Message</string>
+    <string name="btn_sendMail">Send Mail</string>
+    <string name="btn_launchWeb">Launch Vnexpress</string>
+    <string name="btn_openGGstore">Open Google Store</string>
+    <string name="btn_openGGmap">Open Google Map</string>
+    <string name="btn_openGallery">Open Gallery</string>
+    <string name="btn_camera">Camera</string>
+
+    <string name="btn_n1">1</string>
+    <string name="btn_n2">2</string>
+    <string name="btn_n3">3</string>
+    <string name="btn_n4">4</string>
+    <string name="btn_n5">5</string>
+    <string name="btn_n6">6</string>
+    <string name="btn_n7">7</string>
+    <string name="btn_n8">8</string>
+    <string name="btn_n9">9</string>
+    <string name="btn_n0">0</string>
+    <string name="btn_start">*</string>
+    <string name="btn_sharp">#</string>
+    <string name="btn_dial">DIAL</string>
 </resources>
