@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvCamera;
     private TextView mTvGalery;
     private ImageView mImvPicture;
-    private int REQUEST_CAMERA = 100;
-    private int REQUEST_GALERY = 101;
+    private static final int REQUEST_CAMERA = 100;
+    private static final int REQUEST_GALERY = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
