@@ -1,12 +1,17 @@
 package vn.asiantech.training;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.net.Uri.parse;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTvNumber1;
@@ -115,7 +120,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void makeCall(String number) {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(parse("tel:"+number));
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         startActivity(intent);
     }
 
