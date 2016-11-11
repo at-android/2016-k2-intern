@@ -2,8 +2,11 @@ package vn.asiantech.training;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +14,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageButton btList = (ImageButton) findViewById(R.id.btListNumber);
+        btList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myInten = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01239543423"));
+                startActivity(myInten);
+            }
+        });
+        waitData();
+    }
+
+    public void waitData() {
         Intent intent = getIntent();
         if (intent.getData() != null) {
             Log.d("intent received", intent.getData().toString());
