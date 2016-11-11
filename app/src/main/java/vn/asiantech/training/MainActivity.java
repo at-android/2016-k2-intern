@@ -24,8 +24,8 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:" + numberphone));
-                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(callIntent);
+
             }
         });
     }
