@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Locale;
 
 import static android.net.Uri.parse;
 
@@ -77,12 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String subject = "Demo subject";
         String message = "Demo message";
         String to = "tamnm@asiantech.com";
-
         Intent email = new Intent(Intent.ACTION_SEND);
         email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
         email.putExtra(Intent.EXTRA_SUBJECT, subject);
         email.putExtra(Intent.EXTRA_TEXT, message);
-
         email.setType("message/rfc822");
         startActivity(Intent.createChooser(email, "Choose an Email client :"));
     }
@@ -109,9 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void lauchMap() {
-        Uri uri = parse("google.streetview:cbll=46.414382,10.013988");
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        intent.setPackage("com.google.android.apps.maps");
+        String longitude = "20.344,34.34";
+        String latitude = "20.5666,45.345";
+        String uri = String.format(Locale.ENGLISH, "geo:%s,%s", latitude, longitude);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
     }
 
