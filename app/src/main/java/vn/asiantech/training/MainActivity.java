@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void launchCallApp() {
-        Intent intent = new Intent(Intent.ACTION_CALL,null);
+        Intent intent = new Intent(Intent.ACTION_DIAL,null);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         List list = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
         if (list.size() > 0) {
