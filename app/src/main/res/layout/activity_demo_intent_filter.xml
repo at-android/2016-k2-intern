@@ -48,7 +48,7 @@
         android:text="@string/btn_openGGstore" />
 
     <Button
-        android:id="@+id/BtnopenGGplay"
+        android:id="@+id/BtnopenGGmap"
         style="@style/activity_demo_intent"
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
@@ -63,8 +63,8 @@
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/BtnsendEmail"
-        android:layout_toEndOf="@+id/BtnopenGGplay"
-        android:layout_toRightOf="@+id/BtnopenGGplay"
+        android:layout_toEndOf="@+id/BtnopenGGmap"
+        android:layout_toRightOf="@+id/BtnopenGGmap"
         android:text="@string/btn_openGallery" />
 
     <Button
@@ -73,12 +73,13 @@
         android:layout_width="@dimen/activity_demo_intent_btn_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/BtnopenGallery"
-        android:layout_toRightOf="@+id/BtnlaunchWeb"
         android:layout_toEndOf="@+id/BtnlaunchWeb"
+        android:layout_toRightOf="@+id/BtnlaunchWeb"
         android:text="@string/btn_camera" />
 
     <ImageView
+        android:id="@+id/Imgdisplay"
+        style="@style/activity_demo_img_style"
         android:layout_below="@+id/BtnlaunchWeb"
-        android:layout_centerHorizontal="true"
-        style="@style/activity_demo_img_style" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
