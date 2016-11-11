@@ -23,19 +23,23 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_1"
+            android:id="@+id/btn_call"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/main_btn_1"
-            style="@style/main_button"
+
+
             />
 
         <Button
-            android:id="@+id/btn_2"
+            android:id="@+id/btn_message"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_2"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_2" />
     </TableRow>
 
     <TableRow
@@ -43,18 +47,20 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_3"
+            android:id="@+id/btn_mail"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_3"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_3" />
 
         <Button
-            android:id="@+id/btn_4"
+            android:id="@+id/btn_launchWeb"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_4"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_4" />
     </TableRow>
 
     <TableRow
@@ -62,18 +68,20 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_5"
+            android:id="@+id/btn_openStore"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_5"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_5" />
 
         <Button
-            android:id="@+id/btn_6"
+            android:id="@+id/btn_googleMap"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_6"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_6" />
     </TableRow>
 
     <TableRow
@@ -81,18 +89,20 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_7"
+            android:id="@+id/btn_openGallery"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_7"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_7" />
 
         <Button
-            android:id="@+id/btn_8"
+            android:id="@+id/btn_openCamera"
+            style="@style/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_8"
-            style="@style/main_button"/>
+            android:layout_weight="1"
+            android:text="@string/main_btn_8" />
     </TableRow>
 
 </LinearLayout>
