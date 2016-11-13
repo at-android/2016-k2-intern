@@ -8,4 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="main_imgView">
+
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="main_button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+
+    </style>
+
+    <style name="bai2_button">
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">#e7cf1c</item>
+        <item name="android:layout_marginBottom">@dimen/bai2_marginBottom</item>
+        <item name="android:layout_marginRight">@dimen/bai2_marginRight</item>
+        <item name="android:textSize">@dimen/bai2_textSize</item>
+        <item name="android:textColor">@android:color/black</item>
+
+
+    </style>
+
+    <style name="bai2_tv">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/black</item>
+    </style>
+
 </resources>
