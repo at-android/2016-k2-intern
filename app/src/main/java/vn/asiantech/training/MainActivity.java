@@ -23,7 +23,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button mBtnCall, mBtnMessage, mBtnMail, mBtnLaunch, mBtnStore, mBtnMap, mBtnGalerry, mBtnCamera;
+    Button mBtnCall;
+    Button mBtnMessage;
+    Button mBtnMail;
+    Button mBtnLaunch;
+    Button mBtnStore;
+    Button mBtnMap;
+    Button mBtnGalerry;
+    Button mBtnCamera;
     ImageView mImgView;
     public static final int RESULT_GALLERY = 0;
     public static final int CAMERA_REQUEST = 1;
@@ -36,15 +43,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getFromWidget() {
-        mBtnCall = (Button) findViewById(R.id.btn_call);
-        mBtnMessage = (Button) findViewById(R.id.btn_message);
-        mBtnMail = (Button) findViewById(R.id.btn_mail);
-        mBtnLaunch = (Button) findViewById(R.id.btn_launchWeb);
-        mBtnStore = (Button) findViewById(R.id.btn_openStore);
-        mBtnMap = (Button) findViewById(R.id.btn_googleMap);
-        mBtnGalerry = (Button) findViewById(R.id.btn_openGallery);
-        mBtnCamera = (Button) findViewById(R.id.btn_openCamera);
-        mImgView = (ImageView) findViewById(R.id.main_imgView);
+        mBtnCall = (Button) findViewById(R.id.btnCall);
+        mBtnMessage = (Button) findViewById(R.id.btnMessage);
+        mBtnMail = (Button) findViewById(R.id.btnMail);
+        mBtnLaunch = (Button) findViewById(R.id.btnLaunchWeb);
+        mBtnStore = (Button) findViewById(R.id.btnOpenStore);
+        mBtnMap = (Button) findViewById(R.id.btnGoogleMap);
+        mBtnGalerry = (Button) findViewById(R.id.btnOpenGallery);
+        mBtnCamera = (Button) findViewById(R.id.btnOpenCamera);
+        mImgView = (ImageView) findViewById(R.id.mainImgView);
 
         mBtnCall.setOnClickListener(this);
         mBtnMessage.setOnClickListener(this);
@@ -59,35 +66,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_call:
+            case R.id.btnCall:
                 choseManyCall();
                 break;
-            case R.id.btn_message:
+            case R.id.btnMessage:
                 doSendMessage();
                 break;
-            case R.id.btn_mail:
+            case R.id.btnMail:
                 doSendEmail();
                 break;
-            case R.id.btn_launchWeb:
+            case R.id.btnLaunchWeb:
                 launchWebsite();
                 break;
-            case R.id.btn_openStore:
+            case R.id.btnOpenStore:
                 openPlayStore();
                 break;
-            case R.id.btn_googleMap:
+            case R.id.btnGoogleMap:
                 openGoogleMap();
                 break;
-            case R.id.btn_openGallery:
+            case R.id.btnOpenGallery:
                 openGallery();
                 break;
-            case R.id.btn_openCamera:
+            case R.id.btnOpenCamera:
                 openCamera();
                 break;
-
         }
     }
 
-    public void choseManyCall(){
+    public void choseManyCall() {
         Intent mainIntent = new Intent(Intent.ACTION_DIAL, null);
         mainIntent.addCategory(Intent.CATEGORY_DEFAULT);
         List<ResolveInfo> pkgAppsList = getApplicationContext().getPackageManager().queryIntentActivities(mainIntent, 0);
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(chooser);
         }
     }
+
     public void doMakeCall() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -158,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(galleryIntent, RESULT_GALLERY);
     }
 
-    public void openCamera(){
+    public void openCamera() {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
@@ -186,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             break;
 
             case CAMERA_REQUEST: {
-                if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     Bitmap photo = (Bitmap) data.getExtras().get("data");
                     mImgView.setImageBitmap(photo);
                 }

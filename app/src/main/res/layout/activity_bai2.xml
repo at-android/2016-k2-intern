@@ -6,16 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-
     tools:context="vn.asiantech.training.Bai2">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/bai2_mainLayoutHeight"
         android:layout_weight="2">
 
         <TextView
-            android:id="@+id/bai2_tv"
+            android:id="@+id/bai2Tv"
             style="@style/bai2_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -23,32 +22,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/bai2_mainLayoutHeight"
         android:layout_weight="5"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/bai2_mainLayoutHeight"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bai2_btnOne"
+                android:id="@+id/bai2BtnOne"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_1" />
 
             <Button
-                android:id="@+id/bai2_btnTwo"
+                android:id="@+id/bai2BtnTwo"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_2" />
 
             <Button
-                android:id="@+id/bai2_btnThree"
+                android:id="@+id/bai2BtnThree"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -58,26 +57,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/bai2_mainLayoutHeight"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bai2_btnFour"
+                android:id="@+id/bai2BtnFour"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_4" />
 
             <Button
-                android:id="@+id/bai2_btnFive"
+                android:id="@+id/bai2BtnFive"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_5" />
 
             <Button
-                android:id="@+id/bai2_btnSix"
+                android:id="@+id/bai2BtnSix"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -87,26 +86,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/bai2_mainLayoutHeight"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bai2_btnSeven"
+                android:id="@+id/bai2BtnSeven"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_7" />
 
             <Button
-                android:id="@+id/bai2_btnEight"
+                android:id="@+id/bai2BtnEight"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_8" />
 
             <Button
-                android:id="@+id/bai2_btnNine"
+                android:id="@+id/bai2BtnNine"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -116,26 +115,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/bai2_mainLayoutHeight"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bai2_btnStar"
+                android:id="@+id/bai2BtnStar"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_sao" />
 
             <Button
-                android:id="@+id/bai2_btnZero"
+                android:id="@+id/bai2BtnZero"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/Bai2_btn_0" />
 
             <Button
-                android:id="@+id/bai2_btnSharp"
+                android:id="@+id/bai2BtnSharp"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -145,12 +144,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/bai2_mainLayoutHeight"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/bai2_imgBtnPhoneCall"
+                android:id="@+id/bai2ImgBtnPhoneCall"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -159,7 +158,7 @@
                 android:text="@string/Bai2_btn_1" />
 
             <ImageButton
-                android:id="@+id/bai2_imgBtnCall"
+                android:id="@+id/bai2ImgBtnCall"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -168,7 +167,7 @@
                 android:text="@string/Bai2_btn_2" />
 
             <ImageButton
-                android:id="@+id/bai2_imgBtnBack"
+                android:id="@+id/bai2ImgBtnBack"
                 style="@style/bai2_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -177,7 +176,6 @@
                 android:text="@string/Bai2_btn_3" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>

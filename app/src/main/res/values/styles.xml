@@ -15,6 +15,7 @@
 
     <style name="main_button">
         <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
 
     </style>
 
