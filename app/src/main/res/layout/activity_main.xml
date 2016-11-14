@@ -25,7 +25,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/lnrKeybroad"
+        android:id="@+id/llKeybroad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rltShowNumber"
