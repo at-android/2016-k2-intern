@@ -50,20 +50,23 @@ public class ListStudentFragment extends Fragment {
         stOj.setAddress("Da Nang");
         stOj.setOld("21");
         studentArr.add(stOj);
-        stOj.setName("Hoang Long");
-        stOj.setSchool("FPT Poly");
-        stOj.setAddress("Sai Gon");
-        stOj.setOld("21");
-        studentArr.add(stOj);
-        stOj.setName("Nhat Hai");
-        stOj.setSchool("FPT Poly");
-        stOj.setAddress("Ha Noi");
-        stOj.setOld("21");
-        studentArr.add(stOj);
-        stOj.setName("Phung Thien");
-        stOj.setSchool("FPT Poly");
-        stOj.setAddress("Hue");
-        stOj.setOld("21");
-        studentArr.add(stOj);
+        StudentObject stOj1 = new StudentObject();
+        stOj1.setName("Hoang Long");
+        stOj1.setSchool("FPT Poly");
+        stOj1.setAddress("Sai Gon");
+        stOj1.setOld("21");
+        studentArr.add(stOj1);
+        StudentObject stOj2 = new StudentObject();
+        stOj2.setName("Nhat Hai");
+        stOj2.setSchool("FPT Poly");
+        stOj2.setAddress("Ha Noi");
+        stOj2.setOld("21");
+        studentArr.add(stOj2);
+        StudentObject stOj3 = new StudentObject();
+        stOj3.setName("Phung Thien");
+        stOj3.setSchool("FPT Poly");
+        stOj3.setAddress("Hue");
+        stOj3.setOld("21");
+        studentArr.add(stOj3);
     }
 }
