@@ -8,4 +8,10 @@
     <string name="school_name">School :</string>
     <string name="address_student">Address :</string>
     <string name="old_student">Old :</string>
+    <string name="add_student_layout_text">Add Student</string>
+    <string name="add_student_edt_name">Add name</string>
+    <string name="add_student_button">Add student</string>
+    <string name="add_student_edt_school">Add school</string>
+    <string name="add_student_edt_address">Add address</string>
+    <string name="add_student_edt_old">Add old</string>
 </resources>

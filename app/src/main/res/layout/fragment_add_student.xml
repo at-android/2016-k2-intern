@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="vn.asiantech.training.AddStudentFragment">
+
+    <TextView
+        android:id="@+id/txtAddStudent_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/add_student_layout_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_list_student_text_size" />
+
+    <EditText
+        android:id="@+id/edtAddName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtAddStudent_Title"
+        android:layout_marginTop="@dimen/add_student_edt_margin_top"
+        android:hint="@string/add_student_edt_name" />
+
+    <EditText
+        android:id="@+id/edtAddSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtAddName"
+        android:layout_marginTop="@dimen/add_student_edt_margin_top"
+        android:hint="@string/add_student_edt_school" />
+
+    <EditText
+        android:id="@+id/edtAddAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtAddSchool"
+        android:layout_marginTop="@dimen/add_student_edt_margin_top"
+        android:hint="@string/add_student_edt_address" />
+
+    <EditText
+        android:id="@+id/edtAddOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtAddAddress"
+        android:layout_marginTop="@dimen/add_student_edt_margin_top"
+        android:hint="@string/add_student_edt_old" />
+
+    <Button
+        android:id="@+id/btAddStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtAddOld"
+        android:layout_marginTop="@dimen/add_student_edt_margin_top"
+        android:text="@string/add_student_button" />
+</RelativeLayout>
