@@ -1,11 +1,49 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="EditTextLoginAndRegister">
+        <item name="android:textSize">@dimen/login_layoutrelaytive_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/login_edt_padding_drawable</item>
+        <item name="android:layout_marginRight">@dimen/login_edt_margin_right_left</item>
+        <item name="android:layout_marginLeft">@dimen/login_edt_margin_right_left</item>
+    </style>
+    <style name="ImageViewSocialLogin">
+        <item name="android:layout_width">@dimen/login_imv_icon_social_width</item>
+        <item name="android:layout_height">@dimen/login_imv_icon_social_height</item>
+        <item name="android:contentDescription">@null</item>
+    </style>
+    <style name="EditTextLoginFacebook">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/facebook_login_edt_padding</item>
+        <item name="android:layout_marginTop">@dimen/facebook_login_edt_margin_top</item>
+        <item name="android:background">@drawable/login_facebook_edittext_corner</item>
+    </style>
+    <style name="TextViewTitleLoginAndResgiter">
+        <item name="android:background">@color/login_tv_logo_background</item>
+        <item name="android:padding">@dimen/login_tv_logo_padding</item>
+        <item name="android:textColor">@color/login_tv_text_color</item>
+        <item name="android:textSize">@dimen/login_tv_logo_size</item>
+    </style>
+    <style name="RadioButtonGenderRegister">
+        <item name="android:layout_marginTop">@dimen/register_rdbtn_margin_top</item>
+        <item name="android:layout_marginLeft">@dimen/register_rdbtn_margin_left</item>
+        <item name="android:textSize">@dimen/register_rdbtn_text_size</item>
+    </style>
+    <style name="TextViewDataShowRegister">
+        <item name="android:layout_marginLeft">@dimen/data_register_tv_size_text</item>
+        <item name="android:textSize">@dimen/data_register_tv_size_text</item>
+    </style>
+
+
 
 </resources>

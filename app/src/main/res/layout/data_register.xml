@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_register_tv_username"
+        android:textSize="@dimen/data_register_tv_size_text" />
+
+    <TextView
+        android:id="@+id/tvDataUsername"
+        style="@style/TextViewDataShowRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/tvUsername"
+        android:layout_toRightOf="@+id/tvUsername"
+        android:text="@string/data_register_tv_username" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUsername"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:text="@string/data_register_tv_email"
+        android:textSize="@dimen/data_register_tv_size_text" />
+
+    <TextView
+        android:id="@+id/tvDataEmail"
+        style="@style/TextViewDataShowRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDataUsername"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:layout_toEndOf="@+id/tvUsername"
+        android:layout_toRightOf="@+id/tvEmail"
+        android:text="@string/data_register_tv_username" />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEmail"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:text="@string/data_register_tv_password"
+        android:textSize="@dimen/data_register_tv_size_text" />
+
+    <TextView
+        android:id="@+id/tvDataPassword"
+        style="@style/TextViewDataShowRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEmail"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:layout_toEndOf="@+id/tvPassword"
+        android:layout_toRightOf="@+id/tvPassword"
+        android:text="@string/data_register_tv_gender" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPassword"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:text="@string/data_register_tv_gender"
+        android:textSize="@dimen/data_register_tv_size_text" />
+
+    <TextView
+        android:id="@+id/tvDataGender"
+        style="@style/TextViewDataShowRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDataPassword"
+        android:layout_marginTop="@dimen/data_register_tv_size_text"
+        android:layout_toEndOf="@+id/tvPassword"
+        android:layout_toRightOf="@+id/tvPassword"
+        android:text="@string/data_register_tv_username" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_register_btn_logout"
+        android:layout_below="@id/tvGender"
+        android:id="@+id/btnLogout"
+        />
+</RelativeLayout>

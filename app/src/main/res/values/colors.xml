@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Login Screen -->
+    <color name="login_tv_logo_background">#514688</color>
+    <color name="login_tv_text_color">#ffffff</color>
+    <color name="login_tv_signin_backgroud">#b585d9</color>
+    <color name="facebook_login_background">#2E4B89</color>
+    <color name="facebook_login_tv_title">#ffffff</color>
+    <color name="facebook_login_edittext_background">#ffffff</color>
+    <color name="facebook_login_tv_login_background">#243D74</color>
+    <color name="facebook_login_tv_text_color">#ffffff</color>
+    <color name="facebook_login_tv_forgot_pw_text_color">#ffffff</color>
 </resources>

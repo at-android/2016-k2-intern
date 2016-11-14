@@ -3,15 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="vn.asiantech.training.MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
+        style="@style/TextViewTitleLoginAndResgiter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_tv_title_login" />
+
+    <ImageView
+        android:id="@+id/imAdd"
+        android:layout_width="@dimen/login_imv_add_view_size"
+        android:layout_height="@dimen/login_imv_add_view_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginRight="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginTop="@dimen/login_imv_add_margin_top"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_add" />
+
+    <EditText
+        android:id="@+id/edUsername"
+        style="@style/EditTextLoginAndRegister"
+        android:layout_below="@+id/imAdd"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawableStart="@drawable/ic_person"
+        android:hint="@string/login_edt_username_hint"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/EditTextLoginAndRegister"
+        android:layout_below="@+id/edUsername"
+        android:layout_marginTop="@dimen/login_edt_password_margintop"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawableStart="@drawable/ic_lock"
+        android:hint="@string/login_edt_password_hint"
+        android:inputType="textPassword" />
+
+    <RelativeLayout
+        android:id="@+id/layoutIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World everyone ! " />
+        android:layout_below="@id/edPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/login_layout_icon_margin_size"
+        android:padding="@dimen/login_layout_icon_margin_size">
+
+        <ImageView
+            android:id="@+id/imFacebook"
+            style="@style/ImageViewSocialLogin"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_facebook" />
+
+        <ImageView
+            android:id="@+id/imGoogle"
+            style="@style/ImageViewSocialLogin"
+            android:layout_toEndOf="@+id/imFacebook"
+            android:layout_toRightOf="@+id/imFacebook"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_google" />
+
+        <ImageView
+            android:id="@+id/imTwitter"
+            style="@style/ImageViewSocialLogin"
+            android:layout_toEndOf="@+id/imGoogle"
+            android:layout_toRightOf="@+id/imGoogle"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_twitter" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/login_tv_signin_margin_top"
+        android:background="@drawable/login_signin_corner"
+        android:paddingBottom="@dimen/login_tv_signin_padding_top_bottom"
+        android:paddingLeft="@dimen/login_tv_signin_padding_right_left"
+        android:paddingRight="@dimen/login_tv_signin_padding_right_left"
+        android:paddingTop="@dimen/login_tv_signin_padding_top_bottom"
+        android:text="@string/login_tv_signin"
+        android:textColor="@color/login_tv_text_color"
+        android:textSize="@dimen/login_tv_signin_size_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSignIn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/login_tv_forgot_password_margin_top"
+        android:text="@string/login_tv_forgot_password" />
+
 </RelativeLayout>

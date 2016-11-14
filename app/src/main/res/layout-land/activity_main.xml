@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/TextViewTitleLoginAndResgiter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/login_land_tv_logo_padding"
+        android:text="@string/login_tv_title_login" />
+
+    <ImageView
+        android:id="@+id/imAdd"
+        android:layout_width="@dimen/login_imv_add_view_size"
+        android:layout_height="@dimen/login_imv_add_view_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginRight="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginTop="@dimen/login_land_imv_add_margin_top"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_add" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imAdd"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edUsername"
+                style="@style/EditTextLoginAndRegister"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawableStart="@drawable/ic_person"
+                android:hint="@string/login_edt_username_hint"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edPassword"
+                style="@style/EditTextLoginAndRegister"
+                android:layout_marginTop="@dimen/login_edt_password_margintop"
+                android:drawableLeft="@drawable/ic_lock"
+                android:drawableStart="@drawable/ic_lock"
+                android:hint="@string/login_edt_password_hint"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/tvSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/login_land_tv_signin_margin_left"
+                android:layout_marginStart="@dimen/login_land_tv_signin_margin_left"
+                android:layout_marginTop="@dimen/login_tv_signin_margin_top"
+                android:background="@drawable/login_signin_corner"
+                android:paddingBottom="@dimen/login_land_tv_signin_padding_bottom_top"
+                android:paddingLeft="@dimen/login_land_tv_signin_padding_left_right"
+                android:paddingRight="@dimen/login_land_tv_signin_padding_left_right"
+                android:paddingTop="@dimen/login_land_tv_signin_padding_bottom_top"
+                android:text="@string/login_tv_signin"
+                android:textColor="@color/login_tv_text_color"
+                android:textSize="@dimen/login_tv_signin_size_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/login_land_tv_forgot_pw_margin_left"
+                android:layout_marginStart="@dimen/login_land_tv_forgot_pw_margin_left"
+                android:layout_marginTop="@dimen/login_tv_forgot_password_margin_top"
+                android:text="@string/login_tv_forgot_password" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imFacebook"
+                style="@style/ImageViewSocialLogin"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_facebook" />
+
+            <ImageView
+                android:id="@+id/imGoogle"
+                style="@style/ImageViewSocialLogin"
+                android:layout_marginTop="@dimen/login_land_imv_icon_social_margin_top"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_google" />
+
+            <ImageView
+                android:id="@+id/imTwitter"
+                style="@style/ImageViewSocialLogin"
+                android:layout_marginTop="@dimen/login_land_imv_icon_social_margin_top"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_twitter" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

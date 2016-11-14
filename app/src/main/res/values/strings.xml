@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">Training</string>
+    <string name="app_name">Layout</string>
+
+    <!-- Login Screen -->
+    <string name="login_tv_title_login">Your logo</string>
+    <string name="login_edt_username_hint">Username</string>
+    <string name="login_edt_password_hint">Password</string>
+    <string name="login_tv_signin">SIGN IN</string>
+    <string name="login_tv_forgot_password">Forgot your password</string>
+    <string name="facebook_login_title">Facebook</string>
+    <string name="facebook_login_edittext_ussername">Username</string>
+    <string name="facebook_login_edittext_password">Password</string>
+    <string name="facebook_login_tv_login">Log in</string>
+    <string name="facebook_login_tv_forgot_password">Forgot Password?</string>
+    <string name="register_tv_title">Register</string>
+    <string name="register_edt_email_hint">Email</string>
+    <string name="register_edt_username_hint">Username</string>
+    <string name="register_tv_get_started">GET STARTED</string>
+    <string name="register_radiobtn_nam">Male</string>
+    <string name="register_radiobtn_nu">Female</string>
+    <string name="data_register_tv_username">Username</string>
+    <string name="data_register_tv_email">Email</string>
+    <string name="data_register_tv_password">Password</string>
+    <string name="data_register_tv_gender">Gender</string>
+    <string name="data_register_btn_logout">Logout</string>
 </resources>

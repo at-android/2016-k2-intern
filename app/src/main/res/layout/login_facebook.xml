@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/facebook_login_background"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/facebook_login_tv_title_margin_top"
+        android:text="@string/facebook_login_title"
+        android:textColor="@color/facebook_login_tv_title"
+        android:textSize="@dimen/facebook_login_tv_title_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edUsername"
+        style="@style/EditTextLoginFacebook"
+        android:hint="@string/facebook_login_edittext_ussername"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/EditTextLoginFacebook"
+        android:hint="@string/facebook_login_edittext_password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/facebook_login_tv_login_margin_top"
+        android:background="@drawable/login_facebook_textview_corner"
+        android:paddingBottom="@dimen/facebook_login_tv_login_padding_top_bottom"
+        android:paddingLeft="@dimen/facebook_login_tv_login_padding_left_right"
+        android:paddingRight="@dimen/facebook_login_tv_login_padding_left_right"
+        android:paddingTop="@dimen/facebook_login_tv_login_padding_top_bottom"
+        android:text="@string/facebook_login_tv_login"
+        android:textColor="@color/facebook_login_tv_text_color"
+        android:textSize="@dimen/facebook_login_tv_login_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/facebook_login_tv_forgot_pw_margin_top"
+        android:text="@string/facebook_login_tv_forgot_password"
+        android:textColor="@color/facebook_login_tv_forgot_pw_text_color"
+        android:textSize="@dimen/facebook_login_tv_forgot_pw_text_size" />
+</LinearLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvRegister"
+        style="@style/TextViewTitleLoginAndResgiter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_tv_title" />
+
+    <ImageView
+        android:id="@+id/imClose"
+        android:layout_width="@dimen/register_imv_close_view_size"
+        android:layout_height="@dimen/register_imv_close_view_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginRight="@dimen/login_imv_add_view_padding_right"
+        android:layout_marginTop="@dimen/register_imv_close_padding_top"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_close" />
+
+    <EditText
+        android:id="@+id/edEmail"
+        style="@style/EditTextLoginAndRegister"
+        android:layout_below="@+id/tvRegister"
+        android:layout_marginTop="@dimen/register_edt_username_margin_top"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_email"
+        android:hint="@string/register_edt_email_hint"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edUsername"
+        style="@style/EditTextLoginAndRegister"
+        android:layout_below="@+id/edEmail"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawableStart="@drawable/ic_person"
+        android:hint="@string/register_edt_username_hint"
+        android:inputType="text" />
+
+    <FrameLayout
+        android:id="@+id/frPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edUsername">
+
+        <EditText
+            android:id="@+id/edPassword"
+            style="@style/EditTextLoginAndRegister"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/login_edt_password_margintop"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawableStart="@drawable/ic_lock"
+            android:hint="@string/login_edt_password_hint"
+            android:inputType="textPassword"
+            android:paddingEnd="@dimen/register_edt_password_padding_right"
+            android:paddingLeft="@dimen/register_edt_padding_start_left"
+            android:paddingRight="@dimen/register_edt_password_padding_right"
+            android:paddingStart="@dimen/register_edt_padding_start_left" />
+
+        <Switch
+            android:id="@+id/swPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="@dimen/register_switch_margin_bottom"
+            android:layout_marginEnd="@dimen/register_switch_margin_right"
+            android:layout_marginRight="@dimen/register_switch_margin_right" />
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rdgroupGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frPassword"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdbtnMale"
+            style="@style/RadioButtonGenderRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_radiobtn_nam" />
+
+        <RadioButton
+            android:id="@+id/rdbtnFemale"
+            style="@style/RadioButtonGenderRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/register_radiobtn_nu" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rdgroupGender"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/register_tv_started_margin_top"
+        android:background="@drawable/login_signin_corner"
+        android:paddingBottom="@dimen/login_tv_signin_padding_top_bottom"
+        android:paddingLeft="@dimen/register_tv_started_padding_right_left"
+        android:paddingRight="@dimen/register_tv_started_padding_right_left"
+        android:paddingTop="@dimen/login_tv_signin_padding_top_bottom"
+        android:text="@string/register_tv_get_started"
+        android:textColor="@color/login_tv_text_color"
+        android:textSize="@dimen/login_tv_signin_size_text"
+        android:textStyle="bold" />
+</RelativeLayout>

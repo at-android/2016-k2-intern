@@ -2,4 +2,89 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Login Screen -->
+
+
+    <!-- logo -->
+    <dimen name="login_tv_logo_padding">40dp</dimen>
+    <dimen name="login_tv_logo_size">30sp</dimen>
+
+    <!-- icon add -->
+    <dimen name="login_imv_add_view_padding_right">30dp</dimen>
+    <dimen name="login_imv_add_view_size">72dp</dimen>
+
+    <!-- layout relative -->
+    <dimen name="login_layoutrelaytive_padding">25dp</dimen>
+    <dimen name="login_layoutrelaytive_text_size">25sp</dimen>
+    <dimen name="login_layoutrelaytive_marginTop">20dp</dimen>
+
+    <!-- editview -->
+    <dimen name="login_edt_padding_drawable">10dp</dimen>
+    <dimen name="login_edt_margin_right_left">40dp</dimen>
+
+    <!-- edit password -->
+    <dimen name="login_edt_password_margintop">10dp</dimen>
+
+    <!-- layout icon -->
+    <dimen name="login_layout_icon_margin_size">20dp</dimen>
+
+    <!--image icon social -->
+    <dimen name="login_imv_icon_social_width">80dp</dimen>
+    <dimen name="login_imv_icon_social_height">60dp</dimen>
+    <dimen name="login_imv_icon_social_margin">10dp</dimen>
+
+    <!-- textview signin -->
+    <dimen name="login_tv_signin_margin_top">20dp</dimen>
+    <dimen name="login_tv_signin_padding_right_left">120dp</dimen>
+    <dimen name="login_tv_signin_padding_top_bottom">20dp</dimen>
+    <dimen name="login_tv_signin_size_text">20sp</dimen>
+
+    <!-- forgot password -->
+    <dimen name="login_tv_forgot_password_margin_top">10dp</dimen>
+    <dimen name="facebook_login_tv_title_size">50sp</dimen>
+    <dimen name="facebook_login_tv_title_margin_top">40dp</dimen>
+    <dimen name="facebook_login_edt_margin_top">30dp</dimen>
+    <dimen name="facebook_login_tv_login_padding_left_right">130dp</dimen>
+    <dimen name="facebook_login_tv_login_margin_top">40dp</dimen>
+    <dimen name="facebook_login_tv_login_text_size">20sp</dimen>
+    <dimen name="facebook_login_tv_login_padding_top_bottom">20dp</dimen>
+    <dimen name="facebook_login_tv_forgot_pw_text_size">20sp</dimen>
+    <dimen name="facebook_login_tv_forgot_pw_margin_top">20dp</dimen>
+    <dimen name="register_imv_close_view_size">25dp</dimen>
+    <dimen name="register_imv_close_padding_top">42dp</dimen>
+    <dimen name="register_edt_username_margin_top">50dp</dimen>
+    <dimen name="register_tv_started_margin_top">50dp</dimen>
+    <dimen name="register_tv_started_padding_right_left">90dp</dimen>
+    <dimen name="register_edt_password_padding_right">110dp</dimen>
+    <dimen name="register_land_edt_password_padding_right">32dp</dimen>
+    <dimen name="register_switch_margin_bottom">15dp</dimen>
+    <dimen name="register_switch_margin_right">20dp</dimen>
+    <dimen name="facebook_login_edt_padding">20dp</dimen>
+    <dimen name="register_rdbtn_margin_top">20dp</dimen>
+    <dimen name="register_rdbtn_margin_left">40dp</dimen>
+    <dimen name="register_rdbtn_text_size">20sp</dimen>
+    <dimen name="register_edt_padding_start_left">0dp</dimen>
+    <dimen name="login_imv_add_margin_top">77dp</dimen>
+    <dimen name="data_register_tv_size_text">20sp</dimen>
+    <dimen name="login_edt_width_land">300dp</dimen>
+    <dimen name="login_land_tv_logo_padding">20dp</dimen>
+    <dimen name="login_land_imv_add_margin_top">40dp</dimen>
+    <dimen name="login_land_tv_signin_padding_bottom_top">10dp</dimen>
+    <dimen name="login_land_tv_signin_padding_left_right">100dp</dimen>
+    <dimen name="login_land_tv_signin_margin_left">60dp</dimen>
+    <dimen name="login_land_tv_forgot_pw_margin_left">140dp</dimen>
+    <dimen name="login_land_imv_icon_social_margin_top">5dp</dimen>
+    <dimen name="facebook_login_land_padding">20dp</dimen>
+    <dimen name="facebook_login_tv_logo_size">40sp</dimen>
+    <dimen name="facebook_login_land_edt_padding">15dp</dimen>
+    <dimen name="facebook_login_land_edt_margin_top">10dp</dimen>
+    <dimen name="facebook_login_land_edt_pw_margin_top">15dp</dimen>
+    <dimen name="facebook_login_land_tv_login_margin_top">20dp</dimen>
+    <dimen name="facebook_login_land_tv_login_padding_top_bottom">10dp</dimen>
+    <dimen name="facebook_login_land_tv_forgot_pw_margin_top">10dp</dimen>
+    <dimen name="register_land_edt_email_and_pw_margin_top">30dp</dimen>
+    <dimen name="resgiter_land_imv_close_margin_top">30dp</dimen>
+    <dimen name="register_land_edt_username_margin_top">10dp</dimen>
+    <dimen name="register_land_tv_start_margin_top">30dp</dimen>
 </resources>
