@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView {
+public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.OnFragmentInteractionListener {
     public ArrayList<StudentObject> arr = new ArrayList<StudentObject>();
     FragmentTransaction fragmentTransaction;
     @Override
@@ -39,4 +39,8 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         fragmentTransaction.add(R.id.frLayoutMain, f, "ListStudent").commit();
     }
 
+    @Override
+    public void onFragmentInteraction(StudentObject obj) {
+
+    }
 }

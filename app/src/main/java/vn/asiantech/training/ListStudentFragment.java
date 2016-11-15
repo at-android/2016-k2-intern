@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -25,6 +26,7 @@ public class ListStudentFragment extends Fragment {
     ListView lvStudent;
     ImageButton btAddNewStudent;
     ArrayList<StudentObject> arraylist = new ArrayList<>();
+    private getPositionformListView mListener;
     public ListStudentFragment() {
 
     }
@@ -57,6 +59,12 @@ public class ListStudentFragment extends Fragment {
                 AddStudentFragment fragment = new AddStudentFragment();
                 fragmentTransaction.add(R.id.frLayoutMain, fragment, "AddStudent");
                 fragmentTransaction.commit();
+            }
+        });
+        lvStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mListener.setPosition(i);
             }
         });
         return view;
@@ -97,5 +105,10 @@ public class ListStudentFragment extends Fragment {
         stOj3.setAddress("Hue");
         stOj3.setOld("21");
         arraylist.add(stOj3);
+    }
+
+    public interface getPositionformListView {
+        // TODO: Update argument type and name
+        void setPosition(int position);
     }
 }

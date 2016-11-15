@@ -14,4 +14,5 @@
     <string name="add_student_edt_school">Add school</string>
     <string name="add_student_edt_address">Add address</string>
     <string name="add_student_edt_old">Add old</string>
+    <string name="information_student_title">Info Student</string>
 </resources>
