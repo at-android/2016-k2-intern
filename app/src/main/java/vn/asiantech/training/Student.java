@@ -1,9 +1,11 @@
 package vn.asiantech.training;
 
+import java.io.Serializable;
+
 /**
  * Created by HoangDuy on 14/11/2016.
  */
-public class Student {
+public class Student implements Serializable {
     private String school;
     private String name;
     private String address;

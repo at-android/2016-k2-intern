@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="listview_item_fontsize">20sp</dimen>
+    <dimen name="info_fragment_tv_fontsize">30sp</dimen>
+    <dimen name="info_fragment_tv_marginleft">50dp</dimen>
+    <dimen name="info_fragment_btn_marginTop">50dp</dimen>
+    <dimen name="info_fragment_tv_marginTop">20dp</dimen>
 </resources>

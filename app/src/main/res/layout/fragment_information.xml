@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    tools:context="vn.asiantech.training.InformationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageButton
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back_red_500_48dp" />
+
+    <ImageButton
+        android:id="@+id/imgNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_arrow_forward_red_500_48dp" />
+
+    <TextView
+        android:id="@+id/tvSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgBack"
+        android:text="@string/school"
+        android:textSize="@dimen/info_fragment_tv_fontsize" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSchool"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:text="@string/address"
+        android:textSize="@dimen/info_fragment_tv_fontsize" />
+
+    <TextView
+        android:id="@+id/tvStudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAddress"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:text="@string/name"
+        android:textSize="@dimen/info_fragment_tv_fontsize" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvStudentName"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:text="@string/age"
+        android:textSize="@dimen/info_fragment_tv_fontsize" />
+
+    <TextView
+        android:id="@+id/textviewSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgNext"
+        android:layout_toLeftOf="@+id/imgNext"
+        android:layout_toStartOf="@+id/imgNext"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/info_fragment_tv_fontsize"
+        tools:text="@string/school" />
+
+    <TextView
+        android:id="@+id/textviewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textviewSchool"
+        android:layout_alignStart="@+id/textviewSchool"
+        android:layout_below="@+id/textviewSchool"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/info_fragment_tv_fontsize"
+        tools:text="@string/address" />
+
+    <TextView
+        android:id="@+id/textviewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textviewSchool"
+        android:layout_alignStart="@+id/textviewSchool"
+        android:layout_below="@+id/textviewAddress"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/info_fragment_tv_fontsize"
+        tools:text="@string/name" />
+
+    <TextView
+        android:id="@+id/textviewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textviewSchool"
+        android:layout_alignStart="@+id/textviewSchool"
+        android:layout_below="@+id/textviewName"
+        android:layout_marginTop="@dimen/info_fragment_tv_marginTop"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/info_fragment_tv_fontsize"
+        tools:text="@string/age" />
+
+
+</RelativeLayout>
