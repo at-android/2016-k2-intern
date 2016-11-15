@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AddFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.AddSVFragment">
+
+    <ImageButton
+        android:id="@+id/addSvImgBtn"
+        android:layout_width="@dimen/fragStudentImgBtnWidth"
+        android:layout_height="@dimen/fragStudentImgBtnHeight"
+        android:src="@drawable/ic_subdirectory_arrow_left_black_24dp" />
+
+    <EditText
+        android:id="@+id/addSvEdtSchoolName"
+        style="@style/fragment_addSV_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addSvImgBtn" />
+
+    <EditText
+        android:id="@+id/addSvEdtName"
+        style="@style/fragment_addSV_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addSvEdtSchoolName" />
+
+    <EditText
+        android:id="@+id/addSvEdtAddress"
+        style="@style/fragment_addSV_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addSvEdtName" />
+
+    <EditText
+        android:id="@+id/addSvEdtAge"
+        style="@style/fragment_addSV_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addSvEdtAddress" />
+
+    <Button
+        android:id="@+id/addSvBtnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addSvEdtAge"
+        android:layout_centerHorizontal="true"
+        android:text="@string/addSVBtn" />
+</RelativeLayout>
