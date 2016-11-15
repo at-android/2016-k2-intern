@@ -1,14 +1,19 @@
 package vn.asiantech.training;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 /**
@@ -20,6 +25,7 @@ public class AddStudentFragment extends Fragment {
     EditText edtAddress;
     EditText edtOld;
     Button btAddStudent;
+    ImageButton btBack;
     private CallbackUpdateView mListener;
 
     public AddStudentFragment() {
@@ -36,6 +42,7 @@ public class AddStudentFragment extends Fragment {
         edtAddress = (EditText) view.findViewById(R.id.edtAddAddress);
         edtOld = (EditText) view.findViewById(R.id.edtAddOld);
         btAddStudent = (Button) view.findViewById(R.id.btAddStudent);
+        btBack = (ImageButton) view.findViewById(R.id.imgbtaddStudentBack);
         return view;
     }
 
@@ -45,16 +52,41 @@ public class AddStudentFragment extends Fragment {
         btAddStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onClickUpdate(edtName.getText().toString(), edtSchool.getText().toString(), edtAddress.getText().toString(), edtOld.getText().toString());
+                StudentObject stOjNew = new StudentObject();
+                stOjNew.setName(edtName.getText().toString());
+                stOjNew.setSchool(edtSchool.getText().toString());
+                stOjNew.setAddress(edtAddress.getText().toString());
+                stOjNew.setOld(edtOld.getText().toString());
+                if (mListener != null) {
+                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    mListener.onClickUpdate(stOjNew);
+                }
+            }
+        });
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ListStudentFragment fragment = new ListStudentFragment();
+                fragmentTransaction.replace(R.id.frLayoutMain, fragment, "ListStudent");
+                fragmentTransaction.commit();
             }
         });
     }
 
-    public void daidieninterface(CallbackUpdateView getmListener) {
-        mListener = getmListener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof AddStudentFragment.CallbackUpdateView) {
+            mListener = (AddStudentFragment.CallbackUpdateView) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement CallbackUpdateView");
+        }
     }
 
-    interface CallbackUpdateView {
-        void onClickUpdate(String name, String school, String address, String old);
+    public interface CallbackUpdateView {
+        void onClickUpdate(StudentObject std);
     }
 }
