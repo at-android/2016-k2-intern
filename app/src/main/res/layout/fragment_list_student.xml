@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/liststudentFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.ListStudentFragment">
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgbAdd"
+        android:background="@android:color/holo_green_light"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/school"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/listview_item_fontsize" />
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/address"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/listview_item_fontsize" />
+
+
+        <TextView
+            android:id="@+id/tvStudentName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/listview_item_fontsize" />
+
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/age"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/listview_item_fontsize" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imgbAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_plus_one_green_a400_48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/list_fragment_tv_marginTop"
+        android:text="@string/titleList"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="@dimen/title_size" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearlayout"
+        android:layout_gravity="center"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="15sp" />
+</RelativeLayout>
