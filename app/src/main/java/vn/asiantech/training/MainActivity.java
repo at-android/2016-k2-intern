@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.onWaitInformation, ListStudentFragment.getPositionformListView, EditStudentFragment.OnWaitPositionForEdit {
     public ArrayList<StudentObject> arr = new ArrayList<StudentObject>();
-    FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         ListStudentFragment fragment = new ListStudentFragment();
-        fragmentTransaction.add(R.id.frLayoutMain, fragment, "ListStudent").commit();
+        fragmentTransaction.add(R.id.activity_main, fragment, "ListStudent").commit();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         f.addData(std);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frLayoutMain, f, "ListStudent").commit();
+        fragmentTransaction.add(R.id.activity_main, f, "ListStudent").commit();
     }
 
     public void insertData() {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         EditStudentFragment f = new EditStudentFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frLayoutMain, f, "EditStudent").commit();
+        fragmentTransaction.add(R.id.activity_main, f, "EditStudent").commit();
         f.setKeyPosition(keyPosition);
     }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         InfomationStudent f = new InfomationStudent();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
+        fragmentTransaction.add(R.id.activity_main, f, "Information").commit();
         f.setKeyForInfoStudent(position);
     }
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         InfomationStudent f = new InfomationStudent();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
+        fragmentTransaction.add(R.id.activity_main, f, "Information").commit();
         f.setKeyForInfoStudent(keyposition);
     }
 }

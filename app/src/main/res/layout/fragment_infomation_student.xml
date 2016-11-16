@@ -31,6 +31,7 @@
         android:layout_alignRight="@+id/txtInfoStudentTitle"
         android:contentDescription="@null"
         android:src="@drawable/ic_keyboard_arrow_right" />
+
     <TextView
         android:id="@+id/txtinfoName"
         android:layout_width="match_parent"

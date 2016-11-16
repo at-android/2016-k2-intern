@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 
 public class ListStudentArrayAdapter extends ArrayAdapter<StudentObject> {
-    Activity context = null;
-    ArrayList<StudentObject> studentArr = null;
-    int layoutID;
+    private Activity context = null;
+    private ArrayList<StudentObject> studentArr = null;
+    private int layoutID;
     private TextView tvName;
     private TextView tvSchool;
     private TextView tvAddress;

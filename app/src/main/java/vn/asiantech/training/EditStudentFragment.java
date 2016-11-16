@@ -24,10 +24,10 @@ public class EditStudentFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private int KEY_POSITION;
-    private EditText edtName;
-    private EditText edtSchool;
-    private EditText edtAddress;
-    private EditText edtOld;
+    private EditText etName;
+    private EditText etSchool;
+    private EditText etAddress;
+    private EditText etOld;
     private ImageButton btEditInfomation;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -70,24 +70,24 @@ public class EditStudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_student, container, false);
-        edtName = (EditText) view.findViewById(R.id.edtEditName);
-        edtSchool = (EditText) view.findViewById(R.id.edtEditSchool);
-        edtAddress = (EditText) view.findViewById(R.id.edtEditAddress);
-        edtOld = (EditText) view.findViewById(R.id.edtEditOld);
+        etName = (EditText) view.findViewById(R.id.edtEditName);
+        etSchool = (EditText) view.findViewById(R.id.edtEditSchool);
+        etAddress = (EditText) view.findViewById(R.id.edtEditAddress);
+        etOld = (EditText) view.findViewById(R.id.edtEditOld);
         btEditInfomation = (ImageButton) view.findViewById(R.id.btEditStudent);
         final MainActivity mainActivity = (MainActivity) getActivity();
-        edtName.setText(mainActivity.arr.get(KEY_POSITION).getName());
-        edtSchool.setText(mainActivity.arr.get(KEY_POSITION).getSchool());
-        edtAddress.setText(mainActivity.arr.get(KEY_POSITION).getAddress());
-        edtOld.setText(mainActivity.arr.get(KEY_POSITION).getOld());
+        etName.setText(mainActivity.arr.get(KEY_POSITION).getName());
+        etSchool.setText(mainActivity.arr.get(KEY_POSITION).getSchool());
+        etAddress.setText(mainActivity.arr.get(KEY_POSITION).getAddress());
+        etOld.setText(mainActivity.arr.get(KEY_POSITION).getOld());
         btEditInfomation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 StudentObject studentObject = new StudentObject();
-                studentObject.setName(edtName.getText().toString());
-                studentObject.setSchool(edtSchool.getText().toString());
-                studentObject.setAddress(edtAddress.getText().toString());
-                studentObject.setOld(edtOld.getText().toString());
+                studentObject.setName(etName.getText().toString());
+                studentObject.setSchool(etSchool.getText().toString());
+                studentObject.setAddress(etAddress.getText().toString());
+                studentObject.setOld(etOld.getText().toString());
                 mainActivity.arr.set(KEY_POSITION, studentObject);
                 mListener.sendKeyPositionFormEditToInfo(KEY_POSITION);
             }
