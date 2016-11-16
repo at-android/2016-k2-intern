@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class AddFragment extends Fragment {
 
-    OnFragmentInteractionListener mListener;
+    public OnFragmentInteractionListener mListener;
 
     public AddFragment() {
         // Required empty public constructor
