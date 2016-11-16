@@ -11,11 +11,11 @@ import android.widget.ImageButton;
 
 
 public class EditInforFragment extends Fragment {
-    private EditText mEdtSchool;
-    private EditText mEdtName;
-    private EditText mEdtAge;
-    private EditText mEdtAddress;
-    private ImageButton mLeftArrow;
+    private EditText mEdSchool;
+    private EditText mEdName;
+    private EditText mEdAge;
+    private EditText mEdAddress;
+    private ImageButton mImgBtnLeft;
     private OnHeadlineSelectedListener4 mCallback;
     int mPosition;
     @Override
@@ -29,29 +29,29 @@ public class EditInforFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_infor, null);
-        mEdtSchool = (EditText)view.findViewById(R.id.EditInforSchoolName);
-        mEdtName = (EditText)view.findViewById(R.id.EditInforName);
-        mEdtAge = (EditText)view.findViewById(R.id.EditInforAge);
-        mEdtAddress = (EditText)view.findViewById(R.id.EditInforAddress);
-        mLeftArrow = (ImageButton)view.findViewById(R.id.EditInforLeftArrow);
+        mEdSchool = (EditText)view.findViewById(R.id.edSchoolName);
+        mEdName = (EditText)view.findViewById(R.id.edName);
+        mEdAge = (EditText)view.findViewById(R.id.edAge);
+        mEdAddress = (EditText)view.findViewById(R.id.edAddress);
+        mImgBtnLeft = (ImageButton)view.findViewById(R.id.imgBtnLeft);
 
         Bundle bundle = getArguments();
         SinhVien sv = (SinhVien)bundle.getSerializable("StudentInfor");
 
-        mEdtSchool.setText(sv.getSchoolName().toString());
-        mEdtName.setText(sv.getName().toString());
-        mEdtAge.setText(sv.getAge().toString());
-        mEdtAddress.setText(sv.getAddress().toString());
+        mEdSchool.setText(sv.getSchoolName().toString());
+        mEdName.setText(sv.getName().toString());
+        mEdAge.setText(sv.getAge().toString());
+        mEdAddress.setText(sv.getAddress().toString());
         mPosition = bundle.getInt("position");
 
-        mLeftArrow.setOnClickListener(new View.OnClickListener() {
+        mImgBtnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SinhVien sv = new SinhVien();
-                sv.setSchoolName(mEdtSchool.getText().toString());
-                sv.setName(mEdtName.getText().toString());
-                sv.setAge(mEdtAge.getText().toString());
-                sv.setAddress(mEdtAddress.getText().toString());
+                sv.setSchoolName(mEdSchool.getText().toString());
+                sv.setName(mEdName.getText().toString());
+                sv.setAge(mEdAge.getText().toString());
+                sv.setAddress(mEdAddress.getText().toString());
                 onButtonClicked4(sv,mPosition);
             }
         });

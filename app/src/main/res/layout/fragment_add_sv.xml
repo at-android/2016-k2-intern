@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.AddSVFragment">
 
-
     <ImageButton
-        android:id="@+id/addSvImgBtn"
+        android:id="@+id/ImgBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
@@ -20,38 +19,38 @@
         android:textSize="@dimen/addSVTVsize" />
 
     <EditText
-        android:id="@+id/addSvEdtSchoolName"
-        style="@style/fragment_addSV_edt"
+        android:id="@+id/edSchoolName"
+        style="@style/frag_addSV_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSvImgBtn" />
+        android:layout_below="@+id/ImgBtn" />
 
     <EditText
-        android:id="@+id/addSvEdtName"
-        style="@style/fragment_addSV_edt"
+        android:id="@+id/edName"
+        style="@style/frag_addSV_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSvEdtSchoolName" />
+        android:layout_below="@+id/edSchoolName" />
 
     <EditText
-        android:id="@+id/addSvEdtAddress"
-        style="@style/fragment_addSV_edt"
+        android:id="@+id/edAge"
+        style="@style/frag_addSV_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSvEdtName" />
+        android:layout_below="@+id/edName" />
 
     <EditText
-        android:id="@+id/addSvEdtAge"
-        style="@style/fragment_addSV_edt"
+        android:id="@+id/edAddress"
+        style="@style/frag_addSV_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSvEdtAddress" />
+        android:layout_below="@+id/edAge" />
 
     <Button
-        android:id="@+id/addSvBtnAdd"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSvEdtAge"
+        android:layout_below="@+id/edAddress"
         android:layout_centerHorizontal="true"
         android:text="@string/addSVBtn" />
 </RelativeLayout>

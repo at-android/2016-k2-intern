@@ -12,9 +12,12 @@ import android.widget.ImageButton;
 
 public class AddSVFragment extends Fragment implements View.OnClickListener {
     private ImageButton mImgBtn;
-    private EditText mEdtSchoolName, mEdtName, mEdtAddress, mEdtAge;
+    private EditText mEdSchoolName;
+    private EditText mEdName;
+    private EditText mEdAddress;
+    private EditText mEdAge;
     private Button mBtnAdd;
-    private  OnHeadlineSelectedListener mCallback;
+    private OnHeadlineSelectedListener mCallback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,12 +29,12 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_sv, null);
-        mImgBtn = (ImageButton) view.findViewById(R.id.addSvImgBtn);
-        mEdtSchoolName = (EditText) view.findViewById(R.id.addSvEdtSchoolName);
-        mEdtName = (EditText) view.findViewById(R.id.addSvEdtName);
-        mEdtAddress = (EditText) view.findViewById(R.id.addSvEdtAddress);
-        mEdtAge = (EditText) view.findViewById(R.id.addSvEdtAge);
-        mBtnAdd = (Button) view.findViewById(R.id.addSvBtnAdd);
+        mImgBtn = (ImageButton) view.findViewById(R.id.ImgBtn);
+        mEdSchoolName = (EditText) view.findViewById(R.id.edSchoolName);
+        mEdName = (EditText) view.findViewById(R.id.edName);
+        mEdAddress = (EditText) view.findViewById(R.id.edAge);
+        mEdAge = (EditText) view.findViewById(R.id.edAddress);
+        mBtnAdd = (Button) view.findViewById(R.id.btnAdd);
 
         mBtnAdd.setOnClickListener(this);
         mImgBtn.setOnClickListener(this);
@@ -40,16 +43,16 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.addSvBtnAdd:
+        switch (view.getId()) {
+            case R.id.btnAdd:
                 SinhVien sv = new SinhVien();
-                sv.setSchoolName(mEdtSchoolName.getText().toString());
-                sv.setName(mEdtName.getText().toString());
-                sv.setAddress(mEdtAge.getText().toString());
-                sv.setAge(mEdtAddress.getText().toString());
-                onButtonClicked(sv);
+                sv.setSchoolName(mEdSchoolName.getText().toString());
+                sv.setName(mEdName.getText().toString());
+                sv.setAddress(mEdAge.getText().toString());
+                sv.setAge(mEdAddress.getText().toString());
+                mCallback.onArticleSelected(sv);
                 break;
-            case R.id.addSvImgBtn:
+            case R.id.ImgBtn:
                 getActivity().onBackPressed();
                 break;
         }
@@ -58,10 +61,6 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener {
         public void onArticleSelected(SinhVien sv);
-    }
-
-    public void onButtonClicked(SinhVien sv) {
-        mCallback.onArticleSelected(sv);
     }
 
     @Override
@@ -77,6 +76,4 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
-
 }

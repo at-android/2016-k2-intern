@@ -11,14 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class StudentFragment extends Fragment {
     private MyArrayAdapter mAdapter = null;
-    private ListView mListView;
+    private ListView mLv;
     private ArrayList<SinhVien> mArr = new ArrayList<SinhVien>();
-    private ImageButton mFragImgBtn;
+    private ImageButton mImgBtn;
     private AddSVFragment mAddSVFragment;
     private OnHeadlineSelectedListener2 mCallback;
 
@@ -28,21 +27,20 @@ public class StudentFragment extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student, null);
-        mListView = (ListView) view.findViewById(R.id.fragStudentLv);
-        mFragImgBtn = (ImageButton) view.findViewById(R.id.fragStudentImgBtn);
+        mLv = (ListView) view.findViewById(R.id.lv);
+        mImgBtn = (ImageButton) view.findViewById(R.id.imgBtn);
 
         MainActivity main = (MainActivity) getActivity();
         mArr = main.getmArr();
         mAdapter = new MyArrayAdapter(getActivity(), R.layout.custom_item_listview, mArr);
         mAddSVFragment = new AddSVFragment();
 
-        mListView.setAdapter(mAdapter);
-        mFragImgBtn.setOnClickListener(new View.OnClickListener() {
+        mLv.setAdapter(mAdapter);
+        mImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddSVFragment fr = new AddSVFragment();
@@ -50,19 +48,14 @@ public class StudentFragment extends Fragment {
             }
         });
 
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onButtonClicked2(mArr.get(i),i);
-
+                mCallback.onArticleSelected2(mArr.get(i), i);
             }
         });
-
-
         return view;
     }
-
 
     public void replaceAFragment(Fragment fragment, boolean addToBackStack, int id) {
         FragmentManager fm = getFragmentManager();
@@ -70,25 +63,18 @@ public class StudentFragment extends Fragment {
         ft.replace(id, fragment);
         if (addToBackStack) {
             ft.addToBackStack(null);
-            ft.commit();
-        } else {
-            ft.commit();
         }
+        ft.commit();
     }
 
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener2 {
-        public void onArticleSelected2(SinhVien sv,int position);
-    }
-
-    public void onButtonClicked2(SinhVien sv,int position) {
-        mCallback.onArticleSelected2(sv,position);
+        public void onArticleSelected2(SinhVien sv, int position);
     }
 
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
-
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -98,6 +84,4 @@ public class StudentFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
-
 }

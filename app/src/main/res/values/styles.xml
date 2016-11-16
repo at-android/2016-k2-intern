@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
-    <style name="fragment_addSV_edt">
+    <style name="frag_addSV_ed">
         <item name="android:maxLines">1</item>
         <item name="android:inputType">text</item>
     </style>

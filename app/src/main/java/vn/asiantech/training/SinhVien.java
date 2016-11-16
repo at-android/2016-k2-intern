@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by Administrator on 14/11/2016.
  */
 
-public class SinhVien implements Serializable{
+public class SinhVien implements Serializable {
     private String schoolName;
     private String name;
     private String age;
     private String address;
 
-    public SinhVien(){
+    public SinhVien() {
 
     }
 
-    public SinhVien(String schoolName, String name, String age, String address){
+    public SinhVien(String schoolName, String name, String age, String address) {
         this.schoolName = schoolName;
         this.name = name;
         this.age = age;
@@ -55,7 +55,7 @@ public class SinhVien implements Serializable{
         this.schoolName = schoolName;
     }
 
-    public String toString(){
-        return "School Name: " + this.getSchoolName()+ "\n" + "Name: " + this.getName() + "\n" + "Age: "+ this.getAge() + "\n" + "Address: "+ this.getAddress();
+    public String toString() {
+        return "School Name: " + this.getSchoolName() + "\n" + "Name: " + this.getName() + "\n" + "Age: " + this.getAge() + "\n" + "Address: " + this.getAddress();
     }
 }

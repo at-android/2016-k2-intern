@@ -5,22 +5,21 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.StudentInforFragment">
 
-
     <ImageButton
-        android:id="@+id/InforLeftArrow"
+        android:id="@+id/imgBtnLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/Student_Tv"
-        android:textSize="@dimen/StudentTextSize"
-        />
+        android:textSize="@dimen/StudentTextSize" />
 
     <ImageButton
-        android:id="@+id/InforRightArrow"
+        android:id="@+id/imgBtnRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -30,7 +29,7 @@
         android:id="@+id/tbSchool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/InforLeftArrow"
+        android:layout_below="@+id/imgBtnLeft"
         android:orientation="vertical">
 
         <TextView
@@ -40,7 +39,7 @@
             android:textSize="@dimen/StudentInfoTv" />
 
         <TextView
-            android:id="@+id/InforSchoolName"
+            android:id="@+id/tvSchoolName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/StudentInfoTv" />
@@ -61,7 +60,7 @@
             android:textSize="@dimen/StudentInfoTv" />
 
         <TextView
-            android:id="@+id/InforName"
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/StudentInfoTv" />
@@ -82,7 +81,7 @@
             android:textSize="@dimen/StudentInfoTv" />
 
         <TextView
-            android:id="@+id/InforAge"
+            android:id="@+id/tvAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/StudentInfoTv" />
@@ -103,11 +102,9 @@
             android:textSize="@dimen/StudentInfoTv" />
 
         <TextView
-            android:id="@+id/InforAddress"
+            android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/StudentInfoTv" />
-
     </TableRow>
-
 </RelativeLayout>

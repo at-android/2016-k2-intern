@@ -4,29 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.StudentFragment">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_centerHorizontal="true"
-            android:text="@string/addSV_Tv"
-            android:textSize="@dimen/addSVTVsize" />
 
-        <ImageButton
-            android:id="@+id/fragStudentImgBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/plus" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/addSV_Tv"
+        android:textSize="@dimen/addSVTVsize" />
 
+    <ImageButton
+        android:id="@+id/imgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/plus" />
 
     <ListView
-        android:id="@+id/fragStudentLv"
+        android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fragStudentImgBtn">
+        android:layout_below="@+id/imgBtn">
 
     </ListView>
-
-
 </RelativeLayout>
