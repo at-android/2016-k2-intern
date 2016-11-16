@@ -37,7 +37,6 @@
         android:textSize="@dimen/listview_item_fontsize"
         tools:text="Duy Le" />
 
-
     <TextView
         android:id="@+id/tvAge"
         android:layout_width="0dp"
@@ -47,4 +46,5 @@
         android:textColor="@color/colorRed"
         android:textSize="@dimen/listview_item_fontsize"
         tools:text="21" />
+
 </LinearLayout>

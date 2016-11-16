@@ -1,6 +1,6 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class EditFragment extends Fragment {
-    OnHeadlineSelectedListener mCallback;
-    private Student student;
-    private int position;
+    public OnHeadlineSelectedListener mCallback;
+    private Student mStudent;
+    private int mPosition;
 
     public EditFragment() {
         // Required empty public constructor
@@ -23,8 +23,8 @@ public class EditFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            student = (Student) bundle.getSerializable("student");
-            position = bundle.getInt("position");
+            mStudent = (Student) bundle.getSerializable(DemoFragmentActivity.KEY_STUDENT);
+            mPosition = bundle.getInt(DemoFragmentActivity.KEY_POSITION);
         }
     }
 
@@ -39,41 +39,36 @@ public class EditFragment extends Fragment {
         final EditText edtName = (EditText) view.findViewById(R.id.edtName);
         ImageButton imgbBack = (ImageButton) view.findViewById(R.id.imgBack);
 
-        edtSchool.setText(student.getSchool());
-        edtAddress.setText(student.getAddress());
-        edtAge.setText(student.getAge());
-        edtName.setText(student.getName());
+        edtSchool.setText(mStudent.getSchool());
+        edtAddress.setText(mStudent.getAddress());
+        edtAge.setText(mStudent.getAge());
+        edtName.setText(mStudent.getName());
         imgbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                student.setName(edtName.getText().toString());
-                student.setAddress(edtAddress.getText().toString());
-                student.setAge(edtAge.getText().toString());
-                student.setSchool(edtSchool.getText().toString());
-                onButtonPressed(student, position);
+                mStudent.setName(edtName.getText().toString());
+                mStudent.setAddress(edtAddress.getText().toString());
+                mStudent.setAge(edtAge.getText().toString());
+                mStudent.setSchool(edtSchool.getText().toString());
+                if (mCallback != null) {
+                    mCallback.onFragmentInteraction1(mStudent, mPosition);
+                }
             }
         });
-
         return view;
     }
 
-    public void onButtonPressed(Student student, int position) {
-        if (mCallback != null) {
-            mCallback.onFragmentInteraction1(student, position);
-        }
-    }
-
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            mCallback = (OnHeadlineSelectedListener) activity;
+            mCallback = (OnHeadlineSelectedListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
-    public interface OnHeadlineSelectedListener {
-        public void onFragmentInteraction1(Student student, int position);
+    interface OnHeadlineSelectedListener {
+        void onFragmentInteraction1(Student student, int position);
     }
 }

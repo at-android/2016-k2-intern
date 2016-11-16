@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class AddFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    OnFragmentInteractionListener mListener;
 
     public AddFragment() {
         // Required empty public constructor
@@ -41,7 +41,9 @@ public class AddFragment extends Fragment {
                 Student student = new Student(edtSchool.getText().toString(), edtName.getText().toString(),
                         edtAddress.getText().toString(),
                         edtAge.getText().toString());
-                onButtonPressed(student);
+                if (mListener != null) {
+                    mListener.onFragmentInteraction(student);
+                }
             }
         });
 
@@ -52,13 +54,6 @@ public class AddFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Student student) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(student);
-        }
     }
 
     @Override
@@ -72,7 +67,7 @@ public class AddFragment extends Fragment {
         }
     }
 
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Student student);
     }

@@ -1,6 +1,6 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,18 +13,18 @@ import android.widget.TextView;
 
 public class InformationFragment extends Fragment {
 
-    Student student;
-    Bundle bundle;
-    int position;
-    OnHeadlineSelectedListener2 mCallback;
+    public OnHeadlineSelectedListener2 mCallback;
+    private Student mStudent;
+    private Bundle mBundle;
+    private int mPosition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bundle = getArguments();
-        if (bundle != null) {
-            student = (Student) bundle.getSerializable(Exfragment.STUDENT_NAME);
-            position = bundle.getInt(Exfragment.POSITION);
+        mBundle = getArguments();
+        if (mBundle != null) {
+            mStudent = (Student) mBundle.getSerializable(DemoFragmentActivity.KEY_STUDENT);
+            mPosition = mBundle.getInt(DemoFragmentActivity.KEY_POSITION);
         }
     }
 
@@ -39,16 +39,16 @@ public class InformationFragment extends Fragment {
 
         ImageButton imgbNext = (ImageButton) view.findViewById(R.id.imgNext);
         ImageButton imgbBack = (ImageButton) view.findViewById(R.id.imgBack);
-        tvSchool.setText(student.getSchool());
-        tvAddress.setText(student.getAddress());
-        tvName.setText(student.getName());
-        tvAge.setText(student.getAge());
+        tvSchool.setText(mStudent.getSchool());
+        tvAddress.setText(mStudent.getAddress());
+        tvName.setText(mStudent.getName());
+        tvAge.setText(mStudent.getAge());
 
         imgbNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditFragment editFragment = new EditFragment();
-                editFragment.setArguments(bundle);
+                editFragment.setArguments(mBundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.flContainer, editFragment).commit();
 
@@ -57,33 +57,29 @@ public class InformationFragment extends Fragment {
         imgbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                student.setName(tvName.getText().toString());
-                student.setAddress(tvAddress.getText().toString());
-                student.setAge(tvAge.getText().toString());
-                student.setSchool(tvSchool.getText().toString());
-                onButtonPressed(student, position);
+                mStudent.setName(tvName.getText().toString());
+                mStudent.setAddress(tvAddress.getText().toString());
+                mStudent.setAge(tvAge.getText().toString());
+                mStudent.setSchool(tvSchool.getText().toString());
+                if (mCallback != null) {
+                    mCallback.onFragmentInteraction2(mStudent, mPosition);
+                }
             }
         });
         return view;
     }
 
-    public void onButtonPressed(Student student, int position) {
-        if (mCallback != null) {
-            mCallback.onFragmentInteraction2(student, position);
-        }
-    }
-
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            mCallback = (OnHeadlineSelectedListener2) activity;
+            mCallback = (OnHeadlineSelectedListener2) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener2");
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener2");
         }
     }
 
-    public interface OnHeadlineSelectedListener2 {
-        public void onFragmentInteraction2(Student student, int position);
+    interface OnHeadlineSelectedListener2 {
+        void onFragmentInteraction2(Student student, int position);
     }
 }
