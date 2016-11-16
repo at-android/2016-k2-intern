@@ -14,7 +14,6 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
     private ImageButton mImgBtnLeft, mImgBtnRight;
     private TextView mTvSchoolName, mTvName, mTvAge, mTvAddress;
     private OnHeadlineSelectedListener3 mCallback;
-    private int mPosition;
     public static final String KeyStudent = "StudentInfor";
     public static final String KeyPosition = "position";
 
@@ -42,7 +41,6 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
         mTvName.setText(sv.getName());
         mTvAge.setText(sv.getAge());
         mTvAddress.setText(sv.getAddress());
-        mPosition = bundle.getInt(KeyPosition);
         mImgBtnRight.setOnClickListener(this);
         mImgBtnLeft.setOnClickListener(this);
         return view;
@@ -63,14 +61,14 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
                 sv.setName(mTvName.getText().toString());
                 sv.setAge(mTvAge.getText().toString());
                 sv.setAddress(mTvAddress.getText().toString());
-                mCallback.onArticleSelected3(sv, mPosition);
+                mCallback.onArticleSelected3(sv);
                 break;
         }
     }
 
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener3 {
-        public void onArticleSelected3(SinhVien sv, int position);
+        public void onArticleSelected3(SinhVien sv);
     }
 
     @Override

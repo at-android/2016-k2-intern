@@ -12,4 +12,8 @@
         <item name="android:maxLines">1</item>
         <item name="android:inputType">text</item>
     </style>
+    <style name="backgroundForScreen">
+        <item name="android:background">#f4109c</item>
+
+    </style>
 </resources>

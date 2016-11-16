@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/backgroundForScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.EditInforFragment">
@@ -17,12 +18,12 @@
         android:text="@string/edtInfoSV_Tv"
         android:textSize="@dimen/addSVTVsize" />
 
-
     <TableRow
         android:id="@+id/tbSchool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgBtnLeft"
+        android:layout_marginTop="@dimen/StudentInfoMarginTop"
         android:orientation="vertical">
 
         <TextView
@@ -101,5 +102,4 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/StudentInfoTv" />
     </TableRow>
-
 </RelativeLayout>

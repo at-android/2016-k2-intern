@@ -17,7 +17,7 @@ public class EditInforFragment extends Fragment {
     private EditText mEdAddress;
     private ImageButton mImgBtnLeft;
     private OnHeadlineSelectedListener4 mCallback;
-    int mPosition;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,20 +29,19 @@ public class EditInforFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_infor, null);
-        mEdSchool = (EditText)view.findViewById(R.id.edSchoolName);
-        mEdName = (EditText)view.findViewById(R.id.edName);
-        mEdAge = (EditText)view.findViewById(R.id.edAge);
-        mEdAddress = (EditText)view.findViewById(R.id.edAddress);
-        mImgBtnLeft = (ImageButton)view.findViewById(R.id.imgBtnLeft);
+        mEdSchool = (EditText) view.findViewById(R.id.edSchoolName);
+        mEdName = (EditText) view.findViewById(R.id.edName);
+        mEdAge = (EditText) view.findViewById(R.id.edAge);
+        mEdAddress = (EditText) view.findViewById(R.id.edAddress);
+        mImgBtnLeft = (ImageButton) view.findViewById(R.id.imgBtnLeft);
 
         Bundle bundle = getArguments();
-        SinhVien sv = (SinhVien)bundle.getSerializable("StudentInfor");
+        SinhVien sv = (SinhVien) bundle.getSerializable("StudentInfor");
 
         mEdSchool.setText(sv.getSchoolName().toString());
         mEdName.setText(sv.getName().toString());
         mEdAge.setText(sv.getAge().toString());
         mEdAddress.setText(sv.getAddress().toString());
-        mPosition = bundle.getInt("position");
 
         mImgBtnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,22 +51,16 @@ public class EditInforFragment extends Fragment {
                 sv.setName(mEdName.getText().toString());
                 sv.setAge(mEdAge.getText().toString());
                 sv.setAddress(mEdAddress.getText().toString());
-                onButtonClicked4(sv,mPosition);
+                mCallback.onArticleSelected4(sv);
             }
         });
 
         return view;
     }
 
-
-
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener4 {
-        public void onArticleSelected4(SinhVien sv,int position);
-    }
-
-    public void onButtonClicked4(SinhVien sv,int position) {
-        mCallback.onArticleSelected4(sv,position);
+        public void onArticleSelected4(SinhVien sv);
     }
 
     @Override

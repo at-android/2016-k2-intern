@@ -3,7 +3,8 @@
     android:id="@+id/StudentInforFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.asiantech.training.StudentInforFragment">
+    tools:context="vn.asiantech.training.StudentInforFragment"
+    style="@style/backgroundForScreen">
 
     <ImageButton
         android:id="@+id/imgBtnLeft"
@@ -15,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/Student_Tv"
+        android:text="@string/StudentInfo_Tv"
         android:textSize="@dimen/StudentTextSize" />
 
     <ImageButton
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgBtnLeft"
+        android:layout_marginTop="@dimen/StudentInfoMarginTop"
         android:orientation="vertical">
 
         <TextView

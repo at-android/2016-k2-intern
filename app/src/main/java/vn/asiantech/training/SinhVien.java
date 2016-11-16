@@ -56,6 +56,6 @@ public class SinhVien implements Serializable {
     }
 
     public String toString() {
-        return "School Name: " + this.getSchoolName() + "\n" + "Name: " + this.getName() + "\n" + "Age: " + this.getAge() + "\n" + "Address: " + this.getAddress();
+        return this.getSchoolName() + "-" + this.getName() + "-" + this.getAge() + "-" + this.getAddress();
     }
 }
