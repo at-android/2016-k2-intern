@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.onWaitInformation, ListStudentFragment.getPositionformListView, EditStudentFragment.OnWaitPositionForEdit {
     public ArrayList<StudentObject> arr = new ArrayList<StudentObject>();
     FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
     }
 
     @Override
-    public void setPosition(int position) {
+    public void setPositionFormListToInfo(int position) {
         InfomationStudent f = new InfomationStudent();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
-        f.getInformation(position);
+        f.setKeyForInfoStudent(position);
     }
 
     @Override
@@ -96,6 +97,6 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
-        f.getInformation(keyposition);
+        f.setKeyForInfoStudent(keyposition);
     }
 }

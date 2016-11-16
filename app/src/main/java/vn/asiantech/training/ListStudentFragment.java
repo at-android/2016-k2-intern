@@ -25,8 +25,9 @@ public class ListStudentFragment extends Fragment {
     public getPositionformListView mListener;
     ListStudentArrayAdapter myAdapter = null;
     ListView lvStudent;
-    ImageButton btAddNewStudent;
     ArrayList<StudentObject> arraylist = new ArrayList<>();
+    private ImageButton btAddNewStudent;
+
     public ListStudentFragment() {
 
     }
@@ -62,7 +63,7 @@ public class ListStudentFragment extends Fragment {
         lvStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                mListener.setPosition(position);
+                mListener.setPositionFormListToInfo(position);
             }
         });
         return view;
@@ -72,6 +73,7 @@ public class ListStudentFragment extends Fragment {
         arraylist.add(std);
         Log.d("size", arraylist.size() + "");
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -88,8 +90,9 @@ public class ListStudentFragment extends Fragment {
                     + " must implement ListStudentFragment");
         }
     }
+
     public interface getPositionformListView {
         // TODO: Update argument type and name
-        void setPosition(int position);
+        void setPositionFormListToInfo(int position);
     }
 }

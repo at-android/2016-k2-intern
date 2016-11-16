@@ -20,10 +20,10 @@ public class InfomationStudent extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ArrayList<StudentObject> listStudent = new ArrayList<StudentObject>();
-    private TextView txtName;
-    private TextView txtSchool;
-    private TextView txtAddress;
-    private TextView txtOld;
+    private TextView tvName;
+    private TextView tvSchool;
+    private TextView tvAddress;
+    private TextView tvOld;
     private int keyPosition;
     private ImageButton btNext;
     private ImageButton btBack;
@@ -68,18 +68,18 @@ public class InfomationStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_infomation_student, container, false);
-        txtName = (TextView) view.findViewById(R.id.txtinfoName);
-        txtSchool = (TextView) view.findViewById(R.id.txtInfoSchool);
-        txtAddress = (TextView) view.findViewById(R.id.txtInfoAddress);
-        txtOld = (TextView) view.findViewById(R.id.txtInfoOld);
+        tvName = (TextView) view.findViewById(R.id.txtinfoName);
+        tvSchool = (TextView) view.findViewById(R.id.txtInfoSchool);
+        tvAddress = (TextView) view.findViewById(R.id.txtInfoAddress);
+        tvOld = (TextView) view.findViewById(R.id.txtInfoOld);
         btNext = (ImageButton) view.findViewById(R.id.immgbtInfoStudentNext);
         btBack = (ImageButton) view.findViewById(R.id.imgbtInfoStudentBack);
         MainActivity main = (MainActivity) getActivity();
         listStudent = main.arr;
-        txtName.setText(listStudent.get(keyPosition).getName());
-        txtSchool.setText(listStudent.get(keyPosition).getSchool());
-        txtAddress.setText(listStudent.get(keyPosition).getAddress());
-        txtOld.setText(listStudent.get(keyPosition).getOld());
+        tvName.setText(listStudent.get(keyPosition).getName());
+        tvSchool.setText(listStudent.get(keyPosition).getSchool());
+        tvAddress.setText(listStudent.get(keyPosition).getAddress());
+        tvOld.setText(listStudent.get(keyPosition).getOld());
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +116,7 @@ public class InfomationStudent extends Fragment {
         mListener = null;
     }
 
-    public void getInformation(int position) {
+    public void setKeyForInfoStudent(int position) {
         keyPosition = position;
     }
 

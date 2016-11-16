@@ -17,10 +17,10 @@ public class ListStudentArrayAdapter extends ArrayAdapter<StudentObject> {
     Activity context = null;
     ArrayList<StudentObject> studentArr = null;
     int layoutID;
-    private TextView txtName;
-    private TextView txtSchool;
-    private TextView txtAddress;
-    private TextView txtOld;
+    private TextView tvName;
+    private TextView tvSchool;
+    private TextView tvAddress;
+    private TextView tvOld;
 
     public ListStudentArrayAdapter(Activity context, int layoutID, ArrayList<StudentObject> studentArr) {
         super(context, layoutID, studentArr);
@@ -35,19 +35,19 @@ public class ListStudentArrayAdapter extends ArrayAdapter<StudentObject> {
                 context.getLayoutInflater();
         convertView = inflater.inflate(layoutID, null);
         if (studentArr.size() > 0 && position >= 0) {
-            txtName = (TextView)
+            tvName = (TextView)
                     convertView.findViewById(R.id.txtName);
-            txtSchool = (TextView)
+            tvSchool = (TextView)
                     convertView.findViewById(R.id.txtSchool);
-            txtAddress = (TextView)
+            tvAddress = (TextView)
                     convertView.findViewById(R.id.txtAddress);
-            txtOld = (TextView)
+            tvOld = (TextView)
                     convertView.findViewById(R.id.txtOld);
             StudentObject studentObj = studentArr.get(position);
-            txtName.setText(studentObj.getName());
-            txtSchool.setText(studentObj.getSchool());
-            txtAddress.setText(studentObj.getAddress());
-            txtOld.setText(studentObj.getOld());
+            tvName.setText(studentObj.getName());
+            tvSchool.setText(studentObj.getSchool());
+            tvAddress.setText(studentObj.getAddress());
+            tvOld.setText(studentObj.getOld());
         }
         return convertView;
     }
