@@ -20,47 +20,49 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class AddStudentFragment extends Fragment {
-    private EditText etName;
-    private EditText etSchool;
-    private EditText etAddress;
-    private EditText etOld;
-    private Button btnAddstudent;
-    private ImageButton btnBack;
+    private EditText mEtName;
+    private EditText mEtSchool;
+    private EditText mEtAddress;
+    private EditText mEtOld;
+    private Button mBtnAddNewStudent;
+    private ImageButton mBtnBack;
     private CallbackUpdateView mListener;
 
     public AddStudentFragment() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_student, container, false);
-        etName = (EditText) view.findViewById(R.id.edtAddName);
-        etSchool = (EditText) view.findViewById(R.id.edtAddSchool);
-        etAddress = (EditText) view.findViewById(R.id.edtAddAddress);
-        etOld = (EditText) view.findViewById(R.id.edtAddOld);
-        btnAddstudent = (Button) view.findViewById(R.id.btAddStudent);
-        btnBack = (ImageButton) view.findViewById(R.id.imgbtaddStudentBack);
+        mEtName = (EditText) view.findViewById(R.id.edtAddName);
+        mEtSchool = (EditText) view.findViewById(R.id.edtAddSchool);
+        mEtAddress = (EditText) view.findViewById(R.id.edtAddAddress);
+        mEtOld = (EditText) view.findViewById(R.id.edtAddOld);
+        mBtnAddNewStudent = (Button) view.findViewById(R.id.btAddStudent);
+        mBtnBack = (ImageButton) view.findViewById(R.id.imgbtaddStudentBack);
         return view;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        btnAddstudent.setOnClickListener(new View.OnClickListener() {
+        mBtnAddNewStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 StudentObject stOjNew = new StudentObject();
-                stOjNew.setName(etName.getText().toString());
-                stOjNew.setSchool(etSchool.getText().toString());
-                stOjNew.setAddress(etAddress.getText().toString());
-                stOjNew.setOld(etOld.getText().toString());
+                stOjNew.setName(mEtName.getText().toString());
+                stOjNew.setSchool(mEtSchool.getText().toString());
+                stOjNew.setAddress(mEtAddress.getText().toString());
+                stOjNew.setOld(mEtOld.getText().toString());
                 if (mListener != null) {
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     mListener.onClickUpdate(stOjNew);
                 }
             }
         });
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
@@ -71,6 +73,7 @@ public class AddStudentFragment extends Fragment {
             }
         });
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -81,6 +84,7 @@ public class AddStudentFragment extends Fragment {
                     + " must implement CallbackUpdateView");
         }
     }
+
     public interface CallbackUpdateView {
         void onClickUpdate(StudentObject std);
     }

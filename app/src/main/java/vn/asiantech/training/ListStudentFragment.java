@@ -23,10 +23,10 @@ import java.util.ArrayList;
  */
 public class ListStudentFragment extends Fragment {
     private getPositionformListView mListener;
-    private ListStudentArrayAdapter adapterListStudent = null;
-    private ListView lvListStudent;
-    private ArrayList<StudentObject> arraylist = new ArrayList<>();
-    private ImageButton imgbtnAddNewStudent;
+    private ListStudentArrayAdapter mAdapterListStudent = null;
+    private ListView mLvListStudent;
+    private ArrayList<StudentObject> mStudentArraylist = new ArrayList<>();
+    private ImageButton mImgBtnAddNewStudent;
 
     public ListStudentFragment() {
 
@@ -42,15 +42,15 @@ public class ListStudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_student, container, false);
-        lvListStudent = (ListView) view.findViewById(R.id.listStudent);
+        mLvListStudent = (ListView) view.findViewById(R.id.listStudent);
         MainActivity main = (MainActivity) getActivity();
-        arraylist = main.arr;
-        adapterListStudent = new ListStudentArrayAdapter(getActivity(), R.layout.student_custom_list, arraylist);
+        mStudentArraylist = main.sMainStudentArray;
+        mAdapterListStudent = new ListStudentArrayAdapter(getActivity(), R.layout.student_custom_list, mStudentArraylist);
         //insertData();
-        lvListStudent.setAdapter(adapterListStudent);
-        adapterListStudent.notifyDataSetChanged();
-        imgbtnAddNewStudent = (ImageButton) view.findViewById(R.id.imgbtStartAddActivity);
-        imgbtnAddNewStudent.setOnClickListener(new View.OnClickListener() {
+        mLvListStudent.setAdapter(mAdapterListStudent);
+        mAdapterListStudent.notifyDataSetChanged();
+        mImgBtnAddNewStudent = (ImageButton) view.findViewById(R.id.imgbtStartAddActivity);
+        mImgBtnAddNewStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
@@ -60,7 +60,7 @@ public class ListStudentFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        lvListStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mLvListStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 mListener.setPositionFormListToInfo(position);
@@ -70,14 +70,14 @@ public class ListStudentFragment extends Fragment {
     }
 
     public void addData(StudentObject std) {
-        arraylist.add(std);
-        Log.d("size", arraylist.size() + "");
+        mStudentArraylist.add(std);
+        Log.d("size", mStudentArraylist.size() + "");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adapterListStudent.notifyDataSetChanged();
+        mAdapterListStudent.notifyDataSetChanged();
     }
 
     @Override

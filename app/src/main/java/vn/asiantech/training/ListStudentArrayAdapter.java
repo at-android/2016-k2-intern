@@ -14,40 +14,40 @@ import java.util.ArrayList;
  */
 
 public class ListStudentArrayAdapter extends ArrayAdapter<StudentObject> {
-    private Activity context = null;
-    private ArrayList<StudentObject> studentArr = null;
-    private int layoutID;
-    private TextView tvName;
-    private TextView tvSchool;
-    private TextView tvAddress;
-    private TextView tvOld;
+    private Activity mContext = null;
+    private ArrayList<StudentObject> mStudentArray = null;
+    private int mLayoutId;
+    private TextView mTvName;
+    private TextView mTvSchool;
+    private TextView mTvAddress;
+    private TextView mTvOld;
 
-    public ListStudentArrayAdapter(Activity context, int layoutID, ArrayList<StudentObject> studentArr) {
-        super(context, layoutID, studentArr);
-        this.context = context;
-        this.layoutID = layoutID;
-        this.studentArr = studentArr;
+    public ListStudentArrayAdapter(Activity mContext, int mLayoutId, ArrayList<StudentObject> mStudentArray) {
+        super(mContext, mLayoutId, mStudentArray);
+        this.mContext = mContext;
+        this.mLayoutId = mLayoutId;
+        this.mStudentArray = mStudentArray;
     }
 
     public View getView(int position, View convertView,
                         ViewGroup parent) {
         LayoutInflater inflater =
-                context.getLayoutInflater();
-        convertView = inflater.inflate(layoutID, null);
-        if (studentArr.size() > 0 && position >= 0) {
-            tvName = (TextView)
+                mContext.getLayoutInflater();
+        convertView = inflater.inflate(mLayoutId, null);
+        if (mStudentArray.size() > 0 && position >= 0) {
+            mTvName = (TextView)
                     convertView.findViewById(R.id.txtName);
-            tvSchool = (TextView)
+            mTvSchool = (TextView)
                     convertView.findViewById(R.id.txtSchool);
-            tvAddress = (TextView)
+            mTvAddress = (TextView)
                     convertView.findViewById(R.id.txtAddress);
-            tvOld = (TextView)
+            mTvOld = (TextView)
                     convertView.findViewById(R.id.txtOld);
-            StudentObject studentObj = studentArr.get(position);
-            tvName.setText(studentObj.getName());
-            tvSchool.setText(studentObj.getSchool());
-            tvAddress.setText(studentObj.getAddress());
-            tvOld.setText(studentObj.getOld());
+            StudentObject studentObj = mStudentArray.get(position);
+            mTvName.setText(studentObj.getName());
+            mTvSchool.setText(studentObj.getSchool());
+            mTvAddress.setText(studentObj.getAddress());
+            mTvOld.setText(studentObj.getOld());
         }
         return convertView;
     }

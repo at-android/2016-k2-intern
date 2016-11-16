@@ -9,29 +9,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EditStudentFragment.OnWaitPositionForEdit} interface
- * to handle interaction events.
- * Use the {@link EditStudentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EditStudentFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private int KEY_POSITION;
-    private EditText etName;
-    private EditText etSchool;
-    private EditText etAddress;
-    private EditText etOld;
-    private ImageButton btEditInfomation;
+    private int mKEY_POSITION;
+    private EditText mEtName;
+    private EditText mEtSchool;
+    private EditText mEtAddress;
+    private EditText mEtOld;
+    private ImageButton mBtnEditInformation;
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnWaitPositionForEdit mListener;
 
@@ -39,57 +26,36 @@ public class EditStudentFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditStudentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditStudentFragment newInstance(String param1, String param2) {
-        EditStudentFragment fragment = new EditStudentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_student, container, false);
-        etName = (EditText) view.findViewById(R.id.edtEditName);
-        etSchool = (EditText) view.findViewById(R.id.edtEditSchool);
-        etAddress = (EditText) view.findViewById(R.id.edtEditAddress);
-        etOld = (EditText) view.findViewById(R.id.edtEditOld);
-        btEditInfomation = (ImageButton) view.findViewById(R.id.btEditStudent);
+        mEtName = (EditText) view.findViewById(R.id.edtEditName);
+        mEtSchool = (EditText) view.findViewById(R.id.edtEditSchool);
+        mEtAddress = (EditText) view.findViewById(R.id.edtEditAddress);
+        mEtOld = (EditText) view.findViewById(R.id.edtEditOld);
+        mBtnEditInformation = (ImageButton) view.findViewById(R.id.btEditStudent);
         final MainActivity mainActivity = (MainActivity) getActivity();
-        etName.setText(mainActivity.arr.get(KEY_POSITION).getName());
-        etSchool.setText(mainActivity.arr.get(KEY_POSITION).getSchool());
-        etAddress.setText(mainActivity.arr.get(KEY_POSITION).getAddress());
-        etOld.setText(mainActivity.arr.get(KEY_POSITION).getOld());
-        btEditInfomation.setOnClickListener(new View.OnClickListener() {
+        mEtName.setText(mainActivity.sMainStudentArray.get(mKEY_POSITION).getName());
+        mEtSchool.setText(mainActivity.sMainStudentArray.get(mKEY_POSITION).getSchool());
+        mEtAddress.setText(mainActivity.sMainStudentArray.get(mKEY_POSITION).getAddress());
+        mEtOld.setText(mainActivity.sMainStudentArray.get(mKEY_POSITION).getOld());
+        mBtnEditInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 StudentObject studentObject = new StudentObject();
-                studentObject.setName(etName.getText().toString());
-                studentObject.setSchool(etSchool.getText().toString());
-                studentObject.setAddress(etAddress.getText().toString());
-                studentObject.setOld(etOld.getText().toString());
-                mainActivity.arr.set(KEY_POSITION, studentObject);
-                mListener.sendKeyPositionFormEditToInfo(KEY_POSITION);
+                studentObject.setName(mEtName.getText().toString());
+                studentObject.setSchool(mEtSchool.getText().toString());
+                studentObject.setAddress(mEtAddress.getText().toString());
+                studentObject.setOld(mEtOld.getText().toString());
+                mainActivity.sMainStudentArray.set(mKEY_POSITION, studentObject);
+                mListener.sendKeyPositionFormEditToInfo(mKEY_POSITION);
             }
         });
         return view;
@@ -107,7 +73,7 @@ public class EditStudentFragment extends Fragment {
     }
 
     public void setKeyPosition(int position) {
-        KEY_POSITION = position;
+        mKEY_POSITION = position;
     }
 
     @Override

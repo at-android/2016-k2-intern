@@ -19,14 +19,14 @@ public class InfomationStudent extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ArrayList<StudentObject> listStudent = new ArrayList<StudentObject>();
-    private TextView tvName;
-    private TextView tvSchool;
-    private TextView tvAddress;
-    private TextView tvOld;
-    private int keyPosition;
-    private ImageButton btnNext;
-    private ImageButton btnBack;
+    private ArrayList<StudentObject> mListStudent = new ArrayList<StudentObject>();
+    private TextView mTvName;
+    private TextView mTvSchool;
+    private TextView mTvAddress;
+    private TextView mTvOld;
+    private int mKEY_POSITION;
+    private ImageButton mBtnNext;
+    private ImageButton mBtnBack;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -68,19 +68,19 @@ public class InfomationStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_infomation_student, container, false);
-        tvName = (TextView) view.findViewById(R.id.txtinfoName);
-        tvSchool = (TextView) view.findViewById(R.id.txtInfoSchool);
-        tvAddress = (TextView) view.findViewById(R.id.txtInfoAddress);
-        tvOld = (TextView) view.findViewById(R.id.txtInfoOld);
-        btnNext = (ImageButton) view.findViewById(R.id.immgbtInfoStudentNext);
-        btnBack = (ImageButton) view.findViewById(R.id.imgbtInfoStudentBack);
+        mTvName = (TextView) view.findViewById(R.id.txtinfoName);
+        mTvSchool = (TextView) view.findViewById(R.id.txtInfoSchool);
+        mTvAddress = (TextView) view.findViewById(R.id.txtInfoAddress);
+        mTvOld = (TextView) view.findViewById(R.id.txtInfoOld);
+        mBtnNext = (ImageButton) view.findViewById(R.id.immgbtInfoStudentNext);
+        mBtnBack = (ImageButton) view.findViewById(R.id.imgbtInfoStudentBack);
         MainActivity main = (MainActivity) getActivity();
-        listStudent = main.arr;
-        tvName.setText(listStudent.get(keyPosition).getName());
-        tvSchool.setText(listStudent.get(keyPosition).getSchool());
-        tvAddress.setText(listStudent.get(keyPosition).getAddress());
-        tvOld.setText(listStudent.get(keyPosition).getOld());
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        mListStudent = main.sMainStudentArray;
+        mTvName.setText(mListStudent.get(mKEY_POSITION).getName());
+        mTvSchool.setText(mListStudent.get(mKEY_POSITION).getSchool());
+        mTvAddress.setText(mListStudent.get(mKEY_POSITION).getAddress());
+        mTvOld.setText(mListStudent.get(mKEY_POSITION).getOld());
+        mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
@@ -90,10 +90,10 @@ public class InfomationStudent extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.editInformation(keyPosition);
+                mListener.editInformation(mKEY_POSITION);
             }
         });
         return view;
@@ -117,13 +117,13 @@ public class InfomationStudent extends Fragment {
     }
 
     public void setKeyForInfoStudent(int position) {
-        keyPosition = position;
+        mKEY_POSITION = position;
     }
 
     public interface onWaitInformation {
         // TODO: Update argument type and name
         void getInformation(StudentObject object);
 
-        void editInformation(int keyPosition);
+        void editInformation(int mKEY_POSITION);
     }
 }
