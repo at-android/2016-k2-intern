@@ -86,7 +86,7 @@ public class InfomationStudent extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 ListStudentFragment fragment = new ListStudentFragment();
-                fragmentTransaction.add(R.id.activity_main, fragment, "ListStudent");
+                fragmentTransaction.replace(R.id.activity_main, fragment, "ListStudent");
                 fragmentTransaction.commit();
             }
         });
