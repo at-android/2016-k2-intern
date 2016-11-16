@@ -1,6 +1,6 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +15,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class StudentFragment extends Fragment {
-    MyArrayAdapter mAdapter = null;
-    ListView mListView;
-    ArrayList<SinhVien> mArr = new ArrayList<SinhVien>();
-    ImageButton mFragImgBtn;
+    private MyArrayAdapter mAdapter = null;
+    private ListView mListView;
+    private ArrayList<SinhVien> mArr = new ArrayList<SinhVien>();
+    private ImageButton mFragImgBtn;
     private AddSVFragment mAddSVFragment;
-    OnHeadlineSelectedListener2 mCallback;
+    private OnHeadlineSelectedListener2 mCallback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,10 +50,11 @@ public class StudentFragment extends Fragment {
             }
         });
 
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onButtonClicked2(mArr.get(i));
+                onButtonClicked2(mArr.get(i),i);
 
             }
         });
@@ -77,15 +78,15 @@ public class StudentFragment extends Fragment {
 
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener2 {
-        public void onArticleSelected2(SinhVien sv);
+        public void onArticleSelected2(SinhVien sv,int position);
     }
 
-    public void onButtonClicked2(SinhVien sv) {
-        mCallback.onArticleSelected2(sv);
+    public void onButtonClicked2(SinhVien sv,int position) {
+        mCallback.onArticleSelected2(sv,position);
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
 
         // This makes sure that the container activity has implemented
@@ -97,5 +98,6 @@ public class StudentFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
+
 
 }

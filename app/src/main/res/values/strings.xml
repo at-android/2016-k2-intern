@@ -8,4 +8,7 @@
     <string name="StudentInfo_TvName">Name: </string>
     <string name="StudentInfo_TvAge">Age: </string>
     <string name="StudentInfo_TvAdress">Address: </string>
+    <string name="addSV_Tv">Add Student </string>
+    <string name="edtInfoSV_Tv">Edit Student </string>
+    <string name="Student_Tv">Student Information </string>
 </resources>

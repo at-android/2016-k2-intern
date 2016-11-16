@@ -1,39 +1,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/StudentInforFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/StudentInforFragment"
     tools:context="vn.asiantech.training.StudentInforFragment">
 
-    <TableRow
-        android:id="@+id/tbArrow"
-        android:layout_width="match_parent"
+
+    <ImageButton
+        android:id="@+id/InforLeftArrow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Student_Tv"
+        android:textSize="@dimen/StudentTextSize"
+        />
 
-        <ImageButton
-            android:id="@+id/InforLeftArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
-            />
-
-        <ImageButton
-            android:id="@+id/InforRightArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-
-
-            />
-
-    </TableRow>
+    <ImageButton
+        android:id="@+id/InforRightArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
     <TableRow
         android:id="@+id/tbSchool"
-        android:layout_below="@+id/tbArrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/InforLeftArrow"
         android:orientation="vertical">
 
         <TextView

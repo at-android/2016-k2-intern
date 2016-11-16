@@ -55,10 +55,11 @@ public class MainActivity extends AppCompatActivity implements AddSVFragment.OnH
 
     //Receive data of StudentFragment and send to StudentInforFragment
     @Override
-    public void onArticleSelected2(SinhVien sv) {
+    public void onArticleSelected2(SinhVien sv,int position) {
         Log.i("xxx", sv.toString());
         Bundle bundle = new Bundle();
         bundle.putSerializable("StudentInfor",sv);
+        bundle.putInt("position",position);
         StudentInforFragment StuInfoFrag = new StudentInforFragment();
         StuInfoFrag.setArguments(bundle);
         replaceAFragment(StuInfoFrag,true,R.id.activity_main);
@@ -66,9 +67,10 @@ public class MainActivity extends AppCompatActivity implements AddSVFragment.OnH
 
     //Receive data of StudentInforFragment and send to EditInforFragment
     @Override
-    public void onArticleSelected3(SinhVien sv) {
+    public void onArticleSelected3(SinhVien sv,int position) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("StudentInfor",sv);
+        bundle.putInt("position",position);
         EditInforFragment EditStuInfoFrag = new EditInforFragment();
         EditStuInfoFrag.setArguments(bundle);
         replaceAFragment(EditStuInfoFrag,true,R.id.activity_main);
@@ -76,7 +78,9 @@ public class MainActivity extends AppCompatActivity implements AddSVFragment.OnH
 
     //Receive data of EditInforFragment and send to StudentInforFragment
     @Override
-    public void onArticleSelected4(SinhVien sv) {
+    public void onArticleSelected4(SinhVien sv,int position) {
+        mArr.set(position,sv);
+        Log.i("xyz", mArr.toString());
         Bundle bundle = new Bundle();
         bundle.putSerializable("StudentInfor",sv);
         StudentInforFragment StuInfoFrag = new StudentInforFragment();

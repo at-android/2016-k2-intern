@@ -1,6 +1,6 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class AddSVFragment extends Fragment implements View.OnClickListener {
-    ImageButton mImgBtn;
-    EditText mEdtSchoolName, mEdtName, mEdtAddress, mEdtAge;
-    Button mBtnAdd;
-    OnHeadlineSelectedListener mCallback;
+    private ImageButton mImgBtn;
+    private EditText mEdtSchoolName, mEdtName, mEdtAddress, mEdtAge;
+    private Button mBtnAdd;
+    private  OnHeadlineSelectedListener mCallback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
                 onButtonClicked(sv);
                 break;
             case R.id.addSvImgBtn:
+                getActivity().onBackPressed();
                 break;
         }
     }
@@ -64,7 +65,7 @@ public class AddSVFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
 
         // This makes sure that the container activity has implemented

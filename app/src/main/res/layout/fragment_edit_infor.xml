@@ -4,26 +4,25 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.EditInforFragment">
 
-    <TableRow
-        android:id="@+id/tbArrow"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/EditInforLeftArrow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
-        <ImageButton
-            android:id="@+id/EditInforLeftArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/edtInfoSV_Tv"
+        android:textSize="@dimen/addSVTVsize" />
 
-
-    </TableRow>
 
     <TableRow
         android:id="@+id/tbSchool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tbArrow"
+        android:layout_below="@+id/EditInforLeftArrow"
         android:orientation="vertical">
 
         <TextView

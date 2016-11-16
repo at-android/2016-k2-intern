@@ -1,6 +1,6 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,9 +11,13 @@ import android.widget.ImageButton;
 
 
 public class EditInforFragment extends Fragment {
-    EditText mEdtSchool,mEdtName,mEdtAge,mEdtAddress;
-    ImageButton mLeftArrow;
-    OnHeadlineSelectedListener4 mCallback;
+    private EditText mEdtSchool;
+    private EditText mEdtName;
+    private EditText mEdtAge;
+    private EditText mEdtAddress;
+    private ImageButton mLeftArrow;
+    private OnHeadlineSelectedListener4 mCallback;
+    int mPosition;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,7 @@ public class EditInforFragment extends Fragment {
         mEdtName.setText(sv.getName().toString());
         mEdtAge.setText(sv.getAge().toString());
         mEdtAddress.setText(sv.getAddress().toString());
+        mPosition = bundle.getInt("position");
 
         mLeftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +52,7 @@ public class EditInforFragment extends Fragment {
                 sv.setName(mEdtName.getText().toString());
                 sv.setAge(mEdtAge.getText().toString());
                 sv.setAddress(mEdtAddress.getText().toString());
-                onButtonClicked4(sv);
+                onButtonClicked4(sv,mPosition);
             }
         });
 
@@ -58,15 +63,15 @@ public class EditInforFragment extends Fragment {
 
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener4 {
-        public void onArticleSelected4(SinhVien sv);
+        public void onArticleSelected4(SinhVien sv,int position);
     }
 
-    public void onButtonClicked4(SinhVien sv) {
-        mCallback.onArticleSelected4(sv);
+    public void onButtonClicked4(SinhVien sv,int position) {
+        mCallback.onArticleSelected4(sv,position);
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
 
         // This makes sure that the container activity has implemented

@@ -1,8 +1,9 @@
 package vn.asiantech.training;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class StudentInforFragment extends Fragment implements View.OnClickListener{
-    ImageButton mImgLeft, mImgRight;
-    TextView mTvSchoolName, mTvName, mTvAge, mTvAddress;
-    OnHeadlineSelectedListener3 mCallback;
+public class StudentInforFragment extends Fragment implements View.OnClickListener {
+    private ImageButton mImgLeft, mImgRight;
+    private TextView mTvSchoolName, mTvName, mTvAge, mTvAddress;
+    private OnHeadlineSelectedListener3 mCallback;
+    private int mPosition;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
         mTvName.setText(sv.getName());
         mTvAge.setText(sv.getAge());
         mTvAddress.setText(sv.getAddress());
+        mPosition = bundle.getInt("position");
 
         mImgRight.setOnClickListener(this);
         mImgLeft.setOnClickListener(this);
@@ -47,8 +51,11 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.InforLeftArrow:
+                StudentFragment frag = new StudentFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.activity_main, frag).commit();
 
                 break;
             case R.id.InforRightArrow:
@@ -57,7 +64,7 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
                 sv.setName(mTvName.getText().toString());
                 sv.setAge(mTvAge.getText().toString());
                 sv.setAddress(mTvAddress.getText().toString());
-                onButtonClicked3(sv);
+                onButtonClicked3(sv, mPosition);
                 break;
         }
     }
@@ -65,15 +72,15 @@ public class StudentInforFragment extends Fragment implements View.OnClickListen
 
     // Container Activity must implement this interface
     public interface OnHeadlineSelectedListener3 {
-        public void onArticleSelected3(SinhVien sv);
+        public void onArticleSelected3(SinhVien sv, int position);
     }
 
-    public void onButtonClicked3(SinhVien sv) {
-        mCallback.onArticleSelected3(sv);
+    public void onButtonClicked3(SinhVien sv, int position) {
+        mCallback.onArticleSelected3(sv, position);
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
 
         // This makes sure that the container activity has implemented

@@ -5,11 +5,19 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.AddSVFragment">
 
+
     <ImageButton
         android:id="@+id/addSvImgBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/addSV_Tv"
+        android:textSize="@dimen/addSVTVsize" />
 
     <EditText
         android:id="@+id/addSvEdtSchoolName"

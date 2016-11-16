@@ -1,22 +1,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/studentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/studentFragment"
     tools:context="vn.asiantech.training.StudentFragment">
-    <ImageButton
-        android:id="@+id/fragStudentImgBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/fragStudentImgBtnMarginRight"
-        android:src="@drawable/plus"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="@string/addSV_Tv"
+            android:textSize="@dimen/addSVTVsize" />
+
+        <ImageButton
+            android:id="@+id/fragStudentImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus" />
+
+
     <ListView
-        android:layout_below="@+id/fragStudentImgBtn"
         android:id="@+id/fragStudentLv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragStudentImgBtn">
 
     </ListView>
 
