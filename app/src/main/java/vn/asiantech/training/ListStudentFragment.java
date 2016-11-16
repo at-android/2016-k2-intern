@@ -15,23 +15,10 @@ import java.util.ArrayList;
 
 public class ListStudentFragment extends Fragment {
     ArrayList<Student> students;
-    int pos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        students = new ArrayList<Student>();
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "21"));
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "22"));
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "23"));
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "24"));
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "25"));
-        students.add(new Student("DUT", "Duy Le", "Da Nang", "26"));
-        if (bundle != null) {
-            pos = bundle.getInt(Exfragment.POSITION);
-            students.set(pos, (Student) bundle.getSerializable(Exfragment.STUDENT_NAME));
-        }
     }
 
     @Override
@@ -51,17 +38,22 @@ public class ListStudentFragment extends Fragment {
                 bundle.putInt(Exfragment.POSITION, position);
                 InformationFragment info = new InformationFragment();
                 info.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.flContainer, info, "info").commit();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, info).commit();
             }
         });
 
         imgbAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AddFragment addFragment = new AddFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, addFragment).addToBackStack(null).commit();
             }
         });
         return view;
     }
 
+    public void passData(ArrayList<Student> students) {
+        this.students = students;
+    }
 }

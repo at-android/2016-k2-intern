@@ -13,6 +13,16 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_red_500_48dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/list_fragment_tv_marginTop"
+        android:text="@string/titleEdit"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="@dimen/title_size" />
+
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
@@ -21,7 +31,7 @@
         android:gravity="center"
         android:inputType="text"
         android:maxLines="1"
-        tools:text="Duy" />
+        tools:text="@string/name" />
 
     <EditText
         android:id="@+id/edtAddress"
@@ -31,7 +41,7 @@
         android:gravity="center"
         android:inputType="text"
         android:maxLines="1"
-        tools:text="Da Nang" />
+        tools:text="@string/address" />
 
     <EditText
         android:id="@+id/edtSchool"
@@ -41,7 +51,7 @@
         android:gravity="center"
         android:inputType="text"
         android:maxLines="1"
-        tools:text="Dut" />
+        tools:text="@string/school" />
 
     <EditText
         android:id="@+id/edtAge"
@@ -51,5 +61,5 @@
         android:gravity="center"
         android:inputType="text"
         android:maxLines="1"
-        tools:text="19" />
+        tools:text="@string/age" />
 </RelativeLayout>

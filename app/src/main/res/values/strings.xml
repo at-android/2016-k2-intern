@@ -8,5 +8,8 @@
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="btn_name">Add</string>
-
+    <string name="titleList">List Student</string>
+    <string name="titleDetail">Detail</string>
+    <string name="titleEdit">Edit</string>
+    <string name="titleAdd">Add</string>
 </resources>

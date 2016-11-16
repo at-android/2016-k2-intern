@@ -59,7 +59,7 @@ public class EditFragment extends Fragment {
 
     public void onButtonPressed(Student student, int position) {
         if (mCallback != null) {
-            mCallback.onArticleSelected(student, position);
+            mCallback.onFragmentInteraction1(student, position);
         }
     }
 
@@ -74,6 +74,6 @@ public class EditFragment extends Fragment {
     }
 
     public interface OnHeadlineSelectedListener {
-        public void onArticleSelected(Student student, int position);
+        public void onFragmentInteraction1(Student student, int position);
     }
 }

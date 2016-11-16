@@ -7,16 +7,26 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ImageButton
-        android:id="@+id/imgBack"
+        android:id="@+id/imgbBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_red_500_48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/list_fragment_tv_marginTop"
+        android:text="@string/titleAdd"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="@dimen/title_size" />
 
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgBack"
+        android:layout_below="@+id/imgbBack"
         android:gravity="center"
         android:hint="@string/name"
         android:inputType="text"

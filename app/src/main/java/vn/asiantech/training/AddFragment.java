@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class AddFragment extends Fragment {
 
@@ -33,13 +34,21 @@ public class AddFragment extends Fragment {
         final EditText edtName = (EditText) view.findViewById(R.id.edtName);
         final EditText edtAge = (EditText) view.findViewById(R.id.edtAge);
         Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
+        ImageButton imgbBack = (ImageButton) view.findViewById(R.id.imgbBack);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Student student = new Student(edtSchool.getText().toString(), edtName.getText().toString(),
                         edtAddress.getText().toString(),
                         edtAge.getText().toString());
+                onButtonPressed(student);
+            }
+        });
 
+        imgbBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
         return view;

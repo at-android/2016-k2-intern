@@ -7,4 +7,6 @@
     <dimen name="info_fragment_tv_marginleft">50dp</dimen>
     <dimen name="info_fragment_btn_marginTop">50dp</dimen>
     <dimen name="info_fragment_tv_marginTop">20dp</dimen>
+    <dimen name="list_fragment_tv_marginTop">20dp</dimen>
+    <dimen name="title_size">30sp</dimen>
 </resources>

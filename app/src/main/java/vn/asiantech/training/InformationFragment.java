@@ -69,7 +69,7 @@ public class InformationFragment extends Fragment {
 
     public void onButtonPressed(Student student, int position) {
         if (mCallback != null) {
-            mCallback.onArticleSelected2(student, position);
+            mCallback.onFragmentInteraction2(student, position);
         }
     }
 
@@ -84,6 +84,6 @@ public class InformationFragment extends Fragment {
     }
 
     public interface OnHeadlineSelectedListener2 {
-        public void onArticleSelected2(Student student, int position);
+        public void onFragmentInteraction2(Student student, int position);
     }
 }
