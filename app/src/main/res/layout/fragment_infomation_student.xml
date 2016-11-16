@@ -16,12 +16,28 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/title_list_student_text_size" />
 
+    <ImageButton
+        android:id="@+id/imgbtInfoStudentBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_keyboard_arrow_left" />
+
+    <ImageButton
+        android:id="@+id/immgbtInfoStudentNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtInfoStudentTitle"
+        android:layout_alignRight="@+id/txtInfoStudentTitle"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_keyboard_arrow_right" />
     <TextView
         android:id="@+id/txtinfoName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtInfoStudentTitle"
         android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
         android:textSize="@dimen/info_layout_text_size" />
 
     <TextView
@@ -30,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtinfoName"
         android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
         android:textSize="@dimen/info_layout_text_size" />
 
     <TextView
@@ -38,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtInfoSchool"
         android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
         android:textSize="@dimen/info_layout_text_size" />
 
     <TextView
@@ -46,5 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtInfoAddress"
         android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
         android:textSize="@dimen/info_layout_text_size" />
 </RelativeLayout>

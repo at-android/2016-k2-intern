@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.onWaitInformation, ListStudentFragment.getPositionformListView {
+public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.onWaitInformation, ListStudentFragment.getPositionformListView, EditStudentFragment.OnWaitPositionForEdit {
     public ArrayList<StudentObject> arr = new ArrayList<StudentObject>();
     FragmentTransaction fragmentTransaction;
     @Override
@@ -73,11 +73,29 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
     }
 
     @Override
+    public void editInformation(int keyPosition) {
+        EditStudentFragment f = new EditStudentFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frLayoutMain, f, "EditStudent").commit();
+        f.setKeyPosition(keyPosition);
+    }
+
+    @Override
     public void setPosition(int position) {
         InfomationStudent f = new InfomationStudent();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
         f.getInformation(position);
+    }
+
+    @Override
+    public void sendKeyPositionFormEditToInfo(int keyposition) {
+        InfomationStudent f = new InfomationStudent();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
+        f.getInformation(keyposition);
     }
 }

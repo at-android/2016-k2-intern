@@ -63,7 +63,6 @@ public class ListStudentFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 mListener.setPosition(position);
-                //Toast.makeText(getActivity(), position+"", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

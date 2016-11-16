@@ -3,9 +3,12 @@ package vn.asiantech.training;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,13 +19,14 @@ public class InfomationStudent extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    TextView txtName, txtSchool, txtAddress, txtOld;
     ArrayList<StudentObject> listStudent = new ArrayList<StudentObject>();
+    private TextView txtName;
+    private TextView txtSchool;
+    private TextView txtAddress;
+    private TextView txtOld;
     private int keyPosition;
-    private String name;
-    private String school;
-    private String address;
-    private String old;
+    private ImageButton btNext;
+    private ImageButton btBack;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -68,20 +72,31 @@ public class InfomationStudent extends Fragment {
         txtSchool = (TextView) view.findViewById(R.id.txtInfoSchool);
         txtAddress = (TextView) view.findViewById(R.id.txtInfoAddress);
         txtOld = (TextView) view.findViewById(R.id.txtInfoOld);
+        btNext = (ImageButton) view.findViewById(R.id.immgbtInfoStudentNext);
+        btBack = (ImageButton) view.findViewById(R.id.imgbtInfoStudentBack);
         MainActivity main = (MainActivity) getActivity();
         listStudent = main.arr;
         txtName.setText(listStudent.get(keyPosition).getName());
         txtSchool.setText(listStudent.get(keyPosition).getSchool());
         txtAddress.setText(listStudent.get(keyPosition).getAddress());
         txtOld.setText(listStudent.get(keyPosition).getOld());
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ListStudentFragment fragment = new ListStudentFragment();
+                fragmentTransaction.add(R.id.frLayoutMain, fragment, "ListStudent");
+                fragmentTransaction.commit();
+            }
+        });
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.editInformation(keyPosition);
+            }
+        });
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(StudentObject object) {
-        if (mListener != null) {
-            mListener.getInformation(object);
-        }
     }
 
     @Override
@@ -108,5 +123,7 @@ public class InfomationStudent extends Fragment {
     public interface onWaitInformation {
         // TODO: Update argument type and name
         void getInformation(StudentObject object);
+
+        void editInformation(int keyPosition);
     }
 }
