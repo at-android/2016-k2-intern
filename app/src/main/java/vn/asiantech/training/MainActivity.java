@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements AddStudentFragment.CallbackUpdateView, InfomationStudent.onWaitInformation, ListStudentFragment.getPositionformListView {
     public ArrayList<StudentObject> arr = new ArrayList<StudentObject>();
     FragmentTransaction fragmentTransaction;
     @Override
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        insertData();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         ListStudentFragment fragment = new ListStudentFragment();
@@ -39,8 +40,44 @@ public class MainActivity extends AppCompatActivity implements AddStudentFragmen
         fragmentTransaction.add(R.id.frLayoutMain, f, "ListStudent").commit();
     }
 
-    @Override
-    public void onFragmentInteraction(StudentObject obj) {
+    public void insertData() {
+        StudentObject stOj = new StudentObject();
+        stOj.setName("Manh Duy");
+        stOj.setSchool("FPT Poly");
+        stOj.setAddress("Da Nang");
+        stOj.setOld("21");
+        arr.add(stOj);
+        StudentObject stOj1 = new StudentObject();
+        stOj1.setName("Hoang Long");
+        stOj1.setSchool("FPT Poly");
+        stOj1.setAddress("Sai Gon");
+        stOj1.setOld("21");
+        arr.add(stOj1);
+        StudentObject stOj2 = new StudentObject();
+        stOj2.setName("Nhat Hai");
+        stOj2.setSchool("FPT Poly");
+        stOj2.setAddress("Ha Noi");
+        stOj2.setOld("21");
+        arr.add(stOj2);
+        StudentObject stOj3 = new StudentObject();
+        stOj3.setName("Phung Thien");
+        stOj3.setSchool("FPT Poly");
+        stOj3.setAddress("Hue");
+        stOj3.setOld("21");
+        arr.add(stOj3);
+    }
 
+    @Override
+    public void getInformation(StudentObject object) {
+
+    }
+
+    @Override
+    public void setPosition(int position) {
+        InfomationStudent f = new InfomationStudent();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frLayoutMain, f, "Information").commit();
+        f.getInformation(position);
     }
 }

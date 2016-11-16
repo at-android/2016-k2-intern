@@ -22,11 +22,11 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class ListStudentFragment extends Fragment {
+    public getPositionformListView mListener;
     ListStudentArrayAdapter myAdapter = null;
     ListView lvStudent;
     ImageButton btAddNewStudent;
     ArrayList<StudentObject> arraylist = new ArrayList<>();
-    private getPositionformListView mListener;
     public ListStudentFragment() {
 
     }
@@ -36,18 +36,16 @@ public class ListStudentFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_student, container, false);
         lvStudent = (ListView) view.findViewById(R.id.listStudent);
+        MainActivity main = (MainActivity) getActivity();
+        arraylist = main.arr;
         myAdapter = new ListStudentArrayAdapter(getActivity(), R.layout.student_custom_list, arraylist);
-        insertData();
+        //insertData();
         lvStudent.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
         btAddNewStudent = (ImageButton) view.findViewById(R.id.imgbtStartAddActivity);
@@ -63,8 +61,9 @@ public class ListStudentFragment extends Fragment {
         });
         lvStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mListener.setPosition(i);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                mListener.setPosition(position);
+                //Toast.makeText(getActivity(), position+"", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -80,33 +79,16 @@ public class ListStudentFragment extends Fragment {
         myAdapter.notifyDataSetChanged();
     }
 
-    public void insertData() {
-        StudentObject stOj = new StudentObject();
-        stOj.setName("Manh Duy");
-        stOj.setSchool("FPT Poly");
-        stOj.setAddress("Da Nang");
-        stOj.setOld("21");
-        arraylist.add(stOj);
-        StudentObject stOj1 = new StudentObject();
-        stOj1.setName("Hoang Long");
-        stOj1.setSchool("FPT Poly");
-        stOj1.setAddress("Sai Gon");
-        stOj1.setOld("21");
-        arraylist.add(stOj1);
-        StudentObject stOj2 = new StudentObject();
-        stOj2.setName("Nhat Hai");
-        stOj2.setSchool("FPT Poly");
-        stOj2.setAddress("Ha Noi");
-        stOj2.setOld("21");
-        arraylist.add(stOj2);
-        StudentObject stOj3 = new StudentObject();
-        stOj3.setName("Phung Thien");
-        stOj3.setSchool("FPT Poly");
-        stOj3.setAddress("Hue");
-        stOj3.setOld("21");
-        arraylist.add(stOj3);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ListStudentFragment.getPositionformListView) {
+            mListener = (ListStudentFragment.getPositionformListView) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ListStudentFragment");
+        }
     }
-
     public interface getPositionformListView {
         // TODO: Update argument type and name
         void setPosition(int position);
