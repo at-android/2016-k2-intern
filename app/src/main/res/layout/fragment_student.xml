@@ -6,11 +6,11 @@
     tools:context="vn.asiantech.training.StudentFragment">
     <ImageButton
         android:id="@+id/fragStudentImgBtn"
-        android:layout_width="@dimen/fragStudentImgBtnWidth"
-        android:layout_height="@dimen/fragStudentImgBtnHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/fragStudentImgBtnMarginRight"
-        android:src="@drawable/ic_subdirectory_arrow_right_black_24dp"
+        android:src="@drawable/plus"
         />
     <ListView
         android:layout_below="@+id/fragStudentImgBtn"

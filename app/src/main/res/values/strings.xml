@@ -4,4 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addSVBtn">Add</string>
+    <string name="StudentInfo_TvShool">School Name: </string>
+    <string name="StudentInfo_TvName">Name: </string>
+    <string name="StudentInfo_TvAge">Age: </string>
+    <string name="StudentInfo_TvAdress">Address: </string>
 </resources>

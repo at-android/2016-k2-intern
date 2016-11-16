@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/StudentInforFragment"
+    tools:context="vn.asiantech.training.StudentInforFragment">
+
+    <TableRow
+        android:id="@+id/tbArrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/InforLeftArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            />
+
+        <ImageButton
+            android:id="@+id/InforRightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+
+
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbSchool"
+        android:layout_below="@+id/tbArrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StudentInfo_TvShool"
+            android:textSize="@dimen/StudentInfoTv" />
+
+        <TextView
+            android:id="@+id/InforSchoolName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/StudentInfoTv" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tbSchool"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StudentInfo_TvName"
+            android:textSize="@dimen/StudentInfoTv" />
+
+        <TextView
+            android:id="@+id/InforName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/StudentInfoTv" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tbName"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StudentInfo_TvAge"
+            android:textSize="@dimen/StudentInfoTv" />
+
+        <TextView
+            android:id="@+id/InforAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/StudentInfoTv" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tbAge"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StudentInfo_TvAdress"
+            android:textSize="@dimen/StudentInfoTv" />
+
+        <TextView
+            android:id="@+id/InforAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/StudentInfoTv" />
+
+    </TableRow>
+
+</RelativeLayout>

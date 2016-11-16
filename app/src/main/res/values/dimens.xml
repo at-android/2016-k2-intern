@@ -6,4 +6,6 @@
     <dimen name="fragStudentImgBtnHeight">24dp</dimen>
     <dimen name="fragStudentImgBtnMarginRight">20dp</dimen>
     <dimen name="custom_listview_textsize">25sp</dimen>
+    <dimen name="StudentInfoTv">20sp</dimen>
+    <dimen name="StudentInfoMaginLeft">280dp</dimen>
 </resources>

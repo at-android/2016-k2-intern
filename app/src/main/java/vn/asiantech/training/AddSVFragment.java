@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class AddSVFragment extends Fragment {
+public class AddSVFragment extends Fragment implements View.OnClickListener {
     ImageButton mImgBtn;
     EditText mEdtSchoolName, mEdtName, mEdtAddress, mEdtAge;
     Button mBtnAdd;
@@ -33,19 +33,25 @@ public class AddSVFragment extends Fragment {
         mEdtAge = (EditText) view.findViewById(R.id.addSvEdtAge);
         mBtnAdd = (Button) view.findViewById(R.id.addSvBtnAdd);
 
-        mBtnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mBtnAdd.setOnClickListener(this);
+        mImgBtn.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.addSvBtnAdd:
                 SinhVien sv = new SinhVien();
                 sv.setSchoolName(mEdtSchoolName.getText().toString());
                 sv.setName(mEdtName.getText().toString());
                 sv.setAddress(mEdtAge.getText().toString());
                 sv.setAge(mEdtAddress.getText().toString());
                 onButtonClicked(sv);
-            }
-        });
-
-        return view;
+                break;
+            case R.id.addSvImgBtn:
+                break;
+        }
     }
 
     // Container Activity must implement this interface

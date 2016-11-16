@@ -7,9 +7,9 @@
 
     <ImageButton
         android:id="@+id/addSvImgBtn"
-        android:layout_width="@dimen/fragStudentImgBtnWidth"
-        android:layout_height="@dimen/fragStudentImgBtnHeight"
-        android:src="@drawable/ic_subdirectory_arrow_left_black_24dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
     <EditText
         android:id="@+id/addSvEdtSchoolName"
