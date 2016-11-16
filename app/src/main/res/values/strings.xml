@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Training</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list_layout_title">List Student</string>
+    <string name="name_student">Name :</string>
+    <string name="school_name">School :</string>
+    <string name="address_student">Address :</string>
+    <string name="old_student">Old :</string>
+    <string name="add_student_layout_text">Add Student</string>
+    <string name="add_student_edt_name">Add name</string>
+    <string name="add_student_button">Add student</string>
+    <string name="add_student_edt_school">Add school</string>
+    <string name="add_student_edt_address">Add address</string>
+    <string name="add_student_edt_old">Add old</string>
+    <string name="information_student_title">Info Student</string>
+    <string name="edit_student_text_title">Edit Student</string>
+    <string name="edt_name_hint_text">Name</string>
+    <string name="edt_school_hint_text">School</string>
+    <string name="edt_address_hint_text">Address</string>
+    <string name="edt_old_hint_text">Old</string>
 </resources>

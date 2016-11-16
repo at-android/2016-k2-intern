@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="vn.asiantech.training.InfomationStudent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/txtInfoStudentTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/information_student_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_list_student_text_size" />
+
+    <ImageButton
+        android:id="@+id/imgbtInfoStudentBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_keyboard_arrow_left" />
+
+    <ImageButton
+        android:id="@+id/immgbtInfoStudentNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtInfoStudentTitle"
+        android:layout_alignRight="@+id/txtInfoStudentTitle"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_keyboard_arrow_right" />
+
+    <TextView
+        android:id="@+id/txtinfoName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtInfoStudentTitle"
+        android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_layout_text_size" />
+
+    <TextView
+        android:id="@+id/txtInfoSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtinfoName"
+        android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_layout_text_size" />
+
+    <TextView
+        android:id="@+id/txtInfoAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtInfoSchool"
+        android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_layout_text_size" />
+
+    <TextView
+        android:id="@+id/txtInfoOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtInfoAddress"
+        android:layout_marginTop="@dimen/info_layout_txt_margin_top"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_layout_text_size" />
+</RelativeLayout>
