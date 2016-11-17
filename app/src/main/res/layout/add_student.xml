@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relayoutAddStudent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:padding="@dimen/item_listView_padding">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/add_student_tv_title"
+            android:textSize="@dimen/fragment_listView_tv_title_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="@dimen/fragment_listView_icon_add_margin_right"
+            android:layout_marginRight="@dimen/fragment_listView_icon_add_margin_right"
+            android:background="@drawable/ic_back"
+            android:contentDescription="@null" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout"
+        android:layout_marginTop="@dimen/fragment_listView_lv_margin_top"
+        android:hint="@string/add_student_ed_name_hint"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <EditText
+        android:id="@+id/edAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edName"
+        android:hint="@string/add_student_ed_age_hint"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <EditText
+        android:id="@+id/edSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edAge"
+        android:layout_marginTop="@dimen/item_listView_tv_school_margin_top"
+        android:hint="@string/add_student_ed_school_hint"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <EditText
+        android:id="@+id/edAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edSchool"
+        android:layout_marginTop="@dimen/item_listView_tv_school_margin_top"
+        android:hint="@string/add_student_ed_address_hint"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edAddress"
+        android:text="@string/add_student_btn_add" />
+</RelativeLayout>

@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fragment_listView_tv_title_size">30sp</dimen>
+    <dimen name="fragment_listView_lv_margin_top">10dp</dimen>
+    <dimen name="fragment_listView_icon_add_margin_right">10dp</dimen>
+    <dimen name="item_listView_padding">20dp</dimen>
+    <dimen name="item_listView_tv_size">20sp</dimen>
+    <dimen name="item_listView_tv_age_margin_left">20dp</dimen>
+    <dimen name="item_listView_tv_school_margin_top">20dp</dimen>
 </resources>
