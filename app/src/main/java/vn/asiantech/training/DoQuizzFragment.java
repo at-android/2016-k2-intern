@@ -7,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.widget.TextView;
 
 
 /**
@@ -26,9 +25,11 @@ import java.util.ArrayList;
  */
 public class DoQuizzFragment extends Fragment {
     private int mPOSITION;
-    private ViewPager mVpQuizz;
+    private ViewPager mPageQuizz;
     private OnFragmentInteractionListener mListener;
     private Button mBtnNext;
+    private TextView mTvTitle;
+    private TextView mTvQuestion;
     public DoQuizzFragment() {
         // Required empty public constructor
     }
@@ -39,6 +40,7 @@ public class DoQuizzFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt("mPOSITION", position);
         fragment.setArguments(args);
+        Log.d("LoadAgain", "---");
         return fragment;
     }
 
@@ -54,24 +56,33 @@ public class DoQuizzFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_do_quizz, container, false);
-        mVpQuizz = (ViewPager) view.findViewById(R.id.vpContentQuizz);
+        mPageQuizz = (ViewPager) view.findViewById(R.id.vpContentQuizz);
         mBtnNext = (Button) view.findViewById(R.id.btnNext);
-        final ArrayList<Fragment> listFragment = new ArrayList<>();
-        listFragment.add(new DoQuizzFragment());
-        listFragment.add(new DoQuizzFragment());
+        mTvTitle = (TextView) view.findViewById(R.id.tvTitleLayout);
+        mTvQuestion = (TextView) view.findViewById(R.id.tvQuestion);
+        int numberTitle = mPOSITION + 1;
+        mTvTitle.setText("Question " + numberTitle);
+        loadDataFormList();
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager manager = getFragmentManager();
-                PagerAdapter adapter = new QuizzAdapter(manager, listFragment);
-                mVpQuizz.setAdapter(adapter);
-                mVpQuizz.setCurrentItem(1);
+                FragmentManager fr = getFragmentManager();
+                PagerAdapter adapter = new QuizzAdapter(fr);
+                mPageQuizz.setAdapter(adapter);
+                Log.d("CurentItem", mPageQuizz.getCurrentItem() + "");
+                mPOSITION = mPOSITION + 1;
+                mPageQuizz.setCurrentItem(mPOSITION);
+                Log.d("Position", mPOSITION + "");
             }
         });
-        Toast.makeText(getActivity(), mPOSITION + "", Toast.LENGTH_SHORT).show();
         return view;
     }
 
+    public void loadDataFormList() {
+        MainActivity main = (MainActivity) getActivity();
+        mTvQuestion.setText(main.sQuizzArray.get(mPOSITION).getmQuestion());
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
