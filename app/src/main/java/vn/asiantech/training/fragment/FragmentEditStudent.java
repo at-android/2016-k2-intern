@@ -53,9 +53,7 @@ public class FragmentEditStudent extends Fragment {
         mImvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getActivity()
-                        .getSupportFragmentManager();
-                fm.popBackStack(FragmentListView.NAME_FRAGMENT, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getActivity().onBackPressed();
             }
         });
         return view;
