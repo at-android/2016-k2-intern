@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 /**
@@ -18,7 +19,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class DoQuizzFragment extends Fragment {
-    private String mPOSITION;
+    private int mPOSITION;
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,7 +40,7 @@ public class DoQuizzFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+            mPOSITION = getArguments().getInt("mPOSITION");
         }
     }
 
@@ -47,7 +48,7 @@ public class DoQuizzFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_do_quizz, container, false);
-        // Inflate the layout for this fragment
+        Toast.makeText(getActivity(), mPOSITION + "", Toast.LENGTH_SHORT).show();
         return view;
     }
 

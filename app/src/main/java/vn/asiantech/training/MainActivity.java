@@ -1,17 +1,32 @@
 package vn.asiantech.training;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public ArrayList<QuizzObj> sQuizzArray = new ArrayList<QuizzObj>();
-
+    private Button mBtnStartQuizz;
+    private Button mBtnFinish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        insertData();
+        init();
+        mBtnStartQuizz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment newFragment = new DoQuizzFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.commit();
+            }
+        });
     }
 
     private void insertData() {
@@ -25,5 +40,10 @@ public class MainActivity extends AppCompatActivity {
         sQuizzArray.add(new QuizzObj("I will come and see you before I.............for America.", "leave", "will leave", "had left", "shall leave", "leave"));
         sQuizzArray.add(new QuizzObj("The little girl asked wha.............to her friend.", "has happened", "happened", "had happened", "would have been happened", "had happened"));
         sQuizzArray.add(new QuizzObj("John ............a book when I saw him.", "is reading", "read", "was reading", "reading", "was reading"));
+    }
+
+    private void init() {
+        mBtnStartQuizz = (Button) findViewById(R.id.btnStartQuizz);
+        mBtnFinish = (Button) findViewById(R.id.btnFinishActivity);
     }
 }
