@@ -1,6 +1,7 @@
 package vn.asiantech.training;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,6 @@ public class App extends Application {
     }
 
     public void editStudent(Student student, Integer position) {
-        mArrStudent.remove(position);
-        mArrStudent.add(position, student);
+        mArrStudent.set(position, student);
     }
 }

@@ -16,17 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFramentListView = new FragmentListView();
-        switchFragment(mFramentListView, true, R.id.frContain, FragmentListView.NAME_FRAGMENT);
-    }
-
-    public String getData() {
-        return "thí is data";
+        switchFragment(mFramentListView, false, R.id.frContain, FragmentListView.NAME_FRAGMENT);
     }
 
     public void switchFragment(Fragment fragment, boolean addToBackStack, int id, String nameFragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(id, fragment, nameFragment);
+        ft.replace(id, fragment, nameFragment);
         if (addToBackStack) {
             ft.addToBackStack(nameFragment);
         }

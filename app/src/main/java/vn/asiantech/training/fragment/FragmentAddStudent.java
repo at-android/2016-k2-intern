@@ -66,6 +66,7 @@ public class FragmentAddStudent extends Fragment implements View.OnClickListener
                 Student student = new Student(mEdName.getText().toString(), mEdAge.getText().toString(),
                         mEdAddress.getText().toString(), mEdSchool.getText().toString());
                 mListener.sendData(student);
+                formatData();
                 getActivity().onBackPressed();
                 break;
             }
@@ -73,6 +74,13 @@ public class FragmentAddStudent extends Fragment implements View.OnClickListener
                 getActivity().onBackPressed();
                 break;
         }
+    }
+
+    public void formatData(){
+        mEdName.setText("");
+        mEdAddress.setText("");
+        mEdAge.setText("");
+        mEdSchool.setText("");
     }
 
     public interface ListenerCallbackData {

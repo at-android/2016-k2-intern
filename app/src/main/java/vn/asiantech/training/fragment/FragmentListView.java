@@ -1,10 +1,13 @@
 package vn.asiantech.training.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +45,8 @@ public class FragmentListView extends Fragment implements FragmentAddStudent.Lis
         mFragmentAddStudent = new FragmentAddStudent();
         mFragmentAddStudent.setListennerSendData(this);
         mFragmentDetailStudent = new FragmentDetailStudent();
-        mArrStudent = ((App) getActivity().getApplication()).getData();
+
+        Log.d("here",String.valueOf(mArrStudent.size()));
         mStudentAdapter = new StudentAdapter(getContext(), mArrStudent);
         mLvStudent.setAdapter(mStudentAdapter);
 
@@ -70,7 +74,7 @@ public class FragmentListView extends Fragment implements FragmentAddStudent.Lis
     public void switchFragment(Fragment fragment, boolean addToBackStack, int id, String nameFragment) {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(id, fragment, nameFragment);
+        ft.replace(id, fragment, nameFragment);
         if (addToBackStack) {
             ft.addToBackStack(nameFragment);
         }
@@ -80,6 +84,16 @@ public class FragmentListView extends Fragment implements FragmentAddStudent.Lis
     @Override
     public void sendData(Student student) {
         ((App) getActivity().getApplication()).addStudent(student);
-        //mStudentAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        mArrStudent = ((App) getActivity().getApplication()).getData();
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 }
