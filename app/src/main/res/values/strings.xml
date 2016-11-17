@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="button_text_start_quizz">Start Quizz</string>
+    <string name="button_text_finnish_app">Finish</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_previous_text">Previous</string>
+    <string name="btn_next_text">Next</string>
 </resources>

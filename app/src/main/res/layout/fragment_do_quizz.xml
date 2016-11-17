@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.DoQuizzFragment">
+
+    <TextView
+        android:id="@+id/tvTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@null"
+        android:textAlignment="center"
+        android:textSize="@dimen/textview_title_size" />
+
+    <Button
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/btn_previous_text"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/tvTitleLayout"
+        android:layout_alignRight="@id/tvTitleLayout"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/btn_next_text"
+        android:textColor="@android:color/white" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvTitleLayout">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>
