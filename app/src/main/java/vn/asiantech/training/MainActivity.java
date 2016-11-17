@@ -1,8 +1,7 @@
 package vn.asiantech.training;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<QuizzObj> sQuizzArray = new ArrayList<QuizzObj>();
     private Button mBtnStartQuizz;
     private Button mBtnFinish;
+    private android.support.v4.app.FragmentTransaction mFragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +22,10 @@ public class MainActivity extends AppCompatActivity {
         mBtnStartQuizz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment newFragment = new DoQuizzFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.commit();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = fragmentManager.beginTransaction();
+                DoQuizzFragment fragment = new DoQuizzFragment();
+                mFragmentTransaction.replace(R.id.frMain, fragment, "QuizzDo").commit();
             }
         });
     }
