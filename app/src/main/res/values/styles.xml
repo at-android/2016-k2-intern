@@ -7,5 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="TextViewDetailStudent">
+        <item name="android:textSize">@dimen/item_listView_tv_size</item>
+        <item name="android:layout_marginTop">@dimen/fragment_listView_lv_margin_top</item>
+    </style>
 </resources>

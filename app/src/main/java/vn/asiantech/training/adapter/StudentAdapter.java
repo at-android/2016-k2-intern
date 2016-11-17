@@ -1,26 +1,13 @@
 package vn.asiantech.training.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.model.Student;
@@ -43,10 +30,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
 
     @Override
     public int getCount() {
-        if (mStudents.isEmpty()) {
-            return 0;
-        }
-        return mStudents.size();
+        return mStudents == null ? 0 : mStudents.size();
     }
 
     @Override
@@ -65,7 +49,6 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             viewHolder.mTvAge = (TextView) convertView.findViewById(R.id.tvAge);
             viewHolder.mTvAddress = (TextView) convertView.findViewById(R.id.tvAddress);
             viewHolder.mTvSchool = (TextView) convertView.findViewById(R.id.tvSchool);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (StudentAdapter.ViewHolder) convertView.getTag();
@@ -74,15 +57,14 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.mTvAge.setText(student.getmAge());
         viewHolder.mTvSchool.setText(student.getmSchool());
         viewHolder.mTvAddress.setText(student.getmAddress());
-
         return convertView;
     }
 
     private static class ViewHolder {
-        TextView mTvName;
-        TextView mTvAge;
-        TextView mTvSchool;
-        TextView mTvAddress;
+        private TextView mTvName;
+        private TextView mTvAge;
+        private TextView mTvSchool;
+        private TextView mTvAddress;
     }
 
 }
