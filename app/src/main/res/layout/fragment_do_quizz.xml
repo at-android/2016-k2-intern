@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="false"
     tools:context="vn.asiantech.training.DoQuizzFragment">
 
     <TextView
@@ -32,6 +34,7 @@
         android:textColor="@android:color/white" />
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/vpContentQuizz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tvTitleLayout">

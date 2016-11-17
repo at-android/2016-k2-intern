@@ -4,10 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -20,9 +26,9 @@ import android.widget.Toast;
  */
 public class DoQuizzFragment extends Fragment {
     private int mPOSITION;
-
+    private ViewPager mVpQuizz;
     private OnFragmentInteractionListener mListener;
-
+    private Button mBtnNext;
     public DoQuizzFragment() {
         // Required empty public constructor
     }
@@ -48,6 +54,20 @@ public class DoQuizzFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_do_quizz, container, false);
+        mVpQuizz = (ViewPager) view.findViewById(R.id.vpContentQuizz);
+        mBtnNext = (Button) view.findViewById(R.id.btnNext);
+        final ArrayList<Fragment> listFragment = new ArrayList<>();
+        listFragment.add(new DoQuizzFragment());
+        listFragment.add(new DoQuizzFragment());
+        mBtnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager manager = getFragmentManager();
+                PagerAdapter adapter = new QuizzAdapter(manager, listFragment);
+                mVpQuizz.setAdapter(adapter);
+                mVpQuizz.setCurrentItem(1);
+            }
+        });
         Toast.makeText(getActivity(), mPOSITION + "", Toast.LENGTH_SHORT).show();
         return view;
     }

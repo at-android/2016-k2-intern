@@ -4,12 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
+
 /**
  * Created by MaiManhDuy on 11/17/2016.
  */
 
 public class QuizzAdapter extends FragmentStatePagerAdapter {
-    public QuizzAdapter(FragmentManager fm) {
+    public QuizzAdapter(FragmentManager fm, ArrayList<Fragment> listFragment) {
         super(fm);
     }
 

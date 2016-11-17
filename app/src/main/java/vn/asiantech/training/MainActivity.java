@@ -1,14 +1,16 @@
 package vn.asiantech.training;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DoQuizzFragment.OnFragmentInteractionListener {
     public ArrayList<QuizzObj> sQuizzArray = new ArrayList<QuizzObj>();
     private Button mBtnStartQuizz;
     private Button mBtnFinish;
@@ -17,15 +19,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         insertData();
         init();
         mBtnStartQuizz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mBtnStartQuizz.setVisibility(View.INVISIBLE);
+                mBtnFinish.setVisibility(View.INVISIBLE);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 mFragmentTransaction = fragmentManager.beginTransaction();
                 DoQuizzFragment fragment = new DoQuizzFragment();
-                mFragmentTransaction.replace(R.id.frMain, fragment, "QuizzDo").commit();
+                mFragmentTransaction.add(R.id.activity_main, fragment, "QuizzDo").commit();
             }
         });
     }
@@ -46,5 +52,10 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         mBtnStartQuizz = (Button) findViewById(R.id.btnStartQuizz);
         mBtnFinish = (Button) findViewById(R.id.btnFinishActivity);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
