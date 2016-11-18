@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
     private TextView mTvTitle;
     private TextView mBtnPrevious;
     private String[] mResultArray;
+    private Button mBtnPlay;
+    private Button mBtnQuit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
         setContentView(R.layout.activity_main);
         getFormwidget();
         initData();
-
         mResultArray = new String[NUM_PAGES];
         mPager = (ViewPager) findViewById(R.id.view_pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
             }
         });
 
+        mBtnNext.setVisibility(View.INVISIBLE);
+        mBtnPrevious.setVisibility(View.INVISIBLE);
+        mPager.setVisibility(View.INVISIBLE);
+
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,11 +74,24 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
             }
         });
 
+        mBtnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBtnNext.setVisibility(View.VISIBLE);
+                mBtnPrevious.setVisibility(View.VISIBLE);
+                mPager.setVisibility(View.VISIBLE);
+                mBtnPlay.setVisibility(View.INVISIBLE);
+                mBtnQuit.setVisibility(View.INVISIBLE);
+            }
+        });
+
     }
 
 
     public void getFormwidget() {
         mBtnNext = (Button) findViewById(R.id.btnNext);
+        mBtnPlay = (Button) findViewById(R.id.btnPlay);
+        mBtnQuit = (Button) findViewById(R.id.btnQuit);
         mBtnPrevious = (Button) findViewById(R.id.btnPrevious);
         mTvTitle = (TextView) findViewById(tvTitle);
     }
@@ -102,33 +121,33 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
+                if (mPager.getCurrentItem() == 0) {
 
-            super.onBackPressed();
-        } else {
+                    super.onBackPressed();
+                } else {
 
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
-    }
+                    mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+                }
+            }
 
-    //receive data from QuestionFragment
-    @Override
-    public void onArticleSelected(String chosenKey, int position) {
-        if (chosenKey.equals(arr.get(position).getResult())) {
-            mResultArray[position] = "T";
-        } else {
-            mResultArray[position] = "F";
-        }
-    }
+                //receive data from QuestionFragment
+                @Override
+                public void onArticleSelected(String chosenKey, int position) {
+                    if (chosenKey.equals(arr.get(position).getResult())) {
+                        mResultArray[position] = "T";
+                    } else {
+                        mResultArray[position] = "F";
+                    }
+                }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+                private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+                    public ScreenSlidePagerAdapter(FragmentManager fm) {
+                        super(fm);
+                    }
 
-        @Override
-        public Fragment getItem(int position) {
-            if (position < 10) {
+                    @Override
+                    public Fragment getItem(int position) {
+                        if (position < 10) {
 //                Log.i("position",position+"");
 //                Log.i("positionForMain",mPager.getCurrentItem()+"");
                 Question q = arr.get(position);
