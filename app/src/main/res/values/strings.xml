@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_previous_text">Previous</string>
     <string name="btn_next_text">Next</string>
+    <string name="txt_result_title">Result</string>
+    <string name="btn_back_main_txt">Done</string>
 </resources>

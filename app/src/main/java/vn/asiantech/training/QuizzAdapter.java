@@ -16,7 +16,7 @@ public class QuizzAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment newInstance = null;
-                newInstance = DoQuizzFragment.newInstance(position);
+        newInstance = DoQuizzFragment.newInstance(position);
         return newInstance;
     }
 

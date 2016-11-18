@@ -13,4 +13,7 @@
     <dimen name="result_radio_margin_right">10dp</dimen>
     <dimen name="result_radio_margin_left">10dp</dimen>
     <dimen name="result_radio_button_padding">10dp</dimen>
+    <dimen name="frShowResult_margin_top">150dp</dimen>
+    <dimen name="rcv_margin_left">10dp</dimen>
+    <dimen name="result_btn_margin_top">250dp</dimen>
 </resources>

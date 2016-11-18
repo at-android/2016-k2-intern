@@ -4,7 +4,9 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="vn.asiantech.training.MainActivity">
+
     <Button
         android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
@@ -38,5 +40,11 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vpContentQuizz"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/frShowResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" />
 </FrameLayout>

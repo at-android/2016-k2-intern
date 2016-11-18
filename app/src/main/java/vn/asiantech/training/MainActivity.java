@@ -1,7 +1,9 @@
 package vn.asiantech.training;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -12,7 +14,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements DoQuizzFragment.waitCallBackPosition {
+public class MainActivity extends AppCompatActivity implements DoQuizzFragment.waitCallBackPosition, ResultFragment.OnFragmentInteractionListener {
     public ArrayList<QuizzObj> sQuizzArray = new ArrayList<QuizzObj>();
     public ArrayList<String> ScoreArray = new ArrayList<String>();
     public int mPOSITION;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
             public void onClick(View view) {
                 mBtnNext.setVisibility(View.VISIBLE);
                 mBtnPrevious.setVisibility(View.VISIBLE);
+                mBtnPrevious.setText("");
                 mBtnStartQuizz.setVisibility(View.INVISIBLE);
                 mBtnFinish.setVisibility(View.INVISIBLE);
                 FragmentManager fr = getSupportFragmentManager();
@@ -65,11 +68,27 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
             @Override
             public void onPageSelected(int position) {
                 mPOSITION = position;
+                if (mPOSITION == 9) {
+                    mBtnNext.setText("Result");
+                } else {
+                    mBtnNext.setText("Next");
+                }
+                if (mPOSITION == 0) {
+                    mBtnPrevious.setText("");
+                } else {
+                    mBtnPrevious.setText("Previous");
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+        mBtnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -97,12 +116,22 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
     }
 
     private void btnNextAction() {
-        FragmentManager fr = getSupportFragmentManager();
-        PagerAdapter adapter = new QuizzAdapter(fr);
-        mPageQuizz.setAdapter(adapter);
-        int nowPosition = mPOSITION + 1;
-        mPageQuizz.setCurrentItem(nowPosition, true);
-        Log.d("nextbt", mPOSITION + "");
+        if (mPOSITION == 9) {
+            mPageQuizz.setVisibility(View.INVISIBLE);
+            mBtnPrevious.setVisibility(View.INVISIBLE);
+            mBtnNext.setVisibility(View.INVISIBLE);
+            ResultFragment f = new ResultFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction mFragmentTransaction = fragmentManager.beginTransaction();
+            mFragmentTransaction.add(R.id.frShowResult, f, "Result").commit();
+        } else {
+            FragmentManager fr = getSupportFragmentManager();
+            PagerAdapter adapter = new QuizzAdapter(fr);
+            mPageQuizz.setAdapter(adapter);
+            int nowPosition = mPOSITION + 1;
+            mPageQuizz.setCurrentItem(nowPosition, true);
+            Log.d("nextbt", mPOSITION + "");
+        }
     }
 
     private void btnPreviousAction() {
@@ -116,5 +145,11 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
 
     @Override
     public void onGetPositionFormDoQuizztoMain(int position) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
