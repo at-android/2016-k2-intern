@@ -3,4 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_demo_intent_btn_width">100dp</dimen>
+    <dimen name="activity_quiz_tv_fontsize">20sp</dimen>
+    <dimen name="fragment_question_marginTop">30dp</dimen>
+    <dimen name="fragment_question_tv_fontsize">20sp</dimen>
+    <dimen name="fragment_question_tv_width">100dp</dimen>
+    <dimen name="fragment_question_rdbutton_marginTop">10dp</dimen>
+    <dimen name="recyclerview_marginTop">120dp</dimen>
+    <dimen name="recyclerview_height">100dp</dimen>
+    <dimen name="activity_result_btn_marginTop">10dp</dimen>
+    <dimen name="col_item_tvQuestion_fontsize">20sp</dimen>
+    <dimen name="col_item_tvResult_fontsize">30sp</dimen>
 </resources>

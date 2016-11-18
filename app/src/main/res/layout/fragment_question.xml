@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.QuestionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="@dimen/fragment_question_marginTop"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/fragment_question_tv_fontsize" />
+
+    <RadioGroup
+        android:id="@+id/rdbGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvQuestion"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rdbChoiceA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_question_rdbutton_marginTop"
+            android:background="@color/colorRadiobutton"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_question_rdbutton_marginTop"
+            android:background="@color/colorRadiobutton"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_question_rdbutton_marginTop"
+            android:background="@color/colorRadiobutton"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_question_rdbutton_marginTop"
+            android:background="@color/colorRadiobutton"
+            android:textColor="@android:color/holo_blue_light" />
+    </RadioGroup>
+
+</RelativeLayout>
