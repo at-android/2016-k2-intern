@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.MainActivity">
     <Button
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/btn_previous_text"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/btn_next_text"
+        android:textColor="@android:color/white" />
+
+    <Button
         android:id="@+id/btnStartQuizz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,4 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/btn_margin_top"
         android:text="@string/button_text_finnish_app" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpContentQuizz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 </FrameLayout>

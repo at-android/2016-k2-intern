@@ -1,35 +1,36 @@
 package vn.asiantech.training;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DoQuizzFragment.OnFragmentInteractionListener} interface
+ * {@link DoQuizzFragment.waitCallBackPosition} interface
  * to handle interaction events.
  * Use the {@link DoQuizzFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class DoQuizzFragment extends Fragment {
     private int mPOSITION;
-    private ViewPager mPageQuizz;
-    private OnFragmentInteractionListener mListener;
-    private Button mBtnNext;
+    private waitCallBackPosition mListener;
     private TextView mTvTitle;
     private TextView mTvQuestion;
+    private RadioButton mRdBtnResultA;
+    private RadioButton mRdBtnResultB;
+    private RadioButton mRdBtnResultC;
+    private RadioButton mRdBtnResultD;
+    private String mResultCorrect;
+    private RadioGroup mRdGroupResult;
+
     public DoQuizzFragment() {
         // Required empty public constructor
     }
@@ -40,7 +41,6 @@ public class DoQuizzFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt("mPOSITION", position);
         fragment.setArguments(args);
-        Log.d("LoadAgain", "---");
         return fragment;
     }
 
@@ -56,23 +56,51 @@ public class DoQuizzFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_do_quizz, container, false);
-        mPageQuizz = (ViewPager) view.findViewById(R.id.vpContentQuizz);
-        mBtnNext = (Button) view.findViewById(R.id.btnNext);
         mTvTitle = (TextView) view.findViewById(R.id.tvTitleLayout);
         mTvQuestion = (TextView) view.findViewById(R.id.tvQuestion);
+        mRdBtnResultA = (RadioButton) view.findViewById(R.id.rdBtnResultA);
+        mRdBtnResultB = (RadioButton) view.findViewById(R.id.rdBtnResultB);
+        mRdBtnResultC = (RadioButton) view.findViewById(R.id.rdBtnResultC);
+        mRdBtnResultD = (RadioButton) view.findViewById(R.id.rdBtnResultD);
+        mRdGroupResult = (RadioGroup) view.findViewById(R.id.radioGroupResult);
         int numberTitle = mPOSITION + 1;
+        mListener.onGetPositionFormDoQuizztoMain(mPOSITION);
         mTvTitle.setText("Question " + numberTitle);
         loadDataFormList();
-        mBtnNext.setOnClickListener(new View.OnClickListener() {
+        mRdGroupResult.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                FragmentManager fr = getFragmentManager();
-                PagerAdapter adapter = new QuizzAdapter(fr);
-                mPageQuizz.setAdapter(adapter);
-                Log.d("CurentItem", mPageQuizz.getCurrentItem() + "");
-                mPOSITION = mPOSITION + 1;
-                mPageQuizz.setCurrentItem(mPOSITION);
-                Log.d("Position", mPOSITION + "");
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                MainActivity main = (MainActivity) getActivity();
+                switch (i) {
+                    case R.id.rdBtnResultA:
+                        if (mResultCorrect.equals(mRdBtnResultA.getText().toString())) {
+                            main.ScoreArray.add(mPOSITION, "T");
+                        } else {
+                            main.ScoreArray.add(mPOSITION, "F");
+                        }
+                        break;
+                    case R.id.rdBtnResultB:
+                        if (mResultCorrect.equals(mRdBtnResultB.getText().toString())) {
+                            main.ScoreArray.add(mPOSITION, "T");
+                        } else {
+                            main.ScoreArray.add(mPOSITION, "F");
+                        }
+                        break;
+                    case R.id.rdBtnResultC:
+                        if (mResultCorrect.equals(mRdBtnResultC.getText().toString())) {
+                            main.ScoreArray.add(mPOSITION, "T");
+                        } else {
+                            main.ScoreArray.add(mPOSITION, "F");
+                        }
+                        break;
+                    case R.id.rdBtnResultD:
+                        if (mResultCorrect.equals(mRdBtnResultD.getText().toString())) {
+                            main.ScoreArray.add(mPOSITION, "T");
+                        } else {
+                            main.ScoreArray.add(mPOSITION, "F");
+                        }
+                        break;
+                }
             }
         });
         return view;
@@ -81,23 +109,22 @@ public class DoQuizzFragment extends Fragment {
     public void loadDataFormList() {
         MainActivity main = (MainActivity) getActivity();
         mTvQuestion.setText(main.sQuizzArray.get(mPOSITION).getmQuestion());
+        mRdBtnResultA.setText(main.sQuizzArray.get(mPOSITION).getmResultA());
+        mRdBtnResultB.setText(main.sQuizzArray.get(mPOSITION).getmResultB());
+        mRdBtnResultC.setText(main.sQuizzArray.get(mPOSITION).getmResultC());
+        mRdBtnResultD.setText(main.sQuizzArray.get(mPOSITION).getmResultD());
+        mResultCorrect = main.sQuizzArray.get(mPOSITION).getmResultCorrect();
+    }
 
-    }
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof waitCallBackPosition) {
+            mListener = (waitCallBackPosition) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement waitCallBackPosition");
         }
     }
 
@@ -117,8 +144,8 @@ public class DoQuizzFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface waitCallBackPosition {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onGetPositionFormDoQuizztoMain(int position);
     }
 }

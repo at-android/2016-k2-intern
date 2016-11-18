@@ -15,30 +15,6 @@
         android:textAlignment="center"
         android:textColor="@android:color/white" />
 
-    <Button
-        android:id="@+id/btnPrevious"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/btn_previous_text"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/btn_next_text"
-        android:textColor="@android:color/white" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpContentQuizz"
-        android:layout_width="match_parent"
-        android:layout_height="502dp"
-        android:layout_marginTop="@dimen/viewpager_margin_top">
-    </android.support.v4.view.ViewPager>
-
     <TextView
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
@@ -51,4 +27,39 @@
         android:text="@null"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/result_radio_margin_right"
+        android:layout_marginLeft="@dimen/result_radio_margin_left"
+        android:layout_marginRight="@dimen/result_radio_margin_right"
+        android:layout_marginStart="@dimen/result_radio_margin_right"
+        android:layout_marginTop="@dimen/result_radio_margin_top">
+
+        <RadioButton
+            android:id="@+id/rdBtnResultA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/result_radio_button_padding" />
+
+        <RadioButton
+            android:id="@+id/rdBtnResultB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/result_radio_button_padding" />
+
+        <RadioButton
+            android:id="@+id/rdBtnResultC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/result_radio_button_padding" />
+
+        <RadioButton
+            android:id="@+id/rdBtnResultD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/result_radio_button_padding" />
+    </RadioGroup>
 </FrameLayout>

@@ -9,4 +9,8 @@
     <dimen name="txt_question_margin_right">10dp</dimen>
     <dimen name="title_height">50dp</dimen>
     <dimen name="viewpager_margin_top">50dp</dimen>
+    <dimen name="result_radio_margin_top">250dp</dimen>
+    <dimen name="result_radio_margin_right">10dp</dimen>
+    <dimen name="result_radio_margin_left">10dp</dimen>
+    <dimen name="result_radio_button_padding">10dp</dimen>
 </resources>

@@ -1,20 +1,27 @@
 package vn.asiantech.training;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements DoQuizzFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements DoQuizzFragment.waitCallBackPosition {
     public ArrayList<QuizzObj> sQuizzArray = new ArrayList<QuizzObj>();
+    public ArrayList<String> ScoreArray = new ArrayList<String>();
+    public int mPOSITION;
     private Button mBtnStartQuizz;
     private Button mBtnFinish;
-    private android.support.v4.app.FragmentTransaction mFragmentTransaction;
+    private ViewPager mPageQuizz;
+    private Button mBtnNext;
+    private Button mBtnPrevious;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,15 +30,46 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.O
         actionBar.hide();
         insertData();
         init();
+        mBtnNext.setVisibility(View.INVISIBLE);
+        mBtnPrevious.setVisibility(View.INVISIBLE);
         mBtnStartQuizz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mBtnNext.setVisibility(View.VISIBLE);
+                mBtnPrevious.setVisibility(View.VISIBLE);
                 mBtnStartQuizz.setVisibility(View.INVISIBLE);
                 mBtnFinish.setVisibility(View.INVISIBLE);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                mFragmentTransaction = fragmentManager.beginTransaction();
-                DoQuizzFragment fragment = new DoQuizzFragment();
-                mFragmentTransaction.add(R.id.activity_main, fragment, "QuizzDo").commit();
+                FragmentManager fr = getSupportFragmentManager();
+                PagerAdapter adapter = new QuizzAdapter(fr);
+                mPageQuizz.setAdapter(adapter);
+                mPageQuizz.setCurrentItem(0);
+            }
+        });
+        mBtnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnNextAction();
+            }
+        });
+        mBtnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnPreviousAction();
+            }
+        });
+        mPageQuizz.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mPOSITION = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }
@@ -52,10 +90,31 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.O
     private void init() {
         mBtnStartQuizz = (Button) findViewById(R.id.btnStartQuizz);
         mBtnFinish = (Button) findViewById(R.id.btnFinishActivity);
+        mPageQuizz = (ViewPager) findViewById(R.id.vpContentQuizz);
+        mBtnNext = (Button) findViewById(R.id.btnNext);
+        mBtnPrevious = (Button) findViewById(R.id.btnPrevious);
+
+    }
+
+    private void btnNextAction() {
+        FragmentManager fr = getSupportFragmentManager();
+        PagerAdapter adapter = new QuizzAdapter(fr);
+        mPageQuizz.setAdapter(adapter);
+        int nowPosition = mPOSITION + 1;
+        mPageQuizz.setCurrentItem(nowPosition, true);
+        Log.d("nextbt", mPOSITION + "");
+    }
+
+    private void btnPreviousAction() {
+        FragmentManager fr = getSupportFragmentManager();
+        PagerAdapter adapter = new QuizzAdapter(fr);
+        mPageQuizz.setAdapter(adapter);
+        int nowPosition = mPOSITION - 1;
+        mPageQuizz.setCurrentItem(nowPosition, true);
+        Log.d("Previs", mPOSITION + "");
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void onGetPositionFormDoQuizztoMain(int position) {
     }
 }
