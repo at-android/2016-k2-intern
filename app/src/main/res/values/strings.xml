@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Training</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment_tv">Home</string>
+    <string name="home_fragment_btnPlay">Play</string>
+    <string name="home_fragment_btnQuit">Quit</string>
+    <string name="question_fragment_btnPrevious">Previous</string>
+    <string name="question_fragment_btnNext">Next</string>
+    <string name="result_fragment_tv">Result</string>
+    <string name="result_fragment_btn">Done</string>
+    <string name="custom_item_tv1">1</string>
+    <string name="custom_item_tv2">T</string>
 </resources>
