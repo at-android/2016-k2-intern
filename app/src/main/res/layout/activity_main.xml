@@ -7,6 +7,10 @@
     android:background="@android:color/white"
     tools:context="vn.asiantech.training.MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
     <Button
         android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
@@ -19,10 +23,12 @@
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
         android:background="@color/colorPrimaryDark"
         android:text="@string/btn_next_text"
         android:textColor="@android:color/white" />
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/btnStartQuizz"
@@ -41,7 +47,7 @@
         android:id="@+id/vpContentQuizz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="@dimen/vp_margin_top" />
 
     <FrameLayout
         android:id="@+id/frShowResult"

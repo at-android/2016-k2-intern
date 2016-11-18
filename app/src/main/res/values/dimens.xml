@@ -16,4 +16,5 @@
     <dimen name="frShowResult_margin_top">150dp</dimen>
     <dimen name="rcv_margin_left">10dp</dimen>
     <dimen name="result_btn_margin_top">250dp</dimen>
+    <dimen name="vp_margin_top">45dp</dimen>
 </resources>
