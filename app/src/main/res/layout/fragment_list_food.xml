@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/home_tv_home"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/home_tv_home_size"
+        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/imvAdd"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@null"
+        android:layout_marginEnd="@dimen/home_imv_add_margin_right"
+        android:layout_marginRight="@dimen/home_imv_add_margin_right"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHome"
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical" />
+</RelativeLayout>

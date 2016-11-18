@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="home_tv_home">Home</string>
+    <string name="edit_tv_title">Edit</string>
+    <string name="edit_edt_name_hint">Name</string>
+    <string name="edit_edt_cost_hint">Cost</string>
+    <string name="edit_btn_text">Edit</string>
+    <string name="add_tv_title">Add</string>
 </resources>
