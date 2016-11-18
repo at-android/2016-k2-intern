@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,8 +17,8 @@ import java.util.ArrayList;
  */
 
 public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.ViewHolder> {
+    public OnSetPosition mListener;
     private ArrayList<FoodObject> sFoodArray = new ArrayList<>();
-
     public FoodArrayAdapter(FragmentActivity fragmentActivity, ArrayList<FoodObject> arrayList) {
         this.sFoodArray = arrayList;
 
@@ -26,12 +27,13 @@ public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.View
     @Override
     public FoodArrayAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recycle_view, null);
+        mListener = (MainActivity) parent.getContext();
         FoodArrayAdapter.ViewHolder rcv = new FoodArrayAdapter.ViewHolder(layoutView);
         return rcv;
     }
 
     @Override
-    public void onBindViewHolder(FoodArrayAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(FoodArrayAdapter.ViewHolder holder, final int position) {
         holder.mTvName.setText(sFoodArray.get(position).getName().toString());
         holder.mTvCost.setText(sFoodArray.get(position).getCost() + " VND");
         int type = sFoodArray.get(position).getType();
@@ -50,6 +52,12 @@ public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.View
                 holder.mTvType.setText("Diffrent");
                 break;
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.pullPosition(position);
+            }
+        });
     }
 
     @Override
@@ -57,12 +65,16 @@ public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.View
         return sFoodArray.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public interface OnSetPosition {
+        void pullPosition(int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTvName;
         public TextView mTvType;
         public TextView mTvCost;
         public ImageView mImgType;
-
+        public AdapterView.OnItemClickListener mItemClickListener;
         public ViewHolder(View itemView) {
             super(itemView);
             mTvName = (TextView) itemView.findViewById(R.id.tvNameInfo);
@@ -70,6 +82,6 @@ public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.View
             mTvCost = (TextView) itemView.findViewById(R.id.tvTypeInfo);
             mImgType = (ImageView) itemView.findViewById(R.id.imgTypeInfo);
         }
-    }
 
+    }
 }

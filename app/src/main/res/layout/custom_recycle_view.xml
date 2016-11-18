@@ -15,10 +15,10 @@
 
     <LinearLayout
         android:id="@+id/llInformation"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/llInformation_margin_top"
-        android:layout_weight="2.5"
+        android:layout_weight="3.15"
         android:orientation="vertical">
 
         <TextView
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_gravity="end"
-        android:layout_weight="1"
+        android:layout_weight="0.50"
         android:contentDescription="@null"
         android:cropToPadding="false"
         app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
