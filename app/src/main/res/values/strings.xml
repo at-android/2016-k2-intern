@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Training</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment_tv">Home</string>
+    <string name="edit_fragment_edName">Name</string>
+    <string name="edit_fragment_edPrice">Price</string>
+    <string name="edit_fragment_tvTitle">Edit</string>
+    <string name="edit_fragment_Btn">Submit</string>
+    <string name="edit_fragment_edType">Type</string>
+    <string name="edit_fragment_description">abc</string>
 </resources>
