@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgViewFood"
+                android:layout_width="@dimen/customItem_imgView"
+                android:layout_height="@dimen/customItem_imgView"
+                android:src="@drawable/type_1" />
+
+            <TextView
+                android:id="@+id/tv"
+                style="@style/custom_item_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/imgViewArrow"
+                style="@style/custom_item_weight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </TableRow>
+</RelativeLayout>

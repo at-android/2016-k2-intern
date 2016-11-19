@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.EditInfoFragment">
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="@dimen/customItem_imgView"
+        android:layout_height="@dimen/customItem_imgView"
+        android:contentDescription="@string/edit_fragment_description"
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+    <TextView
+        android:id="@+id/tvEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/EditFragment_tvTitleMargintop"
+        android:text="@string/edit_fragment_tvTitle"
+        android:textSize="@dimen/EditFragment_textsize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imgView"
+        android:layout_marginTop="@dimen/EditFragment_LinearMargintop"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/edit_fragment_edName"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="@dimen/EditFragment_Edsize" />
+
+        <Spinner
+            android:id="@+id/spnType"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/EditFragment_marginTop"></Spinner>
+
+        <TextView
+            android:id="@+id/edType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/edit_fragment_edType"
+            android:textSize="@dimen/EditFragment_Edsize" />
+
+        <EditText
+            android:id="@+id/edPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EditFragment_marginTop"
+            android:gravity="center"
+            android:hint="@string/edit_fragment_edPrice"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textSize="@dimen/EditFragment_Edsize" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/EditFragment_marginTop"
+            android:text="@string/edit_fragment_Btn"
+            android:textSize="@dimen/EditFragment_Edsize" />
+    </LinearLayout>
+</RelativeLayout>
