@@ -1,32 +1,34 @@
 package vn.asiantech.training;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static vn.asiantech.training.R.id.tvTitle;
 
-public class MainActivity extends AppCompatActivity implements QuestionFragment.OnHeadlineSelectedListener {
-    private static final int NUM_PAGES = 11;
+public class MainActivity extends AppCompatActivity implements QuestionFragment.OnHeadlineSelectedListener, View.OnClickListener {
+    public static final int QUANTITY_QUESTION = 10;
+    public static final String TRUE_ANSWER = "T";
+    public static final String FALSE_ANSWER = "F";
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
-    private ArrayList<Question> arr = new ArrayList<Question>();
+    private ArrayList<Question> mArr = new ArrayList<Question>();
     private Button mBtnNext;
     private TextView mTvTitle;
     private TextView mBtnPrevious;
     private String[] mResultArray;
     private Button mBtnPlay;
     private Button mBtnQuit;
-
+    private int mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
         setContentView(R.layout.activity_main);
         getFormwidget();
         initData();
-        mResultArray = new String[NUM_PAGES];
+        mResultArray = new String[QUANTITY_QUESTION];
         mPager = (ViewPager) findViewById(R.id.view_pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), QUANTITY_QUESTION, mArr);
         mPager.setAdapter(mPagerAdapter);
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -45,8 +47,9 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
             }
 
             @Override
-            public void onPageSelected(int position) {
-                mTvTitle.setText("Cau " + (position + 1));
+            public void onPageSelected(final int position) {
+                mPosition = position;
+                mTvTitle.setText("Question " + (position + 1));
             }
 
             @Override
@@ -55,38 +58,12 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
             }
         });
 
-        mBtnNext.setVisibility(View.INVISIBLE);
-        mBtnPrevious.setVisibility(View.INVISIBLE);
-        mPager.setVisibility(View.INVISIBLE);
-
-        mBtnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPager.setCurrentItem(mPager.getCurrentItem() + 1);
-
-            }
-        });
-
-        mBtnPrevious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-            }
-        });
-
-        mBtnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mBtnNext.setVisibility(View.VISIBLE);
-                mBtnPrevious.setVisibility(View.VISIBLE);
-                mPager.setVisibility(View.VISIBLE);
-                mBtnPlay.setVisibility(View.INVISIBLE);
-                mBtnQuit.setVisibility(View.INVISIBLE);
-            }
-        });
-
+        inviButton();
+        mBtnNext.setOnClickListener(this);
+        mBtnPrevious.setOnClickListener(this);
+        mBtnPlay.setOnClickListener(this);
+        mBtnQuit.setOnClickListener(this);
     }
-
 
     public void getFormwidget() {
         mBtnNext = (Button) findViewById(R.id.btnNext);
@@ -94,6 +71,12 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
         mBtnQuit = (Button) findViewById(R.id.btnQuit);
         mBtnPrevious = (Button) findViewById(R.id.btnPrevious);
         mTvTitle = (TextView) findViewById(tvTitle);
+    }
+
+    public void inviButton() {
+        mBtnNext.setVisibility(View.INVISIBLE);
+        mBtnPrevious.setVisibility(View.INVISIBLE);
+        mPager.setVisibility(View.INVISIBLE);
     }
 
     public void initData() {
@@ -105,70 +88,80 @@ public class MainActivity extends AppCompatActivity implements QuestionFragment.
         Question q6 = new Question("6. I............in the room now.", "A. am being", "B. was being", "C. have been being", "D. am", "D. am");
         Question q7 = new Question("7. I.............to New york three times this year.", "A. have been", "B. was", "C. were", "D. had been", "A. have been");
         Question q8 = new Question("8. I will come and see you before I.............for America.", "A. leave", "B. will leave", "C. have left", "D. shall leave", "A. leave");
-        Question q9 = new Question("9. The little girl asked wha.............to her friend.", "A. has happened", "B. happened", "C. had happened", "D. would have been happened", "C. had happened");
+        Question q9 = new Question("9. The little girl asked what.............to her friend.", "A. has happened", "B. happened", "C. had happened", "D. would have been happened", "C. had happened");
         Question q10 = new Question("10. John ............a book when I saw him.", "A. is reading", "B. read", "C. was reading", "D. reading", "C. was reading");
-        arr.add(q1);
-        arr.add(q2);
-        arr.add(q3);
-        arr.add(q4);
-        arr.add(q5);
-        arr.add(q6);
-        arr.add(q7);
-        arr.add(q8);
-        arr.add(q9);
-        arr.add(q10);
+        mArr.add(q1);
+        mArr.add(q2);
+        mArr.add(q3);
+        mArr.add(q4);
+        mArr.add(q5);
+        mArr.add(q6);
+        mArr.add(q7);
+        mArr.add(q8);
+        mArr.add(q9);
+        mArr.add(q10);
+    }
+
+    //receive data from QuestionFragment
+    @Override
+    public void onArticleSelected(String chosenKey, int position) {
+        Log.i("positionTraVe", position + "");
+        if (chosenKey.equals(mArr.get(position).getResult())) {
+            mResultArray[position] = TRUE_ANSWER;
+        } else {
+            mResultArray[position] = FALSE_ANSWER;
+        }
     }
 
     @Override
-    public void onBackPressed() {
-                if (mPager.getCurrentItem() == 0) {
-
-                    super.onBackPressed();
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnPlay:
+                mBtnNext.setVisibility(View.VISIBLE);
+                mBtnPrevious.setVisibility(View.VISIBLE);
+                mPager.setVisibility(View.VISIBLE);
+                mBtnPlay.setVisibility(View.INVISIBLE);
+                mBtnQuit.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.btnNext:
+                if (mPosition < 9) {
+                    if (mPosition == 8) {
+                        mBtnNext.setText("Result");
+                    }
+                    mPager.setCurrentItem(mPager.getCurrentItem() + 1);
                 } else {
-
-                    mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-                }
-            }
-
-                //receive data from QuestionFragment
-                @Override
-                public void onArticleSelected(String chosenKey, int position) {
-                    if (chosenKey.equals(arr.get(position).getResult())) {
-                        mResultArray[position] = "T";
+                    if (checkNotNull(mResultArray)) {
+                        mTvTitle.setText("Result");
+                        mBtnNext.setVisibility(View.INVISIBLE);
+                        mBtnPrevious.setVisibility(View.INVISIBLE);
+                        mPager.setVisibility(View.INVISIBLE);
+                        FragmentManager fm = getSupportFragmentManager();
+                        ResultFragment frag = new ResultFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArray("resultArray", mResultArray);
+                        frag.setArguments(bundle);
+                        fm.beginTransaction().replace(R.id.activity_main, frag).commit();
                     } else {
-                        mResultArray[position] = "F";
+                        Toast.makeText(this, "Please Answer All Question", Toast.LENGTH_LONG).show();
                     }
                 }
+                break;
+            case R.id.btnPrevious:
+                mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+                mBtnNext.setText("Next");
+                break;
+            case R.id.btnQuit:
+                System.exit(1);
+                break;
+        }
+    }
 
-                private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-                    public ScreenSlidePagerAdapter(FragmentManager fm) {
-                        super(fm);
-                    }
-
-                    @Override
-                    public Fragment getItem(int position) {
-                        if (position < 10) {
-//                Log.i("position",position+"");
-//                Log.i("positionForMain",mPager.getCurrentItem()+"");
-                Question q = arr.get(position);
-                Bundle bundle = new Bundle();
-                bundle.putInt("position", position);
-                bundle.putSerializable("question", q);
-                Fragment frag = new QuestionFragment();
-                frag.setArguments(bundle);
-                return frag;
-            } else {
-                Fragment frag = new ResultFragment();
-                Bundle bundle = new Bundle();
-                bundle.putStringArray("Key", mResultArray);
-                frag.setArguments(bundle);
-                return frag;
+    public boolean checkNotNull(String[] arr) {
+        for (int i = 0; i < QUANTITY_QUESTION; i++) {
+            if (mResultArray[i] == null) {
+                return false;
             }
         }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
+        return true;
     }
 }

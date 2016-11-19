@@ -37,9 +37,15 @@ public class ResultFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         Bundle bundle = getArguments();
-        list = bundle.getStringArray("Key");
+        list = bundle.getStringArray("resultArray");
         adapter = new RecyclerViewAdapter(list);
         recyclerView.setAdapter(adapter);
+        mBtnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.exit(1);
+            }
+        });
         return view;
     }
 }

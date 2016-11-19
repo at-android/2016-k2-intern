@@ -7,5 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="main_btn_background">
+        <item name="android:background">#e11ab6</item>
+    </style>
 </resources>

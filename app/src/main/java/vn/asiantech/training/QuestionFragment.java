@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 
 public class QuestionFragment extends Fragment {
-
     private TextView mTvQuestion;
     private RadioGroup mGroup;
     private RadioButton mRadA;
@@ -48,9 +47,8 @@ public class QuestionFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_question, container, false);
         getFormWidget(view);
         Bundle bundle = getArguments();
-        mPosition = bundle.getInt("position");
         Question q = (Question) bundle.getSerializable("question");
-
+        mPosition = bundle.getInt("position");
         mTvQuestion.setText(q.getQuestion());
         mRadA.setText(q.getKeyA());
         mRadB.setText(q.getKeyB());
@@ -84,5 +82,4 @@ public class QuestionFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
 }

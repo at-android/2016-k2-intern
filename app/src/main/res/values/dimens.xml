@@ -10,5 +10,7 @@
     <dimen name="Result_Fragment_tvSize">25sp</dimen>
     <dimen name="Result_Fragment_btn">25sp</dimen>
     <dimen name="custom_item_tv">20sp</dimen>
+    <dimen name="result_frag_marginTop">60dp</dimen>
+    <dimen name="main_btnQuit_marginTop">20dp</dimen>
 
 </resources>

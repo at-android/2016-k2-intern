@@ -1,5 +1,6 @@
 package vn.asiantech.training;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
         holder.mTvQuestion.setText((position + 1) + "");
         holder.mTvResult.setText(mList[position]);
+        if(holder.mTvResult.getText().equals(MainActivity.TRUE_ANSWER)){
+            holder.mTvResult.setTextColor(Color.GREEN);
+        }
+        else {
+            holder.mTvResult.setTextColor(Color.RED);
+        }
     }
 
     @Override

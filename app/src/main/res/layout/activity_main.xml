@@ -5,12 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.MainActivity">
-    <Button
-        android:id="@+id/btnPrevious"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/question_fragment_btnPrevious"
-        />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -25,29 +19,44 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="@string/question_fragment_btnNext"
+        style="@style/main_btn_background"
         />
-    <Button
-        android:id="@+id/btnPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvHome"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/Home_Fragment_btnMarginTop"
-        android:text="@string/home_fragment_btnPlay"
-        android:textSize="@dimen/Home_Fragment_btnSize" />
 
     <Button
+        android:layout_marginTop="@dimen/main_btnQuit_marginTop"
         android:id="@+id/btnQuit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnPlay"
         android:layout_centerHorizontal="true"
         android:text="@string/home_fragment_btnQuit"
-        android:textSize="@dimen/Home_Fragment_btnSize" />
+        android:textSize="@dimen/Home_Fragment_btnSize"
+        style="@style/main_btn_background"/>
     <android.support.v4.view.ViewPager
         android:layout_below="@+id/btnQuit"
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_fragment_btnPlay"
+        android:textSize="@dimen/Home_Fragment_btnSize"
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignLeft="@+id/btnQuit"
+        android:layout_alignStart="@+id/btnQuit"
+        style="@style/main_btn_background"/>
+
+    <Button
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_fragment_btnPrevious"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/main_btn_background"/>
 </RelativeLayout>
