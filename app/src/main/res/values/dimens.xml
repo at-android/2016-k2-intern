@@ -2,4 +2,15 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="Home_Fragment_textSize">30sp</dimen>
+    <dimen name="Home_Fragment_btnSize">25sp</dimen>
+    <dimen name="Home_Fragment_btnMarginTop">30dp</dimen>
+    <dimen name="Question_Fragment_tv">20dp</dimen>
+    <dimen name="Question_Fragment_tvMarginTop">30dp</dimen>
+    <dimen name="Result_Fragment_tvSize">25sp</dimen>
+    <dimen name="Result_Fragment_btn">25sp</dimen>
+    <dimen name="custom_item_tv">20sp</dimen>
+    <dimen name="result_frag_marginTop">60dp</dimen>
+    <dimen name="main_btnQuit_marginTop">20dp</dimen>
+
 </resources>
