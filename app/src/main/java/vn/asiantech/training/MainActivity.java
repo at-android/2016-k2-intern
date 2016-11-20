@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
     private Button mBtnNext;
     private Button mBtnPrevious;
     private RelativeLayout mRlItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

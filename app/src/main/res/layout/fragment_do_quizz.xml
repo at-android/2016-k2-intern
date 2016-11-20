@@ -25,7 +25,7 @@
         android:layout_marginStart="@dimen/txt_question_margin_left"
         android:layout_marginTop="@dimen/txt_question_margin_top"
         android:text="@null"
-        android:textSize="20sp"
+        android:textSize="@dimen/question_text_size"
         android:textStyle="bold" />
 
     <RadioGroup
