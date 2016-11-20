@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        style="@style/row_items_hor_style"
+        android:layout_weight="0.5"
+        android:src="@drawable/type_1" />
+
+    <LinearLayout
+        style="@style/row_items_hor_style"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/row_items_vert_style" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/row_items_vert_style" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            style="@style/row_items_vert_style" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgEdit"
+        style="@style/row_items_hor_style"
+        android:layout_weight="0.5"
+        android:src="@drawable/ic_keyboard_arrow_right_green_500_24dp" />
+</LinearLayout>
