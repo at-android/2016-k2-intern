@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="activity_demo_intent">
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -19,4 +20,18 @@
         <item name="android:layout_height">200dp</item>
         <item name="android:layout_marginTop">20dp</item>
     </style>
+
+    <style name="row_items_hor_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="row_items_vert_style">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
 </resources>
