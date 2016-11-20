@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.ViewHolder> {
     public OnSetPosition mListener;
     private ArrayList<FoodObject> sFoodArray = new ArrayList<>();
+
     public FoodArrayAdapter(FragmentActivity fragmentActivity, ArrayList<FoodObject> arrayList) {
         this.sFoodArray = arrayList;
 
@@ -74,7 +74,7 @@ public class FoodArrayAdapter extends RecyclerView.Adapter<FoodArrayAdapter.View
         public TextView mTvType;
         public TextView mTvCost;
         public ImageView mImgType;
-        public AdapterView.OnItemClickListener mItemClickListener;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mTvName = (TextView) itemView.findViewById(R.id.tvNameInfo);

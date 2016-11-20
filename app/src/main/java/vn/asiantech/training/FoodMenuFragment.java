@@ -3,11 +3,14 @@ package vn.asiantech.training;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 /**
@@ -24,6 +27,7 @@ public class FoodMenuFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRvListFood;
+    private ImageView mImgNewProduct;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -67,11 +71,21 @@ public class FoodMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_food_menu, container, false);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         mRvListFood = (RecyclerView) view.findViewById(R.id.rvListFood);
+        mImgNewProduct = (ImageView) view.findViewById(R.id.imgAddNewProduct);
         mRvListFood.setHasFixedSize(true);
         mRvListFood.setLayoutManager(llm);
         MainActivity main = (MainActivity) getActivity();
         FoodArrayAdapter rvAdapter = new FoodArrayAdapter(getActivity(), main.sFoodArray);
         mRvListFood.setAdapter(rvAdapter);
+        mImgNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                NewProductFragment newProductFragment = new NewProductFragment();
+                transaction.replace(R.id.activity_main, newProductFragment, "Add").commit();
+            }
+        });
         return view;
     }
 

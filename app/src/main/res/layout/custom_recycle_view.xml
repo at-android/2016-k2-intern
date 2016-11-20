@@ -3,57 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="5">
-
-    <ImageView
-        android:id="@+id/imgTypeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1.5"
-        android:contentDescription="@null"
-        app:srcCompat="@mipmap/ic_launcher" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/llInformation"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/llInformation_margin_top"
-        android:layout_weight="3.15"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <TextView
-            android:id="@+id/tvNameInfo"
+        <ImageView
+            android:id="@+id/imgTypeInfo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/custom_txt_padding"
-            android:text="@null"
-            android:textSize="@dimen/custom_txt_text_size" />
+            android:layout_height="@dimen/img_go_edit_height"
+            android:layout_marginTop="@dimen/llInformation_margin_top"
+            android:layout_weight="1.5"
+            android:contentDescription="@null"
+            app:srcCompat="@mipmap/ic_launcher" />
 
-        <TextView
-            android:id="@+id/tvTypeInfo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llInformation"
+            android:layout_width="@dimen/custom_content_height"
             android:layout_height="wrap_content"
-            android:padding="@dimen/custom_txt_padding"
-            android:text="@null"
-            android:textSize="@dimen/custom_txt_text_size" />
+            android:layout_marginTop="@dimen/llInformation_margin_top"
+            android:layout_weight="3.15"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvCostInfo"
+            <TextView
+                android:id="@+id/tvNameInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/custom_txt_padding"
+                android:text="@null"
+                android:textSize="@dimen/custom_txt_text_size" />
+
+            <TextView
+                android:id="@+id/tvTypeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/custom_txt_padding"
+                android:text="@null"
+                android:textSize="@dimen/custom_txt_text_size" />
+
+            <TextView
+                android:id="@+id/tvCostInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/custom_txt_padding"
+                android:text="@null"
+                android:textSize="@dimen/custom_txt_text_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgGoEdit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/custom_txt_padding"
-            android:text="@null"
-            android:textSize="@dimen/custom_txt_text_size" />
+            android:layout_height="@dimen/img_go_edit_height"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/llInformation_margin_top"
+            android:layout_weight="0.50"
+            android:contentDescription="@null"
+            android:cropToPadding="false"
+            app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_gravity="end"
-        android:layout_weight="0.50"
-        android:contentDescription="@null"
-        android:cropToPadding="false"
-        app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_custom_height"
+        android:background="@android:color/black" />
 
 </LinearLayout>

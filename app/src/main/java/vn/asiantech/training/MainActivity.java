@@ -1,19 +1,22 @@
 package vn.asiantech.training;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements FoodMenuFragment.OnFoodMenuFragmentListener, FoodArrayAdapter.OnSetPosition, EditInfoFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements FoodMenuFragment.OnFoodMenuFragmentListener, FoodArrayAdapter.OnSetPosition, EditInfoFragment.OnEditInfoListener, NewProductFragment.OnFragmentInteractionListener {
     public ArrayList<FoodObject> sFoodArray = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         insertData();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -34,11 +37,12 @@ public class MainActivity extends AppCompatActivity implements FoodMenuFragment.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         EditInfoFragment editInfoFragment = new EditInfoFragment();
+        editInfoFragment.getPosition(position);
         fragmentTransaction.replace(R.id.activity_main, editInfoFragment, "edtFoodMenu").commit();
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onUpdateEdit(int position) {
 
     }
 }
