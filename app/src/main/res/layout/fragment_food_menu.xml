@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="vn.asiantech.training.FoodMenuFragment">
+
+    <TextView
+        android:id="@+id/tvFoodMenuTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/food_menu_title_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/imgAddNewProduct"
+        android:layout_width="@dimen/img_back_width"
+        android:layout_height="@dimen/img_back_height"
+        android:layout_alignEnd="@id/tvFoodMenuTitle"
+        android:layout_alignRight="@id/tvFoodMenuTitle"
+        android:src="@drawable/ic_add_white" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvListFood"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/rv_list_menu_mar_top"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

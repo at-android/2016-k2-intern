@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.EditInfoFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/edit_tv_title_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/imgBtnBackMenu"
+        android:layout_width="@dimen/img_back_width"
+        android:layout_height="@dimen/img_back_height"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_back_white" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_edit_info"
+        android:layout_below="@id/tvTitle"
+        android:layout_margin="@dimen/view_item_margin_info"
+        android:hint="@null" />
+
+    <Spinner
+        android:id="@+id/spnType"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_edit_info"
+        android:layout_below="@+id/edtName"
+        android:layout_margin="@dimen/view_item_margin_info"></Spinner>
+
+    <EditText
+        android:id="@+id/edtCost"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_edit_info"
+        android:layout_below="@+id/spnType"
+        android:layout_margin="@dimen/view_item_margin_info"
+        android:hint="@null" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_edit_info"
+        android:layout_below="@id/edtCost"
+        android:text="@string/edit_btn_update_text" />
+</RelativeLayout>
