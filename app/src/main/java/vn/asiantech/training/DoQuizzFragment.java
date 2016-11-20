@@ -74,30 +74,30 @@ public class DoQuizzFragment extends Fragment {
                 switch (i) {
                     case R.id.rdBtnResultA:
                         if (mResultCorrect.equals(mRdBtnResultA.getText().toString())) {
-                            main.ScoreArray.add(mPOSITION, "T");
+                            main.ScoreArray.set(mPOSITION, "T");
                         } else {
-                            main.ScoreArray.add(mPOSITION, "F");
+                            main.ScoreArray.set(mPOSITION, "F");
                         }
                         break;
                     case R.id.rdBtnResultB:
                         if (mResultCorrect.equals(mRdBtnResultB.getText().toString())) {
-                            main.ScoreArray.add(mPOSITION, "T");
+                            main.ScoreArray.set(mPOSITION, "T");
                         } else {
-                            main.ScoreArray.add(mPOSITION, "F");
+                            main.ScoreArray.set(mPOSITION, "F");
                         }
                         break;
                     case R.id.rdBtnResultC:
                         if (mResultCorrect.equals(mRdBtnResultC.getText().toString())) {
-                            main.ScoreArray.add(mPOSITION, "T");
+                            main.ScoreArray.set(mPOSITION, "T");
                         } else {
-                            main.ScoreArray.add(mPOSITION, "F");
+                            main.ScoreArray.set(mPOSITION, "F");
                         }
                         break;
                     case R.id.rdBtnResultD:
                         if (mResultCorrect.equals(mRdBtnResultD.getText().toString())) {
-                            main.ScoreArray.add(mPOSITION, "T");
+                            main.ScoreArray.set(mPOSITION, "T");
                         } else {
-                            main.ScoreArray.add(mPOSITION, "F");
+                            main.ScoreArray.set(mPOSITION, "F");
                         }
                         break;
                 }

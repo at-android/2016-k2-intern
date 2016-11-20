@@ -42,24 +42,28 @@
             android:id="@+id/rdBtnResultA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorResultBackground"
             android:padding="@dimen/result_radio_button_padding" />
 
         <RadioButton
             android:id="@+id/rdBtnResultB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorResultBackground"
             android:padding="@dimen/result_radio_button_padding" />
 
         <RadioButton
             android:id="@+id/rdBtnResultC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorResultBackground"
             android:padding="@dimen/result_radio_button_padding" />
 
         <RadioButton
             android:id="@+id/rdBtnResultD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorResultBackground"
             android:padding="@dimen/result_radio_button_padding" />
     </RadioGroup>
 </FrameLayout>

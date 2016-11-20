@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
     private ViewPager mPageQuizz;
     private Button mBtnNext;
     private Button mBtnPrevious;
-
+    private RelativeLayout mRlItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
         mBtnStartQuizz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mRlItem.setVisibility(View.VISIBLE);
                 mBtnNext.setVisibility(View.VISIBLE);
                 mBtnPrevious.setVisibility(View.VISIBLE);
                 mBtnPrevious.setText("");
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
                 } else {
                     mBtnPrevious.setText("Previous");
                 }
+                Log.d("sss", position + "");
             }
 
             @Override
@@ -104,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
         sQuizzArray.add(new QuizzObj("I will come and see you before I.............for America.", "leave", "will leave", "had left", "shall leave", "leave"));
         sQuizzArray.add(new QuizzObj("The little girl asked wha.............to her friend.", "has happened", "happened", "had happened", "would have been happened", "had happened"));
         sQuizzArray.add(new QuizzObj("John ............a book when I saw him.", "is reading", "read", "was reading", "reading", "was reading"));
+        for (int i = 0; i < 10; i++) {
+            ScoreArray.add("F");
+        }
     }
 
     private void init() {
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
         mPageQuizz = (ViewPager) findViewById(R.id.vpContentQuizz);
         mBtnNext = (Button) findViewById(R.id.btnNext);
         mBtnPrevious = (Button) findViewById(R.id.btnPrevious);
+        mRlItem = (RelativeLayout) findViewById(R.id.rlItemMain);
 
     }
 
@@ -140,7 +147,9 @@ public class MainActivity extends AppCompatActivity implements DoQuizzFragment.w
         mPageQuizz.setAdapter(adapter);
         int nowPosition = mPOSITION - 1;
         mPageQuizz.setCurrentItem(nowPosition, true);
-        Log.d("Previs", mPOSITION + "");
+        if (nowPosition == 0) {
+            mBtnPrevious.setText("");
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package vn.asiantech.training;
 
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,11 @@ public class CustomRecycleView extends
         int line = position + 1;
         holder.mQuestion.setText(line + "");
         holder.mResult.setText(mResultArray.get(position).toString());
+        if (mResultArray.get(position).toString().equals("T")) {
+            holder.mResult.setTextColor(ContextCompat.getColor(context, R.color.color_name));
+        } else {
+            holder.mResult.);
+        }
     }
 
     @Override

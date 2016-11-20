@@ -8,9 +8,11 @@
     tools:context="vn.asiantech.training.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/rlItemMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        android:visibility="gone">
     <Button
         android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
