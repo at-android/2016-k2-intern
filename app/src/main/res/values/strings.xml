@@ -1,3 +1,104 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="main_btn_start">Start</string>
+    <string name="main_btn_exit">Exit</string>
+    <string name="question_previous">Previous</string>
+    <string name="question_title">Title</string>
+    <string name="question">QUESTION 1</string>
+    <string name="next">NEXT</string>
+
+    <string-array name="questions">
+        <item>1. I ............Louisiana state University.</item>
+        <item>2. He fell down when he ............towards the church.</item>
+        <item>3. We ............there when our father died.</item>
+        <item>4. They ............pingpong when their father comes back home.</item>
+        <item>5. By Christmas, I.............for you for 6 months.</item>
+        <item>6. I............in the room now.</item>
+        <item>7. I.............to New york three times this year.</item>
+        <item>8. I will come and see you before I.............for America.</item>
+        <item>9. The little girl asked wha.............to her friend.</item>
+        <item>10.John ............a book when I saw him.</item>
+    </string-array>
+
+    <string-array name="answersA">
+        <item>A. am attending</item>
+        <item>A. run </item>
+        <item>A. still lived</item>
+        <item>A. will play</item>
+        <item>A. Shall have been working</item>
+        <item>A. am being</item>
+        <item>A. have been</item>
+        <item>A. leave</item>
+        <item>A. has happened</item>
+        <item>A. is reading </item>
+    </string-array>
+
+    <string-array name="answersB">
+        <item>B. attend</item>
+        <item>B. runs </item>
+        <item>B. lived still</item>
+        <item>B. will be playing</item>
+        <item>B. shall work</item>
+        <item>B. was being</item>
+        <item>B. was</item>
+        <item>B. will leave</item>
+        <item>B. happened</item>
+        <item>B. read</item>
+    </string-array>
+
+    <string-array name="answersC">
+        <item>C. was attending</item>
+        <item>C. was running</item>
+        <item>C. was still living</item>
+        <item>C. play</item>
+        <item>C. have been working</item>
+        <item>C. have been being</item>
+        <item>C. were</item>
+        <item>C. have left</item>
+        <item>C. had happened</item>
+        <item>C. was reading</item>
+    </string-array>
+
+    <string-array name="answersD">
+        <item>D. attended</item>
+        <item>D. had run</item>
+        <item>D. were still living</item>
+        <item>D. would play</item>
+        <item>D. shall be working</item>
+        <item>D. am</item>
+        <item>D. had been</item>
+        <item>D. shall leave</item>
+        <item>D. would have been happened</item>
+        <item>D. reading</item>
+    </string-array>
+
+    <string-array name="rightAnswer">
+        <item>A</item>
+        <item>C</item>
+        <item>D</item>
+        <item>B</item>
+        <item>A</item>
+        <item>D</item>
+        <item>A</item>
+        <item>A</item>
+        <item>C</item>
+        <item>C</item>
+    </string-array>
+
+    <string-array name="answerSheet">
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="result_btn_text">Back</string>
 </resources>
