@@ -43,6 +43,13 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         mAnswerSheet = new String[questions.length];
         mResult = new String[questions.length];
 
+        mTvNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accessToNext(0);
+            }
+        });
+
         mVpgQuestion.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), questions.length));
         mVpgQuestion.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
