@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/question_title_margin_top"
+        android:textSize="@dimen/question_title_text_size" />
+
+    <RadioGroup
+        android:id="@+id/rdbGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/question_rdg_margin_top"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rdbChoiceA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/question_rdb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/question_rdb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/question_rdb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rdbChoiceD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/question_rdb_text_size" />
+    </RadioGroup>
+</RelativeLayout>
