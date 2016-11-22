@@ -1,15 +1,22 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
-    <string-array name="array_for_recyclerView">
-        <item>Contract</item>
-        <item>Interest</item>
-        <item>Note</item>
+    <string name="nav_item_home">Contact</string>
+    <string name="nav_item_friends">Favorite</string>
+    <string name="nav_item_notifications">Note</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    
-    <string name="action_search">Search</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
 </resources>

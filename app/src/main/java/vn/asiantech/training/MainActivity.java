@@ -1,54 +1,42 @@
 package vn.asiantech.training;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import java.util.ArrayList;
+import vn.asiantech.training.activity.FragmentDrawer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
+    private static String TAG = MainActivity.class.getSimpleName();
     private Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
-    private RecyclerView mDrawerList;
-    private NavigationAdapter mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
+    private FragmentDrawer drawerFragment;
 
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    private String[] mListItem;
-    private ArrayList<Human> mArrHuman = new ArrayList<Human>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mArrHuman = initArray();
-        mTitle = mDrawerTitle = getTitle();
-        mListItem = getResources().getStringArray(R.array.array_for_recyclerView);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (RecyclerView)findViewById(R.id.recyclerViewDrawer);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        mDrawerList.setLayoutManager(layoutManager);
-        mAdapter = new NavigationAdapter(mListItem,mArrHuman,getApplicationContext(),MainActivity.this);
-        mDrawerList.setAdapter(mAdapter);
+
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        drawerFragment.setDrawerListener(this);
+        // display the first navigation drawer view on app launch
+        displayView(0);
     }
 
-    public ArrayList<Human> initArray(){
-        ArrayList<Human> arr = new ArrayList<Human>();
-        arr.add(new Human("Tran Van A","0123456789",false));
-        arr.add(new Human("Tran Van B","0223456789",false));
-        arr.add(new Human("Tran Van C","0323456789",false));
-        arr.add(new Human("Tran Van D","0423456789",false));
-        return arr;
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -69,5 +57,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+
+    }
+
+    private void displayView(int position) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+        switch (position) {
+            case 0:
+                title = getString(R.string.title_home);
+                break;
+            case 1:
+                title = getString(R.string.title_friends);
+                break;
+            case 2:
+                title = getString(R.string.title_messages);
+                break;
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+
+            // set the toolbar title
+            getSupportActionBar().setTitle(title);
+        }
     }
 }
