@@ -1,22 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="activity_demo_intent">
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">#00CC00</item>
-        <item name="android:layout_marginTop">20dp</item>
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+
     </style>
 
-    <style name="activity_demo_img_style">
-        <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">200dp</item>
-        <item name="android:layout_marginTop">20dp</item>
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <integer-array name="arrIcon">
+        <item>@drawable/ic_perm_contact_calendar_green_500_24dp</item>
+        <item>@drawable/ic_favorite_border_green_500_24dp</item>
+        <item>@drawable/ic_note_add_green_500_24dp</item>
+    </integer-array>
 </resources>
