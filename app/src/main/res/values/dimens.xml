@@ -7,4 +7,12 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fr_main_mar_top">50dp</dimen>
+    <dimen name="title_note_text_size">30sp</dimen>
+    <dimen name="tv_custom_layout_margin">50dp</dimen>
+    <dimen name="line_2dp">2dp</dimen>
+    <dimen name="custom_tv_phone_number_size">20sp</dimen>
+    <dimen name="custom_tv_name_size">30sp</dimen>
+    <dimen name="imgLike_width">60dp</dimen>
+    <dimen name="imgLike_height">65dp</dimen>
+    <dimen name="rl_custom_phone">15dp</dimen>
 </resources>

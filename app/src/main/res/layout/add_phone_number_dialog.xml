@@ -8,40 +8,44 @@
         android:id="@+id/etAddName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:hint="@string/et_add_name_text" />
 
     <EditText
         android:id="@+id/etAddPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone number" />
+        android:hint="@string/et_add_phone_text"
+        android:inputType="phone" />
 
     <RadioGroup
+        android:id="@+id/phone_like_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Like" />
+            android:text="@string/like_text" />
 
         <RadioButton
+            android:id="@+id/dont_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dont Like" />
+            android:text="@string/dont_like_text" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnAddPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add" />
+        android:text="@string/action_add" />
 
     <Button
         android:id="@+id/btnCanclePhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="cancle" />
+        android:text="@string/text_cancle" />
 </LinearLayout>

@@ -16,4 +16,14 @@
     <string name="my_name">Mai Manh Duy</string>
     <string name="action_share">Share</string>
     <string name="action_add">Add</string>
+    <string name="action_add_notes">New Note</string>
+    <string name="text_title">Title</string>
+    <string name="text_content">Content</string>
+    <string name="text_cancle">Cancle</string>
+    <string name="note_content">Content</string>
+    <string name="note_time">Time</string>
+    <string name="et_add_name_text">Name</string>
+    <string name="et_add_phone_text">Phone number</string>
+    <string name="like_text">Like</string>
+    <string name="dont_like_text">Dont Like</string>
 </resources>
