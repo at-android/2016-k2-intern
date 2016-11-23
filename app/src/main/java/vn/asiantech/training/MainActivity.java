@@ -37,12 +37,13 @@ public class MainActivity extends AppCompatActivity
     private RadioGroup mRdLike;
     private Dialog mDialog;
     private Menu menuItem;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Contacts");
         setSupportActionBar(toolbar);
         insertData();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_share) {
             Intent myIntent = new Intent(Intent.ACTION_VIEW);
             startActivity(Intent.createChooser(myIntent, "Choose via ...."));
@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity
         int id = item1.getItemId();
 
         if (id == R.id.nav_contacts) {
+            toolbar.setTitle("Contacts");
             MenuItem action_add_note = menuItem.findItem(R.id.action_add_notes);
             action_add_note.setVisible(false);
             MenuItem action_share = menuItem.findItem(R.id.action_share);
@@ -189,6 +190,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fr_main, list, "ListContact");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_favorite_contacts) {
+            toolbar.setTitle("Favorite");
             MenuItem action_add_note = menuItem.findItem(R.id.action_add_notes);
             action_add_note.setVisible(false);
             MenuItem action_share = menuItem.findItem(R.id.action_share);
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fr_main, list, "ListLike");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notes) {
+            toolbar.setTitle("Notes");
             MenuItem action_add_note = menuItem.findItem(R.id.action_add_notes);
             action_add_note.setVisible(true);
             MenuItem action_add = menuItem.findItem(R.id.action_add);
@@ -228,9 +231,9 @@ public class MainActivity extends AppCompatActivity
         sContactsArray.add(new ContactsObj(false, "Phan Ngoc", "01987385038"));
         sContactsArray.add(new ContactsObj(false, "Huu Tanh", "01634238797"));
         sContactsArray.add(new ContactsObj(true, "Trinh Thi", "01634238797"));
-        sNotesArray.add(new NotesObj("Di hoc", "Ngay mai co tiet hoc quan trong", "17:15"));
-        sNotesArray.add(new NotesObj("Di lam", "Mai di lam ca sang", "7:30"));
-        sNotesArray.add(new NotesObj("Ve que", "Mai ve que", "23:00"));
+        sNotesArray.add(new NotesObj("Đi học", "Có tiết học quan trọng", "17:15"));
+        sNotesArray.add(new NotesObj("Đi làm", "Phải đi làm ca sáng", "7:30"));
+        sNotesArray.add(new NotesObj("Về quê", "Tối phải về que", "23:00"));
     }
 
     @Override
