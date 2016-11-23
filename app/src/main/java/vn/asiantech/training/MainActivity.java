@@ -238,7 +238,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void pullPosition(int position) {
-
+        sContactsArray.remove(position);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ListContactsFragment list = new ListContactsFragment();
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
+                android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.fr_main, list, "ListNote");
+        fragmentTransaction.commit();
     }
 
     @Override

@@ -31,7 +31,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(RecycleViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecycleViewAdapter.ViewHolder holder, final int position) {
         holder.mTvName.setText(mContactsArray.get(position).getName().toString());
         holder.mTvPhoneNumber.setText(mContactsArray.get(position).getPhoneNumber().toString());
         if (mContactsArray.get(position).isLike() == true) {
@@ -39,6 +39,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         } else {
             holder.mImgLike.setVisibility(View.INVISIBLE);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.pullPosition(position);
+            }
+        });
     }
 
     @Override
