@@ -2,27 +2,36 @@ package vn.asiantech.training;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawer.OnFragmentInteractionListener
-        , RecyclerViewPeopleAdapter.clickListener, AddDialogFragment.DialogListener {
+        , RecyclerViewPeopleAdapter.clickListener, AddDialogFragment.DialogListener, NoteDialogFragment.NoteDialogListener
+        , NoticeFragment.OnFragmentInteractionListener, RecyclerViewNoteAdapter.OnCallBackListener {
 
     public static final String KEY_PEOPLE = "listpeople";
+    public static final String KEY_NOTICE = "Notice";
+    public static final String KEY_ADD = "Add";
     private Toolbar mToolbar;
     private NavigationDrawer mDrawerFragment;
     private ArrayList<People> mPeoples;
     private ArrayList<People> mFavorites;
+    private ArrayList<Note> mNotes;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -30,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPeoples = new ArrayList<>();
+        mNotes = new ArrayList<>();
         mPeoples.add(new People("Hoang Duy", "0934888706", R.drawable.ic_favorite_border_green_500_24dp));
         mPeoples.add(new People("Hoang Duy", "0934888706", R.drawable.ic_favorite_border_green_500_24dp));
         mPeoples.add(new People("Hoang Duy", "0934888706", R.drawable.ic_favorite_border_green_500_24dp));
@@ -52,9 +62,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         return true;
     }
 
-    public void showNoticeDialog() {
+    public void showAddDialog() {
         DialogFragment dialog = new AddDialogFragment();
-        dialog.show(getFragmentManager(), "AddDialogFragment");
+        dialog.show(getFragmentManager(), KEY_ADD);
+    }
+
+    public void showNoticeDialog() {
+        DialogFragment dialogFragment = new NoteDialogFragment();
+        dialogFragment.show(getFragmentManager(), KEY_NOTICE);
     }
 
     @Override
@@ -64,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add) {
+            showAddDialog();
+
+        } else if (id == R.id.action_note) {
             showNoticeDialog();
-
-        } else if (id == R.id.action_share) {
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -99,13 +114,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
                 initFragment(fragment, title, bundle1);
                 break;
 
-           /* case 2:
-                fragment = new MessagesFragment();
-                title = getString(R.string.title_messages);
+            case 2:
+                fragment = NoticeFragment.newInstance(mNotes);
+                title = getString(R.string.note);
+                getSupportActionBar().setTitle(title);
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentManager.beginTransaction().replace(R.id.container_body, fragment).commit();
                 break;
             default:
                 break;
-                */
+
         }
     }
 
@@ -126,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
 
     @Override
     public void onClick(int position, int flag) {
-        if (flag % 2 == 0) {
+        if (flag == 1) {
             mPeoples.get(position).setIconFavorite(R.drawable.ic_favorite_border_green_500_24dp);
         } else {
             mPeoples.get(position).setIconFavorite(R.drawable.ic_favorite_green_500_24dp);
@@ -139,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onAddDialogPositiveClick(DialogFragment dialog) {
         Dialog dialogview = dialog.getDialog();
         EditText edtName = (EditText) dialogview.findViewById(R.id.edtUsername);
         EditText edtPhoneNumber = (EditText) dialogview.findViewById(R.id.edtPhoneNumber);
@@ -152,7 +170,49 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onAddDialogNegativeClick(DialogFragment dialog) {
 
+       /* Fragment fragment = new ContactFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(KEY_PEOPLE, mPeoples);
+        String title = getString(R.string.contact);
+        initFragment(fragment, title, bundle);*/
+    }
+
+    @Override
+    public void onNoteDialogPositiveClick(DialogFragment dialog) {
+        Dialog dialogview = dialog.getDialog();
+        EditText edtTitle = (EditText) dialogview.findViewById(R.id.edtTitle);
+        EditText edtContent = (EditText) dialogview.findViewById(R.id.edtContent);
+        if (edtTitle.getText().toString().equals("")) {
+            Toast.makeText(this, "Title is empty!Please provide a title", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Success!", Toast.LENGTH_LONG).show();
+            mNotes.add(new Note(edtTitle.getText().toString(), edtContent.getText().toString(), new Date().toString()));
+        }
+
+    }
+
+    @Override
+    public void onNoteDialogNegativeClick(DialogFragment dialog) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onClick(View v, int positon) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(mNotes.get(positon).getTitle().toUpperCase() + "\n" + mNotes.get(positon).getContent() + "\n" + mNotes.get(positon).getDateTime())
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.show();
     }
 }

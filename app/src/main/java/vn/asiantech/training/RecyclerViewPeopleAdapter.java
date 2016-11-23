@@ -1,6 +1,7 @@
 package vn.asiantech.training;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,12 @@ import java.util.List;
  */
 public class RecyclerViewPeopleAdapter extends RecyclerView.Adapter<RecyclerViewPeopleAdapter.ViewHolder> {
 
-    private static int FLAG = 0;
+    private static int FLAG = 1;
     public clickListener mListener;
-    private List<People> mPeople;
+    private List<People> mPeoples;
 
     public RecyclerViewPeopleAdapter(List<People> peoples) {
-        mPeople = peoples;
+        mPeoples = peoples;
     }
 
     @Override
@@ -32,21 +33,33 @@ public class RecyclerViewPeopleAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.peopleName.setText(mPeople.get(position).getName());
-        holder.phoneNumber.setText(mPeople.get(position).getPhoneNumber());
-        holder.iconFavorite.setImageResource(mPeople.get(position).getIconFavorite());
+        holder.peopleName.setText(mPeoples.get(position).getName());
+        holder.phoneNumber.setText(mPeoples.get(position).getPhoneNumber());
+        holder.iconFavorite.setImageResource(mPeoples.get(position).getIconFavorite());
         holder.iconFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FLAG++;
+                if (isFavorite(position)) {
+                    FLAG = 1;
+                } else {
+                    FLAG = 0;
+                }
+                Log.i("info", FLAG + "");
                 mListener.onClick(position, FLAG);
             }
         });
     }
 
+    public boolean isFavorite(int position) {
+        if (mPeoples.get(position).getIconFavorite() == R.drawable.ic_favorite_green_500_24dp) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int getItemCount() {
-        return mPeople.size();
+        return mPeoples.size();
     }
 
     public interface clickListener {
