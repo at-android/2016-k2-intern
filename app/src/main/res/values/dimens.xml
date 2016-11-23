@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="contact_item_width">0dp</dimen>
+    <dimen name="DialogFragment_tv">25dp</dimen>
+    <dimen name="nav_drawer_row_tv">25dp</dimen>
+    <dimen name="layout_height_for_view_customItem">1dp</dimen>
 </resources>

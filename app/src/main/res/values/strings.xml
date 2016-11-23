@@ -16,7 +16,15 @@
         <item>@string/nav_item_notifications</item>
     </string-array>
 
-    <string name="title_messages">Messages</string>
-    <string name="title_friends">Friends</string>
-    <string name="title_home">Home</string>
+    <string name="title_Note">Note</string>
+    <string name="title_Favorite">Favorite</string>
+    <string name="title_Contact">Contact</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Dialog_fragment_btnOK">OK</string>
+    <string name="Dialog_fragment_btnCancel">Cancel</string>
+    <string name="Dialog_fragment_edName">Input Name</string>
+    <string name="Dialog_fragment_edNumber">Input Number</string>
+    <string name="Dialog_fragment_tv">Add To Contact</string>
 </resources>
