@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-                title = getString(R.string.title_home);
+                title = getString(R.string.title_Contact);
                 break;
             case 1:
-                title = getString(R.string.title_friends);
+                title = getString(R.string.title_Favorite);
                 break;
             case 2:
-                title = getString(R.string.title_messages);
+                title = getString(R.string.title_Note);
                 break;
             default:
                 break;
