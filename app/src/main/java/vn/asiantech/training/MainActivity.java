@@ -1,5 +1,6 @@
 package vn.asiantech.training;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,12 +21,13 @@ import vn.asiantech.training.activity.FragmentDrawer;
 import vn.asiantech.training.activity.NoteFragment;
 import vn.asiantech.training.model.Note;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DialogAddFragment.SendData,DialogNoteAddFragment.SendDataFromNoteAddFragment {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DialogAddFragment.SendData, DialogNoteAddFragment.SendDataFromNoteAddFragment {
     private static String TAG = MainActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     private ArrayList<Human> mArrHuman = new ArrayList<Human>();
     private ArrayList<Note> mArrNote = new ArrayList<Note>();
+    private String mSaveFavoriteHuman = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,19 +84,30 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             DialogAddFragment frag = new DialogAddFragment();
             frag.show(fm, "Open");
             return true;
-        }
-        else if (id == R.id.action_addNote) {
+        } else if (id == R.id.action_addNote) {
             FragmentManager fm = getSupportFragmentManager();
             DialogNoteAddFragment frag = new DialogNoteAddFragment();
             frag.show(fm, "Open");
             return true;
-        }
-
-        else if (id == R.id.action_share){
+        } else if (id == R.id.action_share) {
+            SaveFavoriteHuman();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, mSaveFavoriteHuman);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void SaveFavoriteHuman(){
+        for (int i = 0; i < mArrHuman.size(); i++) {
+            Human man = mArrHuman.get(i);
+            if (man.isInterest()) {
+                mSaveFavoriteHuman += man.getName() + ": " + man.getPhoneNumber();
+            }
+        }
     }
 
     @Override
@@ -122,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case 2:
                 title = getString(R.string.title_Note);
                 NoteFragment frag2 = NoteFragment.newInstance(mArrNote);
-                ft.replace(R.id.container_body,frag2).commit();
+                ft.replace(R.id.container_body, frag2).commit();
                 getSupportActionBar().setTitle(title);
                 break;
             default:
@@ -141,12 +154,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onArticleSelected(Note note) {
         mArrNote.add(note);
-        Log.i("bla",note.toString());
+        Log.i("bla", note.toString());
         String title = getString(R.string.title_Note);
         NoteFragment frag2 = NoteFragment.newInstance(mArrNote);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container_body,frag2).commit();
+        ft.replace(R.id.container_body, frag2).commit();
         getSupportActionBar().setTitle(title);
     }
 }
