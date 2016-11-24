@@ -4,12 +4,9 @@
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
     <string name="nav_item_home">Contact</string>
     <string name="nav_item_friends">Favorite</string>
     <string name="nav_item_notifications">Note</string>
-
-    <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
@@ -19,17 +16,16 @@
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
-
     <string name="contact">Contact</string>
     <string name="favorite">Favorite</string>
     <string name="note">Note</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="edt_hint_phoneNumber">Phone Number</string>
     <string name="edt_hint_name">Name</string>
-
     <string name="edt_hint_title_note">Title</string>
     <string name="edt_hint_content">Note your word</string>
+    <string name="action_note">Note</string>
+    <string name="action_share">Share</string>
+    <string name="action_add_contact">Add</string>
+
 </resources>

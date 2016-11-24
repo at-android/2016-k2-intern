@@ -3,13 +3,16 @@ package vn.asiantech.training;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     private ArrayList<People> mFavorites;
     private ArrayList<Note> mNotes;
     private FragmentManager mFragmentManager;
+    private MenuItem mItemShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +58,23 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mDrawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         mDrawerFragment.setDrawerListener(this);
+
+
+    }
+
+    private Intent getDefaultIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, mPeoples.toString());
+        intent.setType("text/plain");
+        return intent;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        mItemShare = menu.findItem(R.id.action_share);
+        ShareActionProvider mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(mItemShare);
+        mShareActionProvider.setShareIntent(getDefaultIntent());
         return true;
     }
 
@@ -71,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         DialogFragment dialogFragment = new NoteDialogFragment();
         dialogFragment.show(getFragmentManager(), KEY_NOTICE);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

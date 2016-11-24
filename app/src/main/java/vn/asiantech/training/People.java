@@ -34,6 +34,10 @@ public class People implements Parcelable {
         iconFavorite = in.readInt();
     }
 
+    public String toString() {
+        return this.name + " " + this.phoneNumber;
+    }
+
     public String getName() {
         return name;
     }
