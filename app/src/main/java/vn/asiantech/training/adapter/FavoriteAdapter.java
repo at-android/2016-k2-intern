@@ -29,8 +29,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ViewHolder holder1 = holder;
-            holder1.tv.setText(mArr.get(position).getName() + "\n" + mArr.get(position).getPhoneNumber());
-            holder1.img.setImageResource(R.drawable.ic_star_red_600_24dp);
+        holder1.tv.setText(mArr.get(position).getName() + "\n" + mArr.get(position).getPhoneNumber());
+        holder1.img.setImageResource(R.drawable.ic_star_red_600_24dp);
     }
 
     @Override
@@ -48,5 +48,4 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             img = (ImageView) itemView.findViewById(R.id.imgViewFavorite);
         }
     }
-
 }

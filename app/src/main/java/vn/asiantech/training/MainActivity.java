@@ -20,7 +20,7 @@ import vn.asiantech.training.activity.FragmentDrawer;
 import vn.asiantech.training.activity.NoteFragment;
 import vn.asiantech.training.model.Note;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DialogAddFragment.SendData {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DialogAddFragment.SendData,DialogNoteAddFragment.SendDataFromNoteAddFragment {
     private static String TAG = MainActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Note note = new Note();
         DateFormat dataFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        mArrNote.add(new Note("Attention", "blablabla", dataFormat.format(cal.getTime()) + ""));
+        mArrNote.add(new Note("Attention", "This is an important message. Thank you very much", dataFormat.format(cal.getTime()) + ""));
     }
 
 
@@ -77,10 +77,20 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add) {
+        if (id == R.id.action_addContact) {
             FragmentManager fm = getSupportFragmentManager();
             DialogAddFragment frag = new DialogAddFragment();
             frag.show(fm, "Open");
+            return true;
+        }
+        else if (id == R.id.action_addNote) {
+            FragmentManager fm = getSupportFragmentManager();
+            DialogNoteAddFragment frag = new DialogNoteAddFragment();
+            frag.show(fm, "Open");
+            return true;
+        }
+
+        else if (id == R.id.action_share){
             return true;
         }
 
@@ -99,8 +109,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 title = getString(R.string.title_Contact);
-
-
                 ContactFragment frag0 = ContactFragment.newInstance(mArrHuman);
                 ft.replace(R.id.container_body, frag0).commit();
                 getSupportActionBar().setTitle(title);
@@ -125,9 +133,20 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onArticleSelected(Human man) {
         mArrHuman.add(man);
-        Log.i("length", mArrHuman.size() + "");
         FragmentManager fm = getSupportFragmentManager();
         ContactFragment frag = ContactFragment.newInstance(mArrHuman);
         fm.beginTransaction().replace(R.id.container_body, frag).commit();
+    }
+
+    @Override
+    public void onArticleSelected(Note note) {
+        mArrNote.add(note);
+        Log.i("bla",note.toString());
+        String title = getString(R.string.title_Note);
+        NoteFragment frag2 = NoteFragment.newInstance(mArrNote);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container_body,frag2).commit();
+        getSupportActionBar().setTitle(title);
     }
 }

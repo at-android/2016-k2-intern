@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import vn.asiantech.training.MainActivity;
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapter.NoteAdapter;
 import vn.asiantech.training.model.Note;
@@ -48,13 +49,14 @@ public class NoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_note,container,false);
+        View view = inflater.inflate(R.layout.fragment_note, container, false);
         mRecyclerview = (RecyclerView) view.findViewById(R.id.recyclerViewNote);
-        mAdapter = new NoteAdapter(mArrNote);
+        mAdapter = new NoteAdapter(mArrNote, getContext(), (MainActivity) getActivity());
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setAdapter(mAdapter);
         return view;
     }
+
 
 }

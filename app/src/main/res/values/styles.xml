@@ -53,4 +53,19 @@
         <item name="android:textSize">20sp</item>
         <item name="android:layout_weight">1</item>
     </style>
+
+    <style name="dialogAddNoteFragment_edTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="dialogAddNoteFragment_edContent">
+        <item name="android:textSize">20sp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="open_note_frag_tv">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

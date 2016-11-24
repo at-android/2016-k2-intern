@@ -6,4 +6,8 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#FF80AB</color>
+    <color name="colorTvTitleBackground">#e4150e</color>
+    <color name="colorTvTitleTextColor">#FFFFFF</color>
+    <color name="colorTvTime">#6210e6</color>
+    <color name="colorNoteItemTv">#10dbe6</color>
 </resources>

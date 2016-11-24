@@ -7,4 +7,6 @@
     <dimen name="DialogFragment_tv">25dp</dimen>
     <dimen name="nav_drawer_row_tv">25dp</dimen>
     <dimen name="layout_height_for_view_customItem">1dp</dimen>
+    <dimen name="open_note_frag_tvTitle">25sp</dimen>
+    <dimen name="open_note_frag_tvTimeMargintop">40dp</dimen>
 </resources>

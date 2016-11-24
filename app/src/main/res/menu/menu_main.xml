@@ -5,15 +5,29 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_add"
-        android:title="@string/action_search"
+        android:id="@+id/action_addContact"
+        android:icon="@drawable/ic_add_black_24dp"
         android:orderInCategory="100"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_addNote"
         android:icon="@drawable/ic_note_add_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_search"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settings"
-        android:title="@string/action_settings"
         android:orderInCategory="100"
+        android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>

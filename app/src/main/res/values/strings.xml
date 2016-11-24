@@ -20,11 +20,17 @@
     <string name="title_Favorite">Favorite</string>
     <string name="title_Contact">Contact</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Dialog_fragment_btnOK">OK</string>
     <string name="Dialog_fragment_btnCancel">Cancel</string>
     <string name="Dialog_fragment_edName">Input Name</string>
     <string name="Dialog_fragment_edNumber">Input Number</string>
     <string name="Dialog_fragment_tv">Add To Contact</string>
+    <string name="Dialog_AddNoteFragment_tv">Add a note</string>
+    <string name="Dialog_AddNoteFragment_edTitle">Input a title</string>
+    <string name="Dialog_AddNoteFragment_edContent">Write your content</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
