@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="action_add">Add</string>
+    <string name="action_share">Share</string>
+    <string name="nav_item_contact">Contact</string>
+    <string name="nav_item_favourite">Favourite</string>
+    <string name="nav_item_note">Note</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="dialog_add_contact">Add Contact</string>
+    <string name="dialog_edt_name_hint">Name</string>
+    <string name="dialog_edt_phone_hint">Phone</string>
+    <string name="dialog_btn_add">Add</string>
+    <string name="dialog_btn_cancel">Cancel</string>
+    <string name="action_write">Write</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank drawerFragment</string>
+    <string name="dialog_edt_title_hint">Title</string>
+    <string name="dialog_edt_note_hint">Note</string>
+    <string name="dialog_edt_time_hint">Time Create</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_contact</item>
+        <item>@string/nav_item_favourite</item>
+        <item>@string/nav_item_note</item>
+    </string-array>
 </resources>

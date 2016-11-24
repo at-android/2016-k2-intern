@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvContact"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_note" />
+
+    <EditText
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imvContact"
+        android:hint="@string/dialog_edt_title_hint"
+        android:padding="@dimen/dialog_item_padding" />
+
+    <EditText
+        android:id="@+id/tvNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvName"
+        android:hint="@string/dialog_edt_note_hint"
+        android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNote"
+        android:layout_marginLeft="20dp"
+        android:text="@string/dialog_btn_add"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNote"
+        android:layout_marginLeft="@dimen/dialog_btn_cancel_margin_left"
+        android:layout_toRightOf="@+id/btnAdd"
+        android:text="@string/dialog_btn_cancel"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+</RelativeLayout>
