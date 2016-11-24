@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_demo_intent_btn_width">100dp</dimen>
+    <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="row_item_title">30sp</dimen>
+    <dimen name="row_people_name_fontsize">30sp</dimen>
+    <dimen name="custom_dialog_img_marginTop">64dp</dimen>
+    <dimen name="navigation_header_fontsize">140dp</dimen>
+    <dimen name="fragment_navigation_drawer_img_fontsize">70dp</dimen>
+    <dimen name="row_note_tv_fontsize">30sp</dimen>
 </resources>
