@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="vn.asiantech.training.DialogNoteAddFragment">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Dialog_AddNoteFragment_tv"
+        android:textSize="@dimen/DialogFragment_tv" />
+
+    <EditText
+        android:id="@+id/edTitle"
+        style="@style/dialogAddNoteFragment_edTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv"
+        android:gravity="center"
+        android:hint="@string/Dialog_AddNoteFragment_edTitle" />
+
+    <EditText
+        android:id="@+id/edContent"
+        style="@style/dialogAddNoteFragment_edContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edTitle"
+        android:gravity="center"
+        android:hint="@string/Dialog_AddNoteFragment_edContent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edContent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOK"
+            style="@style/dialogFragment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Dialog_fragment_btnOK" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/dialogFragment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Dialog_fragment_btnCancel" />
+    </LinearLayout>
+</RelativeLayout>

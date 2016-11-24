@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_share_contact">Share</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Contact</string>
+    <string name="nav_item_friends">Favorite</string>
+    <string name="nav_item_notifications">Note</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+    </string-array>
+
+    <string name="title_Note">Note</string>
+    <string name="title_Favorite">Favorite</string>
+    <string name="title_Contact">Contact</string>
+
+    <string name="Dialog_fragment_btnOK">OK</string>
+    <string name="Dialog_fragment_btnCancel">Cancel</string>
+    <string name="Dialog_fragment_edName">Input Name</string>
+    <string name="Dialog_fragment_edNumber">Input Number</string>
+    <string name="Dialog_fragment_tv">Add To Contact</string>
+    <string name="Dialog_AddNoteFragment_tv">Add a note</string>
+    <string name="Dialog_AddNoteFragment_edTitle">Input a title</string>
+    <string name="Dialog_AddNoteFragment_edContent">Write your content</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
