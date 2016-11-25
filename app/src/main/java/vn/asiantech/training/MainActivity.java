@@ -109,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             String mCharacter = "";
             String mResult = "";
-            int count = 0;
+            int count = 1;
             for (int i = 0; i < strings[0].length(); i++) {
-                SystemClock.sleep(3000);
+                SystemClock.sleep(300);
                 mCharacter = String.valueOf(strings[0].charAt(i));
-                count += 100 / (mContent.length());
+                count += Math.floor(100 / (mContent.length()));
                 publishProgress(count);
                 mResult += mCharacter;
                 final String finalMResult = mResult;
