@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEdtProgessBar;
     private String mContent;
     private Button mBtnStart;
+    private Button mBtnStop;
+    private boolean isRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,27 @@ public class MainActivity extends AppCompatActivity {
         mTvProgessBar = (TextView) findViewById(R.id.tvProgessBar);
         mEdtProgessBar = (EditText) findViewById(R.id.edString);
         mBtnStart = (Button) findViewById(R.id.btnStart);
+        mBtnStop = (Button) findViewById(R.id.btnStop);
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new performTask(getBaseContext()).execute(mContent);
+                mBtnStart.setEnabled(false);
+                mBtnStop.setEnabled(true);
+                mProgressBar.setProgress(0);
+                isRunning = true;
+                if(isRunning){
+                    new performTask(getBaseContext()).execute(mContent);
+                }
+
+            }
+        });
+        mBtnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBtnStart.setEnabled(true);
+                mBtnStop.setEnabled(false);
+                mProgressBar.setProgress(0);
+                isRunning = false;
             }
         });
         mTvContent.setOnLongClickListener(new View.OnLongClickListener() {
@@ -73,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void showDialogNotificationComplete(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_notification);
+        dialog.show();
+    }
     private class performTask extends AsyncTask<String, Integer, String> {
         Context context;
 
@@ -95,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mEdtProgessBar.setText(finalMResult + "%");
+                        mEdtProgessBar.setText(finalMResult);
                     }
                 });
             }
@@ -104,13 +129,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            mTvProgessBar.setText(String.valueOf(values[0]));
+            mTvProgessBar.setText(String.valueOf(values[0])+ "%");
             mProgressBar.setProgress(values[0]);
             super.onProgressUpdate(values);
         }
 
         @Override
         protected void onPostExecute(String s) {
+            if(mTvProgessBar.getText().toString().equals("100%")){
+                showDialogNotificationComplete();
+            }
             super.onPostExecute(s);
         }
     }

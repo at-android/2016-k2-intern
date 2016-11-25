@@ -6,4 +6,6 @@
     <string name="dialog_tv_Ok">OK</string>
     <string name="dialog_tv_Cancel">CANCEL</string>
     <string name="main_btn_start">START</string>
+    <string name="main_btn_stop">STOP</string>
+    <string name="dialog_notification_success">Completed</string>
 </resources>

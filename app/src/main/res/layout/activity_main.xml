@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"
         android:id="@+id/progressbar"
-        android:max="@dimen/main_max_progressbar"
+        android:max="100"
         android:minHeight="@dimen/main_progressbar_min_height"
         />
     <TextView
@@ -65,5 +65,13 @@
         android:text="@string/main_btn_start"
         android:layout_below="@+id/tvContentString"
         android:id="@+id/btnStart"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_btn_stop"
+        android:layout_below="@+id/tvContentString"
+        android:layout_toRightOf="@id/btnStart"
+        android:id="@+id/btnStop"
         />
 </RelativeLayout>
