@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.Bai1">
+
+    <Button
+        android:id="@+id/btnstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/activity_bai2_btnstart" />
+
+    <TextView
+        android:id="@+id/tvNumber"
+        style="@style/activity_bai2_tv_style"
+        android:layout_below="@+id/btnstart"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        tools:text="@string/activity_bai2_tv_text" />
+
+    <TextView
+        android:id="@+id/tvRandomNumber"
+        style="@style/activity_bai2_tv_randomNumber"
+        android:layout_alignLeft="@+id/tvNumber"
+        android:layout_alignStart="@+id/tvNumber"
+        android:layout_below="@+id/tvNumber"
+        android:background="@color/colorRandomNumber"
+        android:textColor="@color/colorAccent" />
+</RelativeLayout>
