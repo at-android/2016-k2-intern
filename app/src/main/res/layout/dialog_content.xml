@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvContact"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_edit" />
+
+    <EditText
+        android:id="@+id/edString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imvContact"
+        android:hint="@string/dialog_edt_title_hint"
+        android:padding="@dimen/dialog_item_padding" />
+
+    <TextView
+        android:id="@+id/tvChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edString"
+        android:padding="@dimen/dialog_item_padding"
+        android:text="@string/dialog_tv_Ok"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edString"
+        android:layout_marginLeft="@dimen/dialog_item_padding"
+        android:layout_marginStart="@dimen/dialog_item_padding"
+        android:layout_toEndOf="@id/tvChange"
+        android:layout_toRightOf="@+id/tvChange"
+        android:padding="@dimen/dialog_item_padding"
+        android:text="@string/dialog_tv_Cancel"
+        android:textColor="@color/colorAccent" />
+</RelativeLayout>

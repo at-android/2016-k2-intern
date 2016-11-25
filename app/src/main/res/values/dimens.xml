@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="main_tv_number_margin_left">20dp</dimen>
+    <dimen name="main_tv_number_size">30sp</dimen>
+    <dimen name="main_tv_label_number_margin_top">10dp</dimen>
+    <dimen name="main_tv_number_random_size">20sp</dimen>
+    <dimen name="dialog_notification_tv_margin_top">40dp</dimen>
+    <dimen name="dialog_notification_tv_size">30sp</dimen>
+    <dimen name="dialog_item_padding">10dp</dimen>
 </resources>

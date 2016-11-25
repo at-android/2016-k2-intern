@@ -8,10 +8,68 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="vn.asiantech.training.MainActivity">
+    tools:context="vn.asiantech.training.B1">
 
+    <TextView
+        android:id="@+id/tvLabelNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_tv_label_number_margin_top"
+        android:text="@string/main_tv_number" />
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_tv_number_margin_left"
+        android:layout_marginStart="@dimen/main_tv_number_margin_left"
+        android:layout_toEndOf="@id/tvLabelNumber"
+        android:layout_toRightOf="@id/tvLabelNumber"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/main_tv_number_size" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabelNumber"
+        android:layout_marginTop="@dimen/main_tv_label_number_margin_top"
+        android:text="@string/main_btn_start" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabelNumber"
+        android:layout_marginTop="@dimen/main_tv_label_number_margin_top"
+        android:layout_toEndOf="@id/btnStart"
+        android:layout_toRightOf="@id/btnStart"
+        android:text="@string/main_btn_stop" />
+
+    <TextView
+        android:id="@+id/tvRandomNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnStart"
+        android:layout_marginTop="@dimen/main_tv_label_number_margin_top"
+        android:padding="@dimen/main_tv_number_margin_left"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/main_tv_number_random_size" />
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRandomNumber"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/main_tv_number_size"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World everyone ! " />
+        android:layout_toRightOf="@id/tvResult"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/main_tv_number_size"
+        android:layout_below="@id/tvRandomNumber"
+        android:id="@+id/tvResultDv"
+        />
 </RelativeLayout>
