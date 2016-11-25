@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.Bai2">
+
+    <Button
+        android:id="@+id/btnstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/activity_bai2_btnstart" />
+
+    <TextView
+        android:id="@+id/tvLuckyNumber"
+        style="@style/activity_bai2_tv_style"
+        android:layout_below="@+id/btnstart"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        tools:text="@string/activity_bai2_tv_text" />
+
+    <TextView
+        android:id="@+id/tvRandomNumber1"
+        style="@style/activity_bai2_tv_randomNumber"
+        android:layout_alignLeft="@+id/tvLuckyNumber"
+        android:layout_alignStart="@+id/tvLuckyNumber"
+        android:layout_below="@+id/tvLuckyNumber"
+        android:background="@color/colorRandomNumber"
+        android:textColor="@color/colorAccent"
+        />
+
+    <TextView
+        android:id="@+id/tvRandomNumber2"
+        style="@style/activity_bai2_tv_randomNumber"
+        android:layout_alignEnd="@+id/tvLuckyNumber"
+        android:layout_alignRight="@+id/tvLuckyNumber"
+        android:layout_below="@+id/tvLuckyNumber"
+        android:background="@color/colorRandomNumber"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tvTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/activity_bai2_tv_Turn_marginRignt"
+        android:layout_marginRight="@dimen/activity_bai2_tv_Turn_marginRignt"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/activity_bai2_tv_Turn_fontsize" />
+
+    <TextView
+        android:id="@+id/tvSaveRandNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvRandomNumber2"
+        android:layout_marginTop="@dimen/activity_bai2_tv_SaveRandNumber_margintop"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/activity_bai2_tv_SaveRandNumber_fontsize" />
+</RelativeLayout>

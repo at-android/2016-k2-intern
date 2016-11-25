@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Bai2"></activity>
+        <activity android:name=".Bai1"></activity>
+        <activity android:name=".Bai3"></activity>
     </application>
 
 </manifest>

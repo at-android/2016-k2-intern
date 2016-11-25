@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="activity_bai2_btnstart">Start</string>
+    <string name="activity_bai2_tv_text">70</string>
+    <string name="activity_main_tv_bai1">Ex 1</string>
+    <string name="activity_main_tv_bai2">Ex 2</string>
+    <string name="activity_main_tv_bai3">Ex 3</string>
 </resources>
