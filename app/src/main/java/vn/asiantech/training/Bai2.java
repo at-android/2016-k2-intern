@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,11 +37,11 @@ public class Bai2 extends Activity {
         mTvturn = (TextView) findViewById(R.id.tvTurn);
         mTvSaveRandNumber = (TextView) findViewById(R.id.tvSaveRandNumber);
         mRand = new Random();
-
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTvluckyNumber.setText(mRand.nextInt(89) + 10 + "");
+                mBtnStart.setEnabled(false);
                 mHandlerTurn = new Handler();
                 if (mHandlerTurn != null) {
                     mHandlerTurn.removeCallbacksAndMessages(null);
@@ -51,12 +50,12 @@ public class Bai2 extends Activity {
                     mTvrandomNumber1.setText("");
                     mTvrandomNumber2.setText("");
                 }
-
                 mHandlerTurn.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (mCount > 14 || isRight == true) {
-                            mHandlerTurn.removeCallbacks(this);
+                            mHandlerTurn.removeCallbacksAndMessages(this);
+                            mBtnStart.setEnabled(true);
                             Toast.makeText(getApplicationContext(), "See you next times!", Toast.LENGTH_LONG).show();
                         } else {
                             mCount++;
@@ -65,7 +64,6 @@ public class Bai2 extends Activity {
                             startNumber2();
                             mHandlerTurn.postDelayed(this, 1500);
                             String str = mTvrandomNumber1.getText().toString() + mTvrandomNumber2.getText().toString();
-                            Log.i("str", str + " " + mTvluckyNumber.getText().toString());
                             if (str.equals(mTvluckyNumber.getText().toString())) {
                                 Toast.makeText(getApplicationContext(), "Congratulation!", Toast.LENGTH_LONG).show();
                                 isRight = true;

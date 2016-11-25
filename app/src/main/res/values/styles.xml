@@ -32,6 +32,14 @@
         <item name="android:textSize">50sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_width">80dp</item>
+    </style>
+
+    <style name="activity_bai1_tv_randomNumber">
+        <item name="android:layout_height">80dp</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_width">160dp</item>
     </style>
 

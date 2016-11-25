@@ -7,4 +7,6 @@
     <dimen name="activity_bai2_tv_Turn_marginRignt">5dp</dimen>
     <dimen name="activity_bai2_tv_SaveRandNumber_fontsize">20sp</dimen>
     <dimen name="activity_bai2_tv_Turn_fontsize">50sp</dimen>
+    <dimen name="activity_main_tv_marginTop">50dp</dimen>
+    <dimen name="activity_bai3_tv_fontsize">30sp</dimen>
 </resources>

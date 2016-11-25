@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/tvRandomNumber"
-        style="@style/activity_bai2_tv_randomNumber"
+        style="@style/activity_bai1_tv_randomNumber"
         android:layout_alignLeft="@+id/tvNumber"
         android:layout_alignStart="@+id/tvNumber"
         android:layout_below="@+id/tvNumber"
