@@ -136,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if(mTvProgessBar.getText().toString().equals("100%")){
-                showDialogNotificationComplete();
-            }
+            mProgressBar.setProgress(100);
+            mTvProgessBar.setText("100%");
+            showDialogNotificationComplete();
             super.onPostExecute(s);
         }
     }
