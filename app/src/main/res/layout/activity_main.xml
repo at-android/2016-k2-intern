@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.MainActivity">
 
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_start_text" />
+
+    <TextView
+        android:id="@+id/tvRandom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnStart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/text_margin_general"
+        android:text="@string/text_number_default" />
+
+    <TextView
+        android:id="@+id/tvRandomAfterSecond"
+        android:layout_width="@dimen/tv_random_after_second"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRandom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/text_margin_general"
+        android:background="@android:color/black"
+        android:text="@string/text_number_default"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

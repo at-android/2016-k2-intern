@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btn_start_text">Start</string>
+    <string name="text_number_default">0</string>
 </resources>
