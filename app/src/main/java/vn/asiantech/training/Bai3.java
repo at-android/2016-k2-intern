@@ -18,6 +18,7 @@ public class Bai3 extends AppCompatActivity {
     private String mString;
     private double mProgress = 0;
     private int mIndex = 0;
+    private TextView mTvpercent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,8 @@ public class Bai3 extends AppCompatActivity {
         mTvDisplay = (TextView) findViewById(R.id.tvDisplay);
         mProgresBar = (ProgressBar) findViewById(R.id.progressBar);
         mBtnstart = (Button) findViewById(R.id.btnStart);
-        mString = "Le Hoang Duy";
+        mTvpercent = (TextView) findViewById(R.id.tvPercent);
+        mString = "asdasdasdsadas asdasdasdaslhdhfhsjkadfhjsdahf sadfhiosadhfioqhweqweh";
         mBtnstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +58,7 @@ public class Bai3 extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
+            mTvpercent.setText(values[0] + "%");
             mTvDisplay.setText(mTvDisplay.getText() + "" + mString.charAt(mIndex++));
             mProgresBar.setProgress(values[0]);
         }
@@ -63,6 +66,7 @@ public class Bai3 extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             mBtnstart.setEnabled(true);
+            mTvpercent.setText("100%");
             Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
             super.onPostExecute(aVoid);
         }
