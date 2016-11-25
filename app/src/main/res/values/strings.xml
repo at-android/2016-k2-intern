@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btn">Start</string>
 </resources>
