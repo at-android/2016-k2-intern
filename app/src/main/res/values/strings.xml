@@ -10,4 +10,5 @@
     <string name="password_text">Password</string>
     <string name="confim_password_text">Confim Password</string>
     <string name="email_text">Email</string>
+    <string name="register_title_txt">Register</string>
 </resources>

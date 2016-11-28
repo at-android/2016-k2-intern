@@ -5,10 +5,20 @@
     android:background="@android:color/white"
     tools:context="vn.asiantech.training.RegisterFragment">
 
+    <TextView
+        android:id="@+id/register_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/register_title_txt"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
     <EditText
         android:id="@+id/tv_username_rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/register_title"
         android:hint="@string/name_text"
         android:inputType="text" />
 

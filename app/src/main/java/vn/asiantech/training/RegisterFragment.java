@@ -1,10 +1,11 @@
 package vn.asiantech.training;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,17 @@ public class RegisterFragment extends Fragment {
                     edit.putString("username", mEdName.getText().toString());
                     edit.putString("password", mEdPass.getText().toString());
                     edit.apply();
-                    Toast.makeText(getActivity(), "Register Success", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+
+                    b.setTitle("Register Correct");
+                    b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mListener.onFragmentInteraction();
+                        }
+                    });
+
+                    b.create().show();
                 } else {
                     Toast.makeText(getActivity(), "Email format is false", Toast.LENGTH_SHORT).show();
                 }
@@ -121,10 +132,7 @@ public class RegisterFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void onButtonPressed() {
     }
 
     @Override
@@ -156,6 +164,6 @@ public class RegisterFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 }

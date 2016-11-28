@@ -1,6 +1,5 @@
 package vn.asiantech.training;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -32,7 +31,11 @@ public class ManagerActivity extends AppCompatActivity implements RegisterFragme
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void onFragmentInteraction() {
+        mBtnLogin.setVisibility(View.VISIBLE);
+        mBtnRegister.setVisibility(View.VISIBLE);
+        getSupportFragmentManager()
+                .beginTransaction().
+                remove(getSupportFragmentManager().findFragmentById(R.id.fr_register_and_login)).commit();
     }
 }
