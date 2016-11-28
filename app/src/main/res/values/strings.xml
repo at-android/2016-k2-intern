@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btn_start_text">Button</string>
+    <string name="btn_register_text">Register</string>
+    <string name="btn_login_text">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_text">Name</string>
+    <string name="password_text">Password</string>
+    <string name="confim_password_text">Confim Password</string>
+    <string name="email_text">Email</string>
 </resources>
