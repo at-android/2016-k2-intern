@@ -1,6 +1,7 @@
 package vn.asiantech.training;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +19,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                startActivity(new Intent(MainActivity.this, ManagerActivity.class));
+                SharedPreferences preferences = getSharedPreferences("Info", MODE_PRIVATE);
+                String check = preferences.getString("username", "");
+                if (check.equals("")) {
+                    startActivity(new Intent(MainActivity.this, ManagerActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                }
+
             }
         };
     }

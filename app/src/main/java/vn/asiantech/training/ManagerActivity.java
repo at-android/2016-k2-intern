@@ -1,5 +1,6 @@
 package vn.asiantech.training;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -52,6 +53,6 @@ public class ManagerActivity extends AppCompatActivity implements RegisterFragme
 
     @Override
     public void onCallFormLogin() {
-
+        startActivity(new Intent(ManagerActivity.this, HomeActivity.class));
     }
 }
