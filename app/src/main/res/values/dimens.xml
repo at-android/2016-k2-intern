@@ -7,4 +7,6 @@
     <dimen name="btnRegMargintop">40dp</dimen>
     <dimen name="edRegMargintop">60dp</dimen>
     <dimen name="tvSizeRegTilte">35sp</dimen>
+    <dimen name="edTextSize">25sp</dimen>
+    <dimen name="btnTextSize">25sp</dimen>
 </resources>

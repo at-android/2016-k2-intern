@@ -10,23 +10,36 @@
 
     <style name="main_btn" >
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/edTextSize</item>
         <item name="android:background">@color/colorBtn</item>
     </style>
 
     <style name="RegisterEd" >
         <item name="android:gravity">center</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/edTextSize</item>
         <item name="android:maxLines">1</item>
     </style>
 
     <style name="register_btnSubmit" >
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/btnTextSize</item>
         <item name="android:background">@color/tvReg</item>
     </style>
 
     <style name="login_btnLogin" >
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/btnTextSize</item>
         <item name="android:background">@color/tvReg</item>
+    </style>
+
+    <style name="addContact_Ed" >
+        <item name="android:textSize">@dimen/edTextSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="addContact_btn" >
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/btnTextSize</item>
+        <item name="android:background">@color/tvReg</item>
+        <item name="android:layout_marginLeft">4dp</item>
     </style>
 </resources>

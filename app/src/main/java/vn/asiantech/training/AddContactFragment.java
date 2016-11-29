@@ -1,56 +1,67 @@
 package vn.asiantech.training;
 
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+public class AddContactFragment extends DialogFragment implements View.OnClickListener {
+    private EditText mEdName;
+    private EditText mEdNumber;
+    private Button mBtnOK;
+    private Button mBtnCancel;
+    private DatabaseHelper data ;
 
-
-public class AddContactFragment extends Fragment {
-    private ListView mLv;
-    private ImageView mImgView;
-    private ArrayAdapter mAdapter = null;
-    private ArrayList<Contact> mArr = new ArrayList<Contact>();
-    private DatabaseHelper data = new DatabaseHelper(getContext());
     public AddContactFragment() {
-        // Required empty public constructor
     }
 
     public static AddContactFragment newInstance() {
         AddContactFragment fragment = new AddContactFragment();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
+        data = new DatabaseHelper(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_contact, container, false);
-        mLv = (ListView)view.findViewById(R.id.lv);
-        mImgView = (ImageView)view.findViewById(R.id.img);
-        mImgView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                data.open();
+        mEdName = (EditText) view.findViewById(R.id.edName);
+        mEdNumber = (EditText) view.findViewById(R.id.edNumber);
+        mBtnOK = (Button) view.findViewById(R.id.btnOK);
+        mBtnCancel = (Button) view.findViewById(R.id.btnCancel);
 
-            }
-        });
+        mBtnOK.setOnClickListener(this);
+        mBtnCancel.setOnClickListener(this);
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnOK:
+                data.open();
+                String name = mEdName.getText().toString();
+                String number = mEdNumber.getText().toString();
+                Log.i("create", name.toString());
+                long x = data.createData(name, number);
+                if (x > 0) {
+                    Toast.makeText(getContext(), "Successful", Toast.LENGTH_LONG).show();
+                }
+                data.close();
+                break;
+            case R.id.btnCancel:
+                dismiss();
+                break;
+        }
+    }
 }

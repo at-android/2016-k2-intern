@@ -41,4 +41,8 @@ public class Contact {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String toString(){
+        return this.name + " --- " + this.phoneNumber;
+    }
 }

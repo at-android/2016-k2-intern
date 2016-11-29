@@ -5,12 +5,15 @@
     <string name="edName">Name</string>
     <string name="edEmail">Email</string>
     <string name="edPass">Password</string>
+    <string name="edNumber">Number</string>
     <string name="edConfirm">Confirm Password</string>
     <string name="tvRegTitle">Register</string>
     <string name="btnRegSubmit">Submit</string>
     <string name="tvLoginTitle">Sign in</string>
     <string name="edLoginName">Name</string>
     <string name="edLoginPass">Password</string>
+    <string name="addContact_btnOK">OK</string>
+    <string name="addContact_btnCancel">Cancel</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

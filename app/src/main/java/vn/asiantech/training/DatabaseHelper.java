@@ -14,39 +14,40 @@ import java.util.ArrayList;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    ArrayList<Contact> mArr = new ArrayList<Contact>();
-
+    ArrayList<Contact> list = new ArrayList<Contact>();
     /*Tên database*/
-    private static final String DATABASE_NAME = "DB_CONTACT";
+    private static final String DATABASE_NAME = "DB_USER";
 
     /*Version database*/
     private static final int DATABASE_VERSION = 1;
 
     /*Tên tabel và các column trong database*/
-    private static final String TABLE_CONTACT = "CONTACT";
+    private static final String TABLE_ACCOUNT = "CONTACT";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_PHONE_NUMBER = "phonenumber";
+    public static final String COLUMN_NUMBER = "number";
 
     /*Các đối tượng khác*/
     static SQLiteDatabase db;
 
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
-
+    /*Tạo mới database*/
     @Override
     public void onCreate(SQLiteDatabase arg0) {
-        arg0.execSQL("CREATE TABLE " + TABLE_CONTACT + " ("
+        arg0.execSQL("CREATE TABLE " + TABLE_ACCOUNT + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_NAME + " TEXT NOT NULL, "
-                + COLUMN_PHONE_NUMBER + " TEXT NOT NULL);");
+                + COLUMN_NUMBER + " TEXT NOT NULL);");
     }
 
+    /*Kiểm tra phiên bản database nếu khác sẽ thay đổi*/
     @Override
-    public void onUpgrade(SQLiteDatabase arg0, int i, int i1) {
-        arg0.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACT);
+    public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+        arg0.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT);
         onCreate(arg0);
     }
 
@@ -55,7 +56,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return this;
     }
 
-    public void close(){
+
+    /*Hàm đóng kết nối với database*/
+    public void close() {
         try {
             db.close();
         } catch (Exception e) {
@@ -63,32 +66,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long createData(String name, String phoneNumber) {
+    /*Hàm createData dùng để chèn dữ mới dữ liệu vào database*/
+    public long createData(String name, String number) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
-        cv.put(COLUMN_PHONE_NUMBER, phoneNumber);
-        return db.insert(TABLE_CONTACT, null, cv);
+        cv.put(COLUMN_NUMBER, number);
+        return db.insert(TABLE_ACCOUNT, null, cv);
     }
 
-    public ArrayList<Contact> getData() {
-        Cursor c = db.query(TABLE_CONTACT, null, null, null, null, null, null);
-        //getColumnIndex(COLUMN_ID); là lấy chỉ số, vị trí của cột COLUMN_ID ...
+    public ArrayList<Contact> getList() {
+        return this.list;
+    }
 
-        c.moveToFirst();
-        //Vòng lặp lấy dữ liệu của con trỏ
-        while(!c.isAfterLast()){
-            Contact contact = new Contact();
-            contact.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-            contact.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
-            contact.setPhoneNumber(c.getString(c.getColumnIndex(COLUMN_PHONE_NUMBER)));
-            mArr.add(contact);
-            c.moveToNext();
+    public ArrayList<Contact> getData(String sql) {
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
         }
-        c.close();
-        return mArr;
-    }
-
-    public ArrayList<Contact> getList(){
-        return this.mArr;
+        while (!cursor.isAfterLast()) {
+            Contact contact = new Contact();
+            contact.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            contact.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+            contact.setPhoneNumber(cursor.getString(cursor.getColumnIndex(COLUMN_NUMBER)));
+            list.add(contact);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
     }
 }
