@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class ManagerActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener {
+public class ManagerActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, LoginFragment.OnLoginCallBack {
     private Button mBtnRegister;
     private Button mBtnLogin;
 
@@ -28,6 +28,17 @@ public class ManagerActivity extends AppCompatActivity implements RegisterFragme
                 mBtnLogin.setVisibility(View.GONE);
             }
         });
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                LoginFragment loginFragment = new LoginFragment();
+                fragmentTransaction.add(R.id.fr_register_and_login, loginFragment, "Register").commit();
+                mBtnRegister.setVisibility(View.GONE);
+                mBtnLogin.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -37,5 +48,10 @@ public class ManagerActivity extends AppCompatActivity implements RegisterFragme
         getSupportFragmentManager()
                 .beginTransaction().
                 remove(getSupportFragmentManager().findFragmentById(R.id.fr_register_and_login)).commit();
+    }
+
+    @Override
+    public void onCallFormLogin() {
+
     }
 }
