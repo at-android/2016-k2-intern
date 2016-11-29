@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="main_btn" >
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:background">@color/colorBtn</item>
+    </style>
+
+    <style name="RegisterEd" >
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="register_btnSubmit" >
+        <item name="android:textSize">25sp</item>
+        <item name="android:background">@color/tvReg</item>
+    </style>
+
+    <style name="login_btnLogin" >
+        <item name="android:textSize">25sp</item>
+        <item name="android:background">@color/tvReg</item>
+    </style>
 </resources>

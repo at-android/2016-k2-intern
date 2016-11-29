@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.LoginActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tvLoginTitle"
+        android:textColor="@color/tvReg"
+        android:textSize="@dimen/tvSizeRegTilte" />
+
+    <EditText
+        android:id="@+id/edName"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/edRegMargintop"
+        android:hint="@string/edName"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edName"
+        android:hint="@string/edPass"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/login_btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edPassword"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnLogin" />
+</RelativeLayout>

@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="SplashScreen">40dp</dimen>
+    <dimen name="btnLoginMargintop">40dp</dimen>
+    <dimen name="btnRegMargintop">40dp</dimen>
+    <dimen name="edRegMargintop">60dp</dimen>
+    <dimen name="tvSizeRegTilte">35sp</dimen>
 </resources>
