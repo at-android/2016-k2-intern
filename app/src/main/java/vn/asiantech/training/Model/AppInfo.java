@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Model;
 
 import android.graphics.drawable.Drawable;
 

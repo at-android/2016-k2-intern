@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import vn.asiantech.training.Model.Contact;
+
 /**
  * Created by Administrator on 29/11/2016.
  */

@@ -1,8 +1,12 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import vn.asiantech.training.ContentProContactFragment;
+import vn.asiantech.training.Fragment.ListContactFragment;
+import vn.asiantech.training.Fragment.ShowAppFragment;
 
 /**
  * Created by Administrator on 29/11/2016.

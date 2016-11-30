@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Fragment;
 
 
 import android.content.pm.PackageInfo;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import vn.asiantech.training.Adapter.RecyclerAppAdapter;
+import vn.asiantech.training.Model.AppInfo;
+import vn.asiantech.training.R;
 
 
 public class ShowAppFragment extends Fragment {

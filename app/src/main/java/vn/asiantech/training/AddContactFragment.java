@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import vn.asiantech.training.Adapter.RecyclerAdapter;
+import vn.asiantech.training.Model.Contact;
+
 public class AddContactFragment extends DialogFragment implements View.OnClickListener {
     private static final String ARG_LIST_CONTACT = "listcontact";
     private EditText mEdName;

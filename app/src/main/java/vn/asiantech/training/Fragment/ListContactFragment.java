@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Fragment;
 
 
 import android.os.Bundle;
@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+
+import vn.asiantech.training.Adapter.RecyclerAdapter;
+import vn.asiantech.training.AddContactFragment;
+import vn.asiantech.training.DatabaseHelper;
+import vn.asiantech.training.Model.Contact;
+import vn.asiantech.training.R;
 
 
 public class ListContactFragment extends Fragment {
