@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="vn.asiantech.training.AddContactFragment">
+
+    <EditText
+        android:id="@+id/edName"
+        style="@style/addContact_Ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edName"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edNumber"
+        style="@style/addContact_Ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edName"
+        android:hint="@string/edNumber"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edNumber"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOK"
+            style="@style/addContact_btn"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:text="@string/addContact_btnOK" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/addContact_btn"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:text="@string/addContact_btnCancel" />
+
+    </LinearLayout>
+</RelativeLayout>

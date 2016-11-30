@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.RegisterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tvRegTitle"
+        android:textColor="@color/tvReg"
+        android:textSize="@dimen/tvSizeRegTilte" />
+
+    <EditText
+        android:id="@+id/edName"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/edRegMargintop"
+        android:hint="@string/edName"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edEmail"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edName"
+        android:hint="@string/edEmail"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edEmail"
+        android:hint="@string/edPass"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edConfirm"
+        style="@style/RegisterEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edPassword"
+        android:hint="@string/edConfirm"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/register_btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edConfirm"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnRegSubmit" />
+</RelativeLayout>

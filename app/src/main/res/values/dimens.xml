@@ -2,4 +2,15 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="SplashScreen">40dp</dimen>
+    <dimen name="btnLoginMargintop">40dp</dimen>
+    <dimen name="btnRegMargintop">40dp</dimen>
+    <dimen name="edRegMargintop">60dp</dimen>
+    <dimen name="tvSizeRegTilte">35sp</dimen>
+    <dimen name="edTextSize">25sp</dimen>
+    <dimen name="btnTextSize">25sp</dimen>
+    <dimen name="item_app_imgHeight">50dp</dimen>
+    <dimen name="item_app_imgWidth">50dp</dimen>
+    <dimen name="listContact_imgHeight">100dp</dimen>
+    <dimen name="listContact_imgWidth">100dp</dimen>
 </resources>
