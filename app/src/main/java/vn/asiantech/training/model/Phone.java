@@ -18,6 +18,11 @@ public class Phone {
     public Phone() {
     }
 
+    public Phone(String mName, String mPhone) {
+        this.mName = mName;
+        this.mPhone = mPhone;
+    }
+
     public int getmId() {
         return mId;
     }

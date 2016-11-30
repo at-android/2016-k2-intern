@@ -16,12 +16,12 @@ import android.widget.TextView;
  * Created by phuong on 29/11/2016.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    public static String NAME_LOGIN = "logined";
     private EditText mEdtName;
     private EditText mEdtPassword;
     private Button mBtnLogin;
     private Button mBtnCancel;
-    public static String NAME_LOGIN = "logined";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,24 +43,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnLogin:
                 String name = mEdtName.getText().toString();
                 String password = mEdtPassword.getText().toString();
 
                 //check
                 SharedPreferences settings = getSharedPreferences(RegisterActivity.NAME_SHAREPREPERENCE, 0);
-                String Sname = settings.getString(RegisterActivity.SP_FIELDNAME,"");
-                String Spassword = settings.getString(RegisterActivity.SP_FIELDPASSWORD,"");
+                String Sname = settings.getString(RegisterActivity.SP_FIELDNAME, "");
+                String Spassword = settings.getString(RegisterActivity.SP_FIELDPASSWORD, "");
 
-                if(name.equals(Sname) && password.equals(Spassword)){
+                if (name.equals(Sname) && password.equals(Spassword)) {
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(NAME_LOGIN,"logined");
+                    editor.putString(NAME_LOGIN, "logined");
                     editor.commit();
-                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     this.startActivity(intent);
-                }
-                else{
+                } else {
                     showDialogNotification();
                 }
                 break;

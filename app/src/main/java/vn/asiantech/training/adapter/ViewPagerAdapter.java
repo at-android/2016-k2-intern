@@ -13,11 +13,11 @@ import vn.asiantech.training.fragment.FragmentTab3;
  * Created by phuong on 29/11/2016.
  */
 
-public class ViewPagerAdapter extends FragmentPagerAdapter{
+public class ViewPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    // Tab Titles
-    private String tabtitles[] = new String[] { "Tab1", "Tab2", "Tab3" };
     Context context;
+    // Tab Titles
+    private String tabtitles[] = new String[]{"Tab1", "Tab2", "Tab3"};
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);

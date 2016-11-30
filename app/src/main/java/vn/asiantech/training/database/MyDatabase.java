@@ -5,12 +5,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import vn.asiantech.training.model.Contact;
 import vn.asiantech.training.model.Phone;
 
 /**
@@ -18,19 +16,17 @@ import vn.asiantech.training.model.Phone;
  */
 
 public class MyDatabase {
-    private static final String DATABASE_NAME = "DB_PHONE";
-    private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_CONTACT = "PHONE";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_PHONE = "phone";
-
-    private static Context context;
+    private static final String DATABASE_NAME = "DB_PHONE";
+    private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_CONTACT = "PHONE";
     static SQLiteDatabase db;
-    private OpenHelper openHelper;
-
+    private static Context context;
     ArrayList<Phone> arrInfo = null;
     Phone phone = null;
+    private OpenHelper openHelper;
 
     public MyDatabase(Context c) {
         MyDatabase.context = c;
@@ -42,12 +38,12 @@ public class MyDatabase {
         return this;
     }
 
-    public  void close() {
+    public void close() {
         openHelper.close();
     }
 
     public void createData(String name, String phone) {
-        String query = "Insert into "+TABLE_CONTACT+" ("+COLUMN_NAME+", "+COLUMN_PHONE+") values('" +name+"','"+phone+"')";
+        String query = "Insert into " + TABLE_CONTACT + " (" + COLUMN_NAME + ", " + COLUMN_PHONE + ") values('" + name + "','" + phone + "')";
         db.execSQL(query);
     }
 
@@ -56,7 +52,7 @@ public class MyDatabase {
         Cursor c = db.query(TABLE_CONTACT, null, null, null, null, null, null);
         int iRow = c.getColumnIndex(COLUMN_ID);
         int iLogo = c.getColumnIndex(COLUMN_NAME);
-        int iPhone= c.getColumnIndex(COLUMN_PHONE);
+        int iPhone = c.getColumnIndex(COLUMN_PHONE);
 
         arrInfo = new ArrayList<Phone>();
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
@@ -82,7 +78,7 @@ public class MyDatabase {
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + COLUMN_NAME + " TEXT, "
                     + COLUMN_PHONE + " TEXT NOT NULL);";
-            Log.d("query",query);
+            Log.d("query", query);
             arg0.execSQL(query);
 
         }

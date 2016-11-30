@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapter.PhoneRecycleViewAdapter;
-import vn.asiantech.training.adapter.ViewPagerAdapter;
 import vn.asiantech.training.database.MyDatabase;
 import vn.asiantech.training.model.Phone;
 
@@ -32,7 +30,8 @@ public class FragmentTab1 extends Fragment {
     private TextView mTvAdd;
     private PhoneRecycleViewAdapter mPhoneRecycleViewAdapter;
     private ArrayList<Phone> mPhones = new ArrayList<>();
-    private MyDatabase database ;
+    private MyDatabase database;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,8 +46,7 @@ public class FragmentTab1 extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mPhones = database.getData();
-        Log.d("size",String.valueOf(mPhones.size()));
-        mPhoneRecycleViewAdapter = new PhoneRecycleViewAdapter(mPhones,getContext());
+        mPhoneRecycleViewAdapter = new PhoneRecycleViewAdapter(mPhones, getContext());
         mRecyclerView.setAdapter(mPhoneRecycleViewAdapter);
         mTvAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +79,7 @@ public class FragmentTab1 extends Fragment {
                 String name = edName.getText().toString();
                 String phone = edPhone.getText().toString();
 
-                database.createData(name,phone);
+                database.createData(name, phone);
                 Phone newPhone = new Phone();
                 newPhone.setmName(name);
                 newPhone.setmPhone(phone);

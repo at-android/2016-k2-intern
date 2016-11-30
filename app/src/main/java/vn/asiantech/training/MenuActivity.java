@@ -11,7 +11,7 @@ import android.widget.Button;
  * Created by phuong on 29/11/2016.
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mBtnLogin;
     private Button mBtnRegister;
 
@@ -29,13 +29,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnlogin:
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btnregister:
-                intent = new Intent(this,RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
         }

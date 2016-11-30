@@ -27,7 +27,7 @@
         android:layout_below="@+id/edtName"
         android:layout_marginTop="@dimen/dialog_add_phone_edt_margin_top"
         android:hint="@string/dialog_add_phone_edt_phone_hint"
-        android:inputType="number" />
+        android:inputType="number|phone" />
 
     <Button
         android:id="@+id/btnAdd"

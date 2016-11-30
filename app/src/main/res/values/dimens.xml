@@ -15,7 +15,7 @@
     <dimen name="register_btn_cancel_margin_left">20dp</dimen>
     <dimen name="dialog_notification_tv_ok_margin_top">5dp</dimen>
     <dimen name="home_tab_padding_bottom">10dp</dimen>
-    <dimen name="fragment_item_tab_1_padding">20dp</dimen>
+    <dimen name="fragment_item_tab_1_padding">10dp</dimen>
     <dimen name="fragment_item_tab_1_tv_size">20sp</dimen>
     <dimen name="dialog_add_phone_edt_margin_top">20dp</dimen>
     <dimen name="fragment_item_tab_1_view_height">1dp</dimen>

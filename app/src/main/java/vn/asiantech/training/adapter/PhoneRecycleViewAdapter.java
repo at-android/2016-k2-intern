@@ -16,11 +16,11 @@ import vn.asiantech.training.model.Phone;
  * Created by phuong on 29/11/2016.
  */
 
-public class PhoneRecycleViewAdapter extends RecyclerView.Adapter<PhoneRecycleViewAdapter.MyViewHolder>{
+public class PhoneRecycleViewAdapter extends RecyclerView.Adapter<PhoneRecycleViewAdapter.MyViewHolder> {
     private ArrayList<Phone> mPhones = new ArrayList<>();
     private Context mContext;
 
-    public PhoneRecycleViewAdapter(ArrayList<Phone> phones,Context context){
+    public PhoneRecycleViewAdapter(ArrayList<Phone> phones, Context context) {
         mPhones = phones;
         mContext = context;
     }

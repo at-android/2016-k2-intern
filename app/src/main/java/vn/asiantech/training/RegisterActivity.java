@@ -78,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     public boolean checkValidate(String name, String email, String password, String passwordConfirm) {
-        Log.d("1",password);
-        Log.d("2",passwordConfirm);
+        Log.d("1", password);
+        Log.d("2", passwordConfirm);
         boolean check = true;
         if (!name.matches("^[a-zA-Z0-9]{1,100}$")) {
             mEdtName.setError("Enter the name. Please!");

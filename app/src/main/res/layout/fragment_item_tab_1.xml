@@ -20,5 +20,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_item_tab_1_view_height"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent" />
 </LinearLayout>
