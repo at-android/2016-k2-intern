@@ -14,9 +14,9 @@
         android:id="@+id/img"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/plus"
+        android:layout_width="@dimen/listContact_imgWidth"
+        android:layout_height="@dimen/listContact_imgHeight"
+        android:src="@drawable/ic_add"
         />
 
 </RelativeLayout>

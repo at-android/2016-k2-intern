@@ -21,16 +21,17 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
     private EditText mEdNumber;
     private Button mBtnOK;
     private Button mBtnCancel;
-    private DatabaseHelper data ;
+    private DatabaseHelper data;
     private ArrayList<Contact> mArr = new ArrayList<Contact>();
     private RecyclerAdapter adapter;
+
     public AddContactFragment() {
     }
 
     public static AddContactFragment newInstance(ArrayList<Contact> arr) {
         AddContactFragment fragment = new AddContactFragment();
         Bundle arg = new Bundle();
-        arg.putParcelableArrayList(ARG_LIST_CONTACT,arr);
+        arg.putParcelableArrayList(ARG_LIST_CONTACT, arr);
         fragment.setArguments(arg);
         return fragment;
     }
@@ -38,7 +39,7 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments()!=null){
+        if (getArguments() != null) {
             mArr = getArguments().getParcelableArrayList(ARG_LIST_CONTACT);
         }
         data = new DatabaseHelper(getContext());
@@ -72,7 +73,7 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
                 }
                 data.close();
                 adapter = new RecyclerAdapter(mArr);
-                Contact c = new Contact(name,number);
+                Contact c = new Contact(name, number);
                 mArr.add(c);
                 /*phuong thuc updateList phai tu viet trong adapter */
                 adapter.updateList(mArr);

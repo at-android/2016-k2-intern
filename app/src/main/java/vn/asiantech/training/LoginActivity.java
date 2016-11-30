@@ -23,13 +23,12 @@ public class LoginActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isValidate()){
-                    if(getPreferences()){
-                        Intent i = new Intent(LoginActivity.this,HomeActivity.class);
+                if (isValidate()) {
+                    if (getPreferences()) {
+                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(i);
-                    }
-                    else {
-                        Toast.makeText(LoginActivity.this,"Username or Password is wrong",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Username or Password is wrong", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 (RegisterActivity.prefname, MODE_PRIVATE);
         String checkedName = pre.getString("name", "");
         String checkedPwd = pre.getString("pwd", "");
-        Log.i("XYZ",checkedName);
+        Log.i("XYZ", checkedName);
         String name = mEdName.getText().toString();
         String pass = mEdPass.getText().toString();
         if (name.equals(checkedName) && pass.equals(checkedPwd)) {

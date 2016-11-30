@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.SplashScreen">
 
-
     <ImageView
         android:id="@+id/img"
         android:layout_marginTop="@dimen/SplashScreen"

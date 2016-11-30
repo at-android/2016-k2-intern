@@ -7,12 +7,11 @@
     <ImageView
         android:id="@+id/imgItem"
         android:layout_width="@dimen/item_app_imgWidth"
-        android:layout_height="@dimen/item_app_imgHeight"
-        />
+        android:layout_height="@dimen/item_app_imgHeight" />
+
     <TextView
         android:id="@+id/tvItem"
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
         style="@style/custom_item_app_tv"
-        />
+        android:layout_width="1dp"
+        android:layout_height="wrap_content" />
 </LinearLayout>

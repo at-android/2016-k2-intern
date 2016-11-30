@@ -19,6 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mEdConfirmPass;
     private Button mBtnSubmit;
     public static final String prefname = "my_data";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validate()){
+                if (!validate()) {
                     failRegister();
-                }
-                else {
+                } else {
                     AlertDialog.Builder b = new AlertDialog.Builder(RegisterActivity.this);
                     b.setTitle("Confirm");
                     b.setMessage("Continue to submit");
@@ -61,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         mBtnSubmit = (Button) findViewById(R.id.btnSubmit);
     }
 
-    public void failRegister(){
-        Toast.makeText(getApplicationContext(),"Please check form again",Toast.LENGTH_LONG).show();
+    public void failRegister() {
+        Toast.makeText(getApplicationContext(), "Please check form again", Toast.LENGTH_LONG).show();
     }
 
     public boolean validate() {
@@ -75,12 +75,10 @@ public class RegisterActivity extends AppCompatActivity {
         if (name.isEmpty()) {
             mEdName.setError("Name can not empty");
             valid = false;
-        }
-        else if(name.length() < 4){
+        } else if (name.length() < 4) {
             mEdName.setError("Name is too short");
             valid = false;
-        }
-        else {
+        } else {
             mEdName.setError(null);
         }
 
@@ -122,19 +120,19 @@ public class RegisterActivity extends AppCompatActivity {
         super.onPause();
         savingPreferences();
     }
-    public void savingPreferences()
-    {
-        SharedPreferences pre=getSharedPreferences
+
+    public void savingPreferences() {
+        SharedPreferences pre = getSharedPreferences
                 (prefname, MODE_PRIVATE);
-        SharedPreferences.Editor editor=pre.edit();
-        String name=mEdName.getText().toString();
-        String pwd=mEdPass.getText().toString();
-        String email=mEdEmail.getText().toString();
-            //lưu vào editor
-            editor.putString("name", name);
-            editor.putString("pwd", pwd);
-            editor.putString("email",email);
-        Log.i("XXX",name);
+        SharedPreferences.Editor editor = pre.edit();
+        String name = mEdName.getText().toString();
+        String pwd = mEdPass.getText().toString();
+        String email = mEdEmail.getText().toString();
+        //lưu vào editor
+        editor.putString("name", name);
+        editor.putString("pwd", pwd);
+        editor.putString("email", email);
+        Log.i("XXX", name);
         editor.commit();
     }
 }

@@ -45,7 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     /*ham update cho recyclerView*/
-    public void updateList(ArrayList<Contact> arr){
+    public void updateList(ArrayList<Contact> arr) {
         mArr = arr;
         notifyDataSetChanged();
     }

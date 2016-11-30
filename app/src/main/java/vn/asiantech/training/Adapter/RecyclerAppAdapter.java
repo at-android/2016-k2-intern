@@ -16,8 +16,9 @@ import vn.asiantech.training.R;
  * Created by Administrator on 30/11/2016.
  */
 
-public class RecyclerAppAdapter extends RecyclerView.Adapter<RecyclerAppAdapter.ViewHolder>{
-        ArrayList<AppInfo> mArr = new ArrayList<AppInfo>();
+public class RecyclerAppAdapter extends RecyclerView.Adapter<RecyclerAppAdapter.ViewHolder> {
+    ArrayList<AppInfo> mArr = new ArrayList<AppInfo>();
+
     public RecyclerAppAdapter(ArrayList<AppInfo> arr) {
         this.mArr = arr;
     }
@@ -43,6 +44,7 @@ public class RecyclerAppAdapter extends RecyclerView.Adapter<RecyclerAppAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mTv;
         private ImageView mImg;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mTv = (TextView) itemView.findViewById(R.id.tvItem);

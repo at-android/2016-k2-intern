@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/tvItem"
-        android:textSize="@dimen/edTextSize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/edTextSize" />
 </LinearLayout>

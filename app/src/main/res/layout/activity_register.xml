@@ -10,57 +10,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="@dimen/tvSizeRegTilte"
         android:text="@string/tvRegTitle"
         android:textColor="@color/tvReg"
-        />
+        android:textSize="@dimen/tvSizeRegTilte" />
+
     <EditText
-        android:layout_marginTop="@dimen/edRegMargintop"
         android:id="@+id/edName"
+        style="@style/RegisterEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/edRegMargintop"
         android:hint="@string/edName"
-        android:inputType="text"
-        style="@style/RegisterEd"
-        />
+        android:inputType="text" />
 
     <EditText
-        android:layout_below="@+id/edName"
         android:id="@+id/edEmail"
+        style="@style/RegisterEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edName"
         android:hint="@string/edEmail"
-        android:inputType="text"
-        style="@style/RegisterEd"
-        />
+        android:inputType="text" />
 
     <EditText
-        android:layout_below="@id/edEmail"
         android:id="@+id/edPassword"
+        style="@style/RegisterEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/edEmail"
         android:hint="@string/edPass"
-        android:inputType="textPassword"
-        style="@style/RegisterEd"
-        />
+        android:inputType="textPassword" />
 
     <EditText
-        android:layout_below="@+id/edPassword"
         android:id="@+id/edConfirm"
+        style="@style/RegisterEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edPassword"
         android:hint="@string/edConfirm"
-        android:inputType="textPassword"
-        style="@style/RegisterEd"
-        />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_below="@+id/edConfirm"
+        style="@style/register_btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edConfirm"
         android:layout_centerHorizontal="true"
-        android:text="@string/btnRegSubmit"
-        style="@style/register_btnSubmit"
-        />
+        android:text="@string/btnRegSubmit" />
 </RelativeLayout>

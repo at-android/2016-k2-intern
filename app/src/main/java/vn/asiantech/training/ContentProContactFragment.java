@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 
 public class ContentProContactFragment extends Fragment {
-    private String s="";
-    private String name="";
-    private String phoneNumber="";
+    private String s = "";
+    private String name = "";
+    private String phoneNumber = "";
     private ListView mLv;
     private ArrayAdapter mAdapter = null;
     private ArrayList<String> mArr = new ArrayList<String>();

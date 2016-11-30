@@ -27,6 +27,7 @@ public class ListContactFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
     public ListContactFragment() {
     }
 
@@ -48,8 +49,8 @@ public class ListContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_contact, container, false);
-        mImgView = (ImageView)view.findViewById(R.id.img);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerViewList);
+        mImgView = (ImageView) view.findViewById(R.id.img);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewList);
         layoutManager = new LinearLayoutManager(getContext());
         adapter = new RecyclerAdapter(mArr);
         recyclerView.setLayoutManager(layoutManager);
@@ -59,7 +60,7 @@ public class ListContactFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DialogFragment frag = AddContactFragment.newInstance(mArr);
-                frag.show(getFragmentManager(),"dialog");
+                frag.show(getFragmentManager(), "dialog");
             }
         });
         return view;
