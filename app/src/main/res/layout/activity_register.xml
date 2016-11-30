@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.RegisterActivity">
+
+    <EditText
+        android:id="@+id/edtUsername"
+        style="@style/activity_register_tv_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/activity_register_tvUsername_name" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        style="@style/activity_register_tv_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtUsername"
+        android:gravity="center"
+        android:hint="@string/activity_register_tvEmail_name"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        style="@style/activity_register_tv_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtEmail"
+        android:gravity="center"
+        android:hint="@string/activity_register_tvPassword_name"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edtConfirmPwd"
+        style="@style/activity_register_tv_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtPassword"
+        android:gravity="center"
+        android:hint="@string/activity_register_tvConfirmPW_name"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        style="@style/activity_register_tv_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtConfirmPwd"
+        android:text="@string/activity_register_btnSignUp" />
+
+    <ImageView
+        android:id="@+id/imgAlertUsername"
+        style="@style/activity_register_img_styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtUsername"
+        android:layout_alignEnd="@+id/edtUsername"
+        android:layout_alignRight="@+id/edtUsername"
+        android:src="@drawable/ic_error_outline_red_500_24dp" />
+
+    <ImageView
+        android:id="@+id/imgAlertEmail"
+        style="@style/activity_register_img_styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtEmail"
+        android:layout_alignEnd="@+id/edtEmail"
+        android:layout_alignRight="@+id/edtEmail"
+        android:src="@drawable/ic_error_outline_red_500_24dp" />
+
+    <ImageView
+        android:id="@+id/imgAlertPwd"
+        style="@style/activity_register_img_styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtPassword"
+        android:layout_alignEnd="@+id/edtPassword"
+        android:layout_alignRight="@+id/edtPassword"
+        android:src="@drawable/ic_error_outline_red_500_24dp" />
+
+    <ImageView
+        android:id="@+id/imgAlertConfirmPwd"
+        style="@style/activity_register_img_styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtConfirmPwd"
+        android:layout_alignEnd="@+id/edtConfirmPwd"
+        android:layout_alignRight="@+id/edtConfirmPwd"
+        android:src="@drawable/ic_error_outline_red_500_24dp" />
+
+</RelativeLayout>
