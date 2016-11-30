@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvContact"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_event_available" />
+
+    <TextView
+        android:id="@+id/tvNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imvContact"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dialog_notification_tv_margin_top"
+        android:padding="@dimen/dialog_item_padding"
+        android:textSize="@dimen/dialog_notification_tv_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/dialog_notification_tv_ok_margin_top"
+        android:text="@string/dialog_tv_Ok"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>

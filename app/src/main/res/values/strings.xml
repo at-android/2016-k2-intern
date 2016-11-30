@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="main_tv_number">NUMBER</string>
+    <string name="main_btn_start">START</string>
+    <string name="main_btn_stop">RESET</string>
+    <string name="main_tv_value_number">10</string>
+    <string name="dialog_edt_title_hint">Enter String</string>
+    <string name="dialog_tv_Ok">OK</string>
+    <string name="dialog_tv_Cancel">CANCEL</string>
+    <string name="menu_btn_login">Login</string>
+    <string name="menu_btn_register">Register</string>
+    <string name="register_title">Register</string>
+    <string name="register_edt_hint_name">Enter the name</string>
+    <string name="register_edt_hint_email">Enter the email</string>
+    <string name="register_edt_hint_password">Enter the password</string>
+    <string name="register_edt_hint_password_rewrite">Confirm Password</string>
+    <string name="register_btn_register">Register</string>
+    <string name="register_btn_cancel">Cancel</string>
+    <string name="dialog_notification_success">SUCCESS</string>
+    <string name="login_title">Login</string>
+    <string name="login_btn_login">Login</string>
+    <string name="dialog_notification_fail">FAIL</string>
+    <string name="dialog_add_phone_edt_name_hint">Enter The Name</string>
+    <string name="dialog_add_phone_edt_phone_hint">Enter the phone</string>
+    <string name="dialog_btn_Add">Add</string>
 </resources>

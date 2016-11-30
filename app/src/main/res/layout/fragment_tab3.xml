@@ -4,8 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvContactDevice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/background" />
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical" />
 </LinearLayout>
