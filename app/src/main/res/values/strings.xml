@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="main_tv_number">NUMBER</string>
+    <string name="main_btn_start">START</string>
+    <string name="main_btn_stop">RESET</string>
+    <string name="main_tv_value_number">10</string>
+    <string name="dialog_edt_title_hint">Enter String</string>
+    <string name="dialog_tv_Ok">OK</string>
+    <string name="dialog_tv_Cancel">CANCEL</string>
+    <string name="dialog_notification_success">Completed</string>
 </resources>
