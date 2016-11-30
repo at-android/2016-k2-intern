@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="title_home_text_sỉze">38sp</dimen>
+    <dimen name="rv_list_my_contact_height">350dp</dimen>
 </resources>

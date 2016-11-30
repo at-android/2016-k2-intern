@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity implements MyContactdFragmen
                 SharedPreferences.Editor edit = pre.edit();
                 edit.putString("check", "false");
                 edit.apply();
-                startActivity(new Intent(HomeActivity.this, ManagerActivity.class));
+                startActivity(new Intent(HomeActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             }
         });
     }

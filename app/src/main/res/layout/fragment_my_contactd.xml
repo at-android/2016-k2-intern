@@ -8,7 +8,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvListMyContact"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="@dimen/rv_list_my_contact_height"
         android:scrollbars="vertical" />
 
     <Button
