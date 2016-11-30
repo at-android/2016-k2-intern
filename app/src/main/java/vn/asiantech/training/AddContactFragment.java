@@ -10,24 +10,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AddContactFragment extends DialogFragment implements View.OnClickListener {
+    private static final String ARG_LIST_CONTACT = "listcontact";
     private EditText mEdName;
     private EditText mEdNumber;
     private Button mBtnOK;
     private Button mBtnCancel;
     private DatabaseHelper data ;
-
+    private ArrayList<Contact> mArr = new ArrayList<Contact>();
+    private RecyclerAdapter adapter;
     public AddContactFragment() {
     }
 
-    public static AddContactFragment newInstance() {
+    public static AddContactFragment newInstance(ArrayList<Contact> arr) {
         AddContactFragment fragment = new AddContactFragment();
+        Bundle arg = new Bundle();
+        arg.putParcelableArrayList(ARG_LIST_CONTACT,arr);
+        fragment.setArguments(arg);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments()!=null){
+            mArr = getArguments().getParcelableArrayList(ARG_LIST_CONTACT);
+        }
         data = new DatabaseHelper(getContext());
     }
 
@@ -58,6 +68,12 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
                     Toast.makeText(getContext(), "Successful", Toast.LENGTH_LONG).show();
                 }
                 data.close();
+                adapter = new RecyclerAdapter(mArr);
+                Contact c = new Contact(name,number);
+                mArr.add(c);
+                /*phuong thuc updateList phai tu viet trong adapter */
+                adapter.updateList(mArr);
+                dismiss();
                 break;
             case R.id.btnCancel:
                 dismiss();

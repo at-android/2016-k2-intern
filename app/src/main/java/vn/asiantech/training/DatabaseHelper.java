@@ -85,7 +85,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         while (!cursor.isAfterLast()) {
             Contact contact = new Contact();
-            contact.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
             contact.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
             contact.setPhoneNumber(cursor.getString(cursor.getColumnIndex(COLUMN_NUMBER)));
             list.add(contact);

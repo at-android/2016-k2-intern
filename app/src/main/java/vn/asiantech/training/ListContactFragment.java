@@ -4,22 +4,23 @@ package vn.asiantech.training;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
 public class ListContactFragment extends Fragment {
-    private ListView mLv;
     private ImageView mImgView;
-    private ArrayAdapter mAdapter = null;
     private ArrayList<Contact> mArr = new ArrayList<Contact>();
     private DatabaseHelper data;
+    private RecyclerView recyclerView;
+    private RecyclerAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
     public ListContactFragment() {
         // Required empty public constructor
     }
@@ -44,17 +45,20 @@ public class ListContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_contact, container, false);
-        mLv = (ListView)view.findViewById(R.id.lv);
         mImgView = (ImageView)view.findViewById(R.id.img);
+        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerViewList);
+        layoutManager = new LinearLayoutManager(getContext());
+        adapter = new RecyclerAdapter(mArr);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
         mImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment frag = AddContactFragment.newInstance();
+                DialogFragment frag = AddContactFragment.newInstance(mArr);
                 frag.show(getFragmentManager(),"dialog");
             }
         });
-        mAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,mArr);
-        mLv.setAdapter(mAdapter);
         return view;
     }
 

@@ -1,22 +1,41 @@
 package vn.asiantech.training;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Administrator on 29/11/2016.
  */
 
-public class Contact {
+public class Contact implements Parcelable{
     private String name;
     private String phoneNumber;
-    private int id;
 
-    public Contact() {
+    public Contact(){
+
     }
 
-    public Contact(String name, String phoneNumber, int id) {
+    public Contact(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.id = id;
     }
+
+    protected Contact(Parcel in) {
+        name = in.readString();
+        phoneNumber = in.readString();
+    }
+
+    public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+        @Override
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        @Override
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -34,15 +53,18 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(phoneNumber);
     }
 
     public String toString(){
-        return this.name + " --- " + this.phoneNumber;
+        return this.name + "---" + this.phoneNumber;
     }
 }
