@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putString(NAME_LOGIN, "logined");
                     editor.commit();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                     this.startActivity(intent);
                 } else {
                     showDialogNotification();
