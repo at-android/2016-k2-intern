@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences("Info", MODE_PRIVATE);
                 String check = preferences.getString("check", "");
                 if (check.equals("false") || check.equals("")) {
-                    startActivity(new Intent(MainActivity.this, ManagerActivity.class));
+                    startActivity(new Intent(MainActivity.this, ManagerActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 } else {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 }
 
             }

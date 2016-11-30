@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity implements MyContactdFragment.OnFragmentInteractionListener, LocalContactFragment.OnFragmentInteractionListener, MyAppFragment.OnFragmentInteractionListener {
     private ImageButton mBtnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
