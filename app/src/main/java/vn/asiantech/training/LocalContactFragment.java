@@ -1,12 +1,19 @@
 package vn.asiantech.training;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,7 +29,8 @@ public class LocalContactFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private ArrayList<PhoneNumberObj> mArrayPhone = new ArrayList<>();
+    private RecyclerView mRvLocalContact;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -63,10 +71,46 @@ public class LocalContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_local_contact, container, false);
+        View view = inflater.inflate(R.layout.fragment_local_contact, container, false);
+        getAllContact();
+        mRvLocalContact = (RecyclerView) view.findViewById(R.id.rv_local_contact);
+        LinearLayoutManager lln = new LinearLayoutManager(getActivity());
+        mRvLocalContact.setHasFixedSize(true);
+        mRvLocalContact.setLayoutManager(lln);
+        CustomRecycleViewContacts adapter = new CustomRecycleViewContacts(getActivity(), mArrayPhone);
+        mRvLocalContact.setAdapter(adapter);
+        return view;
     }
 
+    public void getAllContact() {
+        ContentResolver cr = getActivity().getContentResolver();
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null);
+
+        if (cur.getCount() > 0) {
+            while (cur.moveToNext()) {
+                String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cur.getString(cur.getColumnIndex(
+                        ContactsContract.Contacts.DISPLAY_NAME));
+
+                if (cur.getInt(cur.getColumnIndex(
+                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                    Cursor pCur = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        mArrayPhone.add(new PhoneNumberObj(mArrayPhone.size() + 1, name, phoneNo));
+                    }
+                    pCur.close();
+                }
+            }
+        }
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

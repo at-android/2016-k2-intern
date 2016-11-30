@@ -1,12 +1,22 @@
 package vn.asiantech.training;
 
+import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,11 +32,16 @@ public class MyContactdFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    CustomRecycleViewContacts adapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private OnFragmentInteractionListener mListener;
+    private DatabaseHandler db;
+    private SQLiteDatabase sqlData;
+    private ArrayList<PhoneNumberObj> mPhoneArray = new ArrayList<>();
+    private RecyclerView mRvListMyContact;
+    private Button mBtnAddNewContact;
 
     public MyContactdFragment() {
         // Required empty public constructor
@@ -57,18 +72,76 @@ public class MyContactdFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        db = new DatabaseHandler(getActivity());
+        //doInsertDb();
+        sqlData = db.getReadableDatabase();
+        String query = "select * from NumberManager";
+        Cursor cursor = sqlData.rawQuery(query, null);
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            int a = Integer.parseInt(cursor.getInt(0) + "");
+            String b = cursor.getString(1);
+            String c = cursor.getString(2);
+            mPhoneArray.add(new PhoneNumberObj(a, b, c));
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         View view = inflater.inflate(R.layout.fragment_my_contactd, container, false);
+        mRvListMyContact = (RecyclerView) view.findViewById(R.id.rvListMyContact);
+        mBtnAddNewContact = (Button) view.findViewById(R.id.btn_add_new_mycontacts);
+        mRvListMyContact.setHasFixedSize(true);
+        mRvListMyContact.setLayoutManager(llm);
+        adapter = new CustomRecycleViewContacts(getActivity(), mPhoneArray);
+        mRvListMyContact.setAdapter(adapter);
+        mBtnAddNewContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doInsertDb();
+            }
+        });
         return view;
     }
 
 
     public void doInsertDb() {
+        final Dialog addNewContact = new Dialog(getActivity());
+        addNewContact.setContentView(R.layout.custom_dialog_add_contacts);
+        addNewContact.setTitle("Add new contacts");
+        Button btnAdd = (Button) addNewContact.findViewById(R.id.btn_dialog_add_contacts);
+        final EditText edName = (EditText) addNewContact.findViewById(R.id.ed_insert_name);
+        final EditText edNumber = (EditText) addNewContact.findViewById(R.id.ed_insert_number);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqlData = db.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("id", mPhoneArray.size() + 1);
+                contentValues.put("name", edName.getText().toString());
+                contentValues.put("number", edNumber.getText().toString());
+                sqlData.insert("NumberManager", null, contentValues);
+                sqlData.close();
+                doReload();
+                adapter.notifyDataSetChanged();
+                addNewContact.dismiss();
+            }
+        });
+        addNewContact.show();
+    }
 
+    public void doReload() {
+        mPhoneArray.clear();
+        sqlData = db.getReadableDatabase();
+        String query = "select * from NumberManager";
+        Cursor cursor = sqlData.rawQuery(query, null);
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            int a = Integer.parseInt(cursor.getInt(0) + "");
+            String b = cursor.getString(1);
+            String c = cursor.getString(2);
+            mPhoneArray.add(new PhoneNumberObj(a, b, c));
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

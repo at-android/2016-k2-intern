@@ -12,4 +12,7 @@
     <string name="email_text">Email</string>
     <string name="register_title_txt">Register</string>
     <string name="login_title_txt">Login</string>
+    <string name="btn_add_new_contacts_text">Add New</string>
+    <string name="number_txt">Number</string>
+    <string name="name_txt">Name</string>
 </resources>

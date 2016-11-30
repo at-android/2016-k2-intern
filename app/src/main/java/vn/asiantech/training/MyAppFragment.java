@@ -1,12 +1,20 @@
 package vn.asiantech.training;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,11 +30,11 @@ public class MyAppFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private ArrayList<AppObject> appNameArray = new ArrayList<>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private RecyclerView mRvMyApp;
     private OnFragmentInteractionListener mListener;
 
     public MyAppFragment() {
@@ -63,8 +71,22 @@ public class MyAppFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_app, container, false);
+        appNameArray.clear();
+        View view = inflater.inflate(R.layout.fragment_my_app, container, false);
+        mRvMyApp = (RecyclerView) view.findViewById(R.id.rv_my_app);
+        PackageManager pm = getActivity().getPackageManager();
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> pkgAppsList = getContext().getPackageManager().queryIntentActivities(mainIntent, 0);
+        for (int i = 0; i < pkgAppsList.size(); i++) {
+            appNameArray.add(new AppObject(pkgAppsList.get(i).loadLabel(pm).toString(), pkgAppsList.get(i).activityInfo.packageName.toString()));
+        }
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        mRvMyApp.setHasFixedSize(true);
+        mRvMyApp.setLayoutManager(llm);
+        CustomRecycleViewMyApp adapter = new CustomRecycleViewMyApp(getActivity(), appNameArray);
+        mRvMyApp.setAdapter(adapter);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
