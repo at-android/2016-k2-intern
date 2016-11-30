@@ -55,8 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         return this;
     }
-
-
+    
     /*Hàm đóng kết nối với database*/
     public void close() {
         try {

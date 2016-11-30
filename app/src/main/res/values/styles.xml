@@ -42,4 +42,12 @@
         <item name="android:background">@color/tvReg</item>
         <item name="android:layout_marginLeft">4dp</item>
     </style>
+
+    <style name="custom_item_app_img" >
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="custom_item_app_tv" >
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/btnTextSize</item>
+    </style>
 </resources>

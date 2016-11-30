@@ -15,7 +15,19 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ListContactFragment.newInstance();
+        Fragment frag = null;
+        switch (position) {
+            case 0:
+                frag = ListContactFragment.newInstance();
+                break;
+            case 1:
+                frag = ContentProContactFragment.newInstance();
+                break;
+            case 2:
+                frag = ShowAppFragment.newInstance();
+                break;
+        }
+        return frag;
     }
 
     @Override

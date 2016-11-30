@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.ShowAppFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/showAppFrag_title"
+        android:textColor="@color/tvReg"
+        android:textSize="@dimen/edTextSize" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewListApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

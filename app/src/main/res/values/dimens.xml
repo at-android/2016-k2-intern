@@ -9,4 +9,6 @@
     <dimen name="tvSizeRegTilte">35sp</dimen>
     <dimen name="edTextSize">25sp</dimen>
     <dimen name="btnTextSize">25sp</dimen>
+    <dimen name="item_app_imgHeight">50dp</dimen>
+    <dimen name="item_app_imgWidth">50dp</dimen>
 </resources>

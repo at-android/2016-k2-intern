@@ -22,13 +22,10 @@ public class ListContactFragment extends Fragment {
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     public ListContactFragment() {
-        // Required empty public constructor
     }
 
     public static ListContactFragment newInstance() {
         ListContactFragment fragment = new ListContactFragment();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
         return fragment;
     }
 
