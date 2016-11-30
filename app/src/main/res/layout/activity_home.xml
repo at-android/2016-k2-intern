@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.HomeActivity">
 
-    <android.support.v4.view.PagerTabStrip
+    <TextView
+        android:id="@+id/home_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top" />
-</android.support.v4.view.ViewPager>
+        android:background="@color/colorPrimary"
+        android:text="@string/home_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_home_text_sỉze" />
+
+    <ImageButton
+        android:id="@+id/imgBtnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_clear_white_24dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/home_title"
+        tools:context="vn.asiantech.training.HomeActivity">
+
+        <android.support.v4.view.PagerTabStrip
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" />
+    </android.support.v4.view.ViewPager>
+</RelativeLayout>

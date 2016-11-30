@@ -89,6 +89,9 @@ public class LoginFragment extends Fragment {
         String pass = pre.getString("password", "");
         if (user.equals(mEdName.getText().toString()) && pass.equals(mEdPass.getText().toString())) {
             Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor edit = pre.edit();
+            edit.putString("check", "true");
+            edit.apply();
             mListener.onCallFormLogin();
         } else {
             Toast.makeText(getActivity(), "Login Fail", Toast.LENGTH_SHORT).show();
