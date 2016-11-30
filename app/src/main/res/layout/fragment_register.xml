@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="vn.asiantech.training.RegisterFragment">
+
+    <TextView
+        android:id="@+id/register_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/register_title_txt"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+    <EditText
+        android:id="@+id/tv_username_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_title"
+        android:hint="@string/name_text"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/tv_password_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_username_rg"
+        android:hint="@string/password_text"
+        android:inputType="textPassword"
+        android:maxLength="16" />
+
+    <EditText
+        android:id="@+id/tv_confim_password_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_password_rg"
+        android:hint="@string/confim_password_text"
+        android:inputType="textPassword"
+        android:maxLength="16" />
+
+    <EditText
+        android:id="@+id/tv_email_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_confim_password_rg"
+        android:hint="@string/email_text"
+        android:inputType="textEmailAddress"
+        android:maxLength="16" />
+
+    <Button
+        android:id="@+id/btn_register_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_email_rg"
+        android:text="@string/btn_register_text" />
+</RelativeLayout>
