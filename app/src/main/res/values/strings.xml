@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="activity_main_btnLogin_name">Login</string>
+    <string name="activity_main_btnRegister_name">Register</string>
+    <string name="activity_register_tvUsername_name">Username</string>
+    <string name="activity_register_tvEmail_name">Email</string>
+    <string name="activity_register_tvPassword_name">Password</string>
+    <string name="activity_register_tvConfirmPW_name">Confirm Password</string>
+    <string name="activity_register_btnSignUp">Register</string>
+    <string name="activity_login_btnLogin_name">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_add_edt_name">Name</string>
+    <string name="dialog_add_edt_phoneNumber">Phone</string>
+    <string name="menu_icon_title">Log Out</string>
 </resources>
