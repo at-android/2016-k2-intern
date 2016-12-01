@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class PageAdapter extends FragmentStatePagerAdapter {
     private final int PAGE_COUNT = 3;
-    private String mTabTitles[] = new String[]{"INTRO", "STATS", "EVO"};
+    private String mTabTitles[] = new String[]{"INTRO", "Contact", "App"};
     private ArrayList<People> mPeoples;
 
     public PageAdapter(FragmentManager fm, ArrayList<People> peoples) {
@@ -29,15 +29,15 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                ContactFragment pageBOFragment = ContactFragment.newInstance(mPeoples);
-                return pageBOFragment;
+                ContactFragment contactFragment = ContactFragment.newInstance(mPeoples);
+                return contactFragment;
             case 1:
-                ContactFragment pageBOFragment1 = ContactFragment.newInstance(mPeoples);
-                return pageBOFragment1;
+                OriginalContactFragment originalContactFragment = new OriginalContactFragment();
+                return originalContactFragment;
 
             case 2:
-                ContactFragment pageBOFragment2 = ContactFragment.newInstance(mPeoples);
-                return pageBOFragment2;
+                InstalledAppFragment installedAppFragment = new InstalledAppFragment();
+                return installedAppFragment;
             default:
                 return null;
         }

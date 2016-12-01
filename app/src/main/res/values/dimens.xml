@@ -11,4 +11,5 @@
     <dimen name="activity_home_pagerslide_height">28dp</dimen>
     <dimen name="dialog_add_img_height">100dp</dimen>
     <dimen name="row_people_name_fontsize">30sp</dimen>
+    <dimen name="app_name_height">50dp</dimen>
 </resources>
