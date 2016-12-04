@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.asiantech.training">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".ClockActivity"></activity>
 
+        <receiver android:name=".MyReceiver">
+            <intent-filter>
+                <action android:name="vn.asiantech.training.CUSTOM_INTENT"></action>
+            </intent-filter>
+
+        </receiver>
+
+        <service android:name=".myService"></service>
+    </application>
 </manifest>
