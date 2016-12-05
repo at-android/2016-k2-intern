@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Training</string>
     <string name="main_tv">Alarm</string>
+    <string name="monday">EVERY MONDAY</string>
+    <string name="tuesday">EVERY TUESDAY</string>
+    <string name="wednesday">EVERY WEDNESDAY</string>
+    <string name="thursday">EVERY THURSDAY</string>
+    <string name="friday">EVERY FRIDAY</string>
+    <string name="saturday">EVERY SATURDAY</string>
+    <string name="sunday">EVERY SUNDAY</string>
+    <string name="btnStart">Start</string>
 </resources>

@@ -5,4 +5,6 @@
     <dimen name="main_tvSize">25sp</dimen>
     <dimen name="main_imgWidth">50dp</dimen>
     <dimen name="main_imgHeight">50dp</dimen>
+    <dimen name="set_time_frag_edSize">25sp</dimen>
+    <dimen name="set_time_frag_btn">25sp</dimen>
 </resources>

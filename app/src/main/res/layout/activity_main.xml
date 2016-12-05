@@ -22,37 +22,13 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_alarm_add_green_700_24dp"/>
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_below="@+id/imgView"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tvHour"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:text="10"
-            />
-        <TextView
-            android:id="@+id/tvMinute"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:text="25"
-            />
-    </LinearLayout>
+
 
     <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear"
+        android:layout_below="@+id/imgView"
         android:text="start"
         android:textSize="25sp"
         />

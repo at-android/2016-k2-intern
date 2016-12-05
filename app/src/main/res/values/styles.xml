@@ -8,4 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="setTimeFragment_ed">
+        <item name="android:textSize">@dimen/set_time_frag_edSize</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="setTimeFragment_Checkbox">
+        <item name="android:textSize">@dimen/set_time_frag_edSize</item>
+    </style>
 </resources>
