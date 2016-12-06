@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DemoIntentFilter"></activity>
+        <activity android:name=".ClockActivity"></activity>
+
+        <service android:name=".MyService"></service>
     </application>
 
 </manifest>
