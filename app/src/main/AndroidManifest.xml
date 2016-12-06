@@ -17,14 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClockActivity"></activity>
-
-        <receiver android:name=".MyReceiver">
-            <intent-filter>
-                <action android:name="vn.asiantech.training.CUSTOM_INTENT"></action>
-            </intent-filter>
-
-        </receiver>
 
         <service android:name=".myService"></service>
     </application>

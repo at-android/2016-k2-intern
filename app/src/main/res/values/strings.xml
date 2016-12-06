@@ -9,4 +9,5 @@
     <string name="saturday">EVERY SATURDAY</string>
     <string name="sunday">EVERY SUNDAY</string>
     <string name="btnStart">Start</string>
+    <string name="btnDelete">Delete All Data</string>
 </resources>

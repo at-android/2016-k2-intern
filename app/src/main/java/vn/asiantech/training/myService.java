@@ -4,11 +4,12 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.RingtoneManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -17,27 +18,19 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 
 /**
  * Created by Administrator on 4/12/2016.
  */
 
 public class myService extends Service {
-    private int mSecond = 0;
-    private int mMinute = 0;
-    private int lengthOfMinutes = 0;
-    private int mCurrentHour;
-    private int mCurrentMinute;
-    private int mCurrentDayOfWeek;
-    private int mHourReceive;
-    private int mMinuteReceive;
-    private int mDayReceive;
-    private ArrayList<Day> mArr = new ArrayList<Day>();
-    private ArrayList<Integer> mArrDayOfWeek = new ArrayList<Integer>();
-    private ArrayList<Integer> mArrLengthOfMinute = new ArrayList<Integer>();
+    public static final String ACTION = "vn.asiantech.training.CUSTOM_INTENT";
+    private DatabaseHelper db;
     private Handler mHandler;
-
+    private ArrayList<Time> ArrContentTime = new ArrayList<Time>();
+    private ArrayList<Time> ArrFromDB = new ArrayList<Time>();
+    private long mSecond;
+    private long mTimeMin;
 
     @Nullable
     @Override
@@ -48,29 +41,63 @@ public class myService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        db = new DatabaseHelper(getBaseContext());
+     //   getDataFromDB();
+        this.registerReceiver(new AlarmReceiver(), new IntentFilter(ACTION));
+        FindMinTime();
+    }
 
+    public void getDataFromDB() {
+        db.open();
+        ArrFromDB = db.getData();
+        Log.i("DB size",ArrFromDB.size()+"");
+        Log.i("schedule in 1 day", ArrFromDB.get(0).getDate() + "");
+        for (int i = 0; i < ArrFromDB.size(); i++) {
+            String s = ArrFromDB.get(i).getDate();
+            Log.i("s", s + "");
+            s.trim();
+            String s1[] = s.split(" ");
+            Log.i("s1Length=", s1.length + "");
+            for (int i1 = 0; i1 < s1.length; i1++) {
+                Time t = new Time();
+                t.setDate(s1[i1]);
+                t.setHour(ArrFromDB.get(i).getHour());
+                t.setMinute(ArrFromDB.get(i).getMinute());
+                ArrContentTime.add(t);
+            }
+        }
+        Log.i("ArrContentSize", ArrContentTime.size() + "");
+        db.close();
+    }
+
+    public void FindMinTime() {
         Calendar c = Calendar.getInstance();
-        mCurrentHour = c.get(Calendar.HOUR_OF_DAY);
-        mCurrentMinute = c.get(Calendar.MINUTE);
-        mCurrentDayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        long time = c.getTimeInMillis();
+        mTimeMin = 0;
+        for (int i = 0; i < ArrContentTime.size(); i++) {
+            c.add(Calendar.DATE, (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)));
+            Log.i("date-date", (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + "");
+            c.set(Calendar.HOUR, Integer.parseInt(ArrContentTime.get(i).getHour()));
+            c.set(Calendar.MINUTE, Integer.parseInt(ArrContentTime.get(i).getMinute()));
+            long tmp = c.getTimeInMillis() - time;
+            //them 7 ngay vao khi da reo
+            if (tmp == 0 || tmp < 0) {
+                Calendar c2 = Calendar.getInstance();
+                c2.add(Calendar.DATE, 7);
+                tmp += c2.getTimeInMillis();
+            }
+            if (mTimeMin == 0 || mTimeMin > tmp) {
+                mTimeMin = tmp;
+            }
+        }
+        Log.i("timeMin", mTimeMin + "");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Bundle b = intent.getBundleExtra("data");
-        mHourReceive = b.getInt("hour");
-        mMinuteReceive = b.getInt("minute");
-        mArr = b.getParcelableArrayList("array");
-        //doi gia tri tu string sang int
-        changeDateToValue(mArr);
-        Log.i("mArrsize",mArr.get(0).getNameOfDay()+"");
-        //them vao mang tinh thoi gian giua cac ngay
-        getDataForLengthOfMinuteArray(mArrDayOfWeek);
-        Log.i("ArrayOfWeek",mArrDayOfWeek.size()+"");
-        Log.i("currentHour", mCurrentHour + "");
-        Log.i("currentMinute", mCurrentMinute + "");
-        Log.i("ServiceMinute", mMinuteReceive + "");
-        Log.i("ServiceHour", mHourReceive + "");
+        getDataFromDB();
+        FindMinTime();
+        mSecond = 0;
         countSecond();
         return START_STICKY;
     }
@@ -80,57 +107,22 @@ public class myService extends Service {
         super.onDestroy();
     }
 
-    //doi ngay ra gia tri
-    public void changeDateToValue(ArrayList<Day> arr) {
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i).getNameOfDay().equals("Sunday")) {
-                mArrDayOfWeek.add(1);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Monday")) {
-                mArrDayOfWeek.add(2);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Tuesday")) {
-                mArrDayOfWeek.add(3);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Wednesday")) {
-                mArrDayOfWeek.add(4);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Thursday")) {
-                mArrDayOfWeek.add(5);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Friday")) {
-                mArrDayOfWeek.add(6);
-            }
-            else if (arr.get(i).getNameOfDay().equals("Saturday")) {
-                mArrDayOfWeek.add(7);
-            }
-        }
-    }
-
-    public void getDataForLengthOfMinuteArray(ArrayList<Integer> arr){
-        for(int i=0;i<arr.size();i++){
-            lengthOfMinutes = (arr.get(i)-mCurrentDayOfWeek)*24*60 + (mHourReceive - mCurrentHour) * 60 + (mMinuteReceive - mCurrentMinute);
-            mArrLengthOfMinute.add(lengthOfMinutes);
-        }
-        Collections.sort(mArrLengthOfMinute);
-    }
 
     public void countSecond() {
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mSecond++;
+                mHandler.removeCallbacksAndMessages(null);
+                mSecond += 1000;
                 Log.i("second", mSecond + "");
                 showForegroundNotification();
-                mHandler.postDelayed(this, 1000);
-                if (mSecond == 60) {
-                    mMinute++;
+                if (mSecond == mTimeMin) {
                     mSecond = 0;
-                    if (mMinute == lengthOfMinutes) {
-                        showNotification();
-                    }
+                    showNotification();
+                    FindMinTime();
                 }
+                mHandler.postDelayed(this, 1000);
             }
         }, 1000);
     }
@@ -141,7 +133,7 @@ public class myService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText("abcddddd")
+                .setContentText("You Have A Message, Sir")
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setAutoCancel(true)//co the cancel
                 .setOngoing(true);//khong the keo qua de tat
@@ -189,7 +181,7 @@ public class myService extends Service {
 
         Notification notification = new Notification.Builder(getApplicationContext())
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText("test aaaaa")
+                .setContentText("Today is an awesome day")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(false)
@@ -198,5 +190,18 @@ public class myService extends Service {
                 .build();
         startForeground(1, notification);
         //  stopForeground(true);
+    }
+
+    public class AlarmReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            Bundle bundle = intent.getBundleExtra("data");
+//            int flag = bundle.getInt("Flag");
+//            Log.i("flag", flag + "");
+//            if (flag > 0) {
+//                startService(new Intent(myService.this, myService.class));
+//            }
+        }
     }
 }

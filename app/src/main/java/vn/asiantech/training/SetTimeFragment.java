@@ -11,11 +11,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
 
 public class SetTimeFragment extends DialogFragment {
-    private Button mBtn;
+    private Button mBtnStart;
+    private Button mBtnDelete;
     private EditText mEdHour;
     private EditText mEdMinute;
     private CheckBox mCkMonday;
@@ -26,9 +25,8 @@ public class SetTimeFragment extends DialogFragment {
     private CheckBox mCkSaturday;
     private CheckBox mCkSunday;
     private SendData mCallback;
-    private int mHour;
-    private int mMinute;
-    private ArrayList<Day> mArr = new ArrayList<Day>();
+    private String s="";
+    private DatabaseHelper db;
     public SetTimeFragment() {
         // Required empty public constructor
     }
@@ -41,6 +39,7 @@ public class SetTimeFragment extends DialogFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        db = new DatabaseHelper(getContext());
         super.onCreate(savedInstanceState);
     }
 
@@ -48,7 +47,8 @@ public class SetTimeFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_set_time, container, false);
-        mBtn = (Button) view.findViewById(R.id.btnStart);
+        mBtnStart = (Button) view.findViewById(R.id.btnStart);
+        mBtnDelete = (Button) view.findViewById(R.id.btnDelete);
         mEdHour = (EditText) view.findViewById(R.id.edHour);
         mEdMinute = (EditText) view.findViewById(R.id.edMinute);
         mCkMonday = (CheckBox) view.findViewById(R.id.ckMonday);
@@ -59,48 +59,55 @@ public class SetTimeFragment extends DialogFragment {
         mCkSaturday = (CheckBox) view.findViewById(R.id.ckSaturday);
         mCkSunday = (CheckBox) view.findViewById(R.id.ckSunday);
 
-        mBtn.setOnClickListener(new View.OnClickListener() {
+        mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mHour = Integer.parseInt(mEdHour.getText().toString());
-                mMinute = Integer.parseInt(mEdMinute.getText().toString());
+                Time t = new Time();
+                t.setHour(mEdHour.getText().toString());
+                t.setMinute(mEdMinute.getText().toString());
                 if(mCkMonday.isChecked()){
-                    Day day = new Day("Monday");
-                    mArr.add(day);
+                    s+="2 ";
                 }
                 if(mCkTuesday.isChecked()){
-                    Day day = new Day("Tuesday");
-                    mArr.add(day);
+                    s+="3 ";
                 }
                 if(mCkWednesday.isChecked()){
-                    Day day = new Day("Wednesday");
-                    mArr.add(day);
+                    s+="4 ";
                 }
                 if(mCkThursday.isChecked()){
-                    Day day = new Day("Thursday");
-                    mArr.add(day);
+                    s+="5 ";
                 }
                 if(mCkFriday.isChecked()){
-                    Day day = new Day("Friday");
-                    mArr.add(day);
+                    s+="6 ";
                 }
                 if(mCkSaturday.isChecked()){
-                    Day day = new Day("Saturday");
-                    mArr.add(day);
+                    s+="7 ";
                 }
                 if(mCkSunday.isChecked()){
-                    Day day = new Day("Sunday");
-                    mArr.add(day);
+                    s+="1 ";
                 }
-                mCallback.onArticleSelected(mHour,mMinute,mArr);
+                t.setDate(s);
+                mCallback.onArticleSelected(t);
+                db.open();
+                long x = db.createData(t.getDate(),t.getHour(),t.getMinute());
+                db.close();
                 dismiss();
+            }
+        });
+        mBtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.open();
+                db.deleteData();
+                db.close();
             }
         });
         return view;
     }
 
     public interface SendData {
-        public void onArticleSelected(int hour,int minute,ArrayList<Day> arr);
+        public void onArticleSelected(Time t);
+
     }
     @Override
     public void onAttach(Context context) {

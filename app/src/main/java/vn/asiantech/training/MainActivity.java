@@ -10,14 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements SetTimeFragment.SendData,View.OnClickListener{
     private Button mBtnStart;
     private ImageView imgView;
     private int mHour;
     private int mMinute;
-    private ArrayList<Day> mArr = new ArrayList<Day>();
+    private int mFlag = -1;
     public static final String ACTION="vn.asiantech.training.CUSTOM_INTENT";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
     public void getFormWidget(){
         mBtnStart = (Button)findViewById(R.id.btnStart);
         imgView = (ImageView)findViewById(R.id.imgView);
+
     }
 
     public void broadcastIntent(Context view){
@@ -39,29 +38,32 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
         Bundle b = new Bundle();
         b.putInt("hour",mHour);
         b.putInt("minute",mMinute);
-        b.putParcelableArrayList("array",mArr);
         intent.putExtra("data",b);
         intent.setAction(ACTION);
         sendBroadcast(intent);
     }
 
     @Override
-    public void onArticleSelected(int hour, int minute, ArrayList<Day> arr) {
-        mHour = hour;
-        mMinute = minute;
-        mArr = arr;
-        broadcastIntent(getApplicationContext());
+    public void onArticleSelected(Time t) {
+        mHour = Integer.parseInt(t.getHour());
+        mMinute = Integer.parseInt(t.getMinute());
         Log.i("hourFromFrag",mHour+"");
         Log.i("minuteFromFrag",mMinute+"");
+        startService(new Intent(this,myService.class));
+        Intent i = new Intent(this,myService.AlarmReceiver.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Flag",mFlag);
+        i.putExtra("data",bundle);
+        sendBroadcast(i);
+        mFlag++;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            /*da start trong myReceiver roi*/
-//            case R.id.btnStart:
-//                startService(new Intent(getBaseContext(),myService.class));
-//                break;
+            case R.id.btnStart:
+            //    startService(new Intent(getBaseContext(),myService.class));
+                break;
             case R.id.imgView:
                 DialogFragment frag = new SetTimeFragment();
                 frag.show(getSupportFragmentManager(),"SetTimeFragment");
