@@ -10,4 +10,11 @@
     <string name="sunday">EVERY SUNDAY</string>
     <string name="btnStart">Add</string>
     <string name="btnDelete">Delete All Data</string>
+    <string name="hourHint">Hour</string>
+    <string name="minuteHint">Minute</string>
+    <string name="time_picker_btn">Close</string>
+    <string name="set_time_frag_btn">Set Time</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,4 +7,9 @@
     <dimen name="main_imgHeight">50dp</dimen>
     <dimen name="set_time_frag_edSize">25sp</dimen>
     <dimen name="set_time_frag_btn">25sp</dimen>
+    <dimen name="set_time_EdWidth">1dp</dimen>
+    <dimen name="custom_item_tvSize">30sp</dimen>
+    <dimen name="time_picker_frag_btnSize">25sp</dimen>
+    <dimen name="time_picker_frag_btnMarginTop">30dp</dimen>
+    <dimen name="set_time_frag_btnSize">25sp</dimen>
 </resources>

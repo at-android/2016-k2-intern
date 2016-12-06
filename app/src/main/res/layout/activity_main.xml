@@ -22,7 +22,11 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_alarm_add_green_700_24dp"/>
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnStart"

@@ -5,23 +5,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements SetTimeFragment.SendData,View.OnClickListener{
+    public static final String ACTION="vn.asiantech.training.CUSTOM_INTENT";
     private Button mBtnStart;
     private ImageView imgView;
     private int mHour;
     private int mMinute;
     private int mFlag = 0;
-    public static final String ACTION="vn.asiantech.training.CUSTOM_INTENT";
-    @Override
+    private ArrayList<Time> mArr = new ArrayList<Time>();
+    private RecyclerView recyclerView;
+    private MyAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFormWidget();
+        layoutManager = new LinearLayoutManager(getBaseContext());
+        mAdapter = new MyAdapter(mArr);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
         mBtnStart.setOnClickListener(this);
         imgView.setOnClickListener(this);
     }
@@ -29,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
     public void getFormWidget(){
         mBtnStart = (Button)findViewById(R.id.btnStart);
         imgView = (ImageView)findViewById(R.id.imgView);
-
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
     }
 
     public void broadcastIntent(Context view){
@@ -48,13 +60,7 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
         mMinute = Integer.parseInt(t.getMinute());
         Log.i("hourFromFrag",mHour+"");
         Log.i("minuteFromFrag",mMinute+"");
-      //  startService(new Intent(this,myService.class));
-//        Intent i = new Intent(this,myService.AlarmReceiver.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("Flag",mFlag);
-//        i.putExtra("data",bundle);
-//        sendBroadcast(i);
-//        mFlag++;
+        mAdapter.addItem(mArr.size(),t);
     }
 
     @Override
@@ -79,4 +85,6 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
                 break;
         }
     }
+
+
 }

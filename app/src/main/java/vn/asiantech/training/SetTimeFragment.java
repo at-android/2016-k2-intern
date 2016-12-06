@@ -1,6 +1,7 @@
 package vn.asiantech.training;
 
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,11 +11,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
-public class SetTimeFragment extends DialogFragment {
+public class SetTimeFragment extends DialogFragment implements View.OnClickListener {
     private Button mBtnStart;
     private Button mBtnDelete;
+    private Button mBtnSetTime;
     private EditText mEdHour;
     private EditText mEdMinute;
     private CheckBox mCkMonday;
@@ -25,12 +31,14 @@ public class SetTimeFragment extends DialogFragment {
     private CheckBox mCkSaturday;
     private CheckBox mCkSunday;
     private SendData mCallback;
-    private String s="";
+    private String s = "";
     private DatabaseHelper db;
+    private Calendar cal;
+    private Date hourFinish;
+
     public SetTimeFragment() {
         // Required empty public constructor
     }
-
 
     public static SetTimeFragment newInstance() {
         SetTimeFragment fragment = new SetTimeFragment();
@@ -49,6 +57,7 @@ public class SetTimeFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_set_time, container, false);
         mBtnStart = (Button) view.findViewById(R.id.btnStart);
         mBtnDelete = (Button) view.findViewById(R.id.btnDelete);
+        mBtnSetTime = (Button) view.findViewById(R.id.btnSetTime);
         mEdHour = (EditText) view.findViewById(R.id.edHour);
         mEdMinute = (EditText) view.findViewById(R.id.edMinute);
         mCkMonday = (CheckBox) view.findViewById(R.id.ckMonday);
@@ -59,57 +68,81 @@ public class SetTimeFragment extends DialogFragment {
         mCkSaturday = (CheckBox) view.findViewById(R.id.ckSaturday);
         mCkSunday = (CheckBox) view.findViewById(R.id.ckSunday);
 
-        mBtnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                s="";
+        mBtnStart.setOnClickListener(this);
+        mBtnDelete.setOnClickListener(this);
+        mBtnSetTime.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnStart:
+                s = "";
                 Time t = new Time();
                 t.setHour(mEdHour.getText().toString());
                 t.setMinute(mEdMinute.getText().toString());
-                if(mCkMonday.isChecked()){
-                    s+="2 ";
+                if (mCkMonday.isChecked()) {
+                    s += "2 ";
                 }
-                if(mCkTuesday.isChecked()){
-                    s+="3 ";
+                if (mCkTuesday.isChecked()) {
+                    s += "3 ";
                 }
-                if(mCkWednesday.isChecked()){
-                    s+="4 ";
+                if (mCkWednesday.isChecked()) {
+                    s += "4 ";
                 }
-                if(mCkThursday.isChecked()){
-                    s+="5 ";
+                if (mCkThursday.isChecked()) {
+                    s += "5 ";
                 }
-                if(mCkFriday.isChecked()){
-                    s+="6 ";
+                if (mCkFriday.isChecked()) {
+                    s += "6 ";
                 }
-                if(mCkSaturday.isChecked()){
-                    s+="7 ";
+                if (mCkSaturday.isChecked()) {
+                    s += "7 ";
                 }
-                if(mCkSunday.isChecked()){
-                    s+="1 ";
+                if (mCkSunday.isChecked()) {
+                    s += "1 ";
                 }
                 t.setDate(s);
                 mCallback.onArticleSelected(t);
                 db.open();
-                long x = db.createData(t.getDate(),t.getHour(),t.getMinute());
+                long x = db.createData(t.getDate(), t.getHour(), t.getMinute());
                 db.close();
                 dismiss();
-            }
-        });
-        mBtnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.btnSetTime:
+                showTimePickerDialog();
+                break;
+            case R.id.btnDelete:
                 db.open();
                 db.deleteData();
                 db.close();
+                break;
+        }
+    }
+
+
+    public void showTimePickerDialog() {
+        TimePickerDialog.OnTimeSetListener callback = new TimePickerDialog.OnTimeSetListener() {
+            public void onTimeSet(TimePicker view,
+                                  int hourOfDay, int minute) {
+                mEdHour.setText(hourOfDay + "");
+                mEdMinute.setText(minute + "");
             }
-        });
-        return view;
+        };
+
+        TimePickerDialog time = new TimePickerDialog(
+                getActivity(),
+                callback, 7, 7, true);
+        time.setTitle("Chọn giờ hoàn thành");
+        time.show();
     }
 
     public interface SendData {
         public void onArticleSelected(Time t);
 
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

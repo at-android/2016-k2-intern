@@ -75,4 +75,8 @@ public class Time implements Parcelable {
         parcel.writeString(hour);
         parcel.writeString(minute);
     }
+
+    public String toString(){
+        return this.getHour()+":"+this.getMinute()+"---Date: "+this.getDate();
+    }
 }

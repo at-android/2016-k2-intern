@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="custom_item_color">#f2e340</color>
+    <color name="custom_item_colorBackground">#f51af9</color>
+    <color name="timePicker_btn_color">#f11325</color>
 </resources>

@@ -11,20 +11,31 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edHour"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/set_time_EdWidth"
             android:layout_height="match_parent"
+            android:hint="@string/hourHint"
             style="@style/setTimeFragment_ed"
             />
         <EditText
             android:id="@+id/edMinute"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/set_time_EdWidth"
             android:layout_height="match_parent"
+            android:hint="@string/minuteHint"
             style="@style/setTimeFragment_ed"
             />
     </LinearLayout>
+    <Button
+        android:id="@+id/btnSetTime"
+        android:layout_below="@+id/LinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/set_time_frag_btn"
+        android:textSize="@dimen/set_time_frag_btnSize"
+        />
     <CheckBox
         android:id="@+id/ckMonday"
-        android:layout_below="@+id/LinearLayout"
+        android:layout_below="@+id/btnSetTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/monday"
@@ -78,15 +89,7 @@
         android:text="@string/sunday"
         style="@style/setTimeFragment_Checkbox"
         />
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_below="@+id/ckSunday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/btnStart"
-        android:textSize="@dimen/set_time_frag_btn"
-        />
+
     <Button
         android:id="@+id/btnDelete"
         android:layout_below="@+id/btnStart"
@@ -96,4 +99,14 @@
         android:text="@string/btnDelete"
         android:textSize="@dimen/set_time_frag_btn"
         />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnStart"
+        android:textSize="@dimen/set_time_frag_btn"
+        android:layout_below="@+id/ckSunday"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
