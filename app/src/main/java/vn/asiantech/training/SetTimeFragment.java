@@ -62,6 +62,7 @@ public class SetTimeFragment extends DialogFragment {
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                s="";
                 Time t = new Time();
                 t.setHour(mEdHour.getText().toString());
                 t.setMinute(mEdMinute.getText().toString());

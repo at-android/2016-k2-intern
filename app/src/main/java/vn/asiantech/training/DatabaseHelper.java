@@ -72,8 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<Time> getData() {
         Cursor c = db.query(TABLE_TIME, null, null, null, null, null, null);
-        //getColumnIndex(COLUMN_ID); là lấy chỉ số, vị trí của cột COLUMN_ID ...
-
+        mArr = new ArrayList<Time>();
         c.moveToFirst();
         //Vòng lặp lấy dữ liệu của con trỏ
         while(!c.isAfterLast()){

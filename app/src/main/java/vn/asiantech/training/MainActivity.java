@@ -15,14 +15,13 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
     private ImageView imgView;
     private int mHour;
     private int mMinute;
-    private int mFlag = -1;
+    private int mFlag = 0;
     public static final String ACTION="vn.asiantech.training.CUSTOM_INTENT";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFormWidget();
-
         mBtnStart.setOnClickListener(this);
         imgView.setOnClickListener(this);
     }
@@ -49,20 +48,30 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
         mMinute = Integer.parseInt(t.getMinute());
         Log.i("hourFromFrag",mHour+"");
         Log.i("minuteFromFrag",mMinute+"");
-        startService(new Intent(this,myService.class));
-        Intent i = new Intent(this,myService.AlarmReceiver.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("Flag",mFlag);
-        i.putExtra("data",bundle);
-        sendBroadcast(i);
-        mFlag++;
+      //  startService(new Intent(this,myService.class));
+//        Intent i = new Intent(this,myService.AlarmReceiver.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("Flag",mFlag);
+//        i.putExtra("data",bundle);
+//        sendBroadcast(i);
+//        mFlag++;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnStart:
-            //    startService(new Intent(getBaseContext(),myService.class));
+                if(mFlag==0){
+                    startService(new Intent(getBaseContext(),myService.class));
+                    mFlag++;
+                }
+                else {
+                    Intent i = new Intent(ACTION);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("Flag",mFlag);
+                    i.putExtra("data",bundle);
+                    sendBroadcast(i);
+                }
                 break;
             case R.id.imgView:
                 DialogFragment frag = new SetTimeFragment();

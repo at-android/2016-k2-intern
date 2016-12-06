@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -31,7 +32,7 @@ public class myService extends Service {
     private ArrayList<Time> ArrFromDB = new ArrayList<Time>();
     private long mSecond;
     private long mTimeMin;
-
+    private int mFlag;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -42,19 +43,19 @@ public class myService extends Service {
     public void onCreate() {
         super.onCreate();
         db = new DatabaseHelper(getBaseContext());
-     //   getDataFromDB();
         this.registerReceiver(new AlarmReceiver(), new IntentFilter(ACTION));
-        FindMinTime();
     }
 
     public void getDataFromDB() {
         db.open();
         ArrFromDB = db.getData();
+        ArrContentTime = new ArrayList<>();
         Log.i("DB size",ArrFromDB.size()+"");
-        Log.i("schedule in 1 day", ArrFromDB.get(0).getDate() + "");
+//        Log.i("schedule in 1 day", ArrFromDB.get(0).getDate() + "");
         for (int i = 0; i < ArrFromDB.size(); i++) {
-            String s = ArrFromDB.get(i).getDate();
-            Log.i("s", s + "");
+            String s = "";
+            s = ArrFromDB.get(i).getDate();
+            Log.i("s=", s + "");
             s.trim();
             String s1[] = s.split(" ");
             Log.i("s1Length=", s1.length + "");
@@ -77,9 +78,10 @@ public class myService extends Service {
         for (int i = 0; i < ArrContentTime.size(); i++) {
             c.add(Calendar.DATE, (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)));
             Log.i("date-date", (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + "");
-            c.set(Calendar.HOUR, Integer.parseInt(ArrContentTime.get(i).getHour()));
+            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ArrContentTime.get(i).getHour()));
             c.set(Calendar.MINUTE, Integer.parseInt(ArrContentTime.get(i).getMinute()));
-            long tmp = c.getTimeInMillis() - time;
+
+            long tmp = c.getTimeInMillis() - time - Calendar.getInstance().get(Calendar.SECOND);
             //them 7 ngay vao khi da reo
             if (tmp == 0 || tmp < 0) {
                 Calendar c2 = Calendar.getInstance();
@@ -95,8 +97,8 @@ public class myService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        getDataFromDB();
-        FindMinTime();
+//        getDataFromDB();
+//        FindMinTime();
         mSecond = 0;
         countSecond();
         return START_STICKY;
@@ -109,6 +111,8 @@ public class myService extends Service {
 
 
     public void countSecond() {
+        getDataFromDB();
+        FindMinTime();
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -196,12 +200,14 @@ public class myService extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-//            Bundle bundle = intent.getBundleExtra("data");
-//            int flag = bundle.getInt("Flag");
-//            Log.i("flag", flag + "");
-//            if (flag > 0) {
-//                startService(new Intent(myService.this, myService.class));
-//            }
+            if(intent.getAction().equals(ACTION)){
+                Bundle bundle = intent.getBundleExtra("data");
+                mFlag = bundle.getInt("Flag");
+                if(mFlag>0){
+                    mSecond=0;
+                    countSecond();
+                }
+            }
         }
     }
 }

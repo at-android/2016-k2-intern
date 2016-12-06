@@ -8,6 +8,6 @@
     <string name="friday">EVERY FRIDAY</string>
     <string name="saturday">EVERY SATURDAY</string>
     <string name="sunday">EVERY SUNDAY</string>
-    <string name="btnStart">Start</string>
+    <string name="btnStart">Add</string>
     <string name="btnDelete">Delete All Data</string>
 </resources>
