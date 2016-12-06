@@ -3,12 +3,14 @@ package vn.asiantech.training;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -17,9 +19,10 @@ import java.util.Calendar;
 public class AlarmClockService extends Service {
     ArrayList<AlarmObj> a = new ArrayList<>();
     ArrayList<Integer> mangInt = new ArrayList<>();
+    boolean first = false;
+    BroadcastReceiver broadcastReceiver;
     private Calendar c;
     private Runnable mRun;
-
     public AlarmClockService() {
     }
 
@@ -31,20 +34,17 @@ public class AlarmClockService extends Service {
 
     @Override
     public void onCreate() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.alarm.CUSTOM_INTENT");
+        broadcastReceiver = new MyReceive();
+        registerReceiver(broadcastReceiver, intentFilter);
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
-        final Handler mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                showForegroundNotification();
-                Log.d("nowCount", "Bao thuc");
-                super.handleMessage(msg);
-            }
-        };
+        final Handler mHandler = new Handler();
         mRun = new Runnable() {
             @Override
             public void run() {
@@ -56,24 +56,35 @@ public class AlarmClockService extends Service {
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int nowtime = hour * 60 + minute;
                 for (int i = 0; i < a.size(); i++) {
+                    if (day == a.get(i).getDayofweek() || a.get(i).getDayofweek() == 0) {
                     int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
                     if (check - nowtime > 0) {
                         mangInt.add(check - nowtime);
                     }
-                }
-                int mn = mangInt.get(0);
-                for (int i = 0; i < mangInt.size(); i++) {
-
-                    if (mangInt.get(i) < mn) {
-                        mn = mangInt.get(i);
                     }
                 }
-                Log.d("nowtime", hour + ":" + minute + ":" + second + " " + day + "Time delay " + mn);
+                int mn;
+                if (mangInt.size() == 0) {
+                    mn = 1440 - nowtime;
+                    Log.d("a", mn + "");
+                } else {
+                    mn = mangInt.get(0);
+                    for (int i = 0; i < mangInt.size(); i++) {
+                        if (mangInt.get(i) < mn) {
+                            mn = mangInt.get(i);
+                        }
+                    }
+                }
                 mn = mn * 60000 - (second * 1000);
-                Message a = new Message();
-                a.arg1 = 1;
-                mHandler.sendMessageDelayed(a, mn);
-                // mHandler.removeCallbacks(mRun);
+                mHandler.postDelayed(mRun, mn);
+                if (first == false) {
+                    first = true;
+                } else {
+                    showForegroundNotification();
+                    if (mangInt.size() == 0) {
+                        first = false;
+                    }
+                }
             }
         };
         mRun.run();
@@ -82,6 +93,7 @@ public class AlarmClockService extends Service {
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(broadcastReceiver);
         stopForeground(true);
         super.onDestroy();
     }
@@ -107,11 +119,19 @@ public class AlarmClockService extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setWhen(System.currentTimeMillis())
                 .setSound(sound)
-                .setAutoCancel(true)
-                .setOngoing(false)
+                .setAutoCancel(false)
+                .setOngoing(true)
                 .setContentIntent(contentIntent)
                 .build();
         startForeground(1, notification);
         //  stopForeground(true);
+    }
+
+    public class MyReceive extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            a.clear();
+            a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
+        }
     }
 }

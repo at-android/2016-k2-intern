@@ -4,11 +4,43 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context="vn.asiantech.training.MainActivity">
 
-    <Button
-        android:id="@+id/btnStop"
+    <TextView
+        android:id="@+id/title_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop" />
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/title_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_app"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/all"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_title_size" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvListAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_below="@id/title_all"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin" />
+
+    <ImageButton
+        android:id="@+id/imgBtnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rvListAlarm"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_add_alert_white_24dp" />
 </RelativeLayout>
