@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -23,6 +25,9 @@ public class AlarmClockService extends Service {
     BroadcastReceiver broadcastReceiver;
     private Calendar c;
     private Runnable mRun;
+    private DatabaseHandler db;
+    private SQLiteDatabase sqlData;
+    private Context context;
     public AlarmClockService() {
     }
 
@@ -38,12 +43,28 @@ public class AlarmClockService extends Service {
         intentFilter.addAction("com.alarm.CUSTOM_INTENT");
         broadcastReceiver = new MyReceive();
         registerReceiver(broadcastReceiver, intentFilter);
+        context = getApplicationContext();
+        db = new DatabaseHandler(context);
+        sqlData = db.getReadableDatabase();
+        String query = "select * from AlarmManager";
+        Cursor cursor = sqlData.rawQuery(query, null);
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            String title = cursor.getString(1);
+            int hour = cursor.getInt(2);
+            int minute = cursor.getInt(3);
+            int dayofweek = cursor.getInt(4);
+            a.add(new AlarmObj(title, hour, minute, dayofweek));
+        }
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-        a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
+/*     try {
+         a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
+     }catch (Exception e){
+
+     }*/
         final Handler mHandler = new Handler();
         mRun = new Runnable() {
             @Override
