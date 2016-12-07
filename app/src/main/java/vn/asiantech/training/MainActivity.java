@@ -23,11 +23,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecycleViewCustom.onSetDetete {
-    public ArrayList<AlarmObj> a = new ArrayList<>();
-    RecyclerView recyclerView;
-    int selection;
-    RecycleViewCustom adapter;
-    String mDayArr[] = {
+    public ArrayList<AlarmObj> sAlarmArray = new ArrayList<>();
+    private RecyclerView mRvListAlarm;
+    private int selection;
+    private RecycleViewCustom mAdapter;
+    private String mDayArr[] = {
             "All",
             "Sunday",
             "MonDay",
@@ -57,18 +57,18 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
             int hour = cursor.getInt(2);
             int minute = cursor.getInt(3);
             int dayofweek = cursor.getInt(4);
-            a.add(new AlarmObj(title, hour, minute, dayofweek));
+            sAlarmArray.add(new AlarmObj(title, hour, minute, dayofweek));
         }
         newService = new Intent(this, AlarmClockService.class);
-        newService.putExtra("a", a);
+        newService.putExtra("a", sAlarmArray);
         stopService(newService);
         startService(newService);
         LinearLayoutManager llm = new LinearLayoutManager(MainActivity.this);
-        recyclerView = (RecyclerView) findViewById(R.id.rvListAlarm);
-        recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(llm);
-        adapter = new RecycleViewCustom(MainActivity.this, a);
-        recyclerView.setAdapter(adapter);
+        mRvListAlarm = (RecyclerView) findViewById(R.id.rvListAlarm);
+        mRvListAlarm.setHasFixedSize(false);
+        mRvListAlarm.setLayoutManager(llm);
+        mAdapter = new RecycleViewCustom(MainActivity.this, sAlarmArray);
+        mRvListAlarm.setAdapter(mAdapter);
         ImageButton imgBtnAdd = (ImageButton) findViewById(R.id.imgBtnAdd);
         imgBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
         final EditText edMinute = (EditText) addNewContact.findViewById(R.id.etMinute);
         Button btnSave = (Button) addNewContact.findViewById(R.id.btn_save);
         Spinner spinner = (Spinner) addNewContact.findViewById(R.id.spDay);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>
+        final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>
                 (
                         this,
                         android.R.layout.simple_spinner_item,
                         mDayArr
                 );
-        adapter.setDropDownViewResource
+        mAdapter.setDropDownViewResource
                 (android.R.layout.simple_list_item_single_choice);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(mAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
                 if (hours > 24 || minutes > 60) {
                     Toast.makeText(context, "Thời gian hông hợp lệ", Toast.LENGTH_SHORT).show();
                 } else {
-                    a.add(new AlarmObj(edTitle.getText().toString(), Integer.parseInt(edHour.getText().toString()), Integer.parseInt(edMinute.getText().toString()), selection));
+                    sAlarmArray.add(new AlarmObj(edTitle.getText().toString(), Integer.parseInt(edHour.getText().toString()), Integer.parseInt(edMinute.getText().toString()), selection));
                     sqlData = db.getWritableDatabase();
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("title", edTitle.getText().toString());
@@ -128,11 +128,11 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
                     sqlData.close();
                     Intent intent = new Intent();
                     intent.setAction("com.alarm.CUSTOM_INTENT");
-                    intent.putExtra("a", a);
+                    intent.putExtra("a", sAlarmArray);
                     sendBroadcast(intent);
                     stopService(newService);
                     startService(newService);
-                    adapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
                     addNewContact.dismiss();
                 }
             }
@@ -145,13 +145,13 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
         sqlData = db.getWritableDatabase();
         sqlData.delete("AlarmManager", "id =" + (position + 1), null);
         sqlData.close();
-        a.remove(position);
+        sAlarmArray.remove(position);
         Intent intent = new Intent();
         intent.setAction("com.alarm.CUSTOM_INTENT");
-        intent.putExtra("a", a);
+        intent.putExtra("a", sAlarmArray);
         sendBroadcast(intent);
         stopService(newService);
         startService(newService);
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 }
