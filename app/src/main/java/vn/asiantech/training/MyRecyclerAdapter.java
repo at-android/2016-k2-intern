@@ -34,7 +34,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tvDayofWeek.setText(mTime.get(position).getDayofweek());
         holder.tvTime.setText(mTime.get(position).getHour() + ":" + mTime.get(position).getMinute());
-        holder.checkBox.setChecked(true);
+        if (mTime.get(position).getFlag() == 1) {
+            holder.checkBox.setChecked(true);
+        } else {
+            holder.checkBox.setChecked(false);
+        }
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

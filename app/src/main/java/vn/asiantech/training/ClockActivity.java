@@ -6,26 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.TimePicker;
 
 import java.util.ArrayList;
 
 public class ClockActivity extends AppCompatActivity implements MyAdapter.InteractionListener {
     public static final String KEY_TIME = "time";
     public static int RESULT_CODE;
-    private EditText mEdtHour;
-    private EditText mEdtMinute;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<Day> mDays;
     private Time mTime;
+    private TimePicker mTimePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock);
-        mEdtHour = (EditText) findViewById(R.id.edtHour);
-        mEdtMinute = (EditText) findViewById(R.id.edtMinute);
+        mTimePicker = (TimePicker) findViewById(R.id.timePicker);
+
         mDays = new ArrayList<>();
         Bundle bundle = getIntent().getBundleExtra(MainActivity.KEY_BUNDLE);
         String[] stringArray = getResources().getStringArray(R.array.day);
@@ -36,8 +35,6 @@ public class ClockActivity extends AppCompatActivity implements MyAdapter.Intera
             RESULT_CODE = 2;
             int id = bundle.getInt(MainActivity.KEY_ID);
             mTime = getTimefromDb(id);
-            mEdtHour.setText(mTime.getHour() + "");
-            mEdtMinute.setText(mTime.getMinute() + "");
             String[] dayofweek = mTime.getDayofweek().split(" ");
             for (int i = 0; i < dayofweek.length; i++) {
                 mDays.get(getDayofWeek(dayofweek[i])).setCheck(true);
@@ -49,6 +46,7 @@ public class ClockActivity extends AppCompatActivity implements MyAdapter.Intera
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new MyAdapter(mDays, this);
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
     public Time getTimefromDb(int id) {
@@ -95,7 +93,7 @@ public class ClockActivity extends AppCompatActivity implements MyAdapter.Intera
                 s += mDays.get(i).getDayOfweek() + " ";
             }
         }
-        Time time = new Time(Integer.parseInt(mEdtHour.getText().toString()), Integer.parseInt(mEdtMinute.getText().toString()), s, MainActivity.isRunning);
+        Time time = new Time(mTimePicker.getCurrentHour(), mTimePicker.getCurrentMinute(), s, MainActivity.isRunning);
         return time;
     }
 

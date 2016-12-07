@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -35,6 +36,7 @@ public class MyService extends Service {
     private int mAlertSecond;
     private Handler mHandler;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -58,8 +60,13 @@ public class MyService extends Service {
         for (int i = 0; i < mTimes.size(); i++) {
             if (mTimes.get(i).getFlag() == 1) {
                 times.add(mTimes.get(i));
-                Log.i("times", times.size() + " " + mTimes.get(i).getFlag());
+
             }
+        }
+        if (times.size() == 0) {
+            stopSelf();
+            MainActivity.FLAG = 0;
+            return START_NOT_STICKY;
         }
         mSecond = 0;
         mAlertSecond = min(times);
@@ -84,6 +91,11 @@ public class MyService extends Service {
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
 
         return START_STICKY;
+    }
+
+    @Override
+    public void unregisterReceiver(BroadcastReceiver receiver) {
+        super.unregisterReceiver(receiver);
     }
 
     public int convertToS(int hour, int minute) {
@@ -112,10 +124,10 @@ public class MyService extends Service {
                     || ((getDayofWeek(mDistances.get(i).getDayofweek()) == dayofweek)
                     && (convertToS(mDistances.get(i).getHour(), mDistances.get(i).getMinute()) - convertToS(hour, minute) > 0))) {
                 arr[i] = convertToS(mDistances.get(i).getHour(), mDistances.get(i).getMinute()) - convertToS(hour, minute) +
-                        convertToS((getDayofWeek(mDistances.get(i).getDayofweek()) - dayofweek) * 24, 0);
+                        convertToS((getDayofWeek(mDistances.get(i).getDayofweek()) - dayofweek) * 24, 0) - mCalendar.get(Calendar.SECOND);
             } else {
                 arr[i] = convertToS(mDistances.get(i).getHour(), mDistances.get(i).getMinute()) - convertToS(hour, minute) +
-                        convertToS((-dayofweek + getDayofWeek(mDistances.get(i).getDayofweek()) + 7) * 24, 0);
+                        convertToS((-dayofweek + getDayofWeek(mDistances.get(i).getDayofweek()) + 7) * 24, 0) - mCalendar.get(Calendar.SECOND);
             }
             Log.i("arr", arr[i] + "");
         }

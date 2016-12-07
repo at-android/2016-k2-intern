@@ -99,9 +99,14 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
 
     @Override
     public void onFragmentInteraction(int position, int flag) {
-        DBHelper dbHelper = new DBHelper(getApplicationContext());
-        dbHelper.updateFlag(position, flag);
-        sendBroadcast(mIntent);
+        if (FLAG == 0) {
+            startService(new Intent(getBaseContext(), MyService.class));
+            FLAG++;
+        } else {
+            DBHelper dbHelper = new DBHelper(getApplicationContext());
+            dbHelper.updateFlag(position, flag);
+            sendBroadcast(mIntent);
+        }
     }
 
     @Override
@@ -112,6 +117,5 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         bundle.putInt(KEY_ID, position);
         intent.putExtra(KEY_BUNDLE, bundle);
         startActivityForResult(intent, RESULT_CODE);
-
     }
 }
