@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Database;
 
 import android.content.ContentValues;
 import android.content.Context;

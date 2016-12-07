@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="vn.asiantech.training.MainActivity">
+    tools:context="vn.asiantech.training.Activities.MainActivity">
 
     <TextView
         android:id="@+id/title_app"

@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -18,15 +18,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecycleViewCustom.onSetDetete {
+import vn.asiantech.training.Adapter.AlarmAdapter;
+import vn.asiantech.training.Database.DatabaseHandler;
+import vn.asiantech.training.Object.AlarmObj;
+import vn.asiantech.training.R;
+import vn.asiantech.training.Service.AlarmClockService;
+
+public class MainActivity extends AppCompatActivity implements AlarmAdapter.onSetDetete {
     public ArrayList<AlarmObj> sAlarmArray = new ArrayList<>();
     private RecyclerView mRvListAlarm;
     private int selection;
-    private RecycleViewCustom mAdapter;
+    private AlarmAdapter mAdapter;
     private String mDayArr[] = {
             "All",
             "Sunday",
@@ -34,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"
-            , "Saturday"};
+            "Friday",
+            "Saturday"};
     private DatabaseHandler db;
     private SQLiteDatabase sqlData;
     private Context context;
@@ -67,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
         mRvListAlarm = (RecyclerView) findViewById(R.id.rvListAlarm);
         mRvListAlarm.setHasFixedSize(false);
         mRvListAlarm.setLayoutManager(llm);
-        mAdapter = new RecycleViewCustom(MainActivity.this, sAlarmArray);
+        mAdapter = new AlarmAdapter(MainActivity.this, sAlarmArray);
         mRvListAlarm.setAdapter(mAdapter);
         ImageButton imgBtnAdd = (ImageButton) findViewById(R.id.imgBtnAdd);
         imgBtnAdd.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +87,12 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
     }
 
     public void Insert() {
-        final Dialog addNewContact = new Dialog(context);
+        final Dialog addNewContact = new Dialog(MainActivity.this);
         addNewContact.setContentView(R.layout.dialog_add_new_alarm);
         addNewContact.setTitle("Add new alarm");
         selection = 0;
         final EditText edTitle = (EditText) addNewContact.findViewById(R.id.etTitle);
-        final EditText edHour = (EditText) addNewContact.findViewById(R.id.etHour);
-        final EditText edMinute = (EditText) addNewContact.findViewById(R.id.etMinute);
+        final TimePicker tpTime = (TimePicker) addNewContact.findViewById(R.id.tp_time);
         Button btnSave = (Button) addNewContact.findViewById(R.id.btn_save);
         Spinner spinner = (Spinner) addNewContact.findViewById(R.id.spDay);
         final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>
@@ -112,17 +118,14 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int hours = Integer.parseInt(edHour.getText().toString());
-                int minutes = Integer.parseInt(edMinute.getText().toString());
-                if (hours > 24 || minutes > 60) {
-                    Toast.makeText(context, "Thời gian hông hợp lệ", Toast.LENGTH_SHORT).show();
-                } else {
-                    sAlarmArray.add(new AlarmObj(edTitle.getText().toString(), Integer.parseInt(edHour.getText().toString()), Integer.parseInt(edMinute.getText().toString()), selection));
+                int hours = tpTime.getCurrentHour();
+                int minutes = tpTime.getCurrentMinute();
+                sAlarmArray.add(new AlarmObj(edTitle.getText().toString(), hours, minutes, selection));
                     sqlData = db.getWritableDatabase();
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("title", edTitle.getText().toString());
-                    contentValues.put("hour", Integer.parseInt(edHour.getText().toString()));
-                    contentValues.put("minute", Integer.parseInt(edMinute.getText().toString()));
+                contentValues.put("hour", hours);
+                contentValues.put("minute", minutes);
                     contentValues.put("dayofweek", selection);
                     sqlData.insert("AlarmManager", null, contentValues);
                     sqlData.close();
@@ -132,14 +135,18 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
                     sendBroadcast(intent);
                     stopService(newService);
                     startService(newService);
-                    mAdapter.notifyDataSetChanged();
-                    addNewContact.dismiss();
-                }
+                resetAdapter();
+                addNewContact.dismiss();
             }
         });
         addNewContact.show();
     }
 
+    public void resetAdapter() {
+        mAdapter = new AlarmAdapter(MainActivity.this, sAlarmArray);
+        mRvListAlarm.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+    }
     @Override
     public void deletePosition(int position) {
         sqlData = db.getWritableDatabase();
@@ -154,4 +161,10 @@ public class MainActivity extends AppCompatActivity implements RecycleViewCustom
         startService(newService);
         mAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void editPosition(int positon) {
+        Toast.makeText(this, "abc " + positon, Toast.LENGTH_SHORT).show();
+    }
+
 }

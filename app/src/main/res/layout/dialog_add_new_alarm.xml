@@ -21,23 +21,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"></Spinner>
 
-        <EditText
-            android:id="@+id/etHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/hour_txt"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/etMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/minute_txt"
-            android:inputType="number" />
     </LinearLayout>
 
+    <TimePicker
+        android:id="@+id/tp_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btn_save"
         android:layout_width="match_parent"

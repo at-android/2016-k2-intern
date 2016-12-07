@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Service;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+
+import vn.asiantech.training.R;
 
 public class NotifiService extends Service {
 

@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Service;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -18,12 +18,16 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import vn.asiantech.training.Database.DatabaseHandler;
+import vn.asiantech.training.Object.AlarmObj;
+import vn.asiantech.training.R;
+
 public class AlarmClockService extends Service {
-    ArrayList<AlarmObj> a = new ArrayList<>();
-    ArrayList<Integer> mangInt = new ArrayList<>();
     boolean first = false;
-    BroadcastReceiver broadcastReceiver;
-    private Calendar c;
+    private ArrayList<AlarmObj> a = new ArrayList<>();
+    private ArrayList<Integer> mangInt = new ArrayList<>();
+    private BroadcastReceiver broadcastReceiver;
+    private Calendar calendar;
     private Runnable mRun;
     private DatabaseHandler db;
     private SQLiteDatabase sqlData;
@@ -60,21 +64,16 @@ public class AlarmClockService extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-/*     try {
-         a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
-     }catch (Exception e){
-
-     }*/
         final Handler mHandler = new Handler();
         mRun = new Runnable() {
             @Override
             public void run() {
                 mangInt.clear();
-                c = Calendar.getInstance();
-                int day = c.get(Calendar.DAY_OF_WEEK);
-                int second = c.get(Calendar.SECOND);
-                int minute = c.get(Calendar.MINUTE);
-                int hour = c.get(Calendar.HOUR_OF_DAY);
+                calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_WEEK);
+                int second = calendar.get(Calendar.SECOND);
+                int minute = calendar.get(Calendar.MINUTE);
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int nowtime = hour * 60 + minute;
                 for (int i = 0; i < a.size(); i++) {
                     if (day == a.get(i).getDayofweek() || a.get(i).getDayofweek() == 0) {
@@ -145,7 +144,6 @@ public class AlarmClockService extends Service {
                 .setContentIntent(contentIntent)
                 .build();
         startForeground(1, notification);
-        //  stopForeground(true);
     }
 
     public class MyReceive extends BroadcastReceiver {

@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +22,11 @@
         </activity>
 
         <service
-            android:name=".AlarmClockService"
+            android:name=".Service.AlarmClockService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".NotifiService"
+            android:name=".Service.NotifiService"
             android:enabled="true"
             android:exported="true" />
 
