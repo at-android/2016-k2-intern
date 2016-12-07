@@ -10,19 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Date;
 
-
 public class SetTimeFragment extends DialogFragment implements View.OnClickListener {
     private Button mBtnStart;
     private Button mBtnDelete;
     private Button mBtnSetTime;
-    private EditText mEdHour;
-    private EditText mEdMinute;
+    private TextView mTvHour;
+    private TextView mTvMinute;
     private CheckBox mCkMonday;
     private CheckBox mCkTuesday;
     private CheckBox mCkWednesday;
@@ -31,6 +30,8 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
     private CheckBox mCkSaturday;
     private CheckBox mCkSunday;
     private SendData mCallback;
+    private int mSaveHour;
+    private int mSaveMinute;
     private String s = "";
     private DatabaseHelper db;
     private Calendar cal;
@@ -58,8 +59,8 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         mBtnStart = (Button) view.findViewById(R.id.btnStart);
         mBtnDelete = (Button) view.findViewById(R.id.btnDelete);
         mBtnSetTime = (Button) view.findViewById(R.id.btnSetTime);
-        mEdHour = (EditText) view.findViewById(R.id.edHour);
-        mEdMinute = (EditText) view.findViewById(R.id.edMinute);
+        mTvHour = (TextView) view.findViewById(R.id.tvHour);
+        mTvMinute = (TextView) view.findViewById(R.id.tvMinute);
         mCkMonday = (CheckBox) view.findViewById(R.id.ckMonday);
         mCkTuesday = (CheckBox) view.findViewById(R.id.ckTuesday);
         mCkWednesday = (CheckBox) view.findViewById(R.id.ckWednesday);
@@ -79,31 +80,40 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnStart:
                 s = "";
+                String nameOfDay = "";
                 Time t = new Time();
-                t.setHour(mEdHour.getText().toString());
-                t.setMinute(mEdMinute.getText().toString());
+                t.setHour(mSaveHour + "");
+                t.setMinute(mSaveMinute + "");
                 if (mCkMonday.isChecked()) {
                     s += "2 ";
+                    nameOfDay += "Monday ";
                 }
                 if (mCkTuesday.isChecked()) {
                     s += "3 ";
+                    nameOfDay += "Tuesday ";
                 }
                 if (mCkWednesday.isChecked()) {
                     s += "4 ";
+                    nameOfDay += "Wednesday ";
                 }
                 if (mCkThursday.isChecked()) {
                     s += "5 ";
+                    nameOfDay += "Thursday ";
                 }
                 if (mCkFriday.isChecked()) {
                     s += "6 ";
+                    nameOfDay += "Friday ";
                 }
                 if (mCkSaturday.isChecked()) {
                     s += "7 ";
+                    nameOfDay += "Saturday ";
                 }
                 if (mCkSunday.isChecked()) {
                     s += "1 ";
+                    nameOfDay += "Sunday ";
                 }
                 t.setDate(s);
+                t.setNameOfDay(nameOfDay);
                 mCallback.onArticleSelected(t);
                 db.open();
                 long x = db.createData(t.getDate(), t.getHour(), t.getMinute());
@@ -121,13 +131,14 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         }
     }
 
-
     public void showTimePickerDialog() {
         TimePickerDialog.OnTimeSetListener callback = new TimePickerDialog.OnTimeSetListener() {
             public void onTimeSet(TimePicker view,
                                   int hourOfDay, int minute) {
-                mEdHour.setText(hourOfDay + "");
-                mEdMinute.setText(minute + "");
+                mSaveHour = hourOfDay;
+                mSaveMinute = minute;
+                mTvHour.setText("HOUR: " + hourOfDay + "");
+                mTvMinute.setText("MINUTE: " + minute + "");
             }
         };
 

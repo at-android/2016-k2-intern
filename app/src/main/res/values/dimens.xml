@@ -12,4 +12,5 @@
     <dimen name="time_picker_frag_btnSize">25sp</dimen>
     <dimen name="time_picker_frag_btnMarginTop">30dp</dimen>
     <dimen name="set_time_frag_btnSize">25sp</dimen>
+    <dimen name="main_recyclerMargintop">30dp</dimen>
 </resources>

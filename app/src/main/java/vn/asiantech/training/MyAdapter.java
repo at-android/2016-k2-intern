@@ -14,9 +14,10 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<Time> mArr = new ArrayList<Time>();
 
-    public MyAdapter(ArrayList<Time> arr){
+    public MyAdapter(ArrayList<Time> arr) {
         this.mArr = arr;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -42,9 +43,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mTv;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            mTv = (TextView)itemView.findViewById(R.id.tvItem);
+            mTv = (TextView) itemView.findViewById(R.id.tvItem);
         }
     }
 }

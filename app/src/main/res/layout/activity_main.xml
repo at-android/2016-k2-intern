@@ -4,37 +4,38 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activity_main_Background"
     tools:context="vn.asiantech.training.MainActivity">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_tv"
-        android:textSize="@dimen/main_tvSize"
         android:gravity="center"
-        />
+        android:text="@string/main_tv"
+        android:textSize="@dimen/main_tvSize" />
+
     <ImageView
         android:id="@+id/imgView"
-        android:layout_below="@+id/tvTitle"
         android:layout_width="@dimen/main_imgWidth"
         android:layout_height="@dimen/main_imgHeight"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_alarm_add_green_700_24dp"/>
+        android:layout_below="@+id/tvTitle"
+        android:src="@drawable/ic_alarm_add_green_700_24dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_below="@+id/btnStart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnStart"
+        android:layout_marginTop="@dimen/main_recyclerMargintop" />
 
     <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgView"
+        android:background="@color/activity_main_btn"
         android:text="start"
-        android:textSize="25sp"
-        />
-
+        android:textSize="25sp" />
 </RelativeLayout>

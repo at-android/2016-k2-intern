@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*Các đối tượng khác*/
     static SQLiteDatabase db;
 
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*Hàm đóng kết nối với database*/
-    public void close(){
+    public void close() {
         try {
             db.close();
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long createData(String date,String hour, String minute) {
+    public long createData(String date, String hour, String minute) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_HOUR, hour);
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mArr = new ArrayList<Time>();
         c.moveToFirst();
         //Vòng lặp lấy dữ liệu của con trỏ
-        while(!c.isAfterLast()){
+        while (!c.isAfterLast()) {
             Time t = new Time();
             t.setDate(c.getString(c.getColumnIndex(COLUMN_DATE)));
             t.setHour(c.getString(c.getColumnIndex(COLUMN_HOUR)));
@@ -87,8 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mArr;
     }
 
-    public void deleteData(){
-        db.delete(TABLE_TIME,null,null);
+    public void deleteData() {
+        db.delete(TABLE_TIME, null, null);
     }
 
 }

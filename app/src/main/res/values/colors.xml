@@ -5,5 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="custom_item_color">#f2e340</color>
     <color name="custom_item_colorBackground">#f51af9</color>
+    <color name="custom_item_viewPagerBackground">@android:color/black</color>
+    <color name="activity_main_Background">#bec238</color>
+    <color name="activity_main_btn">#68c41d</color>
     <color name="timePicker_btn_color">#f11325</color>
+    <color name="frag_setTime_color">#f2e340</color>
+    <color name="frag_setTime_tvBackground">#f51af9</color>
 </resources>

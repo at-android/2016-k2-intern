@@ -6,107 +6,108 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edHour"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvHour"
+            style="@style/setTimeFragment_ed"
             android:layout_width="@dimen/set_time_EdWidth"
             android:layout_height="match_parent"
-            android:hint="@string/hourHint"
+            android:background="@color/frag_setTime_tvBackground"
+            android:textColor="@color/frag_setTime_color" />
+
+        <TextView
+            android:id="@+id/tvMinute"
             style="@style/setTimeFragment_ed"
-            />
-        <EditText
-            android:id="@+id/edMinute"
             android:layout_width="@dimen/set_time_EdWidth"
             android:layout_height="match_parent"
-            android:hint="@string/minuteHint"
-            style="@style/setTimeFragment_ed"
-            />
+            android:background="@color/frag_setTime_tvBackground"
+            android:textColor="@color/frag_setTime_color" />
     </LinearLayout>
+
     <Button
         android:id="@+id/btnSetTime"
-        android:layout_below="@+id/LinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/LinearLayout"
         android:layout_centerHorizontal="true"
         android:text="@string/set_time_frag_btn"
-        android:textSize="@dimen/set_time_frag_btnSize"
-        />
+        android:textSize="@dimen/set_time_frag_btnSize" />
+
     <CheckBox
         android:id="@+id/ckMonday"
-        android:layout_below="@+id/btnSetTime"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/monday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/btnSetTime"
+        android:text="@string/monday" />
+
     <CheckBox
         android:id="@+id/ckTuesday"
-        android:layout_below="@+id/ckMonday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tuesday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckMonday"
+        android:text="@string/tuesday" />
+
     <CheckBox
         android:id="@+id/ckWednesday"
-        android:layout_below="@+id/ckTuesday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/wednesday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckTuesday"
+        android:text="@string/wednesday" />
+
     <CheckBox
         android:id="@+id/ckThursday"
-        android:layout_below="@+id/ckWednesday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/thursday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckWednesday"
+        android:text="@string/thursday" />
+
     <CheckBox
         android:id="@+id/ckFriday"
-        android:layout_below="@+id/ckThursday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/friday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckThursday"
+        android:text="@string/friday" />
+
     <CheckBox
         android:id="@+id/ckSaturday"
-        android:layout_below="@+id/ckFriday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/saturday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckFriday"
+        android:text="@string/saturday" />
+
     <CheckBox
         android:id="@+id/ckSunday"
-        android:layout_below="@+id/ckSaturday"
+        style="@style/setTimeFragment_Checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sunday"
-        style="@style/setTimeFragment_Checkbox"
-        />
+        android:layout_below="@+id/ckSaturday"
+        android:text="@string/sunday" />
 
     <Button
         android:id="@+id/btnDelete"
-        android:layout_below="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnStart"
         android:layout_centerHorizontal="true"
         android:text="@string/btnDelete"
-        android:textSize="@dimen/set_time_frag_btn"
-        />
+        android:textSize="@dimen/set_time_frag_btn" />
 
     <Button
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnStart"
-        android:textSize="@dimen/set_time_frag_btn"
         android:layout_below="@+id/ckSunday"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnStart"
+        android:textSize="@dimen/set_time_frag_btn" />
 
 </RelativeLayout>

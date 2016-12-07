@@ -33,6 +33,7 @@ public class myService extends Service {
     private long mSecond;
     private long mTimeMin;
     private int mFlag;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,8 +51,7 @@ public class myService extends Service {
         db.open();
         ArrFromDB = db.getData();
         ArrContentTime = new ArrayList<>();
-        Log.i("DB size",ArrFromDB.size()+"");
-//        Log.i("schedule in 1 day", ArrFromDB.get(0).getDate() + "");
+        Log.i("DB size", ArrFromDB.size() + "");
         for (int i = 0; i < ArrFromDB.size(); i++) {
             String s = "";
             s = ArrFromDB.get(i).getDate();
@@ -97,8 +97,6 @@ public class myService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//        getDataFromDB();
-//        FindMinTime();
         mSecond = 0;
         countSecond();
         return START_STICKY;
@@ -108,7 +106,6 @@ public class myService extends Service {
     public void onDestroy() {
         super.onDestroy();
     }
-
 
     public void countSecond() {
         getDataFromDB();
@@ -121,7 +118,7 @@ public class myService extends Service {
                 mSecond += 1000;
                 Log.i("second", mSecond + "");
                 showForegroundNotification();
-                if (mSecond == mTimeMin) {
+                if (mSecond > mTimeMin) {
                     mSecond = 0;
                     showNotification();
                     FindMinTime();
@@ -200,11 +197,11 @@ public class myService extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(ACTION)){
+            if (intent.getAction().equals(ACTION)) {
                 Bundle bundle = intent.getBundleExtra("data");
                 mFlag = bundle.getInt("Flag");
-                if(mFlag>0){
-                    mSecond=0;
+                if (mFlag > 0) {
+                    mSecond = 0;
                     countSecond();
                 }
             }
