@@ -32,7 +32,34 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.tvDayofWeek.setText(mTime.get(position).getDayofweek());
+        String s = "";
+        String strings[] = mTime.get(position).getDayofweek().split(" ");
+        for (int i = 0; i < strings.length; i++) {
+            switch (strings[i]) {
+                case "Monday":
+                    s += "Mon ";
+                    break;
+                case "Tuesday":
+                    s += "Tue ";
+                    break;
+                case "Wednesday":
+                    s += "Wed ";
+                    break;
+                case "Thursday":
+                    s += "Thu ";
+                    break;
+                case "Friday":
+                    s += "Fri ";
+                    break;
+                case "Satusday":
+                    s += "Sat ";
+                    break;
+                case "Sunday":
+                    s += "Sun ";
+                    break;
+            }
+        }
+        holder.tvDayofWeek.setText(s);
         holder.tvTime.setText(mTime.get(position).getHour() + ":" + mTime.get(position).getMinute());
         if (mTime.get(position).getFlag() == 1) {
             holder.checkBox.setChecked(true);

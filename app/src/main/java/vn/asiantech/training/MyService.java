@@ -4,7 +4,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -44,6 +43,7 @@ public class MyService extends Service {
         registerReceiver(new MyBroadcastReceiver(), new IntentFilter(ACTION));
     }
 
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,16 +60,18 @@ public class MyService extends Service {
         for (int i = 0; i < mTimes.size(); i++) {
             if (mTimes.get(i).getFlag() == 1) {
                 times.add(mTimes.get(i));
-
             }
         }
         if (times.size() == 0) {
             stopSelf();
             MainActivity.FLAG = 0;
-            return START_NOT_STICKY;
         }
         mSecond = 0;
-        mAlertSecond = min(times);
+        try {
+            mAlertSecond = min(times);
+        } catch (Exception e) {
+
+        }
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -87,16 +89,9 @@ public class MyService extends Service {
                 mHandler.postDelayed(this, 1000);
             }
         }, 1000);
-
-        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-
         return START_STICKY;
     }
 
-    @Override
-    public void unregisterReceiver(BroadcastReceiver receiver) {
-        super.unregisterReceiver(receiver);
-    }
 
     public int convertToS(int hour, int minute) {
         return hour * 3600 + minute * 60;
@@ -173,9 +168,6 @@ public class MyService extends Service {
         // Creates an Intent for the Activity
         Intent notifyIntent =
                 new Intent(this, MyService.class);
-
-        // Creates the PendingIntent
-        //co the getBroadcast,getService
         PendingIntent notifyPendingIntent =
                 PendingIntent.getActivity(
                         this,
