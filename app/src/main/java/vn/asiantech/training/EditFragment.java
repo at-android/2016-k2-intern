@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
 import java.util.ArrayList;
 
-public class SetTimeFragment extends DialogFragment implements View.OnClickListener {
-    private Button mBtnStart;
-    private Button mBtnDelete;
+public class EditFragment extends DialogFragment implements View.OnClickListener {
+    private Button mBtnEdit;
     private Button mBtnSetTime;
+    private Button mBtnClose;
     private TextView mTvHour;
     private TextView mTvMinute;
     private CheckBox mCkMonday;
@@ -28,34 +28,42 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
     private CheckBox mCkFriday;
     private CheckBox mCkSaturday;
     private CheckBox mCkSunday;
-    private SendData mCallback;
+    private DatabaseHelper db;
     private int mSaveHour;
     private int mSaveMinute;
     private String s = "";
-    private DatabaseHelper db;
     private ArrayList<Time> mArrTime = new ArrayList<Time>();
-    public SetTimeFragment() {
-        // Required empty public constructor
+    private int mPosition;
+    private Time mTime;
+    private SendDataFromEditFrag mCallback;
+    public EditFragment() {
     }
 
-    public static SetTimeFragment newInstance() {
-        SetTimeFragment fragment = new SetTimeFragment();
+    public static EditFragment newInstance() {
+        EditFragment fragment = new EditFragment();
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        db = new DatabaseHelper(getContext());
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            Bundle bundle = getArguments();
+            mTime = bundle.getParcelable("time");
+            mPosition = bundle.getInt("position");
+        }
+        db = new DatabaseHelper(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_set_time, container, false);
-        mBtnStart = (Button) view.findViewById(R.id.btnStart);
-        mBtnDelete = (Button) view.findViewById(R.id.btnDelete);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_edit, container, false);
+        mBtnEdit = (Button) view.findViewById(R.id.btnEdit);
         mBtnSetTime = (Button) view.findViewById(R.id.btnSetTime);
+        mBtnClose = (Button) view.findViewById(R.id.btnClose);
         mTvHour = (TextView) view.findViewById(R.id.tvHour);
         mTvMinute = (TextView) view.findViewById(R.id.tvMinute);
         mCkMonday = (CheckBox) view.findViewById(R.id.ckMonday);
@@ -66,21 +74,23 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         mCkSaturday = (CheckBox) view.findViewById(R.id.ckSaturday);
         mCkSunday = (CheckBox) view.findViewById(R.id.ckSunday);
 
-        mBtnStart.setOnClickListener(this);
-        mBtnDelete.setOnClickListener(this);
+        mTvHour.setText(mTime.getHour());
+        mTvMinute.setText(mTime.getMinute());
+
+        mBtnEdit.setOnClickListener(this);
         mBtnSetTime.setOnClickListener(this);
+        mBtnClose.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnStart:
+            case R.id.btnEdit:
                 s = "";
                 String nameOfDay = "";
-                Time t = new Time();
-                t.setHour(mSaveHour + "");
-                t.setMinute(mSaveMinute + "");
+                mTime.setHour(mSaveHour + "");
+                mTime.setMinute(mSaveMinute + "");
                 if (mCkMonday.isChecked()) {
                     s += "2 ";
                     nameOfDay += "Monday ";
@@ -109,26 +119,22 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
                     s += "1 ";
                     nameOfDay += "Sunday ";
                 }
-                t.setDate(s);
-                t.setNameOfDay(nameOfDay);
-                //lay so luong trong db de tinh ra dc ID cho time
+                mTime.setDate(s);
+                mTime.setNameOfDay(nameOfDay);
+                Log.i("mTime.getDay",mTime.getDate());
+                Log.i("mTime.getHour",mTime.getHour());
+                Log.i("mTime.getMinute",mTime.getMinute());
                 db.open();
-                mArrTime = db.getData();
+                db.updateData(mTime.getDate(),mTime.getHour(),mTime.getMinute(),mTime.getId());
                 db.close();
-                t.setId(mArrTime.size()+"");
-                mCallback.onArticleSelected(t);
-                db.open();
-                long x = db.createData(t.getDate(), t.getHour(), t.getMinute(),t.getId());
-                db.close();
+                mCallback.TimeEdited(mTime,mPosition);
                 dismiss();
                 break;
             case R.id.btnSetTime:
                 showTimePickerDialog();
                 break;
-            case R.id.btnDelete:
-                db.open();
-                db.deleteData();
-                db.close();
+            case R.id.btnClose:
+                dismiss();
                 break;
         }
     }
@@ -147,12 +153,12 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         TimePickerDialog time = new TimePickerDialog(
                 getActivity(),
                 callback, 7, 7, true);
-        time.setTitle("Set time");
+        time.setTitle("Pick Time");
         time.show();
     }
 
-    public interface SendData {
-        public void onArticleSelected(Time t);
+    public interface SendDataFromEditFrag {
+        public void TimeEdited(Time t,int position);
 
     }
 
@@ -163,7 +169,7 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mCallback = (SendData) context;
+            mCallback = (SendDataFromEditFrag) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");

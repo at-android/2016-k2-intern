@@ -12,15 +12,17 @@ public class Time implements Parcelable {
     private String hour;
     private String minute;
     private String nameOfDay;
+    private String id;
     public Time() {
 
     }
 
-    public Time(String date, String hour, String minute,String nameOfDay) {
+    public Time(String date, String hour, String minute,String nameOfDay,String id) {
         this.date = date;
         this.hour = hour;
         this.minute = minute;
         this.nameOfDay = nameOfDay;
+        this.id = id;
     }
 
     protected Time(Parcel in) {
@@ -28,6 +30,7 @@ public class Time implements Parcelable {
         hour = in.readString();
         minute = in.readString();
         nameOfDay = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<Time> CREATOR = new Creator<Time>() {
@@ -74,6 +77,14 @@ public class Time implements Parcelable {
         this.nameOfDay = nameOfDay;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -85,9 +96,10 @@ public class Time implements Parcelable {
         parcel.writeString(hour);
         parcel.writeString(minute);
         parcel.writeString(nameOfDay);
+        parcel.writeString(id);
     }
 
     public String toString(){
-        return this.getHour()+":"+this.getMinute()+"---Date: "+this.getNameOfDay();
+        return this.getHour()+":"+this.getMinute()+"---Date: "+this.getDate();
     }
 }

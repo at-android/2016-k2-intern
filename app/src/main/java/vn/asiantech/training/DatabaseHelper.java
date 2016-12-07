@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase arg0) {
         arg0.execSQL("CREATE TABLE " + TABLE_TIME + " ("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_ID + " TEXT NOT NULL, "
                 + COLUMN_DATE + " TEXT NOT NULL, "
                 + COLUMN_HOUR + " TEXT NOT NULL, "
                 + COLUMN_MINUTE + " TEXT NOT NULL);");
@@ -62,11 +62,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long createData(String date, String hour, String minute) {
+    public long createData(String date, String hour, String minute,String id) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_HOUR, hour);
         cv.put(COLUMN_MINUTE, minute);
+        cv.put(COLUMN_ID, id);
         return db.insert(TABLE_TIME, null, cv);
     }
 
@@ -90,5 +91,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteData() {
         db.delete(TABLE_TIME, null, null);
     }
+
+    public void updateData(String date,String hour,String minute,String id){
+        ContentValues cv = new ContentValues();
+        cv.put("date",date);
+        db.update(TABLE_TIME,cv,"id=?",new String[]{id});
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put("hour",hour);
+        db.update(TABLE_TIME,cv2,"id=?",new String[]{id});
+
+        ContentValues cv3 = new ContentValues();
+        cv3.put("minute",minute);
+        db.update(TABLE_TIME,cv3,"id=?",new String[]{id});
+    }
+    /* delete table */
+//    public void deleteTable(){
+//        open();
+//        String sql = "DROP TABLE " + TABLE_TIME;
+//        db.execSQL(sql);
+//        close();
+//    }
 
 }

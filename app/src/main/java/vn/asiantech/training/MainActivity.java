@@ -1,6 +1,5 @@
 package vn.asiantech.training;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -14,7 +13,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements SetTimeFragment.SendData, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements SetTimeFragment.SendData, View.OnClickListener, EditFragment.SendDataFromEditFrag {
     public static final String ACTION = "vn.asiantech.training.CUSTOM_INTENT";
     private Button mBtnStart;
     private ImageView imgView;
@@ -25,17 +24,23 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
     private RecyclerView recyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private DatabaseHelper db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFormWidget();
         layoutManager = new LinearLayoutManager(getBaseContext());
-        mAdapter = new MyAdapter(mArr);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mAdapter);
+
         mBtnStart.setOnClickListener(this);
         imgView.setOnClickListener(this);
+        db = new DatabaseHelper(getBaseContext());
+        db.open();
+        mArr = db.getData();
+        db.close();
+        mAdapter = new MyAdapter(mArr, MainActivity.this);
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void getFormWidget() {
@@ -44,23 +49,16 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
     }
 
-    public void broadcastIntent(Context view) {
-        Intent intent = new Intent();
-        Bundle b = new Bundle();
-        b.putInt("hour", mHour);
-        b.putInt("minute", mMinute);
-        intent.putExtra("data", b);
-        intent.setAction(ACTION);
-        sendBroadcast(intent);
-    }
-
     @Override
     public void onArticleSelected(Time t) {
         mHour = Integer.parseInt(t.getHour());
         mMinute = Integer.parseInt(t.getMinute());
         Log.i("hourFromFrag", mHour + "");
         Log.i("minuteFromFrag", mMinute + "");
-        mAdapter.addItem(mArr.size(), t);
+        Log.i("mArrSize", mArr.size() + "");
+        //   mAdapter.addItem(mArr.size(), t);
+        mArr.add(t);
+        mAdapter.updateList(mArr);
     }
 
     @Override
@@ -83,5 +81,14 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
                 frag.show(getSupportFragmentManager(), "SetTimeFragment");
                 break;
         }
+    }
+
+    @Override
+    public void TimeEdited(Time t, int position) {
+        mHour = Integer.parseInt(t.getHour());
+        mMinute = Integer.parseInt(t.getMinute());
+        Log.i("position", position + "");
+        mArr.set(position, t);
+        mAdapter.updateList(mArr);
     }
 }
