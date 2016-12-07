@@ -18,6 +18,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import vn.asiantech.training.Activities.MainActivity;
 import vn.asiantech.training.Database.DatabaseHandler;
 import vn.asiantech.training.Object.AlarmObj;
 import vn.asiantech.training.R;
@@ -56,7 +57,7 @@ public class AlarmClockService extends Service {
             String title = cursor.getString(1);
             int hour = cursor.getInt(2);
             int minute = cursor.getInt(3);
-            int dayofweek = cursor.getInt(4);
+            String dayofweek = cursor.getString(4);
             a.add(new AlarmObj(title, hour, minute, dayofweek));
         }
         super.onCreate();
@@ -75,12 +76,24 @@ public class AlarmClockService extends Service {
                 int minute = calendar.get(Calendar.MINUTE);
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int nowtime = hour * 60 + minute;
+
                 for (int i = 0; i < a.size(); i++) {
-                    if (day == a.get(i).getDayofweek() || a.get(i).getDayofweek() == 0) {
-                    int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
-                    if (check - nowtime > 0) {
-                        mangInt.add(check - nowtime);
+                    boolean isCheck = false;
+                    String[] days = a.get(i).getDayofweek().split(" ");
+                    for (int a = 0; a < days.length; a++) {
+                        if (days[a].equals(day + "")) {
+                            isCheck = true;
+                        }
+                        if (days[a].equals("0")) {
+                            isCheck = true;
+                        }
                     }
+
+                    if (isCheck == true) {
+                        int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
+                        if (check - nowtime > 0) {
+                            mangInt.add(check - nowtime);
+                        }
                     }
                 }
                 int mn;
@@ -125,7 +138,7 @@ public class AlarmClockService extends Service {
         }
         // Create intent that will bring our app to the front, as if it was tapped in the app
         // launcher
-        Intent showTaskIntent = new Intent(getApplicationContext(), NotifiService.class);
+        Intent showTaskIntent = new Intent(getApplicationContext(), MainActivity.class);
 
         PendingIntent contentIntent = PendingIntent.getActivity(
                 this,
@@ -140,7 +153,6 @@ public class AlarmClockService extends Service {
                 .setWhen(System.currentTimeMillis())
                 .setSound(sound)
                 .setAutoCancel(false)
-                .setOngoing(true)
                 .setContentIntent(contentIntent)
                 .build();
         startForeground(1, notification);

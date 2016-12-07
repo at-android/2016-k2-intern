@@ -10,9 +10,9 @@ public class AlarmObj implements Serializable {
     private String title;
     private int hour;
     private int minute;
-    private int dayofweek;
+    private String dayofweek;
 
-    public AlarmObj(String title, int hour, int minute, int dayofweek) {
+    public AlarmObj(String title, int hour, int minute, String dayofweek) {
         this.title = title;
         this.hour = hour;
         this.minute = minute;
@@ -46,11 +46,11 @@ public class AlarmObj implements Serializable {
         this.minute = minute;
     }
 
-    public int getDayofweek() {
+    public String getDayofweek() {
         return dayofweek;
     }
 
-    public void setDayofweek(int dayofweek) {
+    public void setDayofweek(String dayofweek) {
         this.dayofweek = dayofweek;
     }
 }

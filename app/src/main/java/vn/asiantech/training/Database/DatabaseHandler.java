@@ -19,7 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String create_alarm_manager_table = "CREATE TABLE AlarmManager (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, hour INTEGER, minute INTEGER, dayofweek INTEGER)";
+        String create_alarm_manager_table = "CREATE TABLE AlarmManager (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, hour INTEGER, minute INTEGER, dayofweek TEXT)";
         sqLiteDatabase.execSQL(create_alarm_manager_table);
 
     }

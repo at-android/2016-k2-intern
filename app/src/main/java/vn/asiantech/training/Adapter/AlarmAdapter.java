@@ -37,35 +37,8 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(AlarmAdapter.ViewHolder holder, final int position) {
-        String dayofweek = null;
         holder.title.setText(mAlarmArr.get(position).getTitle().toString());
-        switch (mAlarmArr.get(position).getDayofweek()) {
-            case 0:
-                dayofweek = "All";
-                break;
-            case 1:
-                dayofweek = "Sunday";
-                break;
-            case 2:
-                dayofweek = "Monday";
-                break;
-            case 3:
-                dayofweek = "Tuesday";
-                break;
-            case 4:
-                dayofweek = "Wednesday";
-                break;
-            case 5:
-                dayofweek = "Thursday";
-                break;
-            case 6:
-                dayofweek = "Friday";
-                break;
-            case 7:
-                dayofweek = "Saturday";
-                break;
-        }
-        holder.time.setText(dayofweek + "   " + mAlarmArr.get(position).getHour() + ":" + mAlarmArr.get(position).getMinute());
+        holder.time.setText(mAlarmArr.get(position).getDayofweek() + "   " + mAlarmArr.get(position).getHour() + ":" + mAlarmArr.get(position).getMinute());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
