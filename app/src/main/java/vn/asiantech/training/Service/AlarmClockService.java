@@ -1,5 +1,6 @@
 package vn.asiantech.training.Service;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -25,6 +26,9 @@ import vn.asiantech.training.R;
 
 public class AlarmClockService extends Service {
     boolean first = false;
+    Intent startIntent = new Intent("com.alarm.RUN_HANDLER");
+    PendingIntent startPIntent;
+    AlarmManager alarm;
     private ArrayList<AlarmObj> a = new ArrayList<>();
     private ArrayList<Integer> mangInt = new ArrayList<>();
     private BroadcastReceiver broadcastReceiver;
@@ -34,6 +38,8 @@ public class AlarmClockService extends Service {
     private SQLiteDatabase sqlData;
     private Context context;
     private MediaPlayer mediaPlayer;
+    private Handler mHandler;
+
     public AlarmClockService() {
     }
 
@@ -45,10 +51,13 @@ public class AlarmClockService extends Service {
 
     @Override
     public void onCreate() {
+        startPIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, startIntent, 0);
+        alarm = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ringtone);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.alarm.CUSTOM_INTENT");
         intentFilter.addAction("com.alarm.STOP_MUSIC");
+        intentFilter.addAction("com.alarm.RUN_HANDLER");
         broadcastReceiver = new MyReceive();
         registerReceiver(broadcastReceiver, intentFilter);
         context = getApplicationContext();
@@ -68,63 +77,61 @@ public class AlarmClockService extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-        final Handler mHandler = new Handler();
-        mRun = new Runnable() {
-            @Override
-            public void run() {
-                mangInt.clear();
-                calendar = Calendar.getInstance();
-                int day = calendar.get(Calendar.DAY_OF_WEEK);
-                int second = calendar.get(Calendar.SECOND);
-                int minute = calendar.get(Calendar.MINUTE);
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int nowtime = hour * 60 + minute;
+        runHandler();
+        return START_STICKY;
+    }
 
-                for (int i = 0; i < a.size(); i++) {
-                    boolean isCheck = false;
-                    String[] days = a.get(i).getDayofweek().split(" ");
-                    for (int a = 0; a < days.length; a++) {
-                        if (days[a].equals(day + "")) {
-                            isCheck = true;
-                        }
-                        if (days[a].equals("0")) {
-                            isCheck = true;
-                        }
-                    }
+    private void runHandler() {
+        mangInt.clear();
+        calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int second = calendar.get(Calendar.SECOND);
+        int minute = calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int nowtime = hour * 60 + minute;
 
-                    if (isCheck == true) {
-                        int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
-                        if (check - nowtime > 0) {
-                            mangInt.add(check - nowtime);
-                        }
-                    }
+        for (int i = 0; i < a.size(); i++) {
+            boolean isCheck = false;
+            String[] days = a.get(i).getDayofweek().split(" ");
+            for (int a = 0; a < days.length; a++) {
+                if (days[a].equals(day + "")) {
+                    isCheck = true;
                 }
-                int mn;
-                if (mangInt.size() == 0) {
-                    mn = 1440 - nowtime;
-                    Log.d("a", mn + "");
-                } else {
-                    mn = mangInt.get(0);
-                    for (int i = 0; i < mangInt.size(); i++) {
-                        if (mangInt.get(i) < mn) {
-                            mn = mangInt.get(i);
-                        }
-                    }
-                }
-                mn = mn * 60000 - (second * 1000);
-                mHandler.postDelayed(mRun, mn);
-                if (first == false) {
-                    first = true;
-                } else {
-                    showForegroundNotification();
-                    if (mangInt.size() == 0) {
-                        first = false;
-                    }
+                if (days[a].equals("0")) {
+                    isCheck = true;
                 }
             }
-        };
-        mRun.run();
-        return START_STICKY;
+
+            if (isCheck == true) {
+                int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
+                if (check - nowtime > 0) {
+                    mangInt.add(check - nowtime);
+                }
+            }
+        }
+        int mn;
+        if (mangInt.size() == 0) {
+            mn = 1440 - nowtime;
+        } else {
+            mn = mangInt.get(0);
+            for (int i = 0; i < mangInt.size(); i++) {
+                if (mangInt.get(i) < mn) {
+                    mn = mangInt.get(i);
+                }
+            }
+        }
+        mn = mn * 60000 - (second * 1000);
+        Log.d("a", System.currentTimeMillis() + mn + "===" + System.currentTimeMillis());
+        alarm.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + mn, startPIntent);
+        if (first == false) {
+            first = true;
+        } else {
+            showForegroundNotification();
+            if (mangInt.size() == 0) {
+                first = false;
+            }
+        }
+
     }
 
     @Override
@@ -140,8 +147,6 @@ public class AlarmClockService extends Service {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return;
         }
-        // Create intent that will bring our app to the front, as if it was tapped in the app
-        // launcher
         Intent showTaskIntent = new Intent(getApplicationContext(), DialogActivity.class);
 
         PendingIntent contentIntent = PendingIntent.getActivity(
@@ -167,12 +172,13 @@ public class AlarmClockService extends Service {
             if (action.equals("com.alarm.CUSTOM_INTENT")) {
                 a.clear();
                 a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
-                Log.d("sad", action);
             }
             if (action.equals("com.alarm.STOP_MUSIC")) {
                 mediaPlayer.release();
             }
-
+            if (action.equals("com.alarm.RUN_HANDLER")) {
+                runHandler();
+            }
         }
     }
 }
