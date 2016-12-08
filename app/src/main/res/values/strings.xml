@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Training</string>
+    <string-array name="day">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Satusday</item>
+    </string-array>
+
+    <string name="dialog_repeat_tv_title">Repeat</string>
+    <string name="dialog_repeat_btn_name">Ok</string>
+    <string name="activity_clock_btn_name">Done</string>
 </resources>
