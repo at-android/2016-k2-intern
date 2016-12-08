@@ -27,4 +27,5 @@
     <string name="dialog_time_repeat_tv_sunday">Sunday</string>
     <string name="menu_add_alarm_save">save</string>
     <string name="menu_add_alarm_title">delete</string>
+    <string name="dialog_time_repeat_btn_ok">OK</string>
 </resources>

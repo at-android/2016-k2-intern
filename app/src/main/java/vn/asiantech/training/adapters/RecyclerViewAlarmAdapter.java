@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class RecyclerViewAlarmAdapter extends RecyclerView.Adapter<RecyclerViewA
         holder.mTvTime.setText(alarm.getmHour() + " : " + alarm.getmMin());
         holder.mTvRepeat.setText(alarm.getmRepeartChar());
         holder.mTvStatus.setSelected(alarm.ismStatus());
+        holder.mTvStatus.setClickable(false);
     }
 
     @Override
@@ -53,13 +55,13 @@ public class RecyclerViewAlarmAdapter extends RecyclerView.Adapter<RecyclerViewA
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView mTvTime;
         TextView mTvRepeat;
-        ImageView mTvStatus;
+        CheckBox mTvStatus;
 
         public MyViewHolder(View view) {
             super(view);
             mTvTime = (TextView) view.findViewById(R.id.tvTimeAlarm);
             mTvRepeat = (TextView) view.findViewById(R.id.tvRepeat);
-            mTvStatus = (ImageView) view.findViewById(R.id.tvStatus);
+            mTvStatus = (CheckBox) view.findViewById(R.id.tvStatus);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,14 +69,14 @@ public class RecyclerViewAlarmAdapter extends RecyclerView.Adapter<RecyclerViewA
                     mItemListener.onItemclick(getAdapterPosition());
                 }
             });
-            mTvStatus.setOnClickListener(new View.OnClickListener() {
+            /*mTvStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mItemListener.onItemChecked(getAdapterPosition(), true);
                     mAlarms.get(getAdapterPosition()).setmStatus(!mAlarms.get(getAdapterPosition()).ismStatus());
                     notifyDataSetChanged();
                 }
-            });
+            });*/
         }
     }
 }

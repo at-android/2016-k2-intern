@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -133,41 +134,6 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
             case R.id.layoutRepeat:
                 showDialogRepeat();
                 break;
-            case R.id.cbMonday:
-                mDayRepeat += "Monday,";
-                mDayRepeatInt += "2,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbTuesday:
-                mDayRepeat += "Tuesday,";
-                mDayRepeatInt += "3,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbWednesday:
-                mDayRepeat += "Wednesday,";
-                mDayRepeatInt += "4,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbThursday:
-                mDayRepeat += "Thursday,";
-                mDayRepeatInt += "5,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbFriday:
-                mDayRepeat += "Friday,";
-                mDayRepeatInt += "6,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbSaturday:
-                mDayRepeat += "Saturday,";
-                mDayRepeatInt += "7,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
-            case R.id.cbSunday:
-                mDayRepeat += "Sunday,";
-                mDayRepeatInt += "1,";
-                mTvRepeatDay.setText(mDayRepeat);
-                break;
         }
     }
 
@@ -175,54 +141,81 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
         final Dialog dialog = new Dialog(this);
         dialog.setTitle("Repeat");
         dialog.setContentView(R.layout.dialog_time_repeat);
-        CheckBox mCbMonday = (CheckBox) dialog.findViewById(R.id.cbMonday);
-        CheckBox mCbTuesday = (CheckBox) dialog.findViewById(R.id.cbTuesday);
-        CheckBox mCbWebnesday = (CheckBox) dialog.findViewById(R.id.cbWednesday);
-        CheckBox mCbThursday = (CheckBox) dialog.findViewById(R.id.cbThursday);
-        CheckBox mCbFriday = (CheckBox) dialog.findViewById(R.id.cbFriday);
-        CheckBox mCbSaturday = (CheckBox) dialog.findViewById(R.id.cbSaturday);
-        CheckBox mCbSunday = (CheckBox) dialog.findViewById(R.id.cbSunday);
+        final CheckBox mCbMonday = (CheckBox) dialog.findViewById(R.id.cbMonday);
+        final CheckBox mCbTuesday = (CheckBox) dialog.findViewById(R.id.cbTuesday);
+        final CheckBox mCbWebnesday = (CheckBox) dialog.findViewById(R.id.cbWednesday);
+        final CheckBox mCbThursday = (CheckBox) dialog.findViewById(R.id.cbThursday);
+        final CheckBox mCbFriday = (CheckBox) dialog.findViewById(R.id.cbFriday);
+        final CheckBox mCbSaturday = (CheckBox) dialog.findViewById(R.id.cbSaturday);
+        final CheckBox mCbSunday = (CheckBox) dialog.findViewById(R.id.cbSunday);
+        Button mBtnOK = (Button) dialog.findViewById(R.id.btnOk);
 
-        if (!("").equals(mDayRepeat)) {
-            if ("Every Day".equals(mDayRepeat)) {
-                mCbMonday.setChecked(true);
-                mCbTuesday.setChecked(true);
-                mCbWebnesday.setChecked(true);
-                mCbThursday.setChecked(true);
-                mCbFriday.setChecked(true);
-                mCbSaturday.setChecked(true);
-                mCbSunday.setChecked(true);
-            } else {
-                String[] days = mDayRepeat.split("[,]");
-                for (int i = 0; i < days.length; i++) {
-                    if (days[i].equals(mCbMonday.getText().toString()))
-                        mCbMonday.setChecked(true);
-                    if (days[i].equals(mCbTuesday.getText().toString()))
-                        mCbTuesday.setChecked(true);
-                    if (days[i].equals(mCbWebnesday.getText().toString()))
-                        mCbWebnesday.setChecked(true);
-                    if (days[i].equals(mCbThursday.getText().toString()))
-                        mCbThursday.setChecked(true);
-                    if (days[i].equals(mCbFriday.getText().toString()))
-                        mCbFriday.setChecked(true);
-                    if (days[i].equals(mCbSaturday.getText().toString()))
-                        mCbSaturday.setChecked(true);
-                    if (days[i].equals(mCbSunday.getText().toString()))
-                        mCbSunday.setChecked(true);
-                }
+        if (mDayRepeat.equals("Every Day")) {
+            mCbMonday.isChecked();
+            mCbTuesday.isChecked();
+            mCbWebnesday.isChecked();
+            mCbThursday.isChecked();
+            mCbFriday.isChecked();
+            mCbSaturday.isChecked();
+            mCbSunday.isChecked();
+        } else {
+            String[] days = mDayRepeat.split("[,]");
+            for (int i = 0; i < days.length; i++) {
+                if (days[i].equals(mCbMonday.getText().toString()))
+                    mCbMonday.setChecked(true);
+                if (days[i].equals(mCbTuesday.getText().toString()))
+                    mCbTuesday.setChecked(true);
+                if (days[i].equals(mCbWebnesday.getText().toString()))
+                    mCbWebnesday.setChecked(true);
+                if (days[i].equals(mCbThursday.getText().toString()))
+                    mCbThursday.setChecked(true);
+                if (days[i].equals(mCbFriday.getText().toString()))
+                    mCbFriday.setChecked(true);
+                if (days[i].equals(mCbSaturday.getText().toString()))
+                    mCbSaturday.setChecked(true);
+                if (days[i].equals(mCbSunday.getText().toString()))
+                    mCbSunday.setChecked(true);
             }
-
-
         }
 
-        mCbMonday.setOnClickListener(this);
-        mCbTuesday.setOnClickListener(this);
-        mCbWebnesday.setOnClickListener(this);
-        mCbThursday.setOnClickListener(this);
-        mCbFriday.setOnClickListener(this);
-        mCbSaturday.setOnClickListener(this);
-        mCbSunday.setOnClickListener(this);
+        mBtnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDayRepeat = "";
+                mDayRepeatInt = "";
+                if (mCbMonday.isChecked()) {
+                    mDayRepeat += "Monday,";
+                    mDayRepeatInt += "2,";
+                }
+                if (mCbTuesday.isChecked()) {
+                    mDayRepeat += "Tuesday,";
+                    mDayRepeatInt += "3,";
+                }
+                if (mCbWebnesday.isChecked()) {
+                    mDayRepeat += "Wednesday,";
+                    mDayRepeatInt += "4,";
+                }
+                if (mCbThursday.isChecked()) {
+                    mDayRepeat += "Thursday,";
+                    mDayRepeatInt += "5,";
+                }
+                if (mCbFriday.isChecked()) {
+                    mDayRepeat += "Friday,";
+                    mDayRepeatInt += "6,";
+                }
+                if (mCbSaturday.isChecked()) {
+                    mDayRepeat += "Saturday,";
+                    mDayRepeatInt += "7,";
+                }
+                if (mCbSunday.isChecked()) {
+                    mDayRepeat += "Sunday,";
+                    mDayRepeatInt += "1,";
+                }
 
+                mTvRepeatDay.setText(mDayRepeat);
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 

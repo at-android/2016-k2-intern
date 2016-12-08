@@ -25,12 +25,12 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/item_alarm_tv_repeat_size" />
 
-    <ImageView
+    <CheckBox
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/selected_check_active"
-        android:clickable="true" />
+        android:button="@drawable/selected_check_active"
+        />
 </RelativeLayout>
