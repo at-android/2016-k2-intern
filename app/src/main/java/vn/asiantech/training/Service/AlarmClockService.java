@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -18,7 +18,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import vn.asiantech.training.Activities.MainActivity;
+import vn.asiantech.training.Activities.DialogActivity;
 import vn.asiantech.training.Database.DatabaseHandler;
 import vn.asiantech.training.Object.AlarmObj;
 import vn.asiantech.training.R;
@@ -33,6 +33,7 @@ public class AlarmClockService extends Service {
     private DatabaseHandler db;
     private SQLiteDatabase sqlData;
     private Context context;
+    private MediaPlayer mediaPlayer;
     public AlarmClockService() {
     }
 
@@ -44,8 +45,10 @@ public class AlarmClockService extends Service {
 
     @Override
     public void onCreate() {
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ringtone);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.alarm.CUSTOM_INTENT");
+        intentFilter.addAction("com.alarm.STOP_MUSIC");
         broadcastReceiver = new MyReceive();
         registerReceiver(broadcastReceiver, intentFilter);
         context = getApplicationContext();
@@ -128,6 +131,7 @@ public class AlarmClockService extends Service {
     public void onDestroy() {
         unregisterReceiver(broadcastReceiver);
         stopForeground(true);
+        mediaPlayer.release();
         super.onDestroy();
     }
 
@@ -138,31 +142,37 @@ public class AlarmClockService extends Service {
         }
         // Create intent that will bring our app to the front, as if it was tapped in the app
         // launcher
-        Intent showTaskIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent showTaskIntent = new Intent(getApplicationContext(), DialogActivity.class);
 
         PendingIntent contentIntent = PendingIntent.getActivity(
                 this,
                 1000,
                 showTaskIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        Uri sound = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.ringtone);
+        mediaPlayer.start();
         Notification notification = new Notification.Builder(getApplicationContext())
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText("BaoThuc")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setWhen(System.currentTimeMillis())
-                .setSound(sound)
-                .setAutoCancel(false)
                 .setContentIntent(contentIntent)
                 .build();
+        notification.flags |= Notification.FLAG_INSISTENT;
         startForeground(1, notification);
     }
 
     public class MyReceive extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            a.clear();
-            a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
+            String action = intent.getAction();
+            if (action.equals("com.alarm.CUSTOM_INTENT")) {
+                a.clear();
+                a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
+                Log.d("sad", action);
+            }
+            if (action.equals("com.alarm.STOP_MUSIC")) {
+                mediaPlayer.release();
+            }
+
         }
     }
 }

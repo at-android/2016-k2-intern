@@ -25,11 +25,9 @@
             android:name=".Service.AlarmClockService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name=".Service.NotifiService"
-            android:enabled="true"
-            android:exported="true" />
 
+
+        <activity android:name=".Activities.DialogActivity" />
     </application>
 
 </manifest>
