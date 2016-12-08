@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Activity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
+import vn.asiantech.training.Bean.Time;
+import vn.asiantech.training.R;
+
+public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> {
 
     public InteractionListener mListener;
     private ArrayList<Time> mTime;
     private Context mContext;
 
-    public MyRecyclerAdapter(ArrayList<Time> time, Context context) {
+    public AlarmAdapter(ArrayList<Time> time, Context context) {
         mTime = time;
         mContext = context;
     }

@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+
+import vn.asiantech.training.Bean.Time;
 
 /**
  * Created by HoangDuy on 05/12/2016.

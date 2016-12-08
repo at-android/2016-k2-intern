@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Activity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,16 +11,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import vn.asiantech.training.Bean.Day;
+import vn.asiantech.training.R;
+
 /**
  * Created by HoangDuy on 01/12/2016.
  */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class DayOfWeekAdapter extends RecyclerView.Adapter<DayOfWeekAdapter.ViewHolder> {
 
     public InteractionListener mListener;
     private ArrayList<Day> mDay;
     private Context mContext;
 
-    public MyAdapter(ArrayList<Day> day, Context context) {
+    public DayOfWeekAdapter(ArrayList<Day> day, Context context) {
         mDay = day;
         mContext = context;
     }

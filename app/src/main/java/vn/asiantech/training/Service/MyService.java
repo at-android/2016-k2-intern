@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.RingtoneManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -20,13 +19,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import vn.asiantech.training.Activity.ClockActivity;
+import vn.asiantech.training.Activity.MainActivity;
+import vn.asiantech.training.Bean.Time;
+import vn.asiantech.training.R;
+
 /**
  * Created by HoangDuy on 02/12/2016.
  */
 public class MyService extends Service {
 
     public static final String ACTION = "vn.asiantech.training";
-    private int mSecond = 60;
+    private int mSecond = 0;
     private Notification notification;
     private Intent mIntent;
     private int arr[];
@@ -53,25 +57,9 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         // Let it continue running until it is stopped.
-        DBHelper dbHelper = new DBHelper(getApplicationContext());
-        Log.i("dbhp", dbHelper.getAlarm().size() + "");
-        mTimes = dbHelper.getAlarm();
-        ArrayList<Time> times = new ArrayList<>();
-        for (int i = 0; i < mTimes.size(); i++) {
-            if (mTimes.get(i).getFlag() == 1) {
-                times.add(mTimes.get(i));
-            }
-        }
-        if (times.size() == 0) {
-            stopSelf();
-            MainActivity.FLAG = 0;
-        }
-        mSecond = 0;
-        try {
-            mAlertSecond = min(times);
-        } catch (Exception e) {
+        // DBHelper dbHelper = new DBHelper(getApplicationContext());
+        // mTimes = dbHelper.getAlarm();
 
-        }
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -90,6 +78,26 @@ public class MyService extends Service {
             }
         }, 1000);
         return START_STICKY;
+    }
+
+    public void initArrayTime(ArrayList<Time> alarms) {
+        mTimes = alarms;
+        Log.i("size", mTimes.size() + "");
+        ArrayList<Time> times = new ArrayList<>();
+        for (int i = 0; i < mTimes.size(); i++) {
+            if (mTimes.get(i).getFlag() == 1) {
+                times.add(mTimes.get(i));
+            }
+        }
+        if (times.size() == 0) {
+            MainActivity.FLAG = 0;
+        }
+        mSecond = 0;
+        try {
+            mAlertSecond = min(times);
+        } catch (Exception e) {
+
+        }
     }
 
 
@@ -113,7 +121,7 @@ public class MyService extends Service {
         arr = new int[mDistances.size()];
         Log.i("today", hour + " " + minute + " " + dayofweek);
         for (int i = 0; i < arr.length; i++) {
-            Log.i("distance", mDistances.get(i).getHour() + " " +
+            Log.i("alarm", mDistances.get(i).getHour() + " " +
                     mDistances.get(i).getMinute() + " " + getDayofWeek(mDistances.get(i).getDayofweek()));
             if ((getDayofWeek(mDistances.get(i).getDayofweek()) > dayofweek)
                     || ((getDayofWeek(mDistances.get(i).getDayofweek()) == dayofweek)
@@ -222,10 +230,8 @@ public class MyService extends Service {
         public void onReceive(Context context, Intent intent) {
 
             if (intent.getAction().equals(ACTION)) {
-                Bundle bundle = intent.getBundleExtra(MainActivity.KEY_BUNDLE);
-                Log.i("ok", "ok");
-                Intent intent1 = new Intent(context, MyService.class);
-                context.startService(intent1);
+                ArrayList<Time> times = intent.getBundleExtra(MainActivity.KEY_BUNDLE).getParcelableArrayList(ClockActivity.KEY_TIME);
+                initArrayTime(times);
             }
         }
     }

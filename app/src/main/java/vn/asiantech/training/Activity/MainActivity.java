@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,13 +11,19 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter.InteractionListener {
+import vn.asiantech.training.Bean.Time;
+import vn.asiantech.training.Model.DBHelper;
+import vn.asiantech.training.R;
+import vn.asiantech.training.Service.MyService;
+
+public class MainActivity extends AppCompatActivity implements AlarmAdapter.InteractionListener {
 
     public static final String ACTION = "vn.asiantech.training";
     public static final String KEY_BUNDLE = "bundle";
     public static final int RESULT_CODE = 1;
     public static final int RESULT_UPDATE = 2;
     public static final String KEY_ID = "id";
+    public static final String KEY_TIME = "time";
     public static int FLAG = 0;
     public static int id = 0;
     public static int isRunning = 1;
@@ -36,13 +42,18 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         mTimes = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(this);
         mTimes = dbHelper.getAlarm();
+        startService(new Intent(getBaseContext(), MyService.class));
         mLayout = new LinearLayoutManager(this);
-        mAdapter = new MyRecyclerAdapter(mTimes, this);
+        mAdapter = new AlarmAdapter(mTimes, this);
         mRecyclerView.setLayoutManager(mLayout);
         mRecyclerView.setAdapter(mAdapter);
 
     }
 
+    public ArrayList<Time> getAlarm() {
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
+        return dbHelper.getAlarm();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -50,15 +61,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
             Time time = (Time) data.getBundleExtra(KEY_BUNDLE).getSerializable(ClockActivity.KEY_TIME);
             mTimes.add(time);
             mAdapter.notifyDataSetChanged();
-            if (FLAG == 0) {
-                startService(new Intent(getBaseContext(), MyService.class));
-                FLAG++;
-            }
             insertDb(time);
             mIntent = new Intent(MainActivity.ACTION);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(ClockActivity.KEY_TIME, time);
-            mIntent.putExtra(MainActivity.KEY_BUNDLE, bundle);
+            ArrayList<Time> times = getAlarm();
+            setBundle(mTimes);
             sendBroadcast(mIntent);
         } else if (resultCode == RESULT_UPDATE) {
             Time time = (Time) data.getBundleExtra(KEY_BUNDLE).getSerializable(ClockActivity.KEY_TIME);
@@ -67,8 +73,17 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
             mTimes.get(id - 1).setDayofweek(time.getDayofweek());
             mAdapter.notifyDataSetChanged();
             updateDb(time, id, isRunning);
+            mIntent = new Intent(MainActivity.ACTION);
+            ArrayList<Time> times = getAlarm();
+            setBundle(times);
             sendBroadcast(mIntent);
         }
+    }
+
+    public void setBundle(ArrayList<Time> times) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(KEY_TIME, times);
+        mIntent.putExtra(MainActivity.KEY_BUNDLE, bundle);
     }
 
     public void insertDb(Time time) {
@@ -99,14 +114,12 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
 
     @Override
     public void onFragmentInteraction(int position, int flag) {
-        if (FLAG == 0) {
-            startService(new Intent(getBaseContext(), MyService.class));
-            FLAG++;
-        } else {
-            DBHelper dbHelper = new DBHelper(getApplicationContext());
-            dbHelper.updateFlag(position, flag);
-            sendBroadcast(mIntent);
-        }
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
+        dbHelper.updateFlag(position, flag);
+        ArrayList<Time> times = getAlarm();
+        mIntent = new Intent(MainActivity.ACTION);
+        setBundle(times);
+        sendBroadcast(mIntent);
     }
 
     @Override
