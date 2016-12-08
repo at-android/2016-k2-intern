@@ -1,6 +1,7 @@
 package vn.asiantech.training.services;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -165,6 +167,7 @@ public class AlarmServices extends Service {
         int mSecondsAlarm = 0;
         //sap xep so phut tu nho den lon
         Collections.sort(mMinsAlarmWait);
+
         if (mMinsAlarmWait.size() > 0) {
             mSecondsAlarm = mMinsAlarmWait.get(0) * 60000;
         }
@@ -180,30 +183,30 @@ public class AlarmServices extends Service {
 
     private void showForegroundNotification() {
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            return;
-        }
-        // Create intent that will bring our app to the front, as if it was tapped in the app
-        // launcher
-        Intent showTaskIntent = new Intent(getApplicationContext(), AlarmServices.class);
-
-        PendingIntent contentIntent = PendingIntent.getActivity(
-                this,
-                1000,
-                showTaskIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new Notification.Builder(getApplicationContext())
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText("Wake Up ")
-                .setSmallIcon(R.mipmap.ic_alarm)
-                .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true)
-                .setOngoing(false)
-                .setContentIntent(contentIntent)
-                .setVibrate(new long[]{1000, 1000})
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_alarm)
+                .setContentTitle(getString(R.string.app_alarm))
+                .setContentText(getString(R.string.app_content_alarm))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .build();
-        startForeground(1, notification);
+                .setAutoCancel(true)//co the cancel
+                .setOngoing(true);//khong the keo qua de tat
+        builder.setVibrate(new long[]{1000, 1000});
+
+        Intent notifyIntent =
+                new Intent(this, MainActivity.class);
+
+
+        PendingIntent notifyPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        notifyIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        notifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        builder.setContentIntent(notifyPendingIntent);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(0, builder.build());
     }
 }

@@ -53,13 +53,11 @@ public class DatabaseAlarm {
 
     public void editData(int id,String hour, String min, String days,String daysChar, String status) {
         String query = "Update " + TABLE_NAME + " SET " + COLUMN_HOUR + " = '" +hour+"' , " + COLUMN_MIN + " = '"+min+"'," + COLUMN_DAYS + "= '"+days+"',"+COLUMN_DAYS_CHAR+"='"+daysChar+"'," + COLUMN_STATUS +" = '"+status+ "' where " + COLUMN_ID + "=" + id;
-        Log.d("queryEdit",query);
         db.execSQL(query);
     }
 
     public void deleteData(int id) {
         String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " +id;
-        Log.d("queryDelete",query);
         db.execSQL(query);
     }
 
@@ -107,7 +105,6 @@ public class DatabaseAlarm {
                     + COLUMN_DAYS + " TEXT, "
                     + COLUMN_DAYS_CHAR + " TEXT, "
                     + COLUMN_STATUS + " TEXT NOT NULL);";
-            Log.d("query", query);
             arg0.execSQL(query);
 
         }

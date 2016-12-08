@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -148,8 +149,9 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
         final CheckBox mCbSaturday = (CheckBox) dialog.findViewById(R.id.cbSaturday);
         final CheckBox mCbSunday = (CheckBox) dialog.findViewById(R.id.cbSunday);
         Button mBtnOK = (Button) dialog.findViewById(R.id.btnOk);
-
-        if (mDayRepeat.equals("Every Day")) {
+        Log.d("TAG1",mAlarm.getmRepeartChar()+"   123");
+        if (mAlarm.getmRepeartChar().equals("Every Day")) {
+            Log.d("TAG11","TAG11");
             mCbMonday.isChecked();
             mCbTuesday.isChecked();
             mCbWebnesday.isChecked();
