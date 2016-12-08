@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2e340"
+    tools:context="vn.asiantech.training.EditFragment">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvHour"
+            style="@style/setTimeFragment_ed"
+            android:layout_width="@dimen/set_time_EdWidth"
+            android:layout_height="match_parent"
+            android:background="@color/frag_setTime_tvBackground"
+            android:textColor="@color/frag_setTime_color" />
+
+        <TextView
+            android:id="@+id/tvMinute"
+            style="@style/setTimeFragment_ed"
+            android:layout_width="@dimen/set_time_EdWidth"
+            android:layout_height="match_parent"
+            android:background="@color/frag_setTime_tvBackground"
+            android:textColor="@color/frag_setTime_color" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSetTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LinearLayout"
+        android:layout_centerHorizontal="true"
+        android:text="@string/set_time_frag_btn"
+        android:textSize="@dimen/set_time_frag_btnSize" />
+
+    <CheckBox
+        android:id="@+id/ckMonday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSetTime"
+        android:text="@string/monday" />
+
+    <CheckBox
+        android:id="@+id/ckTuesday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckMonday"
+        android:text="@string/tuesday" />
+
+    <CheckBox
+        android:id="@+id/ckWednesday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckTuesday"
+        android:text="@string/wednesday" />
+
+    <CheckBox
+        android:id="@+id/ckThursday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckWednesday"
+        android:text="@string/thursday" />
+
+    <CheckBox
+        android:id="@+id/ckFriday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckThursday"
+        android:text="@string/friday" />
+
+    <CheckBox
+        android:id="@+id/ckSaturday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckFriday"
+        android:text="@string/saturday" />
+
+    <CheckBox
+        android:id="@+id/ckSunday"
+        style="@style/setTimeFragment_Checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckSaturday"
+        android:text="@string/sunday" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ckSunday"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnEdit"
+        android:textSize="@dimen/set_time_frag_btn" />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnEdit"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnClose"
+        android:textSize="@dimen/set_time_frag_btn" />
+</RelativeLayout>
+

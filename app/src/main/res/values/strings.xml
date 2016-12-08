@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="main_tv">Alarm</string>
+    <string name="monday">EVERY MONDAY</string>
+    <string name="tuesday">EVERY TUESDAY</string>
+    <string name="wednesday">EVERY WEDNESDAY</string>
+    <string name="thursday">EVERY THURSDAY</string>
+    <string name="friday">EVERY FRIDAY</string>
+    <string name="saturday">EVERY SATURDAY</string>
+    <string name="sunday">EVERY SUNDAY</string>
+    <string name="btnStart">Add</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnClose">Close</string>
+    <string name="btnDelete">Delete All Data</string>
+    <string name="hourHint">Hour</string>
+    <string name="minuteHint">Minute</string>
+    <string name="time_picker_btn">Close</string>
+    <string name="set_time_frag_btn">Set Time</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
