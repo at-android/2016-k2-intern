@@ -106,7 +106,7 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
                     nameOfDay += "Saturday ";
                 }
                 if (mCkSunday.isChecked()) {
-                    s += "1 ";
+                    s += "8 ";
                     nameOfDay += "Sunday ";
                 }
                 t.setDate(s);

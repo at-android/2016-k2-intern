@@ -105,6 +105,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv3.put("minute",minute);
         db.update(TABLE_TIME,cv3,"id=?",new String[]{id});
     }
+
+    public void updateNextDay(String date,String id){
+        ContentValues cv = new ContentValues();
+        cv.put("date",date);
+        db.update(TABLE_TIME,cv,"id=?",new String[]{id});
+    }
+
+
     /* delete table */
 //    public void deleteTable(){
 //        open();

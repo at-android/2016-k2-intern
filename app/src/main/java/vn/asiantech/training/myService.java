@@ -75,23 +75,41 @@ public class myService extends Service {
         Calendar c = Calendar.getInstance();
         long time = c.getTimeInMillis();
         mTimeMin = 0;
-        for (int i = 0; i < ArrContentTime.size(); i++) {
-            c.add(Calendar.DATE, (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)));
-            Log.i("date-date", (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + "");
-            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ArrContentTime.get(i).getHour()));
-            c.set(Calendar.MINUTE, Integer.parseInt(ArrContentTime.get(i).getMinute()));
+        int day=0;
 
-            long tmp = c.getTimeInMillis() - time - Calendar.getInstance().get(Calendar.SECOND);
-            //them 7 ngay vao khi da reo
-            if (tmp == 0 || tmp < 0) {
-                Calendar c2 = Calendar.getInstance();
-                c2.add(Calendar.DATE, 7);
-                tmp += c2.getTimeInMillis();
+        while(true){
+
+            for (int i = 0; i < ArrContentTime.size(); i++) {
+                c.add(Calendar.DATE, (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)));
+                Log.i("date-date", (Integer.parseInt(ArrContentTime.get(i).getDate()) - Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + "");
+                c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ArrContentTime.get(i).getHour()));
+                c.set(Calendar.MINUTE, Integer.parseInt(ArrContentTime.get(i).getMinute()));
+                long tmp = c.getTimeInMillis() - time - Calendar.getInstance().get(Calendar.SECOND);
+                Log.i("tmp",tmp+"");
+                if(tmp<0){
+                    continue;
+                }
+                else{
+                    if (mTimeMin == 0 || mTimeMin > tmp) {
+                        mTimeMin = tmp;
+                    }
+                }
             }
-            if (mTimeMin == 0 || mTimeMin > tmp) {
-                mTimeMin = tmp;
+            if(mTimeMin!=0||day>7){
+                break;
+            }else{
+                day+=7;
+                for(int i=0;i<ArrContentTime.size();i++){
+                    int dayOfTime = Integer.parseInt(ArrContentTime.get(i).getDate());
+                    int dayNext = dayOfTime+day;
+                    ArrContentTime.get(i).setDate(dayNext+"");
+                    db.open();
+                    db.updateNextDay(ArrContentTime.get(i).getDate(),ArrContentTime.get(i).getId());
+                    db.close();
+                }
             }
         }
+
         Log.i("timeMin", mTimeMin + "");
     }
 
