@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Training</string>
+    <string name="app_name">Báo Thức</string>
+    <string name="all">Tất cả</string>
+    <string name="hour_txt">Hour</string>
+    <string name="minute_txt">Minute</string>
+    <string name="title_text">Title</string>
+    <string name="save_txt">Save</string>
+    <string name="edit">Edit</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_choose_day">Choose...</string>
 </resources>
