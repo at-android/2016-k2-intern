@@ -28,6 +28,7 @@ import vn.asiantech.training.models.Alarm;
 
 public class DeleteAlarmActivity extends AppCompatActivity implements RecyclerItemListener, View.OnClickListener {
     public static String INTENT_DELETE = "intent_delete";
+    public static int RESULT_DELETE_INTENT = 30000;
     private RecyclerView mRecyclerView;
     private RecyclerViewAlarmDeleteAdapter mRecyclerViewAlarmAdapter;
     private ArrayList<Alarm> mAlarms;
@@ -77,7 +78,7 @@ public class DeleteAlarmActivity extends AppCompatActivity implements RecyclerIt
                     Bundle bundle = new Bundle();
                     bundle.putIntegerArrayList(INTENT_DELETE, mPositions);
                     intent.putExtras(bundle);
-                    setResult(30000, intent);
+                    setResult(RESULT_DELETE_INTENT, intent);
                     finish();
                 } else
                     onBackPressed();
@@ -122,7 +123,7 @@ public class DeleteAlarmActivity extends AppCompatActivity implements RecyclerIt
                     Bundle bundle = new Bundle();
                     bundle.putIntegerArrayList(INTENT_DELETE, mPositions);
                     intent.putExtras(bundle);
-                    setResult(30000, intent);
+                    setResult(RESULT_DELETE_INTENT, intent);
                     finish();
                 } else
                     onBackPressed();
@@ -135,7 +136,7 @@ public class DeleteAlarmActivity extends AppCompatActivity implements RecyclerIt
                 this);
         alertDialogBuilder.setTitle("Are your sure delete your alarm?");
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage("Click yes to delete!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -163,7 +164,7 @@ public class DeleteAlarmActivity extends AppCompatActivity implements RecyclerIt
         Bundle bundle = new Bundle();
         bundle.putIntegerArrayList(MainActivity.BROADCAST_KEY, positions);
         intent.putExtras(bundle);
-        intent.setAction("com.phuong.DELETE_INTENT");
+        intent.setAction(getString(R.string.broadcast_phuong_delete_intent));
         sendBroadcast(intent);
     }
 }

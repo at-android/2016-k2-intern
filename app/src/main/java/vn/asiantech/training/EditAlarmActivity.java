@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,6 +28,7 @@ import vn.asiantech.training.models.Alarm;
 
 public class EditAlarmActivity extends AppCompatActivity implements View.OnClickListener {
     public static String INTENT_EDIT = "intentEdit";
+    public static int RESULT_EDIT_INTENT = 20000;
     private TextView mTvSetTime;
     private TextView mTvRepeatDay;
     private CheckBox mCbActive;
@@ -102,7 +102,7 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent();
                 intent.putExtra(INTENT_EDIT, new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, status, mDayRepeat));
                 intent.putExtra(MainActivity.INTENT_KEY_POSITION, mPosition);
-                setResult(20000, intent);
+                setResult(RESULT_EDIT_INTENT, intent);
 
                 broadcastIntent(new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, status, mDayRepeat));
                 finish();
@@ -118,7 +118,6 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
             case R.id.layoutSetTime:
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
-                Log.d("abc 1 ", hour + " : " + minute);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(EditAlarmActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -225,7 +224,7 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
         bundle.putParcelable(MainActivity.BROADCAST_KEY, alarm);
         intent.putExtras(bundle);
         intent.putExtra(MainActivity.INTENT_KEY_POSITION, mPosition);
-        intent.setAction("com.phuong.EDIT_INTENT");
+        intent.setAction(getString(R.string.broadcast_phuong_edit_intent));
         sendBroadcast(intent);
     }
 }

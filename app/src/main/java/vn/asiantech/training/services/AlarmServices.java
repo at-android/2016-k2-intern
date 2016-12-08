@@ -36,17 +36,15 @@ public class AlarmServices extends Service {
     BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("com.phuong.ADD_INTENT")) {
+            if (intent.getAction().equals(getString(R.string.broadcast_phuong_add_intent))) {
                 Bundle bundle = intent.getExtras();
                 Alarm alarm = bundle.getParcelable(MainActivity.BROADCAST_KEY);
                 mAlarms.add(alarm);
-                Log.d("TAG111", mAlarms.toString());
                 mHandler.removeCallbacksAndMessages(null);
                 if (getTimeWaitSmallest(mAlarms) > 0) {
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //lap lai de post delay
                             showForegroundNotification();
                             if (getTimeWaitSmallest(mAlarms) > 0) {
                                 mHandler.postDelayed(this, getTimeWaitSmallest(mAlarms));
@@ -57,18 +55,16 @@ public class AlarmServices extends Service {
 
 
             }
-            if (intent.getAction().equals("com.phuong.EDIT_INTENT")) {
+            if (intent.getAction().equals(getString(R.string.broadcast_phuong_edit_intent))) {
                 Bundle bundle = intent.getExtras();
                 Alarm alarm = bundle.getParcelable(MainActivity.BROADCAST_KEY);
                 int position = intent.getIntExtra(MainActivity.INTENT_KEY_POSITION, 0);
                 mAlarms.set(position, alarm);
-                Log.d("TAG112", mAlarms.toString());
                 mHandler.removeCallbacksAndMessages(null);
                 if (getTimeWaitSmallest(mAlarms) > 0) {
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //lap lai de post delay
                             showForegroundNotification();
                             if (getTimeWaitSmallest(mAlarms) > 0) {
                                 mHandler.postDelayed(this, getTimeWaitSmallest(mAlarms));
@@ -77,7 +73,7 @@ public class AlarmServices extends Service {
                     }, getTimeWaitSmallest(mAlarms));
                 }
             }
-            if (intent.getAction().equals("com.phuong.DELETE_INTENT")) {
+            if (intent.getAction().equals(getString(R.string.broadcast_phuong_delete_intent))) {
                 Bundle bundle = intent.getExtras();
                 ArrayList<Integer> mPositions = bundle.getIntegerArrayList(MainActivity.BROADCAST_KEY);
                 for (int i : mPositions) {
@@ -111,9 +107,9 @@ public class AlarmServices extends Service {
     public void onCreate() {
         mDatabaseAlarm = new DatabaseAlarm(getApplication());
         mDatabaseAlarm.open();
-        registerReceiver(mBroadcastReceiver, new IntentFilter("com.phuong.ADD_INTENT"));
-        registerReceiver(mBroadcastReceiver, new IntentFilter("com.phuong.EDIT_INTENT"));
-        registerReceiver(mBroadcastReceiver, new IntentFilter("com.phuong.DELETE_INTENT"));
+        registerReceiver(mBroadcastReceiver, new IntentFilter(getString(R.string.broadcast_phuong_add_intent)));
+        registerReceiver(mBroadcastReceiver, new IntentFilter(getString(R.string.broadcast_phuong_edit_intent)));
+        registerReceiver(mBroadcastReceiver, new IntentFilter(getString(R.string.broadcast_phuong_delete_intent)));
         super.onCreate();
     }
 
@@ -150,7 +146,6 @@ public class AlarmServices extends Service {
 
         //so phut hien tai cua he thong
         int minsNow = minute + hour * 60;
-        Log.d("minsNow", minsNow + "");
         int minsAlarm = 0;
 
         //so sanh ngay
@@ -170,9 +165,6 @@ public class AlarmServices extends Service {
         int mSecondsAlarm = 0;
         //sap xep so phut tu nho den lon
         Collections.sort(mMinsAlarmWait);
-        for (Integer i : mMinsAlarmWait) {
-            Log.i("TAG11", i + "");
-        }
         if (mMinsAlarmWait.size() > 0) {
             mSecondsAlarm = mMinsAlarmWait.get(0) * 60000;
         }

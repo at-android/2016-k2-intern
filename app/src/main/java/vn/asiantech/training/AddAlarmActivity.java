@@ -35,8 +35,6 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
     private TextView mTvSetTime;
     private RelativeLayout mRelativeLayoutSetTime;
     private RelativeLayout mRelativeLayoutRepeat;
-    private RelativeLayout mRelativeLayoutRingTon;
-    private RelativeLayout mRelativeLayoutVibrate;
     private String mHourSelect = "";
     private String mMinSelect = "";
     private Calendar mcurrentTime = Calendar.getInstance();
@@ -45,6 +43,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
     private TextView mTvRepeatDays;
     private RadioButton mRdCheck;
     private DatabaseAlarm mDatabaseAlarm;
+    public static int RESULT_ADD_INTENT = 10000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +51,6 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_add_new_alarm);
         mRelativeLayoutSetTime = (RelativeLayout) findViewById(R.id.layoutSetTime);
         mRelativeLayoutRepeat = (RelativeLayout) findViewById(R.id.layoutRepeat);
-        mRelativeLayoutRingTon = (RelativeLayout) findViewById(R.id.layoutRingTone);
-        mRelativeLayoutVibrate = (RelativeLayout) findViewById(R.id.layoutVibrate);
         mTvSetTime = (TextView) findViewById(R.id.tvSetTime);
         mTvRepeatDays = (TextView) findViewById(R.id.tvRepeatDay);
         mRdCheck = (RadioButton) findViewById(R.id.tvCheck);
@@ -103,7 +100,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent = new Intent();
                 intent.putExtra(INTENT_ADD, new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, status, mDayRepeat));
 
-                setResult(10000, intent);
+                setResult(RESULT_ADD_INTENT, intent);
                 finish();
                 break;
             case R.id.action_delete:
@@ -119,7 +116,6 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
             case R.id.layoutSetTime:
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
-                Log.d("abc 1 ", hour + " : " + minute);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(AddAlarmActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -196,7 +192,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
                 this);
         alertDialogBuilder.setTitle("Are your sure delete your alarm?");
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage("Click yes to delete!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -223,7 +219,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
         Bundle bundle = new Bundle();
         bundle.putParcelable(MainActivity.BROADCAST_KEY, alarm);
         intent.putExtras(bundle);
-        intent.setAction("com.phuong.ADD_INTENT");
+        intent.setAction(getString(R.string.broadcast_phuong_add_intent));
         sendBroadcast(intent);
     }
 }

@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
     public static String INTENT_KEY = "alarm_intent";
     public static String INTENT_KEY_POSITION = "alarm_intent_position";
     public static String BROADCAST_KEY = "alarm_boadcast";
+    private int REQUEST_ADD_INTENT = 1000;
+    private int REQUEST_EDIT_INTENT = 2000;
+    private int REQUEST_DELETE_INTENT = 3000;
     private RecyclerView mRecyclerView;
     private TextView mTvAdd;
     private RecyclerViewAlarmAdapter mRecyclerViewAlarmAdapter;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddAlarmActivity.class);
-                startActivityForResult(intent, 1000);
+                startActivityForResult(intent, REQUEST_ADD_INTENT);
             }
         });
 
@@ -75,19 +76,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("abc1", requestCode + " 1 " + resultCode);
-        if (requestCode == 1000 && resultCode == 10000) {
+        if (requestCode == REQUEST_ADD_INTENT && resultCode == (AddAlarmActivity.RESULT_ADD_INTENT)) {
             Alarm alarm = data.getParcelableExtra(AddAlarmActivity.INTENT_ADD);
             mAlarms.add(alarm);
             mRecyclerViewAlarmAdapter.notifyDataSetChanged();
         }
-        if (requestCode == 2000 && resultCode == 20000) {
+        if (requestCode == REQUEST_EDIT_INTENT && resultCode == (EditAlarmActivity.RESULT_EDIT_INTENT)) {
             Alarm alarm = data.getParcelableExtra(EditAlarmActivity.INTENT_EDIT);
             int position = data.getIntExtra(MainActivity.INTENT_KEY_POSITION, 0);
             mAlarms.set(position, alarm);
             mRecyclerViewAlarmAdapter.notifyDataSetChanged();
         }
-        if (requestCode == 3000 && resultCode == 30000) {
+        if (requestCode == REQUEST_DELETE_INTENT && resultCode == (DeleteAlarmActivity.RESULT_DELETE_INTENT)) {
             Bundle bundle = data.getExtras();
             ArrayList<Integer> mPositionDeleted = bundle.getIntegerArrayList(DeleteAlarmActivity.INTENT_DELETE);
             for (int in : mPositionDeleted) {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
         switch (item.getItemId()) {
             case R.id.action_delete:
                 Intent intent = new Intent(MainActivity.this, DeleteAlarmActivity.class);
-                startActivityForResult(intent, 3000);
+                startActivityForResult(intent, REQUEST_DELETE_INTENT);
                 break;
             case R.id.action_clock:
                 intent = new Intent(MainActivity.this, ShowClockActivity.class);
@@ -131,12 +131,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
         Intent intent = new Intent(MainActivity.this, EditAlarmActivity.class);
         intent.putExtra(INTENT_KEY, alarm);
         intent.putExtra(INTENT_KEY_POSITION, position);
-        startActivityForResult(intent, 2000);
+        startActivityForResult(intent, REQUEST_EDIT_INTENT);
     }
 
     @Override
     public void onItemChecked(int position, boolean check) {
-        Toast.makeText(getApplication(), "abc", Toast.LENGTH_SHORT).show();
     }
 
 }

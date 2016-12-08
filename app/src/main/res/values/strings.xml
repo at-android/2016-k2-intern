@@ -28,4 +28,7 @@
     <string name="menu_add_alarm_save">save</string>
     <string name="menu_add_alarm_title">delete</string>
     <string name="dialog_time_repeat_btn_ok">OK</string>
+    <string name="broadcast_phuong_add_intent">com.phuong.ADD_INTENT</string>
+    <string name="broadcast_phuong_edit_intent">com.phuong.EDIT_INTENT</string>
+    <string name="broadcast_phuong_delete_intent">com.phuong.DELETE_INTENT</string>
 </resources>
