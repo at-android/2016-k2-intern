@@ -1,25 +1,44 @@
-package vn.asiantech.training.Object;
+package vn.asiantech.training.object;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by MaiManhDuy on 12/2/2016.
  */
 
-public class AlarmObj implements Serializable {
+public class AlarmObj implements Parcelable {
+    public static final Creator<AlarmObj> CREATOR = new Creator<AlarmObj>() {
+        @Override
+        public AlarmObj createFromParcel(Parcel in) {
+            return new AlarmObj(in);
+        }
+
+        @Override
+        public AlarmObj[] newArray(int size) {
+            return new AlarmObj[size];
+        }
+    };
     private String title;
     private int hour;
     private int minute;
     private String dayofweek;
+
+    protected AlarmObj(Parcel in) {
+        title = in.readString();
+        hour = in.readInt();
+        minute = in.readInt();
+        dayofweek = in.readString();
+    }
+
+    public AlarmObj() {
+    }
 
     public AlarmObj(String title, int hour, int minute, String dayofweek) {
         this.title = title;
         this.hour = hour;
         this.minute = minute;
         this.dayofweek = dayofweek;
-    }
-
-    public AlarmObj() {
     }
 
     public String getTitle() {
@@ -53,4 +72,18 @@ public class AlarmObj implements Serializable {
     public void setDayofweek(String dayofweek) {
         this.dayofweek = dayofweek;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeInt(hour);
+        parcel.writeInt(minute);
+        parcel.writeString(dayofweek);
+    }
+
 }

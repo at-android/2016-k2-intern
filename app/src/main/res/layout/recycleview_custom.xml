@@ -4,23 +4,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title_content"
+        android:id="@+id/tvTitleContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
         android:textSize="@dimen/title_content_size" />
 
     <TextView
-        android:id="@+id/time_content"
+        android:id="@+id/tvTimeContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_content"
+        android:layout_below="@+id/tvTitleContent"
         android:textColor="@android:color/white"
         android:textSize="@dimen/time_content_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height_custom_rv"
-        android:layout_below="@id/time_content"
+        android:layout_below="@id/tvTimeContent"
         android:background="@android:color/white" />
 </RelativeLayout>

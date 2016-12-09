@@ -1,4 +1,4 @@
-package vn.asiantech.training.Database;
+package vn.asiantech.training.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,20 +6,26 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static vn.asiantech.training.activities.MainActivity.DATABASE_NAME;
+import static vn.asiantech.training.activities.MainActivity.DAY_OF_WEEK;
+import static vn.asiantech.training.activities.MainActivity.HOUR;
+import static vn.asiantech.training.activities.MainActivity.MINUTE;
+import static vn.asiantech.training.activities.MainActivity.TITLE;
+
 /**
  * Created by MaiManhDuy on 12/5/2016.
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase mSQLiteDatabase;
 
     public DatabaseHandler(Context context) {
-        super(context, "AlarmManager.db", null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String create_alarm_manager_table = "CREATE TABLE AlarmManager (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, hour INTEGER, minute INTEGER, dayofweek TEXT)";
+        String create_alarm_manager_table = String.format("CREATE TABLE " + DATABASE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + TITLE + " TEXT, " + HOUR + " INTEGER, " + MINUTE + " INTEGER, " + DAY_OF_WEEK + " TEXT)");
         sqLiteDatabase.execSQL(create_alarm_manager_table);
 
     }
@@ -32,16 +38,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void open() {
-        sqLiteDatabase = getWritableDatabase();
+        mSQLiteDatabase = getWritableDatabase();
     }
 
     public void close() {
-        sqLiteDatabase.close();
+        mSQLiteDatabase.close();
     }
 
     public Cursor getAll(String sql) {
         open();
-        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+        Cursor cursor = mSQLiteDatabase.rawQuery(sql, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -50,22 +56,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public long insert(String table, ContentValues values) {
-        open();
-        long index = sqLiteDatabase.insert(table, null, values);
+        long index = mSQLiteDatabase.insert(table, null, values);
         close();
         return index;
     }
 
     public boolean update(String table, ContentValues values, String where) {
-        open();
-        long index = sqLiteDatabase.update(table, values, where, null);
+        long index = mSQLiteDatabase.update(table, values, where, null);
         close();
         return index > 0;
     }
 
     public boolean delete(String table, String where) {
         open();
-        long index = sqLiteDatabase.delete(table, where, null);
+        long index = mSQLiteDatabase.delete(table, where, null);
         close();
         return index > 0;
     }

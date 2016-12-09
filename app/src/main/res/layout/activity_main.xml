@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="vn.asiantech.training.Activities.MainActivity">
+    tools:context="vn.asiantech.training.activities.MainActivity">
 
     <TextView
-        android:id="@+id/title_app"
+        android:id="@+id/tvTitleApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -17,10 +17,10 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/title_all"
+        android:id="@+id/tvTitleAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_app"
+        android:layout_below="@id/tvTitleApp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -29,10 +29,10 @@
         android:textSize="@dimen/font_title_size" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvListAlarm"
+        android:id="@+id/recycleViewListAlarm"
         android:layout_width="match_parent"
         android:layout_height="420dp"
-        android:layout_below="@id/title_all"
+        android:layout_below="@id/tvTitleAll"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/imgBtnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rvListAlarm"
+        android:layout_below="@id/recycleViewListAlarm"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_add_alert_white_24dp" />
 </RelativeLayout>

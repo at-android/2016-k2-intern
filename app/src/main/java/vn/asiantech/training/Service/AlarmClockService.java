@@ -1,4 +1,4 @@
-package vn.asiantech.training.Service;
+package vn.asiantech.training.service;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -13,27 +13,30 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
-import vn.asiantech.training.Activities.DialogActivity;
-import vn.asiantech.training.Database.DatabaseHandler;
-import vn.asiantech.training.Object.AlarmObj;
 import vn.asiantech.training.R;
+import vn.asiantech.training.activities.DialogActivity;
+import vn.asiantech.training.database.DatabaseHandler;
+import vn.asiantech.training.object.AlarmObj;
+
+import static vn.asiantech.training.activities.MainActivity.LIST_ARRAY_NAME;
 
 public class AlarmClockService extends Service {
-    boolean first = false;
-    private ArrayList<AlarmObj> a = new ArrayList<>();
-    private ArrayList<Integer> mangInt = new ArrayList<>();
-    private BroadcastReceiver broadcastReceiver;
-    private Calendar calendar;
-    private Runnable mRun;
-    private DatabaseHandler db;
-    private SQLiteDatabase sqlData;
-    private Context context;
-    private MediaPlayer mediaPlayer;
+    boolean isFirst;
+    int time;
+    private List<AlarmObj> arrAlarm = new ArrayList<>();
+    private List<Integer> arrAlarmWait = new ArrayList<>();
+    private BroadcastReceiver mBroadcastReceiver;
+    private Calendar mCalendar;
+    private Runnable mRunable;
+    private DatabaseHandler mDb;
+    private SQLiteDatabase mSqlData;
+    private Context mContext;
+    private MediaPlayer mMediaPlayer;
     public AlarmClockService() {
     }
 
@@ -45,23 +48,23 @@ public class AlarmClockService extends Service {
 
     @Override
     public void onCreate() {
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ringtone);
+        mMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ringtone);
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.alarm.CUSTOM_INTENT");
-        intentFilter.addAction("com.alarm.STOP_MUSIC");
-        broadcastReceiver = new MyReceive();
-        registerReceiver(broadcastReceiver, intentFilter);
-        context = getApplicationContext();
-        db = new DatabaseHandler(context);
-        sqlData = db.getReadableDatabase();
+        intentFilter.addAction(String.valueOf(R.string.action_custom_intent));
+        intentFilter.addAction(String.valueOf(R.string.action_stop_music));
+        mBroadcastReceiver = new MyReceive();
+        registerReceiver(mBroadcastReceiver, intentFilter);
+        mContext = getApplicationContext();
+        mDb = new DatabaseHandler(mContext);
+        mSqlData = mDb.getReadableDatabase();
         String query = "select * from AlarmManager";
-        Cursor cursor = sqlData.rawQuery(query, null);
+        Cursor cursor = mSqlData.rawQuery(query, null);
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             String title = cursor.getString(1);
             int hour = cursor.getInt(2);
             int minute = cursor.getInt(3);
             String dayofweek = cursor.getString(4);
-            a.add(new AlarmObj(title, hour, minute, dayofweek));
+            arrAlarm.add(new AlarmObj(title, hour, minute, dayofweek));
         }
         super.onCreate();
     }
@@ -69,69 +72,67 @@ public class AlarmClockService extends Service {
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         final Handler mHandler = new Handler();
-        mRun = new Runnable() {
+        mRunable = new Runnable() {
             @Override
             public void run() {
-                mangInt.clear();
-                calendar = Calendar.getInstance();
-                int day = calendar.get(Calendar.DAY_OF_WEEK);
-                int second = calendar.get(Calendar.SECOND);
-                int minute = calendar.get(Calendar.MINUTE);
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                arrAlarmWait.clear();
+                mCalendar = Calendar.getInstance();
+                int day = mCalendar.get(Calendar.DAY_OF_WEEK);
+                int second = mCalendar.get(Calendar.SECOND);
+                int minute = mCalendar.get(Calendar.MINUTE);
+                int hour = mCalendar.get(Calendar.HOUR_OF_DAY);
                 int nowtime = hour * 60 + minute;
 
-                for (int i = 0; i < a.size(); i++) {
+                for (int i = 0, lenght = arrAlarm.size(); i < lenght; i++) {
                     boolean isCheck = false;
-                    String[] days = a.get(i).getDayofweek().split(" ");
-                    for (int a = 0; a < days.length; a++) {
-                        if (days[a].equals(day + "")) {
+                    String[] days = arrAlarm.get(i).getDayofweek().split(" ");
+                    for (int a = 0, size = days.length; a < size; a++) {
+                        if (String.valueOf(day).equals(days[a])) {
                             isCheck = true;
                         }
-                        if (days[a].equals("0")) {
+                        if (("0").equals(days[a])) {
                             isCheck = true;
                         }
                     }
 
-                    if (isCheck == true) {
-                        int check = (a.get(i).getHour() * 60) + a.get(i).getMinute();
+                    if (isCheck) {
+                        int check = (arrAlarm.get(i).getHour() * 60) + arrAlarm.get(i).getMinute();
                         if (check - nowtime > 0) {
-                            mangInt.add(check - nowtime);
+                            arrAlarmWait.add(check - nowtime);
                         }
                     }
                 }
-                int mn;
-                if (mangInt.size() == 0) {
-                    mn = 1440 - nowtime;
-                    Log.d("a", mn + "");
+                if (arrAlarmWait.size() == 0) {
+                    time = 1440 - nowtime;
                 } else {
-                    mn = mangInt.get(0);
-                    for (int i = 0; i < mangInt.size(); i++) {
-                        if (mangInt.get(i) < mn) {
-                            mn = mangInt.get(i);
+                    time = arrAlarmWait.get(0);
+                    for (int i = 0; i < arrAlarmWait.size(); i++) {
+                        if (arrAlarmWait.get(i) < time) {
+                            time = arrAlarmWait.get(i);
                         }
                     }
                 }
-                mn = mn * 60000 - (second * 1000);
-                mHandler.postDelayed(mRun, mn);
-                if (first == false) {
-                    first = true;
+                time = time * 60000 - (second * 1000);
+                mHandler.postDelayed(mRunable, time);
+                if (!isFirst) {
+                    isFirst = true;
                 } else {
                     showForegroundNotification();
-                    if (mangInt.size() == 0) {
-                        first = false;
+                    if (arrAlarmWait.size() == 0) {
+                        isFirst = false;
                     }
                 }
             }
         };
-        mRun.run();
+        mRunable.run();
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        unregisterReceiver(broadcastReceiver);
+        unregisterReceiver(mBroadcastReceiver);
         stopForeground(true);
-        mediaPlayer.release();
+        mMediaPlayer.release();
         super.onDestroy();
     }
 
@@ -140,8 +141,6 @@ public class AlarmClockService extends Service {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return;
         }
-        // Create intent that will bring our app to the front, as if it was tapped in the app
-        // launcher
         Intent showTaskIntent = new Intent(getApplicationContext(), DialogActivity.class);
 
         PendingIntent contentIntent = PendingIntent.getActivity(
@@ -149,28 +148,27 @@ public class AlarmClockService extends Service {
                 1000,
                 showTaskIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        mediaPlayer.start();
         Notification notification = new Notification.Builder(getApplicationContext())
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText("BaoThuc")
+                .setContentText(getString(R.string.app_name))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(contentIntent)
                 .build();
         notification.flags |= Notification.FLAG_INSISTENT;
         startForeground(1, notification);
+        mMediaPlayer.start();
     }
 
     public class MyReceive extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals("com.alarm.CUSTOM_INTENT")) {
-                a.clear();
-                a = (ArrayList<AlarmObj>) intent.getSerializableExtra("a");
-                Log.d("sad", action);
+            if (action.equals(R.string.action_custom_intent)) {
+                arrAlarm.clear();
+                arrAlarm = (ArrayList<AlarmObj>) intent.getSerializableExtra(LIST_ARRAY_NAME);
             }
-            if (action.equals("com.alarm.STOP_MUSIC")) {
-                mediaPlayer.release();
+            if (action.equals(String.valueOf(R.string.action_stop_music))) {
+                mMediaPlayer.release();
             }
 
         }

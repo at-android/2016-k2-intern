@@ -13,21 +13,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".Service.AlarmClockService"
-            android:enabled="true"
-            android:exported="true" />
-
-
-        <activity android:name=".Activities.DialogActivity" />
+        <service android:name=".service.AlarmClockService" />
+        <activity android:name=".activities.DialogActivity" />
     </application>
 
 </manifest>
