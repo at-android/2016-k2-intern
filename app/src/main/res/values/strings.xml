@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Training</string>
-    <string name="btn_call">Call</string>
-    <string name="btn_message">Message</string>
-    <string name="btn_sendMail">Send Mail</string>
-    <string name="btn_launchWeb">Launch Vnexpress</string>
-    <string name="btn_openGGstore">Open Google Store</string>
-    <string name="btn_openGGmap">Open Google Map</string>
-    <string name="btn_openGallery">Open Gallery</string>
-    <string name="btn_camera">Camera</string>
+    <string name="toolbar_tv_text">Title</string>
+    <string name="activity_Login_edt_username_hint">Username</string>
+    <string name="activity_Login_edt_pwd_hint">Password</string>
+    <string name="activity_Login_button_text">Login</string>
+    <string name="activity_home_btn_drawShape_text">DRAW SHAPE</string>
+    <string name="activity_home_btn_drawBitmap_text">DRAW BITMAP</string>
+    <string name="activity_home_btn_drawText_text">DRAW TEXT</string>
+    <string name="activity_home_btn_drawChart_text">DRAW CHART</string>
 </resources>

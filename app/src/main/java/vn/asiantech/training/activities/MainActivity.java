@@ -1,7 +1,9 @@
-package vn.asiantech.training;
+package vn.asiantech.training.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import vn.asiantech.training.R;
 
 public class MainActivity extends Activity {
 

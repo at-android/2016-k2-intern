@@ -3,5 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="Green">#00CC00</color>
+    <color name="colorToolbar">#FF6600</color>
+    <color name="colorPink">#FF66FF</color>
+    <color name="colorShape1">#006633</color>
+    <color name="colorShape2">#993333</color>
+    <color name="colorShape3">#66FFFF</color>
+    <color name="colorShape4">#FF9966</color>
 </resources>
