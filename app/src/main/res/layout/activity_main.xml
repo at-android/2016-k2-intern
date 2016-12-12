@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.asiantech.training.MainActivity">
+    android:divider="?android:attr/listDivider"
+    android:showDividers="middle"
+    tools:context="vn.asiantech.training.activities.MainActivity">
+
+    <vn.asiantech.training.custom_layout.HeaderLayout
+        android:id="@+id/headLayoutTitle"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:background="?android:selectableItemBackground"
+        custom:titleText="@string/login_title_text" />
+
+    <EditText
+        android:id="@+id/tvUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headLayoutTitle"
+        android:layout_marginTop="@dimen/line_header_margin_top"
+        android:hint="@string/hint_username" />
+
+    <EditText
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUsername"
+        android:layout_marginTop="@dimen/line_header_margin_top"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/line_header_margin_top"
+        android:text="@string/btn_login_text" />
 </RelativeLayout>
