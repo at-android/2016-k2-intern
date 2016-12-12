@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_shape"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.ShapeActivity">
+
+    <vn.asiantech.training.DrawShape
+        android:id="@+id/DrawShape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </vn.asiantech.training.DrawShape>
+
+    <vn.asiantech.training.ToolbarCustomView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:titleText="Home   Shape"
+        custom:imgViewRight="false">
+    </vn.asiantech.training.ToolbarCustomView>
+</RelativeLayout>
