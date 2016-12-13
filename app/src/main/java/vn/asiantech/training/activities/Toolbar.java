@@ -3,7 +3,6 @@ package vn.asiantech.training.activities;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,6 @@ public class Toolbar extends LinearLayout {
 
     public Toolbar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mListener = (HomeActivity) getParent();
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Toolbar, 0, 0);
         String title = ta.getString(R.styleable.Toolbar_titleText);
         boolean isVisibilityImgBack = ta.getBoolean(R.styleable.Toolbar_imgBack, true);
@@ -41,6 +39,9 @@ public class Toolbar extends LinearLayout {
         mImgBack.setVisibility(isVisibilityImgBack ? VISIBLE : GONE);
         mImgLogout.setVisibility(isVisibilityImgLogout ? VISIBLE : GONE);
         mTvtitle.setText(title);
+        if (View.class.isInstance(mImgLogout.getParent())) {
+            mListener = (HomeActivity) getParent();
+        }
         mImgLogout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,11 +52,13 @@ public class Toolbar extends LinearLayout {
         mImgBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("aa", "aaa");
-
                 mListener.logOut();
             }
         });
+    }
+
+    public void setCallback(onToolbarInteraction listener) {
+        mListener = listener;
     }
 
     interface onToolbarInteraction {

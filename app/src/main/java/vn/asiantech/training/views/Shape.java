@@ -1,4 +1,4 @@
-package vn.asiantech.training.activities.views;
+package vn.asiantech.training.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -25,38 +25,24 @@ public class Shape extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
         paint.setColor(getResources().getColor(R.color.colorToolbar));
-
         int width = 200;
         int height = 150;
-
         float left = getWidth() / 8;
         float top = getHeight() / 8;
         canvas.drawRect(left, top, left + width, top + height, paint);
-
         paint.setColor(Color.GREEN);
         int radius = 100;
         canvas.drawCircle(left + width / 2 + canvas.getWidth() / 2, top + height / 2, radius, paint);
-
         paint.setColor(Color.RED);
         canvas.drawOval(new RectF(left, top * 2, left + width, top * 2 + height), paint);
-
-        /*Draw stat*/
         drawStat(left, top, canvas, paint, width, height);
-        /**/
         drawShape5(top, left, canvas, paint);
-
         drawShape6(top, left, canvas, paint, width);
-
         drawShape7(top, left, canvas, paint, width);
-
         drawShape8(top, left, canvas, paint, width);
-
         drawShape9(top, left, canvas, paint, width, radius);
-
         drawShape10(top, left, canvas, paint, width, radius);
-
         drawShape11(top, left, canvas, paint, width, height, radius);
-
         drawHeart(top, left, canvas, paint, width, height, radius);
     }
 
@@ -64,16 +50,12 @@ public class Shape extends View {
         paint.setColor(Color.BLACK);
         float firstX = left;
         float firstY = top * 3;
-
         float secondX = left;
         float secondY = top * 3 + 60;
-
         float thirdX = left + 200;
         float thirdY = firstY;
-
         float forthX = thirdX;
         float forthY = 3 * top + (secondY - firstY) / 2;
-
         canvas.drawLine(firstX, firstY, secondX, secondY, paint);
         canvas.drawLine(firstX, firstY, thirdX, thirdY, paint);
         canvas.drawLine(thirdX, thirdY, forthX, forthY, paint);
@@ -84,16 +66,12 @@ public class Shape extends View {
         paint.setColor(Color.GRAY);
         float firstX = left + width / 2 + canvas.getWidth() / 2 - 50;
         float firstY = top * 3;
-
         float secondX = firstX - 30;
         float secondY = top * 3 + 100;
-
         float thirdX = firstX + width;
         float thirdY = firstY;
-
         float forthX = thirdX - 30;
         float forthY = secondY;
-
         canvas.drawLine(firstX, firstY, secondX, secondY, paint);
         canvas.drawLine(firstX, firstY, thirdX, thirdY, paint);
         canvas.drawLine(thirdX, thirdY, forthX, forthY, paint);
@@ -104,13 +82,10 @@ public class Shape extends View {
         paint.setColor(Color.YELLOW);
         float firstX = left;
         float firstY = top * 4;
-
         float secondX = left;
         float secondY = firstY + 100;
-
         float thirdX = secondX + width;
         float thirdY = secondY;
-
         canvas.drawLine(firstX, firstY, secondX, secondY, paint);
         canvas.drawLine(secondX, secondY, thirdX, thirdY, paint);
         canvas.drawLine(firstX, firstY, thirdX, thirdY, paint);
@@ -120,13 +95,10 @@ public class Shape extends View {
         paint.setColor(getResources().getColor(R.color.colorPink));
         float firstX = left + width / 2 + canvas.getWidth() / 2 - 50;
         float firstY = top * 4;
-
         float secondX = firstX - 50;
         float secondY = firstY + 100;
-
         float thirdY = firstY + 100;
         float thirdX = firstX + 60;
-
         canvas.drawLine(firstX, firstY, secondX, secondY, paint);
         canvas.drawLine(firstX, firstY, thirdX, thirdY, paint);
         canvas.drawLine(thirdX, thirdY, secondX, secondY, paint);
@@ -193,31 +165,22 @@ public class Shape extends View {
     public void drawStat(float left, float top, Canvas canvas, Paint paint, int width, int height) {
         float topStatX = left + width / 2 + canvas.getWidth() / 2;
         float topStatY = top * 2;
-
         float secondX = topStatX - 20;
         float secondY = top * 2 + height / 2;
-
         float thirdX = secondX - 90;
         float thirdY = secondY + 5;
-
         float fouthX = secondX - 10;
         float fouthY = thirdY + (secondY - topStatY) / 2;
-
         float fifthX = fouthX - 10;
         float fifthY = fouthY + secondY - topStatY;
-
         float sixthX = topStatX;
         float sixthY = fifthY - (fouthY - secondY);
-
         float seventhX = 2 * sixthX - fifthX;
         float seventhY = fifthY;
-
         float eightthX = 2 * sixthX - fouthX;
         float eightthY = fouthY;
-
         float ninethX = 2 * topStatX - thirdX;
         float ninethY = thirdY;
-
         float finalX = 2 * topStatX - secondX;
         float finalY = secondY;
         paint.setColor(Color.BLUE);
@@ -232,6 +195,4 @@ public class Shape extends View {
         canvas.drawLine(ninethX, ninethY, finalX, finalY, paint);
         canvas.drawLine(finalX, finalY, topStatX, topStatY, paint);
     }
-
-
 }

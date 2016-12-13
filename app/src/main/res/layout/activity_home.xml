@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.asiantech.training.activities.HomeActivity">
+    tools:context=".activities.HomeActivity">
 
     <vn.asiantech.training.activities.Toolbar
         android:id="@+id/toolbar"

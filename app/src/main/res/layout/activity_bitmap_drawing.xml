@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ShapeActivity">
+    tools:context=".activities.BitmapDrawing">
 
     <vn.asiantech.training.activities.Toolbar
         android:id="@+id/toolbar"
@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         custom:imgBack="true"
         custom:imgLogout="false"
-        custom:titleText="Shape" />
+        custom:titleText="Home Bitmap" />
 
-    <vn.asiantech.training.views.Shape
+    <vn.asiantech.training.views.CustomImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar" />
-
 </RelativeLayout>
