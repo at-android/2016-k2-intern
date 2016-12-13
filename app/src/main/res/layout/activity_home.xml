@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.HomeActivity">
+
+    <vn.asiantech.training.activities.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:imgBack="false"
+        custom:imgLogout="true"
+        custom:titleText="Home" />
+
+    <Button
+        android:id="@+id/btnDrawShape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_home_btn_marginTop"
+        android:text="@string/activity_home_btn_drawShape_text" />
+
+    <Button
+        android:id="@+id/btnDrawBitmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnDrawShape"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_home_btn_marginTop"
+        android:text="@string/activity_home_btn_drawBitmap_text" />
+
+    <Button
+        android:id="@+id/btnDrawText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnDrawBitmap"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_home_btn_marginTop"
+        android:text="@string/activity_home_btn_drawText_text" />
+
+    <Button
+
+        android:id="@+id/btnDrawChart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnDrawText"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_home_btn_marginTop"
+        android:text="@string/activity_home_btn_drawChart_text" />
+</RelativeLayout>
