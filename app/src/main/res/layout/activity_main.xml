@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training.views"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="vn.asiantech.training.MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+    <vn.asiantech.training.views.HeaderOptionsView
+        android:id="@+id/header_login"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        app:isShowBtnBack="false"
+        app:isShowBtnNext="false"
+        app:isShowTvHome="false"
+        app:isShowTvTitle="true"
+        app:title="@string/header_tv_login"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/header_padding"
+        android:hint="@string/main_edt_username"
+        android:id="@+id/edtUsername"
+        android:layout_below="@id/header_login"
+        android:inputType="text"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/header_padding"
+        android:hint="@string/main_edt_password"
+        android:id="@+id/edtPassword"
+        android:inputType="textPassword"
+        android:layout_below="@id/edtUsername"
+        android:layout_marginTop="@dimen/header_padding"
+        />
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World everyone ! " />
+        android:layout_centerHorizontal="true"
+        android:text="@string/main_btn_login"
+        android:id="@+id/btnLogin"
+        android:layout_below="@id/edtPassword"
+        android:layout_marginTop="@dimen/header_padding"
+        />
 </RelativeLayout>

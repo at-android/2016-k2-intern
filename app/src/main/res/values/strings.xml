@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="header_tv_home">Home</string>
+    <string name="main_header_title">Login</string>
+    <string name="main_edt_username">Enter username</string>
+    <string name="main_btn_login">login</string>
+    <string name="main_edt_password">Enter password</string>
+    <string name="header_tv_login">Login</string>
+    <string name="menu_btn_shape">Draw Shape</string>
+    <string name="header_tv_shape">Shape</string>
+    <string name="menu_btn_bitmap">Draw Bitmap</string>
+    <string name="menu_btn_text">Draw Text</string>
+    <string name="menu_btn_chart">Draw Chart</string>
+    <string name="header_tv_bitmap">Bitmap</string>
+    <string name="header_tv_text">Text</string>
+    <string name="header_tv_chart">Chart</string>
+    <string name="goc_toa_do">0</string>
+    <string name="chart1_name">A</string>
+    <string name="chart1_value">100</string>
+    <string name="chart2_name">B</string>
+    <string name="chart2_value">80</string>
+    <string name="chart3_name">C</string>
+    <string name="chart3_value">60</string>
+    <string name="draw_shape_continue">Continue</string>
 </resources>

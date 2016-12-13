@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <vn.asiantech.training.views.HeaderOptionsView
+        android:id="@+id/header_login_bitmap"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        app:isShowBtnBack="true"
+        app:isShowBtnNext="false"
+        app:isShowTvHome="true"
+        app:isShowTvTitle="true"
+        android:onClick="onClicked"
+        app:title="@string/header_tv_bitmap"
+        />
+    <vn.asiantech.training.views.DrawBitmapView
+        android:id="@+id/draw_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>

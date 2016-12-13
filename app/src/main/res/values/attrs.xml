@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HeaderOptionsView">
+        <attr name="isShowBtnBack" format="boolean"/>
+        <attr name="isShowTvHome" format="boolean"/>
+        <attr name="isShowTvTitle" format="boolean"/>
+        <attr name="isShowBtnNext" format="boolean"/>
+        <attr name="title" format="string" localization="suggested" />
+    </declare-styleable>
+</resources>
