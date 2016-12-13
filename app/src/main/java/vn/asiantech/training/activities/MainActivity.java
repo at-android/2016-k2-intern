@@ -11,7 +11,7 @@ import android.widget.Toast;
 import vn.asiantech.training.R;
 import vn.asiantech.training.custom_layout.HeaderLayout;
 
-public class MainActivity extends AppCompatActivity implements HeaderLayout.onClickFormHeaderLayout {
+public class MainActivity extends AppCompatActivity {
     private EditText mUser;
     private EditText mPass;
     private Button mBtnLogin;
@@ -21,12 +21,11 @@ public class MainActivity extends AppCompatActivity implements HeaderLayout.onCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         HeaderLayout hlTitle = (HeaderLayout) findViewById(R.id.headLayoutTitle);
-        hlTitle.setImageVisible(false);
-        hlTitle.setCallBack(this);
+        hlTitle.setVisibleBack(false);
+        hlTitle.setVisibleLogout(false);
         mUser = (EditText) findViewById(R.id.tvUsername);
         mPass = (EditText) findViewById(R.id.tvPassword);
         mBtnLogin = (Button) findViewById(R.id.btnLogIn);
-        startActivity(new Intent(MainActivity.this, ShapeActivity.class));
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,8 +40,4 @@ public class MainActivity extends AppCompatActivity implements HeaderLayout.onCl
         });
     }
 
-    @Override
-    public void clickButton() {
-        Toast.makeText(this, "Day la main", Toast.LENGTH_SHORT).show();
-    }
 }

@@ -16,7 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".activities.ShapeActivity"></activity>
+        <activity android:name=".activities.ShapeActivity" />
+        <activity android:name=".activities.CustomImagesActivity" />
+        <activity android:name=".activities.DrawTextAcitivy" />
+        <activity android:name=".activities.DrawChartActivity"></activity>
     </application>
 
 </manifest>

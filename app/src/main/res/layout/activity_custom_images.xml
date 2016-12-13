@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_custom_images"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.activities.CustomImagesActivity">
+
+    <vn.asiantech.training.custom_layout.HeaderLayout
+        android:id="@+id/headLayoutTitleImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        apps:titleText="@string/title_custom_image" />
+
+    <vn.asiantech.training.custom_layout.CustomImage
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/headLayoutTitleImage" />
+</RelativeLayout>

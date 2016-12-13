@@ -25,4 +25,12 @@
         android:contentDescription="@null"
         android:src="@drawable/ic_logout"
         android:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_back"
+        android:visibility="visible" />
 </merge>

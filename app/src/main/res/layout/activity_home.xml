@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnDrawShape"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/btn_draw_shape" />
+        android:text="@string/btn_draw_draw_bitmap" />
 
     <Button
         android:id="@+id/btnDrawText"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnDrawBitmap"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/btn_draw_shape" />
+        android:text="@string/btn_draw_text" />
 
     <Button
         android:id="@+id/btnDrawChart"
@@ -44,5 +44,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnDrawText"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/btn_draw_shape" />
+        android:text="@string/btn_draw_chart" />
 </RelativeLayout>

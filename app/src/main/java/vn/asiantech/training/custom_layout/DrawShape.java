@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -22,9 +23,32 @@ public class DrawShape extends View {
     private Paint lightBlue;
     private Paint brown;
     private Paint darkGreen;
+    private Paint darkBlue;
+    private Paint organe;
+
+    public DrawShape(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public DrawShape(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    public DrawShape(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+
 
     public DrawShape(Context context) {
         super(context);
+        init();
+    }
+
+    public void init() {
         red = new Paint();
         red.setColor(Color.rgb(223, 0, 41));
         green = new Paint();
@@ -43,8 +67,11 @@ public class DrawShape extends View {
         brown.setColor(Color.rgb(148, 83, 5));
         darkGreen = new Paint();
         darkGreen.setColor(Color.rgb(0, 102, 0));
+        darkBlue = new Paint();
+        darkBlue.setColor(Color.rgb(0, 51, 102));
+        organe = new Paint();
+        organe.setColor(Color.rgb(255, 153, 0));
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         drawCircle(canvas);
@@ -56,16 +83,18 @@ public class DrawShape extends View {
         drawTriangle(canvas);
         drawIsoscelesTriangle(canvas);
         drawLaughtFace(canvas);
+        drawOFace(canvas);
+        drawSleepFace(canvas);
         drawHeart(canvas);
         super.onDraw(canvas);
     }
 
     public void drawCircle(Canvas canvas) {
-        canvas.drawCircle(800, 200, 150, green);
+        canvas.drawCircle(800, 270, 100, green);
     }
 
     public void drawRectangle(Canvas canvas) {
-        canvas.drawRect(100, 50, 400, 350, red);
+        canvas.drawRect(100, 200, 300, 350, red);
     }
 
     public void drawOval(Canvas canvas) {
@@ -166,5 +195,26 @@ public class DrawShape extends View {
         oval.set(700, 1150, 900, 1350);
         canvas.drawArc(oval, 50, 270, true, darkGreen);
         canvas.drawCircle(800, 1200, 10, green);
+    }
+
+    public void drawOFace(Canvas canvas) {
+        darkBlue.setStrokeWidth(5);
+        darkBlue.setStyle(Paint.Style.STROKE);
+        canvas.drawCircle(250, 1550, 150, darkBlue);
+        canvas.drawCircle(180, 1500, 30, darkBlue);
+        canvas.drawCircle(320, 1500, 30, darkBlue);
+        canvas.drawLine(250, 1550, 250, 1650, darkBlue);
+    }
+
+    public void drawSleepFace(Canvas canvas) {
+        organe.setStrokeWidth(5);
+        organe.setStyle(Paint.Style.STROKE);
+        canvas.drawCircle(800, 1550, 150, organe);
+        RectF oval = new RectF();
+        oval.set(700, 1480, 780, 1520);
+        canvas.drawArc(oval, 0, 180, false, organe);
+        oval.set(820, 1480, 900, 1520);
+        canvas.drawArc(oval, 0, 180, false, organe);
+        canvas.drawCircle(800, 1600, 50, organe);
     }
 }

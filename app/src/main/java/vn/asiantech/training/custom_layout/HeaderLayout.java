@@ -18,7 +18,8 @@ import vn.asiantech.training.R;
  */
 public class HeaderLayout extends RelativeLayout {
     onClickFormHeaderLayout mListener;
-    private ImageButton mImage;
+    private ImageButton mImgLogout;
+    private ImageButton mImgBack;
     private LinearLayout lnLayout;
 
     public HeaderLayout(Context context) {
@@ -38,11 +39,18 @@ public class HeaderLayout extends RelativeLayout {
         TextView title = (TextView) getChildAt(0);
         title.setText(titleText);
         lnLayout = (LinearLayout) getChildAt(1);
-        mImage = (ImageButton) getChildAt(2);
-        mImage.setOnClickListener(new OnClickListener() {
+        mImgLogout = (ImageButton) getChildAt(2);
+        mImgLogout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.clickButton();
+                mListener.onLogOut();
+            }
+        });
+        mImgBack = (ImageButton) getChildAt(3);
+        mImgBack.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onBack();
             }
         });
     }
@@ -51,11 +59,17 @@ public class HeaderLayout extends RelativeLayout {
         this.mListener = mListener;
     }
 
-    public void setImageVisible(boolean visible) {
-        mImage.setVisibility(visible ? View.VISIBLE : View.GONE);
+    public void setVisibleLogout(boolean visible) {
+        mImgLogout.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    public interface onClickFormHeaderLayout {
-        void clickButton();
+    public void setVisibleBack(boolean visible) {
+        mImgBack.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public abstract interface onClickFormHeaderLayout {
+        void onLogOut();
+
+        void onBack();
     }
 }
