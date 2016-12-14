@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="home_marginTop">100dp</dimen>
+    <dimen name="bitmapCircleImg_marginTop">80dp</dimen>
+    <dimen name="Login_marginTop">80dp</dimen>
+    <dimen name="DrawText_marginTop">80dp</dimen>
+    <dimen name="bitmap_circleImgWidth">70dp</dimen>
+    <dimen name="bitmap_circleImgHeight">70dp</dimen>
+    <dimen name="bitmap_starImgWidth">1dp</dimen>
+    <dimen name="customToolbar_textSize">25sp</dimen>
 </resources>

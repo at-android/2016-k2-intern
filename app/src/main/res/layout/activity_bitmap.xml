@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bitmap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vn.asiantech.training.BitmapActivity">
+
+    <vn.asiantech.training.ToolbarCustomView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:imgViewRight="false"
+        custom:titleText="@string/bitmap_titleText"></vn.asiantech.training.ToolbarCustomView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <vn.asiantech.training.CircleImageView
+            android:id="@+id/imgViewCycle"
+            android:layout_width="@dimen/bitmap_circleImgWidth"
+            android:layout_height="@dimen/bitmap_circleImgHeight"
+            android:layout_marginTop="@dimen/bitmapCircleImg_marginTop"
+           />
+
+        <vn.asiantech.training.StarImage
+            android:id="@+id/imgViewStar"
+            android:layout_width="@dimen/bitmap_starImgWidth"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <vn.asiantech.training.ReverseTriangleImage
+            android:id="@+id/imgViewTriangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgViewCycle"
+            />
+
+        <vn.asiantech.training.HeartImage
+            android:id="@+id/imgViewHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

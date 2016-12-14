@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.HomeActivity">
+
+    <vn.asiantech.training.ToolbarCustomView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:imgViewLeft="false"
+        custom:titleText="@string/home_titleText"></vn.asiantech.training.ToolbarCustomView>
+
+    <Button
+        android:id="@+id/btnShape"
+        style="@style/home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/home_marginTop"
+        android:text="@string/btnShape" />
+
+    <Button
+        android:id="@+id/btnBitmap"
+        style="@style/home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnShape"
+        android:text="@string/btnBitmap" />
+
+    <Button
+        android:id="@+id/btnText"
+        style="@style/home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnBitmap"
+        android:text="@string/btnText" />
+
+    <Button
+        android:id="@+id/btnChart"
+        style="@style/home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnText"
+        android:text="@string/btnChart" />
+</RelativeLayout>
