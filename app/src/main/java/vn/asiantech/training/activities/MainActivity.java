@@ -1,6 +1,7 @@
 package vn.asiantech.training.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,12 +27,21 @@ public class MainActivity extends AppCompatActivity {
         mUser = (EditText) findViewById(R.id.tvUsername);
         mPass = (EditText) findViewById(R.id.tvPassword);
         mBtnLogin = (Button) findViewById(R.id.btnLogIn);
+        SharedPreferences pre = getSharedPreferences("LoginStatus", MODE_PRIVATE);
+        String status = pre.getString("status", "");
+        if ("true".equals(status.toString())) {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        }
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ("123321".equals(mPass.getText().toString()) && "admin".equals(mUser.getText().toString())) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    SharedPreferences pre = getSharedPreferences("LoginStatus", MODE_PRIVATE);
+                    SharedPreferences.Editor edit = pre.edit();
+                    edit.putString("status", "true");
+                    edit.commit();
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();

@@ -1,6 +1,7 @@
 package vn.asiantech.training.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -56,6 +57,10 @@ public class HomeActivity extends AppCompatActivity implements HeaderLayout.onCl
     public void onLogOut() {
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        SharedPreferences pre = getSharedPreferences("LoginStatus", MODE_PRIVATE);
+        SharedPreferences.Editor edit = pre.edit();
+        edit.putString("status", "false");
+        edit.commit();
         startActivity(intent);
     }
 
