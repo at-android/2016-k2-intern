@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
     <ImageView
-        android:contentDescription="@null"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back"
-        android:padding="@dimen/header_padding"
         android:id="@+id/imvBack"
-        />
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/header_tv_home"
-        android:text="@string/header_tv_home"
-        android:padding="@dimen/header_padding"
-        android:layout_toRightOf="@+id/imvBack"
-        android:layout_toEndOf="@id/imvBack"
-        android:id="@+id/tvHome"
-        android:layout_marginStart="@dimen/header_tv_home_margin_left"
-        android:layout_marginLeft="@dimen/header_tv_home_margin_left"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/header_tv_home"
-        android:text="@string/header_tv_home"
-        android:padding="@dimen/header_padding"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/tvContent"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_next"
-        android:layout_alignParentRight="true"
-        android:id="@+id/imvNext"
-        android:padding="@dimen/header_padding"
-        android:layout_alignParentEnd="true"
         android:contentDescription="@null"
-        />
+        android:padding="@dimen/header_padding"
+        android:src="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/tvHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/header_tv_home_margin_left"
+        android:layout_marginStart="@dimen/header_tv_home_margin_left"
+        android:layout_toEndOf="@id/imvBack"
+        android:layout_toRightOf="@+id/imvBack"
+        android:padding="@dimen/header_padding"
+        android:text="@string/header_tv_home"
+        android:textSize="@dimen/header_tv_home" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/header_padding"
+        android:text="@string/header_tv_home"
+        android:textSize="@dimen/header_tv_home" />
+
+    <ImageView
+        android:id="@+id/imvNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@null"
+        android:padding="@dimen/header_padding"
+        android:src="@drawable/ic_next" />
+
     <View
         android:layout_width="match_parent"
-        android:layout_below="@+id/tvContent"
         android:layout_height="@dimen/header_view_height"
-        android:background="@android:color/black"/>
+        android:layout_below="@+id/tvContent"
+        android:background="@android:color/black" />
 </merge>

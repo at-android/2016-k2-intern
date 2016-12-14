@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <vn.asiantech.training.views.HeaderOptionsView
-        android:id="@+id/header_login"
+        android:id="@+id/header_login_menu"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         app:isShowBtnBack="false"
         app:isShowBtnNext="true"
         app:isShowTvHome="false"
         app:isShowTvTitle="true"
-        app:title="@string/header_tv_home"
-        />
+        app:title="@string/header_tv_home" />
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/menu_btn_padding"
-        android:layout_marginTop="@dimen/menu_btn_padding"
-        android:text="@string/menu_btn_shape"
         android:id="@+id/btnShape"
-        />
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/menu_btn_padding"
         android:padding="@dimen/menu_btn_padding"
-        android:layout_marginTop="@dimen/menu_btn_other_margin_top"
-        android:text="@string/menu_btn_bitmap"
+        android:text="@string/menu_btn_shape" />
+
+    <Button
         android:id="@+id/btnBitmap"
-        />
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/menu_btn_padding"
         android:layout_marginTop="@dimen/menu_btn_other_margin_top"
-        android:text="@string/menu_btn_text"
+        android:padding="@dimen/menu_btn_padding"
+        android:text="@string/menu_btn_bitmap" />
+
+    <Button
         android:id="@+id/btnText"
-        />
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/menu_btn_padding"
         android:layout_marginTop="@dimen/menu_btn_other_margin_top"
-        android:text="@string/menu_btn_chart"
+        android:padding="@dimen/menu_btn_padding"
+        android:text="@string/menu_btn_text" />
+
+    <Button
         android:id="@+id/btnChart"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/menu_btn_other_margin_top"
+        android:padding="@dimen/menu_btn_padding"
+        android:text="@string/menu_btn_chart" />
 </LinearLayout>

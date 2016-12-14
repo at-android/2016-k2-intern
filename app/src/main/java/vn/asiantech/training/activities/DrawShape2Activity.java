@@ -20,9 +20,9 @@ public class DrawShape2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_draw_shape2);
     }
 
-    public void onClicked(View view){
-        if(view.getId() == R.id.header_login_shape2){
-            Intent intent = new Intent(DrawShape2Activity.this,MenuActivity.class);
+    public void onClicked(View view) {
+        if (view.getId() == R.id.header_login_shape2) {
+            Intent intent = new Intent(DrawShape2Activity.this, MenuActivity.class);
             startActivity(intent);
         }
     }

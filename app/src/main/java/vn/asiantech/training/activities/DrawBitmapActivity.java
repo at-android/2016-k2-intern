@@ -19,9 +19,9 @@ public class DrawBitmapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_draw_bitmap);
     }
 
-    public void onClicked(View view){
-        if(view.getId()==R.id.header_login_bitmap){
-            Intent intent = new Intent(DrawBitmapActivity.this,MenuActivity.class);
+    public void onClicked(View view) {
+        if (view.getId() == R.id.header_login_bitmap) {
+            Intent intent = new Intent(DrawBitmapActivity.this, MenuActivity.class);
             startActivity(intent);
         }
     }

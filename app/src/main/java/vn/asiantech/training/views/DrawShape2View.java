@@ -28,10 +28,10 @@ public class DrawShape2View extends View {
         drawShap11(canvas);
     }
 
-    public void drawShap9(Canvas canvas){
+    public void drawShap9(Canvas canvas) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStrokeJoin(Paint.Join.MITER);
-        mPaint.setColor(Color.BLACK); // Change the boundary color
+        mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(5);
         mPaint.setStyle(Paint.Style.STROKE);
         mPath = new Path();
@@ -40,29 +40,29 @@ public class DrawShape2View extends View {
         float x = 100;
         float y = 200;
 
-        canvas.rotate(45,x,y);
+        canvas.rotate(45, x, y);
 
-        mPath.moveTo(x,y);
-        mPath.lineTo(x-length, y);
-        mPath.arcTo(new RectF(x-length-(length/2),y-length,x-(length/2),y),90,180);
-        mPath.arcTo(new RectF(x-length,y-length-(length/2),x,y-(length/2)),180,180);
-        mPath.lineTo(x,y);
+        mPath.moveTo(x, y);
+        mPath.lineTo(x - length, y);
+        mPath.arcTo(new RectF(x - length - (length / 2), y - length, x - (length / 2), y), 90, 180);
+        mPath.arcTo(new RectF(x - length, y - length - (length / 2), x, y - (length / 2)), 180, 180);
+        mPath.lineTo(x, y);
         mPath.close();
 
-        canvas.drawPath(mPath,mPaint);
+        canvas.drawPath(mPath, mPaint);
     }
 
-    public void drawShap11(Canvas canvas){
+    public void drawShap11(Canvas canvas) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStrokeJoin(Paint.Join.MITER);
-        mPaint.setColor(Color.BLACK); // Change the boundary color
+        mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(5);
         mPaint.setStyle(Paint.Style.STROKE);
 
-        canvas.drawCircle(200,280,100,mPaint);
-        canvas.drawCircle(150,290,20,mPaint);
-        canvas.drawCircle(220,220,20,mPaint);
-        canvas.drawLine(200,270,230,300,mPaint);
+        canvas.drawCircle(200, 280, 100, mPaint);
+        canvas.drawCircle(150, 290, 20, mPaint);
+        canvas.drawCircle(220, 220, 20, mPaint);
+        canvas.drawLine(200, 270, 230, 300, mPaint);
 
     }
 }

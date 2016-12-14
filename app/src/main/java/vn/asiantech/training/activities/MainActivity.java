@@ -16,11 +16,11 @@ import vn.asiantech.training.R;
  */
 
 public class MainActivity extends AppCompatActivity {
+    public static final String ISLOGIN = "Logined";
+    public static final String NAME_SHAREPREPERENCE = "sharepreperence";
     private EditText mEdtUsername;
     private EditText mEdtPassword;
     private Button mBtnLogin;
-    private static final String ISLOGIN = "Logined";
-    private static final String NAME_SHAREPREPERENCE = "sharepreperence";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

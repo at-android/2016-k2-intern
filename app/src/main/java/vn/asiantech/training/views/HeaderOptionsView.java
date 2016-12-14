@@ -16,7 +16,9 @@ import vn.asiantech.training.R;
  * Created by phuong on 09/12/2016.
  */
 
-public class HeaderOptionsView extends RelativeLayout{
+public class HeaderOptionsView extends RelativeLayout {
+    public headerListener mListener;
+
     public HeaderOptionsView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.HeaderOptionsView, 0, 0);
@@ -31,7 +33,7 @@ public class HeaderOptionsView extends RelativeLayout{
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.activity_header, this, true);
 
-        ImageView mImvBack = (ImageView) getChildAt(0);
+        final ImageView mImvBack = (ImageView) getChildAt(0);
         ImageView mImvNext = (ImageView) getChildAt(3);
         TextView mTvTitle = (TextView) getChildAt(2);
         TextView mTvHome = (TextView) getChildAt(1);
@@ -39,22 +41,40 @@ public class HeaderOptionsView extends RelativeLayout{
 
         mTvTitle.setText(mTitle);
 
-        if(!isShowBtnBack)
+        if (!isShowBtnBack) {
             mImvBack.setVisibility(GONE);
+        }
 
-        if(!isShowTvTitle)
+        if (!isShowTvTitle) {
             mTvTitle.setVisibility(GONE);
+        }
 
-        if(!isShowTvHome)
+        if (!isShowTvHome) {
             mTvHome.setVisibility(GONE);
+        }
 
-        if(!isShowBtnNext)
+        if (!isShowBtnNext) {
             mImvNext.setVisibility(GONE);
+        }
+
+        mImvNext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.logOut();
+            }
+        });
 
     }
-    public HeaderOptionsView(Context context){
-        super(context,null);
+
+    public HeaderOptionsView(Context context) {
+        super(context, null);
     }
 
+    public void setCallListener(headerListener listener) {
+        this.mListener = listener;
+    }
 
+    public interface headerListener {
+        void logOut();
+    }
 }

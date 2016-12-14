@@ -18,8 +18,8 @@ public class DrawChartActivity extends AppCompatActivity {
         setContentView(vn.asiantech.training.R.layout.activity_draw_chart);
     }
 
-    public void onClicked(View view){
-        Intent intent  = new Intent(this, MenuActivity.class);
+    public void onClicked(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 }

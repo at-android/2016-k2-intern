@@ -19,10 +19,9 @@ public class DrawTextActivity extends AppCompatActivity {
         setContentView(R.layout.activity_draw_text);
     }
 
-    public void onClicked(View view){
-        if(view.getId() == R.id.header_login_text)
-        {
-            Intent intent = new Intent(DrawTextActivity.this,MenuActivity.class);
+    public void onClicked(View view) {
+        if (view.getId() == R.id.header_login_text) {
+            Intent intent = new Intent(DrawTextActivity.this, MenuActivity.class);
             startActivity(intent);
         }
     }
