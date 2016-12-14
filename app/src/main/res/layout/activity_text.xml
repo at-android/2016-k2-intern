@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_shape"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    android:id="@+id/activity_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.asiantech.training.ShapeActivity">
+    tools:context="vn.asiantech.training.TextActivity">
 
     <vn.asiantech.training.ToolbarCustomView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        custom:imgViewLeft="true"
         custom:imgViewRight="false"
-        custom:titleText="@string/shape_titleText"></vn.asiantech.training.ToolbarCustomView>
+        custom:titleText="@string/text_titleText"></vn.asiantech.training.ToolbarCustomView>
 
-    <vn.asiantech.training.DrawShape
-        android:id="@+id/DrawShape"
+    <vn.asiantech.training.DrawText
+        android:layout_marginTop="@dimen/DrawText_marginTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></vn.asiantech.training.DrawShape>
-
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

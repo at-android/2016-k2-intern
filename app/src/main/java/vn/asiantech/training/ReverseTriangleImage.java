@@ -57,10 +57,9 @@ public class ReverseTriangleImage extends ImageView {
         Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, finalBitmap.getWidth(),
                 finalBitmap.getHeight());
-
-        Point point1_draw = new Point(75, 0);
-        Point point2_draw = new Point(0, 180);
-        Point point3_draw = new Point(180, 180);
+        Point point1_draw = new Point(130, 75);
+        Point point2_draw = new Point(50, 0);
+        Point point3_draw = new Point(190, 0);
 
         Path path = new Path();
         path.moveTo(point1_draw.x, point1_draw.y);
@@ -69,6 +68,7 @@ public class ReverseTriangleImage extends ImageView {
         path.lineTo(point1_draw.x, point1_draw.y);
         path.close();
         canvas.drawARGB(0, 0, 0, 0);
+        //set hinh anh cho paint o day
         paint.setColor(Color.parseColor("#BAB399"));
         canvas.drawPath(path, paint);
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));

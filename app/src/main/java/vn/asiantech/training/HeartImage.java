@@ -6,17 +6,23 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class CircleImageView extends ImageView {
+/**
+ * Created by Administrator on 12/12/2016.
+ */
 
-    public CircleImageView(Context context, AttributeSet attrs) {
+public class HeartImage extends ImageView {
+
+    public HeartImage(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -53,20 +59,36 @@ public class CircleImageView extends ImageView {
                 finalBitmap.getHeight(), Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, finalBitmap.getWidth(),
-                finalBitmap.getHeight());
-
+        Paint paint = new Paint();
+        float x = 180;
+        float y = 30;
+        RectF rectF = new RectF(x, y - 25, x + 60, y + 20);
+        canvas.drawArc(rectF, 180, 180, false, paint);
+        RectF rectF2 = new RectF(x - 60, y - 25, x, y + 20);
+        canvas.drawArc(rectF2, 180, 180, false, paint);
+        Path path = new Path();
+        path.moveTo(x, y + 60);
+        path.lineTo(x + 60, y - 5);
+        path.moveTo(x, y + 60);
+        path.lineTo(x - 60, y - 2);
+        path.lineTo(x + 60, y - 2);
+        path.close();
+        int width = finalBitmap.getWidth();
+        int height = finalBitmap.getHeight();
+        final Rect rect = new Rect(0, 0, width,
+                height);
+        //set hinh anh cho paint o day
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
+
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(Color.parseColor("#BAB399"));
-        canvas.drawCircle(finalBitmap.getWidth() / 2 + 0.7f,
-                finalBitmap.getHeight() / 2 + 0.7f,
-                finalBitmap.getWidth() / 2 + 0.1f, paint);
+        canvas.drawPath(path, paint);
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
         canvas.drawBitmap(finalBitmap, rect, rect, paint);
+
         return output;
     }
+
 }

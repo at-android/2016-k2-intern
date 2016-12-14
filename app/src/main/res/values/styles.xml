@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="home_button">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Login_ed">
+        <item name="android:textSize">25sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Login_btn">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
 </resources>

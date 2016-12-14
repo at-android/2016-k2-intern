@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btnShape">Draw Shape</string>
+    <string name="btnBitmap">Draw Bitmap</string>
+    <string name="btnText">Draw Text</string>
+    <string name="btnChart">Draw Chart</string>
+    <string name="edUser">Username</string>
+    <string name="edPassword">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="bitmap_titleText">Home   Bitmap</string>
+    <string name="graph_titleText">Home   Graph</string>
+    <string name="home_titleText">Home</string>
+    <string name="shape_titleText">Home   Shape</string>
+    <string name="text_titleText">Home   Text</string>
 </resources>

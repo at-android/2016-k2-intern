@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/vn.asiantech.training"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.LoginActivity">
+
+    <vn.asiantech.training.ToolbarCustomView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:imgViewLeft="false"
+        custom:imgViewRight="false"
+        custom:titleText="Login"></vn.asiantech.training.ToolbarCustomView>
+
+    <EditText
+        android:id="@+id/edUsername"
+        style="@style/Login_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="@dimen/Login_marginTop"
+        android:hint="@string/edUser" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/Login_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/edUsername"
+        android:hint="@string/edPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/Login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edPassword"
+        android:text="@string/btnLogin" />
+</RelativeLayout>
