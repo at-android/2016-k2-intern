@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.models.Alarm;
 
@@ -26,9 +26,9 @@ public class DatabaseAlarm {
     private static final String DATABASE_NAME = "DB_ALARM";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "ALARM";
-    private static Context context;
-    ArrayList<Alarm> arrInfo = null;
-    Alarm alarm = null;
+    private Context context;
+    private List<Alarm> arrInfos = null;
+    private Alarm alarm = null;
     private SQLiteDatabase db;
     private OpenHelper openHelper;
 
@@ -63,7 +63,7 @@ public class DatabaseAlarm {
         db.execSQL(query);
     }
 
-    public ArrayList<Alarm> getData() {
+    public List<Alarm> getData() {
         String[] columns = new String[]{COLUMN_ID, COLUMN_HOUR, COLUMN_MIN, COLUMN_DAYS, COLUMN_STATUS};
         Cursor c = db.query(TABLE_NAME, null, null, null, null, null, null);
         int iRow = c.getColumnIndex(COLUMN_ID);
@@ -73,7 +73,7 @@ public class DatabaseAlarm {
         int iDayChar = c.getColumnIndex(COLUMN_DAYS_CHAR);
         int iStatus = c.getColumnIndex(COLUMN_STATUS);
 
-        arrInfo = new ArrayList<Alarm>();
+        arrInfos = new ArrayList<Alarm>();
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             alarm = new Alarm();
             alarm.setId(c.getInt(iRow));
@@ -85,11 +85,11 @@ public class DatabaseAlarm {
                 alarm.setStatus(true);
             else
                 alarm.setStatus(false);
-            arrInfo.add(alarm);
+            arrInfos.add(alarm);
 
         }
         c.close();
-        return arrInfo;
+        return arrInfos;
     }
 
 

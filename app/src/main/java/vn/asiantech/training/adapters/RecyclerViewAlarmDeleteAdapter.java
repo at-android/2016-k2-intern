@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.listeners.RecyclerItemListener;
@@ -19,12 +19,12 @@ import vn.asiantech.training.models.Alarm;
  * Created by phuong on 07/12/2016.
  */
 
-public class RecyclerViewAlarmDeleteAdapter extends RecyclerView.Adapter<RecyclerViewAlarmDeleteAdapter.MyViewHolder>{
+public class RecyclerViewAlarmDeleteAdapter extends RecyclerView.Adapter<RecyclerViewAlarmDeleteAdapter.MyViewHolder> {
     private Context mContext;
-    private ArrayList<Alarm> mAlarms;
+    private List<Alarm> mAlarms;
     private RecyclerItemListener mItemListener;
 
-    public RecyclerViewAlarmDeleteAdapter(ArrayList<Alarm> alarms, Context context, RecyclerItemListener listener) {
+    public RecyclerViewAlarmDeleteAdapter(List<Alarm> alarms, Context context, RecyclerItemListener listener) {
         mAlarms = alarms;
         mContext = context;
         mItemListener = listener;
@@ -51,15 +51,15 @@ public class RecyclerViewAlarmDeleteAdapter extends RecyclerView.Adapter<Recycle
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mTvTime;
-        TextView mTvRepeat;
-        CheckBox mTvStatus;
+        private TextView mTvTime;
+        private TextView mTvRepeat;
+        private CheckBox mChkStatus;
 
         public MyViewHolder(View view) {
             super(view);
             mTvTime = (TextView) view.findViewById(R.id.tvTimeAlarm);
             mTvRepeat = (TextView) view.findViewById(R.id.tvRepeat);
-            mTvStatus = (CheckBox) view.findViewById(R.id.tvStatus);
+            mChkStatus = (CheckBox) view.findViewById(R.id.tvStatus);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,10 +67,10 @@ public class RecyclerViewAlarmDeleteAdapter extends RecyclerView.Adapter<Recycle
                     mItemListener.onItemclick(getAdapterPosition());
                 }
             });
-            mTvStatus.setOnClickListener(new View.OnClickListener() {
+            mChkStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mItemListener.onItemChecked(getAdapterPosition(), mTvStatus.isChecked());
+                    mItemListener.onItemChecked(getAdapterPosition(), mChkStatus.isChecked());
                 }
             });
         }

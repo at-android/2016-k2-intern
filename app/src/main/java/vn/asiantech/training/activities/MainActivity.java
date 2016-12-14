@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapters.RecyclerViewAlarmAdapter;
@@ -25,7 +26,7 @@ import vn.asiantech.training.services.AlarmServices;
 public class MainActivity extends AppCompatActivity implements RecyclerItemListener {
     private TextView mTvAdd;
     private RecyclerView mRecyclerView;
-    private ArrayList<Alarm> mAlarms;
+    private List<Alarm> mAlarms;
     private RecyclerViewAlarmAdapter mRecyclerViewAlarmAdapter;
     private int REQUEST_CODE_ADD = 1000;
     private int REQUEST_CODE_EDIT = 3000;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
         }
         if(requestCode==REQUEST_CODE_DELETE && resultCode==(DeleteAlarmActivity.RESULT_CODE_DELETE)){
             Bundle bundle = data.getExtras();
-            ArrayList<Integer> mPositionDeleted = bundle.getIntegerArrayList(DeleteAlarmActivity.INTENT_DELETE);
+            List<Integer> mPositionDeleted = bundle.getIntegerArrayList(DeleteAlarmActivity.INTENT_DELETE);
             for (int in : mPositionDeleted) {
                 mAlarms.remove(in);
             }
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
         }
     }
 
-    public ArrayList<Alarm> initData() {
-        ArrayList<Alarm> alarms = new ArrayList<>();
+    public List<Alarm> initData() {
+        List<Alarm> alarms = new ArrayList<>();
         alarms = mDatabaseAlarm.getData();
         return alarms;
     }

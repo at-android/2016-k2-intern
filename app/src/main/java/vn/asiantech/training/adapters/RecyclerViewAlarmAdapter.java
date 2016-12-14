@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.listeners.RecyclerItemListener;
@@ -21,10 +22,10 @@ import vn.asiantech.training.models.Alarm;
 
 public class RecyclerViewAlarmAdapter extends RecyclerView.Adapter<RecyclerViewAlarmAdapter.MyViewHolder> {
     private Context mContext;
-    private ArrayList<Alarm> mAlarms;
+    private List<Alarm> mAlarms;
     private RecyclerItemListener mItemListener;
 
-    public RecyclerViewAlarmAdapter(ArrayList<Alarm> alarms, Context context, RecyclerItemListener listener) {
+    public RecyclerViewAlarmAdapter(List<Alarm> alarms, Context context, RecyclerItemListener listener) {
         mAlarms = alarms;
         mContext = context;
         mItemListener = listener;
@@ -53,9 +54,9 @@ public class RecyclerViewAlarmAdapter extends RecyclerView.Adapter<RecyclerViewA
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mTvTime;
-        TextView mTvRepeat;
-        ImageView mTvStatus;
+        private TextView mTvTime;
+        private TextView mTvRepeat;
+        private ImageView mTvStatus;
 
         public MyViewHolder(View view) {
             super(view);

@@ -20,10 +20,10 @@ import vn.asiantech.training.R;
  */
 
 public class CaculatorActivity extends AppCompatActivity {
-    MediaPlayer mp;
-    private TextView tvNumber1;
-    private TextView tvNumber2;
-    private TextView tvNumber3;
+    private MediaPlayer mp;
+    private TextView mTvNumber1;
+    private TextView mTvNumber2;
+    private TextView mTvNumber3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,12 +31,12 @@ public class CaculatorActivity extends AppCompatActivity {
         mp= MediaPlayer.create(this, R.raw.quehuongtoi);
         mp.start();
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //hide activity title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_caculator_alarm);
 
-        tvNumber1 = (TextView) findViewById(R.id.tvNumber1);
-        tvNumber2 = (TextView) findViewById(R.id.tvNumber2);
-        tvNumber3 = (TextView) findViewById(R.id.tvNumber3);
+        mTvNumber1 = (TextView) findViewById(R.id.tvNumber1);
+        mTvNumber2 = (TextView) findViewById(R.id.tvNumber2);
+        mTvNumber3 = (TextView) findViewById(R.id.tvNumber3);
         Button btnCancel = (Button) findViewById(R.id.btnCancel);
         Button btnOk = (Button) findViewById(R.id.btnOk);
         final EditText edtResult  = (EditText) findViewById(R.id.result);
@@ -46,24 +46,19 @@ public class CaculatorActivity extends AppCompatActivity {
         int number2 = rd.nextInt(100);
         int number3 = rd.nextInt(100);
 
-        tvNumber1.setText(String.valueOf(number1));
-        tvNumber2.setText(String.valueOf(number2));
-        tvNumber3.setText(String.valueOf(number3));
+        mTvNumber1.setText(String.valueOf(number1));
+        mTvNumber2.setText(String.valueOf(number2));
+        mTvNumber3.setText(String.valueOf(number3));
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int result = Integer.parseInt(tvNumber1.getText().toString()) - Integer.parseInt(tvNumber2.getText().toString()) + Integer.parseInt(tvNumber3.getText().toString());
+                int result = Integer.parseInt(mTvNumber1.getText().toString()) - Integer.parseInt(mTvNumber2.getText().toString()) + Integer.parseInt(mTvNumber3.getText().toString());
                 if(String.valueOf(result).equals(edtResult.getText().toString())){
                     mp.release();
                     onBackPressed();
                 }
-                else{
-                    Toast.makeText(getApplication(),"Fail", Toast.LENGTH_SHORT).show();
-                }
             }
         });
-
-
     }
 }

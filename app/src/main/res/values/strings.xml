@@ -36,4 +36,26 @@
     <string name="broadcast_delete_intent">com.phuong.DELETE_INTENT</string>
     <string name="broadcast_add_intent">com.phuong.ADD_INTENT</string>
     <string name="broadcast_edit_intent">com.phuong.EDIT_INTENT</string>
+    <string name="string_repeat_day">1,2,3,4,5,6,7</string>
+    <string name="string_repeat_day_char">Every Day</string>
+    <string name="dialog_title_repeat">Repeat</string>
+    <string name="monday_int">2,</string>
+    <string name="monday_char">Monday,</string>
+    <string name="tuesday_int">3,</string>
+    <string name="tuesday_char">Tuesday,</string>
+    <string name="wed_int">4,</string>
+    <string name="wed_char">Wednesday,</string>
+    <string name="thursday_int">5,</string>
+    <string name="thursday_char">Thursday,</string>
+    <string name="friday_int">6,</string>
+    <string name="friday_char">Friday,</string>
+    <string name="saturday_int">7,</string>
+    <string name="saturday_char">Saturday,</string>
+    <string name="sunday_int">1,</string>
+    <string name="sunday_char">Sunday,</string>
+    <string name="dialog_title_settime">Set Time</string>
+    <string name="dialog_title_delete">Are your sure delete your alarm?</string>
+    <string name="dialog_message_delete">Click yes to exit!</string>
+    <string name="dialog_btn_yes_delete">Yes</string>
+    <string name="dialog_btn_no_delete">No</string>
 </resources>

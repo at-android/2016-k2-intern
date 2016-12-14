@@ -30,18 +30,18 @@ import vn.asiantech.training.models.Alarm;
  */
 
 public class AddAlarmActivity extends AppCompatActivity implements View.OnClickListener {
-    private CheckBox mCbActive;
-    private RelativeLayout mRelativeLayoutSetTime;
-    private RelativeLayout mRelativeLayoutRepeat;
+    private CheckBox mChkActive;
+    private RelativeLayout mRlSetTime;
+    private RelativeLayout mRlRepeat;
     private String mDayRepeatChar = "";
     private String mDayRepeatInt = "";
     private TextView mTvSetTime;
-    private Calendar mcurrentTime = Calendar.getInstance();
+    private Calendar mcurrentTime;
     private String mHourSelect = "";
     private String mMinSelect = "";
-    public static String INTENT_ADD = "intentAdd";
+    public final static String INTENT_ADD = "intentAdd";
     private DatabaseAlarm mDatabaseAlarm;
-    public static int RESULT_CODE_ADD = 10000;
+    public final static int RESULT_CODE_ADD = 10000;
     private TextView mTvRepeatDay;
 
     @Override
@@ -49,17 +49,18 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alarm);
 
-        mCbActive = (CheckBox) findViewById(R.id.tvCheck);
-        mRelativeLayoutSetTime = (RelativeLayout) findViewById(R.id.layoutSetTime);
-        mRelativeLayoutRepeat = (RelativeLayout) findViewById(R.id.layoutRepeat);
+        mChkActive = (CheckBox) findViewById(R.id.tvCheck);
+        mRlSetTime = (RelativeLayout) findViewById(R.id.layoutSetTime);
+        mRlRepeat = (RelativeLayout) findViewById(R.id.layoutRepeat);
         mTvSetTime = (TextView) findViewById(R.id.tvSetTime);
         mTvRepeatDay = (TextView) findViewById(R.id.tvRepeatDay);
 
+        mcurrentTime = Calendar.getInstance();
         mHourSelect = String.valueOf(mcurrentTime.get(Calendar.HOUR_OF_DAY));
         mMinSelect = String.valueOf(mcurrentTime.get(Calendar.MINUTE));
 
-        mRelativeLayoutRepeat.setOnClickListener(this);
-        mRelativeLayoutSetTime.setOnClickListener(this);
+        mRlRepeat.setOnClickListener(this);
+        mRlSetTime.setOnClickListener(this);
 
         mDatabaseAlarm = new DatabaseAlarm(this);
         mDatabaseAlarm.open();
@@ -67,8 +68,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_add_alarm, menu);
+        getMenuInflater().inflate(R.menu.menu_add_alarm, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -79,18 +79,17 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
                 onBackPressed();
                 break;
             case R.id.action_save:
-                //get checkbox
-                boolean status = false;
-                status = mCbActive.isChecked();
+                boolean isStatus = false;
+                isStatus = mChkActive.isChecked();
                 if ("".equals(mDayRepeatChar)) {
-                    mDayRepeatInt = "1,2,3,4,5,6,7";
-                    mDayRepeatChar = "Every Day";
+                    mDayRepeatInt = getResources().getString(R.string.string_repeat_day);
+                    mDayRepeatChar = getResources().getString(R.string.string_repeat_day_char);;
                 }
-                mDatabaseAlarm.createData(mHourSelect, mMinSelect, mDayRepeatInt, mDayRepeatChar, String.valueOf(status));
-                broadcastIntent(new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, status, mDayRepeatChar));
+                mDatabaseAlarm.createData(mHourSelect, mMinSelect, mDayRepeatInt, mDayRepeatChar, String.valueOf(isStatus));
+                broadcastIntent(new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, isStatus, mDayRepeatChar));
 
                 Intent intent = new Intent();
-                intent.putExtra(INTENT_ADD, new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, status, mDayRepeatChar));
+                intent.putExtra(INTENT_ADD, new Alarm(mHourSelect, mMinSelect, mDayRepeatInt, isStatus, mDayRepeatChar));
 
                 setResult(RESULT_CODE_ADD, intent);
                 finish();
@@ -105,7 +104,7 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
 
     public void showDialogRepeat() {
         final Dialog dialog = new Dialog(this);
-        dialog.setTitle("Repeat");
+        dialog.setTitle(getResources().getString(R.string.dialog_title_repeat));
         dialog.setContentView(R.layout.dialog_time_repeat);
         final CheckBox mCbMonday = (CheckBox) dialog.findViewById(R.id.cbMonday);
         final CheckBox mCbTuesday = (CheckBox) dialog.findViewById(R.id.cbTuesday);
@@ -120,32 +119,32 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(View view) {
                 if (mCbMonday.isChecked()) {
-                    mDayRepeatChar += "Monday,";
-                    mDayRepeatInt += "2,";
+                    mDayRepeatChar += getResources().getString(R.string.monday_char);
+                    mDayRepeatInt += getResources().getString(R.string.monday_int);
                 }
                 if (mCbTuesday.isChecked()) {
-                    mDayRepeatChar += "Tuesday,";
-                    mDayRepeatInt += "3,";
+                    mDayRepeatChar += getResources().getString(R.string.tuesday_char);
+                    mDayRepeatInt += getResources().getString(R.string.tuesday_int);
                 }
                 if (mCbWebnesday.isChecked()) {
-                    mDayRepeatChar += "Wednesday,";
-                    mDayRepeatInt += "4,";
+                    mDayRepeatChar += getResources().getString(R.string.wed_char);
+                    mDayRepeatInt += getResources().getString(R.string.wed_int);
                 }
                 if (mCbThursday.isChecked()) {
-                    mDayRepeatChar += "Thursday,";
-                    mDayRepeatInt += "5,";
+                    mDayRepeatChar += getResources().getString(R.string.thursday_char);
+                    mDayRepeatInt += getResources().getString(R.string.thursday_int);
                 }
                 if (mCbFriday.isChecked()) {
-                    mDayRepeatChar += "Friday,";
-                    mDayRepeatInt += "6,";
+                    mDayRepeatChar += getResources().getString(R.string.friday_char);
+                    mDayRepeatInt += getResources().getString(R.string.friday_int);
                 }
                 if (mCbSaturday.isChecked()) {
-                    mDayRepeatChar += "Saturday,";
-                    mDayRepeatInt += "7,";
+                    mDayRepeatChar += getResources().getString(R.string.saturday_char);
+                    mDayRepeatInt += getResources().getString(R.string.saturday_int);
                 }
                 if (mCbSunday.isChecked()) {
-                    mDayRepeatChar += "Sunday,";
-                    mDayRepeatInt += "1,";
+                    mDayRepeatChar += getResources().getString(R.string.sunday_char);
+                    mDayRepeatInt += getResources().getString(R.string.sunday_int);
                 }
 
                 mTvRepeatDay.setText(mDayRepeatChar);
@@ -170,8 +169,8 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
                         mHourSelect = String.valueOf(selectedHour);
                         mMinSelect = String.valueOf(selectedMinute);
                     }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Set Time");
+                }, hour, minute, true);
+                mTimePicker.setTitle(getResources().getString(R.string.dialog_title_settime));
                 mTimePicker.show();
                 break;
             case R.id.layoutRepeat:
@@ -183,16 +182,16 @@ public class AddAlarmActivity extends AppCompatActivity implements View.OnClickL
     public void showDialogDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Are your sure delete your alarm?");
+        alertDialogBuilder.setTitle(getResources().getString(R.string.dialog_title_delete));
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage(getResources().getString(R.string.dialog_message_delete))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.dialog_btn_yes_delete), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         onBackPressed();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.dialog_btn_no_delete), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }

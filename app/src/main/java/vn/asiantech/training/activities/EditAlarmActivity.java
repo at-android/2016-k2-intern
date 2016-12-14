@@ -1,4 +1,5 @@
 package vn.asiantech.training.activities;
+
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-
 import java.util.Calendar;
 
 import vn.asiantech.training.R;
@@ -27,46 +27,46 @@ import vn.asiantech.training.models.Alarm;
  * Created by phuong on 08/12/2016.
  */
 
-public class EditAlarmActivity extends AppCompatActivity implements View.OnClickListener  {
-    public static String INTENT_EDIT = "intentEdit";
+public class EditAlarmActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String INTENT_EDIT = "intentEdit";
+    public static final int RESULT_CODE_EDIT = 20000;
     private TextView mTvSetTime;
     private TextView mTvRepeatDay;
-    private CheckBox mCbActive;
+    private CheckBox mChkActive;
     private String mHourSelect = "";
     private String mMinSelect = "";
-    private Calendar mcurrentTime = Calendar.getInstance();
+    private Calendar mcurrentTime;
     private String mDayRepeat = "";
     private String mDayRepeatInt = "";
     private Alarm mAlarm;
     private DatabaseAlarm mDatabaseAlarm;
-    private RelativeLayout mRelativeLayoutSetTime;
-    private RelativeLayout mRelativeLayoutRepeat;
+    private RelativeLayout mRlSetTime;
+    private RelativeLayout mRlRepeat;
     private int mPosition = 0;
-    public static int RESULT_CODE_EDIT = 20000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_new_alarm);
-        mRelativeLayoutSetTime = (RelativeLayout) findViewById(R.id.layoutSetTime);
-        mRelativeLayoutRepeat = (RelativeLayout) findViewById(R.id.layoutRepeat);
+        mRlSetTime = (RelativeLayout) findViewById(R.id.layoutSetTime);
+        mRlRepeat = (RelativeLayout) findViewById(R.id.layoutRepeat);
         mTvSetTime = (TextView) findViewById(R.id.tvSetTime);
-        mCbActive = (CheckBox) findViewById(R.id.tvCheck);
+        mChkActive = (CheckBox) findViewById(R.id.tvCheck);
         mTvRepeatDay = (TextView) findViewById(R.id.tvRepeatDay);
 
         mAlarm = getIntent().getParcelableExtra(MainActivity.INTENT_KEY);
         mPosition = getIntent().getIntExtra(MainActivity.INTENT_KEY_POSITION, 0);
         mTvSetTime.setText(mAlarm.getHour() + ":" + mAlarm.getMin());
         mTvRepeatDay.setText(mAlarm.getRepeartChar());
-        mCbActive.setChecked(mAlarm.isStatus());
+        mChkActive.setChecked(mAlarm.isStatus());
         mDayRepeatInt = mAlarm.getRepeart();
         mDayRepeat = mAlarm.getRepeartChar();
 
         mDatabaseAlarm = new DatabaseAlarm(this);
         mDatabaseAlarm.open();
 
-        mRelativeLayoutSetTime.setOnClickListener(this);
-        mRelativeLayoutRepeat.setOnClickListener(this);
+        mRlSetTime.setOnClickListener(this);
+        mRlRepeat.setOnClickListener(this);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setHomeButtonEnabled(true);
@@ -96,7 +96,7 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
 
                 //get checkbox
                 boolean status = false;
-                status = mCbActive.isChecked();
+                status = mChkActive.isChecked();
                 //edit
                 mDatabaseAlarm.editData(mAlarm.getId(), mHourSelect, mMinSelect, mDayRepeatInt, mDayRepeat, String.valueOf(status));
 
@@ -117,6 +117,7 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layoutSetTime:
+                mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
@@ -127,8 +128,8 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
                         mHourSelect = String.valueOf(selectedHour);
                         mMinSelect = String.valueOf(selectedMinute);
                     }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Set Time");
+                }, hour, minute, true);
+                mTimePicker.setTitle(getResources().getString(R.string.dialog_title_settime));
                 mTimePicker.show();
                 break;
             case R.id.layoutRepeat:
@@ -139,78 +140,85 @@ public class EditAlarmActivity extends AppCompatActivity implements View.OnClick
 
     public void showDialogRepeat() {
         final Dialog dialog = new Dialog(this);
-        dialog.setTitle("Repeat");
+        dialog.setTitle(getResources().getString(R.string.dialog_title_repeat));
         dialog.setContentView(R.layout.dialog_time_repeat);
-        final CheckBox mCbMonday = (CheckBox) dialog.findViewById(R.id.cbMonday);
-        final CheckBox mCbTuesday = (CheckBox) dialog.findViewById(R.id.cbTuesday);
-        final CheckBox mCbWebnesday = (CheckBox) dialog.findViewById(R.id.cbWednesday);
-        final CheckBox mCbThursday = (CheckBox) dialog.findViewById(R.id.cbThursday);
-        final CheckBox mCbFriday = (CheckBox) dialog.findViewById(R.id.cbFriday);
-        final CheckBox mCbSaturday = (CheckBox) dialog.findViewById(R.id.cbSaturday);
-        final CheckBox mCbSunday = (CheckBox) dialog.findViewById(R.id.cbSunday);
+        final CheckBox mChkMonday = (CheckBox) dialog.findViewById(R.id.cbMonday);
+        final CheckBox mChkTuesday = (CheckBox) dialog.findViewById(R.id.cbTuesday);
+        final CheckBox mChkWebnesday = (CheckBox) dialog.findViewById(R.id.cbWednesday);
+        final CheckBox mChkThursday = (CheckBox) dialog.findViewById(R.id.cbThursday);
+        final CheckBox mChkFriday = (CheckBox) dialog.findViewById(R.id.cbFriday);
+        final CheckBox mChkSaturday = (CheckBox) dialog.findViewById(R.id.cbSaturday);
+        final CheckBox mChkSunday = (CheckBox) dialog.findViewById(R.id.cbSunday);
         Button mBtnOk = (Button) dialog.findViewById(R.id.btnOk);
 
-        if ("Every Day".equals(mDayRepeat)) {
-            mCbMonday.setChecked(true);
-            mCbTuesday.setChecked(true);
-            mCbWebnesday.setChecked(true);
-            mCbThursday.setChecked(true);
-            mCbFriday.setChecked(true);
-            mCbSaturday.setChecked(true);
-            mCbSunday.setChecked(true);
+        if (getResources().getString(R.string.string_repeat_day_char).equals(mDayRepeat)) {
+            mChkMonday.setChecked(true);
+            mChkTuesday.setChecked(true);
+            mChkWebnesday.setChecked(true);
+            mChkThursday.setChecked(true);
+            mChkFriday.setChecked(true);
+            mChkSaturday.setChecked(true);
+            mChkSunday.setChecked(true);
         } else {
             String[] days = mDayRepeat.split("[,]");
             for (int i = 0; i < days.length; i++) {
-                if (days[i].equals(mCbMonday.getText().toString()))
-                    mCbMonday.setChecked(true);
-                if (days[i].equals(mCbTuesday.getText().toString()))
-                    mCbTuesday.setChecked(true);
-                if (days[i].equals(mCbWebnesday.getText().toString()))
-                    mCbWebnesday.setChecked(true);
-                if (days[i].equals(mCbThursday.getText().toString()))
-                    mCbThursday.setChecked(true);
-                if (days[i].equals(mCbFriday.getText().toString()))
-                    mCbFriday.setChecked(true);
-                if (days[i].equals(mCbSaturday.getText().toString()))
-                    mCbSaturday.setChecked(true);
-                if (days[i].equals(mCbSunday.getText().toString()))
-                    mCbSunday.setChecked(true);
+                if (days[i].equals(mChkMonday.getText().toString())) {
+                    mChkMonday.setChecked(true);
+                }
+                if (days[i].equals(mChkTuesday.getText().toString())) {
+                    mChkTuesday.setChecked(true);
+                }
+                if (days[i].equals(mChkWebnesday.getText().toString())) {
+                    mChkWebnesday.setChecked(true);
+                }
+                if (days[i].equals(mChkThursday.getText().toString())) {
+                    mChkThursday.setChecked(true);
+                }
+                if (days[i].equals(mChkFriday.getText().toString())) {
+                    mChkFriday.setChecked(true);
+                }
+                if (days[i].equals(mChkSaturday.getText().toString())) {
+                    mChkSaturday.setChecked(true);
+                }
+                if (days[i].equals(mChkSunday.getText().toString())) {
+                    mChkSunday.setChecked(true);
+                }
             }
         }
 
         mBtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDayRepeat="";
-                mDayRepeatInt="";
+                mDayRepeat = "";
+                mDayRepeatInt = "";
 
-                if (mCbMonday.isChecked()) {
-                    mDayRepeat += "Monday,";
-                    mDayRepeatInt += "2,";
+                if (mChkMonday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.monday_char);
+                    mDayRepeatInt += getResources().getString(R.string.monday_int);
                 }
-                if (mCbTuesday.isChecked()) {
-                    mDayRepeat += "Tuesday,";
-                    mDayRepeatInt += "3,";
+                if (mChkTuesday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.tuesday_char);
+                    mDayRepeatInt += getResources().getString(R.string.tuesday_int);
                 }
-                if (mCbWebnesday.isChecked()) {
-                    mDayRepeat += "Wednesday,";
-                    mDayRepeatInt += "4,";
+                if (mChkWebnesday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.wed_char);
+                    mDayRepeatInt += getResources().getString(R.string.wed_int);
                 }
-                if (mCbThursday.isChecked()) {
-                    mDayRepeat += "Thursday,";
-                    mDayRepeatInt += "5,";
+                if (mChkThursday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.thursday_char);
+                    mDayRepeatInt += getResources().getString(R.string.thursday_int);
                 }
-                if (mCbFriday.isChecked()) {
-                    mDayRepeat += "Friday,";
-                    mDayRepeatInt += "6,";
+                if (mChkFriday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.friday_char);
+                    mDayRepeatInt += getResources().getString(R.string.friday_int);
                 }
-                if (mCbSaturday.isChecked()) {
-                    mDayRepeat += "Saturday,";
-                    mDayRepeatInt += "7,";
+                if (mChkSaturday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.saturday_char);
+                    mDayRepeatInt += getResources().getString(R.string.saturday_int);
                 }
-                if (mCbSunday.isChecked()) {
-                    mDayRepeat += "Sunday,";
-                    mDayRepeatInt += "1,";
+                if (mChkSunday.isChecked()) {
+                    mDayRepeat += getResources().getString(R.string.sunday_char);
+                    mDayRepeatInt += getResources().getString(R.string.sunday_int);
                 }
 
                 mTvRepeatDay.setText(mDayRepeat);

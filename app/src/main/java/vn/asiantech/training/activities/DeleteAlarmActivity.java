@@ -13,10 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapters.RecyclerViewAlarmDeleteAdapter;
@@ -28,17 +27,17 @@ import vn.asiantech.training.models.Alarm;
  * Created by phuong on 07/12/2016.
  */
 
-public class DeleteAlarmActivity extends AppCompatActivity implements View.OnClickListener,RecyclerItemListener {
-    public static String INTENT_DELETE = "intent_delete";
-    public static int RESULT_CODE_DELETE = 20000;
+public class DeleteAlarmActivity extends AppCompatActivity implements View.OnClickListener, RecyclerItemListener {
+    public static final String INTENT_DELETE = "intent_delete";
+    public static final int RESULT_CODE_DELETE = 20000;
     private RecyclerView mRecyclerView;
     private RecyclerViewAlarmDeleteAdapter mRecyclerViewAlarmAdapter;
-    private ArrayList<Alarm> mAlarms;
+    private List<Alarm> mAlarms;
     private DatabaseAlarm mDatabaseAlarm;
-    private ArrayList<Alarm> mAlarmsSelected = new ArrayList<>();
+    private List<Alarm> mAlarmsSelecteds = new ArrayList<>();
     private Button mBtnDelete;
     private Button mBtnCancel;
-    private ArrayList<Integer> mPositions = new ArrayList<>();
+    private List<Integer> mPositions = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
                 if (mPositions.size() > 0) {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putIntegerArrayList(INTENT_DELETE, mPositions);
+                    bundle.putIntegerArrayList(INTENT_DELETE, (ArrayList<Integer>) mPositions);
                     intent.putExtras(bundle);
                     setResult(RESULT_CODE_DELETE, intent);
                     finish();
@@ -89,9 +88,9 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
         return super.onOptionsItemSelected(item);
     }
 
-    public ArrayList<Alarm> initData() {
-        ArrayList<Alarm> alarmArrayList = mDatabaseAlarm.getData();
-        return alarmArrayList;
+    public List<Alarm> initData() {
+        List<Alarm> alarmlist = mDatabaseAlarm.getData();
+        return alarmlist;
     }
 
     @Override
@@ -101,16 +100,15 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onItemChecked(int position, boolean status) {
+        Alarm alarm = mAlarms.get(position);
         if (status) {
-            Alarm alarm = mAlarms.get(position);
             mPositions.add(position);
-            mAlarmsSelected.add(alarm);
+            mAlarmsSelecteds.add(alarm);
         } else {
-            Alarm mAlarm = mAlarms.get(position);
             mPositions.remove(position);
-            mAlarmsSelected.remove(mAlarm);
+            mAlarmsSelecteds.remove(alarm);
         }
-        mBtnDelete.setText(getString(R.string.delete_alarm_btn_delete) + "(" + mAlarmsSelected.size() + ")");
+        mBtnDelete.setText(getString(R.string.delete_alarm_btn_delete) + "(" + mAlarmsSelecteds.size() + ")");
     }
 
     @Override
@@ -123,12 +121,13 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
                 if (mPositions.size() > 0) {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putIntegerArrayList(INTENT_DELETE, mPositions);
+                    bundle.putIntegerArrayList(INTENT_DELETE, (ArrayList<Integer>) mPositions);
                     intent.putExtras(bundle);
                     setResult(RESULT_CODE_DELETE, intent);
                     finish();
-                } else
+                } else {
                     onBackPressed();
+                }
                 break;
         }
     }
@@ -136,23 +135,22 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
     public void showDialogDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Are your sure delete your alarm?");
+        alertDialogBuilder.setTitle(getResources().getString(R.string.dialog_title_delete));
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage(getResources().getString(R.string.dialog_message_delete))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.dialog_btn_yes_delete), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        for (Alarm alarm : mAlarmsSelected) {
+                        for (Alarm alarm : mAlarmsSelecteds) {
                             mDatabaseAlarm.deleteData(alarm.getId());
                             mAlarms.remove(alarm);
                             if (mPositions.size() > 0)
                                 broadcastIntent(mPositions);
-                            Toast.makeText(getApplication(), "Success", Toast.LENGTH_SHORT).show();
                         }
                         mRecyclerViewAlarmAdapter.notifyDataSetChanged();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.dialog_btn_no_delete), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
@@ -161,10 +159,10 @@ public class DeleteAlarmActivity extends AppCompatActivity implements View.OnCli
         alertDialog.show();
     }
 
-    public void broadcastIntent(ArrayList<Integer> positions) {
+    public void broadcastIntent(List<Integer> positions) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putIntegerArrayList(MainActivity.BROADCAST_KEY, positions);
+        bundle.putIntegerArrayList(MainActivity.BROADCAST_KEY, (ArrayList<Integer>) positions);
         intent.putExtras(bundle);
         intent.setAction(getString(R.string.broadcast_delete_intent));
         sendBroadcast(intent);
