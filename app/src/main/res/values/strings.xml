@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Training</string>
+    <string name="app_name">Custom View</string>
+    <string name="login_title_text">LOGIN</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login_text">Login</string>
+    <string name="home_title_text">HOME</string>
+    <string name="btn_draw_shape">Draw shape</string>
+    <string name="shape_title">Draw Shape</string>
+    <string name="title_custom_image">Image</string>
+    <string name="text_title_text">TEXT</string>
+    <string name="title_chart">Chart</string>
+    <string name="btn_draw_draw_bitmap">Draw Bitmap</string>
+    <string name="btn_draw_text">Draw Text</string>
+    <string name="btn_draw_chart">Draw Chart</string>
 </resources>

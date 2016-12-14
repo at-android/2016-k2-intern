@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_shape"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.activities.ShapeActivity">
+
+    <vn.asiantech.training.custom_layout.HeaderLayout
+        android:id="@+id/headLayoutTitleDrawShape"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:background="?android:selectableItemBackground"
+        custom:titleText="@string/shape_title" />
+
+    <vn.asiantech.training.custom_layout.DrawShape
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
