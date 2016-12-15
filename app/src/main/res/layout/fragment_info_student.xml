@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.fragments.InfoStudentFragment">
+
+    <TextView
+        android:id="@+id/tvTitleInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/title_info"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/imgBackToListFormInfo"
+        android:layout_width="@dimen/img_btn_size"
+        android:layout_height="@dimen/img_btn_size"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_back" />
+
+    <ImageView
+        android:id="@+id/imgToEdit"
+        android:layout_width="@dimen/img_btn_size"
+        android:layout_height="@dimen/img_btn_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_forward" />
+
+    <TextView
+        android:id="@+id/tvInforSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitleInfo"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_text_size" />
+
+    <TextView
+        android:id="@+id/tvInforName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInforSchool"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_text_size" />
+
+    <TextView
+        android:id="@+id/tvInforAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInforName"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_text_size" />
+
+    <TextView
+        android:id="@+id/tvInforOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInforAddress"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textAlignment="center"
+        android:textSize="@dimen/info_text_size" />
+</RelativeLayout>

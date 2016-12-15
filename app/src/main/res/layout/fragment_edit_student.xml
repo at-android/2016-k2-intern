@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.fragments.EditStudentFragment">
+
+    <TextView
+        android:id="@+id/tvTitleEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/title_edit"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/imgBackInfoFormEdit"
+        android:layout_width="@dimen/img_btn_size"
+        android:layout_height="@dimen/img_btn_size"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_back" />
+
+    <EditText
+        android:id="@+id/edtEditSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitleEdit"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_school" />
+
+    <EditText
+        android:id="@+id/edtEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEditSchool"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_name" />
+
+    <EditText
+        android:id="@+id/edtEditAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEditName"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_address" />
+
+    <EditText
+        android:id="@+id/edtEditOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEditAddress"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_old" />
+
+    <Button
+        android:id="@+id/btnEditStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEditOld"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/btn_edit" />
+
+</RelativeLayout>

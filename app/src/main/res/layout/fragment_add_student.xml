@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.fragments.AddStudentFragment">
+
+    <TextView
+        android:id="@+id/tvTitleAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/title_add"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/imgBackToList"
+        android:layout_width="@dimen/img_btn_size"
+        android:layout_height="@dimen/img_btn_size"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_back" />
+
+    <EditText
+        android:id="@+id/edtSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitleAdd"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_school" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtSchool"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_name" />
+
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtName"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_address" />
+
+    <EditText
+        android:id="@+id/edtOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtAddress"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_old" />
+
+    <Button
+        android:id="@+id/btnAddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtOld"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/btn_add" />
+</RelativeLayout>
