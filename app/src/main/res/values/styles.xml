@@ -1,11 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="frag_addSV_ed">
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+    </style>
+    <style name="backgroundForScreen">
+        <item name="android:background">#f4109c</item>
 
+    </style>
 </resources>
