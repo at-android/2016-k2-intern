@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.fragment_information)
@@ -23,18 +25,15 @@ public class InformationFragment extends Fragment {
     TextView mTvName;
     @ViewById(R.id.tvAge)
     TextView mTvAge;
-    private Student mStudent;
-    private Bundle mBundle;
-    private int mPosition;
+    @FragmentArg("student")
+    Student mStudent;
+    @FragmentArg("position")
+    int mPosition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBundle = getArguments();
-        if (mBundle != null) {
-            mStudent = (Student) mBundle.getParcelable(DemoFragmentActivity.KEY_STUDENT);
-            mPosition = mBundle.getInt(DemoFragmentActivity.KEY_POSITION);
-        }
+        Log.i("pos", mPosition + "");
     }
 
     @Click(R.id.imgBack)
@@ -50,8 +49,7 @@ public class InformationFragment extends Fragment {
 
     @Click(R.id.imgNext)
     void goToEditStudent() {
-        EditFragment editFragment = new EditFragment_();
-        editFragment.setArguments(mBundle);
+        EditFragment editFragment = new EditFragment_().builder().mStudent(mStudent).mPosition(mPosition).build();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContainer, editFragment).commit();
     }

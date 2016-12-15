@@ -8,6 +8,7 @@ import android.widget.EditText;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.fragment_edit)
@@ -21,8 +22,10 @@ public class EditFragment extends Fragment {
     EditText mEdtAge;
     @ViewById(R.id.edtName)
     EditText mEdtName;
-    private Student mStudent;
-    private int mPosition;
+    @FragmentArg("student")
+    Student mStudent;
+    @FragmentArg("position")
+    int mPosition;
 
     public EditFragment() {
         // Required empty public constructor
@@ -31,11 +34,6 @@ public class EditFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            mStudent = (Student) bundle.getParcelable(DemoFragmentActivity.KEY_STUDENT);
-            mPosition = bundle.getInt(DemoFragmentActivity.KEY_POSITION);
-        }
     }
 
     @AfterViews

@@ -9,8 +9,6 @@ import java.util.ArrayList;
 public class DemoFragmentActivity extends AppCompatActivity implements EditFragment.OnHeadlineSelectedListener,
         InformationFragment.OnHeadlineSelectedListener2, AddFragment.OnFragmentInteractionListener {
 
-    public static String KEY_STUDENT = "student";
-    public static String KEY_POSITION = "position";
     private FragmentManager mFragmentManager;
     private ArrayList<Student> mStudents;
 
@@ -34,11 +32,7 @@ public class DemoFragmentActivity extends AppCompatActivity implements EditFragm
 
     @Override
     public void onFragmentEditInteraction(Student student, int position) {
-        InformationFragment informationFragment = new InformationFragment_();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY_STUDENT, student);
-        bundle.putInt(KEY_POSITION, position);
-        informationFragment.setArguments(bundle);
+        InformationFragment informationFragment = new InformationFragment_().builder().mStudent(student).mPosition(position).build();
         mFragmentManager.beginTransaction().replace(R.id.flContainer, informationFragment).commit();
     }
 

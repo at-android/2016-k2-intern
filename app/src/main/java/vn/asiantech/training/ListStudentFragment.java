@@ -42,12 +42,8 @@ public class ListStudentFragment extends Fragment {
 
     @ItemClick(R.id.listView)
     public void ItemClickListener(int position) {
-        Bundle bundle = new Bundle();
         FragmentManager fragmentManager = getFragmentManager();
-        bundle.putParcelable(DemoFragmentActivity.KEY_STUDENT, mStudents.get(position));
-        bundle.putInt(DemoFragmentActivity.KEY_POSITION, position);
-        InformationFragment info = new InformationFragment_();
-        info.setArguments(bundle);
+        InformationFragment info = new InformationFragment_().builder().mPosition(position).mStudent(mStudents.get(position)).build();
         fragmentManager.beginTransaction().replace(R.id.flContainer, info).commit();
     }
 
