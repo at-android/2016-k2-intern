@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.asiantech.training.R;
-import vn.asiantech.training.fragments.ListStudentFragment;
 import vn.asiantech.training.listerners.callOnClickListener;
 import vn.asiantech.training.models.Student;
 
@@ -19,7 +18,7 @@ import vn.asiantech.training.models.Student;
  * Created by phuong on 14/12/2016.
  */
 
-public class RecyclerListStudentAdapter extends RecyclerView.Adapter<RecyclerListStudentAdapter.MyViewHolder>{
+public class RecyclerListStudentAdapter extends RecyclerView.Adapter<RecyclerListStudentAdapter.MyViewHolder> {
     private List<Student> mStudents = new ArrayList<>();
     private Context mContext;
     private callOnClickListener mCallOnClickListener;
@@ -38,7 +37,7 @@ public class RecyclerListStudentAdapter extends RecyclerView.Adapter<RecyclerLis
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position){
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         Student student = mStudents.get(position);
         holder.mTvName.setText(student.getName());
         holder.mTvSchool.setText(student.getSchool());
@@ -67,7 +66,7 @@ public class RecyclerListStudentAdapter extends RecyclerView.Adapter<RecyclerLis
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallOnClickListener.onItemClickListener(mStudents.get(getAdapterPosition()),getAdapterPosition());
+                    mCallOnClickListener.onItemClickListener(mStudents.get(getAdapterPosition()), getAdapterPosition());
                 }
             });
         }

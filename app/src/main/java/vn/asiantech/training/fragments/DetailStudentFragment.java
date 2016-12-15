@@ -3,8 +3,6 @@ package vn.asiantech.training.fragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,35 +20,26 @@ import vn.asiantech.training.models.Student;
  */
 @EFragment(R.layout.fragment_detail_student)
 public class DetailStudentFragment extends Fragment {
-    private EditStudentFragment mEditStudentFragment;
-
     @FragmentArg
     Student mStudent;
-
     @FragmentArg
     int mPosition;
-
     @ViewById(R.id.tvName)
     TextView mEdtName;
-
     @ViewById(R.id.tvAge)
     TextView mEdtAge;
-
     @ViewById(R.id.tvSchool)
     TextView mEdtSchool;
-
     @ViewById(R.id.tvAddress)
     TextView mEdtAddress;
-
     @ViewById(R.id.imgBack)
     ImageView mImgBack;
-
     @ViewById(R.id.imgNext)
     ImageView mImgNext;
+    private EditStudentFragment mEditStudentFragment;
 
     @AfterViews
-    void callDetailStudent(){
-        Log.d("TAG111",mStudent.getName()+" 12 ");
+    void callDetailStudent() {
         mEdtName.setText(mStudent.getName());
         mEdtAge.setText(mStudent.getAge());
         mEdtSchool.setText(mStudent.getSchool());
@@ -58,7 +47,7 @@ public class DetailStudentFragment extends Fragment {
     }
 
     @Click(R.id.imgBack)
-    void callBackList(){
+    void callBackList() {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frContain, ListStudentFragment_.builder().build());
@@ -66,7 +55,7 @@ public class DetailStudentFragment extends Fragment {
     }
 
     @Click(R.id.imgNext)
-    void callEditStudent(){
+    void callEditStudent() {
         mEditStudentFragment = EditStudentFragment_.builder().build();
         mEditStudentFragment.mStudent = mStudent;
         mEditStudentFragment.mPosition = mPosition;

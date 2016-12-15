@@ -7,7 +7,18 @@ import android.os.Parcelable;
  * Created by phuong on 14/12/2016.
  */
 
-public class Student implements Parcelable{
+public class Student implements Parcelable {
+    public static final Creator<Student> CREATOR = new Creator<Student>() {
+        @Override
+        public Student createFromParcel(Parcel in) {
+            return new Student(in);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
     private String mName;
     private String mAge;
     private String mSchool;
@@ -29,18 +40,6 @@ public class Student implements Parcelable{
         mSchool = in.readString();
         mAddress = in.readString();
     }
-
-    public static final Creator<Student> CREATOR = new Creator<Student>() {
-        @Override
-        public Student createFromParcel(Parcel in) {
-            return new Student(in);
-        }
-
-        @Override
-        public Student[] newArray(int size) {
-            return new Student[size];
-        }
-    };
 
     public String getName() {
         return mName;

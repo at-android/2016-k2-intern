@@ -1,14 +1,11 @@
 package vn.asiantech.training.fragments;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -21,6 +18,7 @@ import vn.asiantech.training.models.Student;
  */
 @EFragment(R.layout.fragment_add_student)
 public class AddStudentFragment extends Fragment {
+    public static OnFragmentAddListener mListener;
     @ViewById(R.id.edtName)
     EditText mEdtName;
     @ViewById(R.id.edtAge)
@@ -33,38 +31,26 @@ public class AddStudentFragment extends Fragment {
     Button mBtnAdd;
     @ViewById(R.id.imgBack)
     ImageView mImgBack;
-    private callAddStudentListener mListener;
     private ListStudentFragment mListStudentFragment;
 
-    @AfterViews
-    void initListFragment() {
-        mListStudentFragment = ListStudentFragment_.builder().build();
+    public static void onFragmentAddListener(OnFragmentAddListener listener) {
+        mListener = listener;
     }
 
     @Click(R.id.btnAdd)
     void addStudent() {
         Student student = new Student(mEdtName.getText().toString(), mEdtAge.getText().toString(),
                 mEdtAddress.getText().toString(), mEdtSchool.getText().toString());
-        //  mListener.addStudentListener(student);
-        Log.d("tag", "student" + student);
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frContain, ListStudentFragment_.builder().student(student).build());
-        ft.commit();
+        if (mListener != null) {
+            Log.d("TAG1112", "TAG111");
+            mListener.onFragmentAdd(student);
+        }
         formatData();
-        getActivity().onBackPressed();
     }
 
     @Click(R.id.imgBack)
     void callBackList() {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frContain, ListStudentFragment_.builder().build());
-        ft.commit();
-    }
-
-    public void callAddListener(callAddStudentListener listener) {
-        mListener = listener;
+        getActivity().onBackPressed();
     }
 
     public void formatData() {
@@ -74,8 +60,8 @@ public class AddStudentFragment extends Fragment {
         mEdtSchool.setText("");
     }
 
-    public interface callAddStudentListener {
-        void addStudentListener(Student student);
+    public interface OnFragmentAddListener {
+        void onFragmentAdd(Student student);
     }
 
 }
