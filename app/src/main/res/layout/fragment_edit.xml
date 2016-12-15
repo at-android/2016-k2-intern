@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    tools:context="vn.asiantech.training.EditFragment">
+
+    <ImageButton
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back_red_500_48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/list_fragment_tv_marginTop"
+        android:text="@string/titleEdit"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="@dimen/title_size" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgBack"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLines="1"
+        tools:text="@string/name" />
+
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtName"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLines="1"
+        tools:text="@string/address" />
+
+    <EditText
+        android:id="@+id/edtSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtAddress"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLines="1"
+        tools:text="@string/school" />
+
+    <EditText
+        android:id="@+id/edtAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtSchool"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLines="1"
+        tools:text="@string/age" />
+</RelativeLayout>
