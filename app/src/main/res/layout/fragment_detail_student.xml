@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relayoutAddStudent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:padding="@dimen/item_listView_padding">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/detail_student_tv_title"
+            android:textSize="@dimen/fragment_listView_tv_title_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="@dimen/fragment_listView_icon_add_margin_right"
+            android:layout_marginRight="@dimen/fragment_listView_icon_add_margin_right"
+            android:background="@drawable/ic_back"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:id="@+id/imgNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/fragment_listView_icon_add_margin_right"
+            android:layout_marginLeft="@dimen/fragment_listView_icon_add_margin_right"
+            android:layout_marginRight="@dimen/fragment_listView_icon_add_margin_right"
+            android:background="@drawable/ic_next"
+            android:contentDescription="@null" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/TextViewDetailStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout"
+        android:hint="@string/add_student_ed_name_hint" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        style="@style/TextViewDetailStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:hint="@string/add_student_ed_age_hint" />
+
+    <TextView
+        android:id="@+id/tvSchool"
+        style="@style/TextViewDetailStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAge"
+        android:hint="@string/add_student_ed_school_hint" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        style="@style/TextViewDetailStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSchool"
+        android:hint="@string/add_student_ed_address_hint" />
+</RelativeLayout>

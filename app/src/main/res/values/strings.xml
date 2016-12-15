@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="tvTitle">List Student</string>
+    <string name="add_student_ed_name_hint">Name</string>
+    <string name="add_student_ed_age_hint">Age</string>
+    <string name="add_student_ed_school_hint">School</string>
+    <string name="add_student_ed_address_hint">Address</string>
+    <string name="add_student_btn_add">Add</string>
+    <string name="add_student_tv_title">Add Student</string>
+    <string name="detail_student_tv_title">Detail Student</string>
+    <string name="edit_student_tv_title">Edit Student</string>
+    <string name="edit_student_btn_edit">Edit</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/item_listView_padding">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_listView_tv_age_margin_left"
+        android:layout_marginStart="@dimen/item_listView_tv_age_margin_left"
+        android:layout_toEndOf="@id/tvName"
+        android:layout_toRightOf="@id/tvName"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <TextView
+        android:id="@+id/tvSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:layout_marginTop="@dimen/item_listView_tv_school_margin_top"
+        android:textSize="@dimen/item_listView_tv_size" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAge"
+        android:layout_marginLeft="@dimen/item_listView_tv_age_margin_left"
+        android:layout_marginTop="@dimen/item_listView_tv_school_margin_top"
+        android:layout_toRightOf="@id/tvSchool"
+        android:textSize="@dimen/item_listView_tv_size" />
+</RelativeLayout>
