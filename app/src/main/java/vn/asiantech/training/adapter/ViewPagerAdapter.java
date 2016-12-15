@@ -6,8 +6,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import vn.asiantech.training.fragment.FragmentTab1;
+import vn.asiantech.training.fragment.FragmentTab1_;
 import vn.asiantech.training.fragment.FragmentTab2;
+import vn.asiantech.training.fragment.FragmentTab2_;
 import vn.asiantech.training.fragment.FragmentTab3;
+import vn.asiantech.training.fragment.FragmentTab3_;
 
 /**
  * Created by phuong on 29/11/2016.
@@ -34,18 +37,15 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
             // Open FragmentTab1.java
             case 0:
-                FragmentTab1 fragmenttab1 = new FragmentTab1();
-                return fragmenttab1;
+                return FragmentTab1_.builder().build();
 
             // Open FragmentTab2.java
             case 1:
-                FragmentTab2 fragmenttab2 = new FragmentTab2();
-                return fragmenttab2;
+                return FragmentTab2_.builder().build();
 
             // Open FragmentTab3.java
             case 2:
-                FragmentTab3 fragmenttab3 = new FragmentTab3();
-                return fragmenttab3;
+                return FragmentTab3_.builder().build();
         }
         return null;
     }

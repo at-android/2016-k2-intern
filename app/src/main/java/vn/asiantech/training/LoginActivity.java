@@ -3,8 +3,6 @@ package vn.asiantech.training;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -12,62 +10,51 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 /**
  * Created by phuong on 29/11/2016.
  */
-
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+@EActivity(R.layout.activity_login)
+public class LoginActivity extends AppCompatActivity {
     public static String NAME_LOGIN = "logined";
-    private EditText mEdtName;
-    private EditText mEdtPassword;
-    private Button mBtnLogin;
-    private Button mBtnCancel;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    @ViewById(R.id.edtName)
+    EditText mEdtName;
+    @ViewById(R.id.edtPassword)
+    EditText mEdtPassword;
+    @ViewById(R.id.btnLogin)
+    Button mBtnLogin;
+    @ViewById(R.id.btnCancel)
+    Button mBtnCancel;
 
-        initView();
+    @Click(R.id.btnLogin)
+    void loginAction() {
+        String name = mEdtName.getText().toString();
+        String password = mEdtPassword.getText().toString();
 
-        mBtnCancel.setOnClickListener(this);
-        mBtnLogin.setOnClickListener(this);
-    }
+        //check
+        SharedPreferences settings = getSharedPreferences(RegisterActivity.NAME_SHAREPREPERENCE, 0);
+        String Sname = settings.getString(RegisterActivity.SP_FIELDNAME, "");
+        String Spassword = settings.getString(RegisterActivity.SP_FIELDPASSWORD, "");
 
-    public void initView() {
-        mEdtName = (EditText) findViewById(R.id.edtName);
-        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mBtnLogin = (Button) findViewById(R.id.btnLogin);
-        mBtnCancel = (Button) findViewById(R.id.btnCancel);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnLogin:
-                String name = mEdtName.getText().toString();
-                String password = mEdtPassword.getText().toString();
-
-                //check
-                SharedPreferences settings = getSharedPreferences(RegisterActivity.NAME_SHAREPREPERENCE, 0);
-                String Sname = settings.getString(RegisterActivity.SP_FIELDNAME, "");
-                String Spassword = settings.getString(RegisterActivity.SP_FIELDPASSWORD, "");
-
-                if (name.equals(Sname) && password.equals(Spassword)) {
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(NAME_LOGIN, "logined");
-                    editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    this.startActivity(intent);
-                } else {
-                    showDialogNotification();
-                }
-                break;
-            case R.id.btnCancel:
-                finish();
-                break;
+        if (name.equals(Sname) && password.equals(Spassword)) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(NAME_LOGIN, "logined");
+            editor.commit();
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            this.startActivity(intent);
+        } else {
+            showDialogNotification();
         }
+    }
+
+    @Click(R.id.btnCancel)
+    void cancelAction() {
+        finish();
     }
 
     public void showDialogNotification() {

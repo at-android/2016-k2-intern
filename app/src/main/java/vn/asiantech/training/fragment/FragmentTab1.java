@@ -1,60 +1,56 @@
 package vn.asiantech.training.fragment;
 
 import android.app.Dialog;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapter.PhoneRecycleViewAdapter;
-import vn.asiantech.training.database.MyDatabase;
+import vn.asiantech.training.database.RealmHelper;
 import vn.asiantech.training.model.Phone;
 
 /**
  * Created by phuong on 29/11/2016.
  */
-
+@EFragment(R.layout.fragment_tab1)
 public class FragmentTab1 extends Fragment {
-    private RecyclerView mRecyclerView;
-    private TextView mTvAdd;
+    @ViewById(R.id.rvContactTab)
+    RecyclerView mRecyclerView;
+    @ViewById(R.id.btnAdd)
+    TextView mTvAdd;
     private PhoneRecycleViewAdapter mPhoneRecycleViewAdapter;
-    private ArrayList<Phone> mPhones = new ArrayList<>();
-    private MyDatabase database;
+    private List<Phone> mPhones = new ArrayList<>();
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
-
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rvContactTab);
-        mTvAdd = (TextView) view.findViewById(R.id.btnAdd);
-
-        database = new MyDatabase(getActivity());
-        database.open();
-
+    @AfterViews
+    void showRecyclerViewData() {
+        Log.d("TAG11","TAG11");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
-        mPhones = database.getData();
+        mPhones = RealmHelper.getInstance(getContext()).getPhones();
+        Log.d("TAG11","TAG11 size "+mPhones.size());
         mPhoneRecycleViewAdapter = new PhoneRecycleViewAdapter(mPhones, getContext());
         mRecyclerView.setAdapter(mPhoneRecycleViewAdapter);
-        mTvAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialogNotification();
-            }
-        });
-        return view;
+    }
+
+    @Click(R.id.btnAdd)
+    void addAction() {
+        showDialogNotification();
     }
 
     public void showDialogNotification() {
@@ -78,23 +74,12 @@ public class FragmentTab1 extends Fragment {
             public void onClick(View view) {
                 String name = edName.getText().toString();
                 String phone = edPhone.getText().toString();
-
-                database.createData(name, phone);
-                Phone newPhone = new Phone();
-                newPhone.setmName(name);
-                newPhone.setmPhone(phone);
-                mPhones.add(newPhone);
-                mPhoneRecycleViewAdapter.notifyDataSetChanged();
+                String id = UUID.randomUUID().toString();
+                Phone newPhone = new Phone(id, name, phone);
+                RealmHelper.getInstance(getContext()).addPhone(newPhone);
                 dialog.dismiss();
             }
         });
-
         dialog.show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        database.close();
     }
 }

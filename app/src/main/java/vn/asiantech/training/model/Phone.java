@@ -1,15 +1,19 @@
 package vn.asiantech.training.model;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by phuong on 29/11/2016.
  */
 
-public class Phone {
-    private int mId;
+public class Phone extends RealmObject {
+    @PrimaryKey
+    private String mId;
     private String mName;
     private String mPhone;
 
-    public Phone(int mId, String mName, String mPhone) {
+    public Phone(String mId, String mName, String mPhone) {
         this.mId = mId;
         this.mName = mName;
         this.mPhone = mPhone;
@@ -23,27 +27,27 @@ public class Phone {
         this.mPhone = mPhone;
     }
 
-    public int getmId() {
+    public String getId() {
         return mId;
     }
 
-    public void setmId(int mId) {
+    public void setId(String mId) {
         this.mId = mId;
     }
 
-    public String getmName() {
+    public String getName() {
         return mName;
     }
 
-    public void setmName(String mName) {
+    public void setName(String mName) {
         this.mName = mName;
     }
 
-    public String getmPhone() {
+    public String getPhone() {
         return mPhone;
     }
 
-    public void setmPhone(String mPhone) {
+    public void setPhone(String mPhone) {
         this.mPhone = mPhone;
     }
 }

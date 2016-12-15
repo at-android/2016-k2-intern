@@ -9,17 +9,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".MenuActivity_"></activity>
+        <activity android:name=".RegisterActivity_"></activity>
+        <activity android:name=".HomeActivity_"></activity>
+        <activity android:name=".LoginActivity_"></activity>
     </application>
 
 </manifest>

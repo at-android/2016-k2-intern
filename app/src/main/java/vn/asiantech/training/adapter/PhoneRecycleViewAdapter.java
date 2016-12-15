@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.R;
 import vn.asiantech.training.model.Phone;
@@ -17,10 +18,10 @@ import vn.asiantech.training.model.Phone;
  */
 
 public class PhoneRecycleViewAdapter extends RecyclerView.Adapter<PhoneRecycleViewAdapter.MyViewHolder> {
-    private ArrayList<Phone> mPhones = new ArrayList<>();
+    private List<Phone> mPhones = new ArrayList<>();
     private Context mContext;
 
-    public PhoneRecycleViewAdapter(ArrayList<Phone> phones, Context context) {
+    public PhoneRecycleViewAdapter(List<Phone> phones, Context context) {
         mPhones = phones;
         mContext = context;
     }
@@ -36,8 +37,8 @@ public class PhoneRecycleViewAdapter extends RecyclerView.Adapter<PhoneRecycleVi
 
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Phone phone = mPhones.get(position);
-        holder.mTvName.setText(phone.getmName());
-        holder.mTvPhone.setText(phone.getmPhone());
+        holder.mTvName.setText(phone.getName());
+        holder.mTvPhone.setText(phone.getPhone());
     }
 
 
@@ -58,4 +59,3 @@ public class PhoneRecycleViewAdapter extends RecyclerView.Adapter<PhoneRecycleVi
     }
 
 }
-

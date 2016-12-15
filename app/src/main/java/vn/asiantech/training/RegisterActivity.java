@@ -12,70 +12,58 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import vn.asiantech.training.validator.EmailValidator;
 
 /**
  * Created by phuong on 29/11/2016.
  */
-
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+@EActivity(R.layout.activity_register)
+public class RegisterActivity extends AppCompatActivity{
     public static String NAME_SHAREPREPERENCE = "contact";
     public static String SP_FIELDNAME = "name";
     public static String SP_FIELDEMAIL = "email";
     public static String SP_FIELDPASSWORD = "password";
-    private EditText mEdtName;
-    private EditText mEdtEmail;
-    private EditText mEdtPassword;
-    private EditText mEdtPasswordConfirm;
-    private Button mBtnRegister;
-    private Button mBtnCancel;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    @ViewById(R.id.edtName)
+    EditText mEdtName;
+    @ViewById(R.id.edtEmail)
+    EditText mEdtEmail;
+    @ViewById(R.id.edtPassword)
+    EditText mEdtPassword;
+    @ViewById(R.id.edtPasswordRewrite)
+    EditText mEdtPasswordConfirm;
+    @ViewById(R.id.btnRegister)
+    Button mBtnRegister;
+    @ViewById(R.id.btnCancel)
+    Button mBtnCancel;
 
-        initView();
-
-        mBtnCancel.setOnClickListener(this);
-        mBtnRegister.setOnClickListener(this);
+    @Click(R.id.btnCancel)
+    void cancelAction(){
+        finish();
     }
 
-    public void initView() {
-        mEdtName = (EditText) findViewById(R.id.edtName);
-        mEdtEmail = (EditText) findViewById(R.id.edtEmail);
-        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mEdtPasswordConfirm = (EditText) findViewById(R.id.edtPasswordRewrite);
-        mBtnRegister = (Button) findViewById(R.id.btnRegister);
-        mBtnCancel = (Button) findViewById(R.id.btnCancel);
-    }
+    @Click(R.id.btnRegister)
+    void registerAction(){
+        String mName = mEdtName.getText().toString();
+        String mEmail = mEdtEmail.getText().toString();
+        String mPassword = mEdtPassword.getText().toString();
+        String mPasswordConfirm = mEdtPasswordConfirm.getText().toString();
+        //validate
+        if (checkValidate(mName, mEmail, mPassword, mPasswordConfirm)) {
+            SharedPreferences settings = getSharedPreferences(NAME_SHAREPREPERENCE, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(SP_FIELDNAME, mName);
+            editor.putString(SP_FIELDEMAIL, mEmail);
+            editor.putString(SP_FIELDPASSWORD, mPassword);
+            editor.commit();
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnCancel:
-                finish();
-                break;
-            case R.id.btnRegister:
-                String mName = mEdtName.getText().toString();
-                String mEmail = mEdtEmail.getText().toString();
-                String mPassword = mEdtPassword.getText().toString();
-                String mPasswordConfirm = mEdtPasswordConfirm.getText().toString();
-                //validate
-                if (checkValidate(mName, mEmail, mPassword, mPasswordConfirm)) {
-                    SharedPreferences settings = getSharedPreferences(NAME_SHAREPREPERENCE, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(SP_FIELDNAME, mName);
-                    editor.putString(SP_FIELDEMAIL, mEmail);
-                    editor.putString(SP_FIELDPASSWORD, mPassword);
-                    editor.commit();
-
-                    showDialogNotification();
-                }
-                break;
+            showDialogNotification();
         }
     }
-
 
     public boolean checkValidate(String name, String email, String password, String passwordConfirm) {
         Log.d("1", password);

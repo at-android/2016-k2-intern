@@ -10,22 +10,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import vn.asiantech.training.adapter.ViewPagerAdapter;
 
 /**
  * Created by phuong on 29/11/2016.
  */
-
+@EActivity(R.layout.activity_home)
 public class HomeActivity extends AppCompatActivity {
-    private ViewPager mViewPager;
+    @ViewById(R.id.pager)
+    ViewPager mViewPager;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-
+    @AfterViews
+    void initViewPager(){
         mViewPager.setAdapter(new ViewPagerAdapter
                 (getSupportFragmentManager()));
     }
