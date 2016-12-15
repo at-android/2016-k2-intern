@@ -4,16 +4,25 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
+@EFragment(R.layout.fragment_information)
 public class InformationFragment extends Fragment {
 
     public OnHeadlineSelectedListener2 mCallback;
+    @ViewById(R.id.tvSchool)
+    TextView mTvSchool;
+    @ViewById(R.id.tvAddress)
+    TextView mTvAddress;
+    @ViewById(R.id.tvStudentName)
+    TextView mTvName;
+    @ViewById(R.id.tvAge)
+    TextView mTvAge;
     private Student mStudent;
     private Bundle mBundle;
     private int mPosition;
@@ -23,50 +32,37 @@ public class InformationFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mBundle = getArguments();
         if (mBundle != null) {
-            mStudent = (Student) mBundle.getSerializable(DemoFragmentActivity.KEY_STUDENT);
+            mStudent = (Student) mBundle.getParcelable(DemoFragmentActivity.KEY_STUDENT);
             mPosition = mBundle.getInt(DemoFragmentActivity.KEY_POSITION);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_information, container, false);
-        final TextView tvSchool = (TextView) view.findViewById(R.id.textviewSchool);
-        final TextView tvAddress = (TextView) view.findViewById(R.id.textviewAddress);
-        final TextView tvName = (TextView) view.findViewById(R.id.textviewName);
-        final TextView tvAge = (TextView) view.findViewById(R.id.textviewAge);
+    @Click(R.id.imgBack)
+    void backToListStudent() {
+        mStudent.setName(mTvName.getText().toString());
+        mStudent.setAddress(mTvAddress.getText().toString());
+        mStudent.setAge(mTvAge.getText().toString());
+        mStudent.setSchool(mTvSchool.getText().toString());
+        if (mCallback != null) {
+            mCallback.onFragmentUpdateInteraction(mStudent, mPosition);
+        }
+    }
 
-        ImageButton imgbNext = (ImageButton) view.findViewById(R.id.imgNext);
-        ImageButton imgbBack = (ImageButton) view.findViewById(R.id.imgBack);
-        tvSchool.setText(mStudent.getSchool());
-        tvAddress.setText(mStudent.getAddress());
-        tvName.setText(mStudent.getName());
-        tvAge.setText(mStudent.getAge());
+    @Click(R.id.imgNext)
+    void goToEditStudent() {
+        EditFragment editFragment = new EditFragment_();
+        editFragment.setArguments(mBundle);
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, editFragment).commit();
+    }
 
-        imgbNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditFragment editFragment = new EditFragment();
-                editFragment.setArguments(mBundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.flContainer, editFragment).commit();
 
-            }
-        });
-        imgbBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mStudent.setName(tvName.getText().toString());
-                mStudent.setAddress(tvAddress.getText().toString());
-                mStudent.setAge(tvAge.getText().toString());
-                mStudent.setSchool(tvSchool.getText().toString());
-                if (mCallback != null) {
-                    mCallback.onFragmentInteraction2(mStudent, mPosition);
-                }
-            }
-        });
-        return view;
+    @AfterViews
+    void setInfo() {
+        mTvSchool.setText(mStudent.getSchool());
+        mTvAddress.setText(mStudent.getAddress());
+        mTvName.setText(mStudent.getName());
+        mTvAge.setText(mStudent.getAge());
     }
 
     @Override
@@ -80,6 +76,6 @@ public class InformationFragment extends Fragment {
     }
 
     interface OnHeadlineSelectedListener2 {
-        void onFragmentInteraction2(Student student, int position);
+        void onFragmentUpdateInteraction(Student student, int position);
     }
 }

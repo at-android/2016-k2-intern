@@ -3,16 +3,24 @@ package vn.asiantech.training;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
+@EFragment(R.layout.fragment_add)
 public class AddFragment extends Fragment {
 
     public OnFragmentInteractionListener mListener;
+    @ViewById(R.id.edtSchool)
+    EditText mEdtSchool;
+    @ViewById(R.id.edtAddress)
+    EditText mEdtAddress;
+    @ViewById(R.id.edtName)
+    EditText mEdtName;
+    @ViewById(R.id.edtAge)
+    EditText mEdtAge;
 
     public AddFragment() {
         // Required empty public constructor
@@ -24,36 +32,19 @@ public class AddFragment extends Fragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add, container, false);
-        final EditText edtSchool = (EditText) view.findViewById(R.id.edtSchool);
-        final EditText edtAddress = (EditText) view.findViewById(R.id.edtAddress);
-        final EditText edtName = (EditText) view.findViewById(R.id.edtName);
-        final EditText edtAge = (EditText) view.findViewById(R.id.edtAge);
-        Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
-        ImageButton imgbBack = (ImageButton) view.findViewById(R.id.imgbBack);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Student student = new Student(edtSchool.getText().toString(), edtName.getText().toString(),
-                        edtAddress.getText().toString(),
-                        edtAge.getText().toString());
-                if (mListener != null) {
-                    mListener.onFragmentInteraction(student);
-                }
-            }
-        });
+    @Click(R.id.btnAdd)
+    void add() {
+        Student student = new Student(mEdtSchool.getText().toString(), mEdtName.getText().toString(),
+                mEdtAddress.getText().toString(),
+                mEdtAge.getText().toString());
+        if (mListener != null) {
+            mListener.onFragmentAddInteraction(student);
+        }
+    }
 
-        imgbBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
-        return view;
+    @Click(R.id.imgbBack)
+    void backtoListStudent() {
+        getActivity().onBackPressed();
     }
 
     @Override
@@ -69,6 +60,6 @@ public class AddFragment extends Fragment {
 
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Student student);
+        void onFragmentAddInteraction(Student student);
     }
 }

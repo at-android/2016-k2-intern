@@ -6,14 +6,21 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
-
+@EFragment(R.layout.fragment_list_student)
 public class ListStudentFragment extends Fragment {
+
+    @ViewById(R.id.listView)
+    ListView mListView;
     private ArrayList<Student> mStudents;
 
     @Override
@@ -24,33 +31,31 @@ public class ListStudentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_student, container, false);
-        ImageButton imgbAdd = (ImageButton) view.findViewById(R.id.imgbAdd);
-        final ListView listView = (ListView) view.findViewById(R.id.listView);
-        StudentAdapter studentArrayAdapter = new StudentAdapter(getActivity(), R.layout.fragment_list_student, mStudents);
-        listView.setAdapter(studentArrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                FragmentManager fragmentManager = getFragmentManager();
-                bundle.putSerializable(DemoFragmentActivity.KEY_STUDENT, mStudents.get(position));
-                bundle.putInt(DemoFragmentActivity.KEY_POSITION, position);
-                InformationFragment info = new InformationFragment();
-                info.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.flContainer, info).commit();
-            }
-        });
+        return null;
+    }
 
-        imgbAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddFragment addFragment = new AddFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.flContainer, addFragment).addToBackStack(null).commit();
-            }
-        });
-        return view;
+    @AfterViews
+    void init() {
+        StudentAdapter studentArrayAdapter = new StudentAdapter(getActivity(), R.layout.fragment_list_student, mStudents);
+        mListView.setAdapter(studentArrayAdapter);
+    }
+
+    @ItemClick(R.id.listView)
+    public void ItemClickListener(int position) {
+        Bundle bundle = new Bundle();
+        FragmentManager fragmentManager = getFragmentManager();
+        bundle.putParcelable(DemoFragmentActivity.KEY_STUDENT, mStudents.get(position));
+        bundle.putInt(DemoFragmentActivity.KEY_POSITION, position);
+        InformationFragment info = new InformationFragment_();
+        info.setArguments(bundle);
+        fragmentManager.beginTransaction().replace(R.id.flContainer, info).commit();
+    }
+
+    @Click(R.id.imgbAdd)
+    void add() {
+        AddFragment addFragment = new AddFragment_();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, addFragment).addToBackStack(null).commit();
     }
 
     public void passData(ArrayList<Student> students) {
