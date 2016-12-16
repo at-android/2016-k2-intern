@@ -5,4 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.MainActivity">
+
+    <Button
+        android:id="@+id/btnToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_register_text" />
+
+    <Button
+        android:id="@+id/btnToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnToRegister"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_login_text" />
 </RelativeLayout>
