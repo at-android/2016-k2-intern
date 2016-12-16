@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.fragment;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import vn.asiantech.training.R;
 
 public class OriginalContactFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -45,23 +47,9 @@ public class OriginalContactFragment extends Fragment implements
 
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static OriginalContactFragment newInstance(String param1, String param2) {
-        OriginalContactFragment fragment = new OriginalContactFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         getLoaderManager().initLoader(0, null, this);
     }
 

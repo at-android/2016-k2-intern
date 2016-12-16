@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.fragment;
 
 import android.app.ProgressDialog;
 import android.content.pm.ApplicationInfo;
@@ -15,15 +15,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.asiantech.training.R;
+import vn.asiantech.training.adapter.ApplicationAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link InstalledAppFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link InstalledAppFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class InstalledAppFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,24 +50,10 @@ public class InstalledAppFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static InstalledAppFragment newInstance(String param1, String param2) {
-        InstalledAppFragment fragment = new InstalledAppFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         mPackageManager = getActivity().getPackageManager();
-
         new LoadApplications().execute();
     }
 

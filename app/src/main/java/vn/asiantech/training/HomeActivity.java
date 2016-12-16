@@ -1,7 +1,6 @@
 package vn.asiantech.training;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,28 +11,32 @@ import android.widget.EditText;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 
+import vn.asiantech.training.adapter.PageAdapter;
+import vn.asiantech.training.controller.RealmController;
+import vn.asiantech.training.fragment.AddFragmentDialog;
+import vn.asiantech.training.model.People;
+
+@EActivity(R.layout.activity_home)
 public class HomeActivity extends AppCompatActivity implements AddFragmentDialog.DialogListener {
 
-
     private static final String TITLE = "Home";
-    private BOModel mBoModel;
+    @ViewById(R.id.viewpager)
+    ViewPager mViewPager;
+    @ViewById(R.id.tabs)
+    PagerSlidingTabStrip mPagerTabStrip;
     private ArrayList<People> mPeoples;
-    private ViewPager mViewPager;
-    private PagerSlidingTabStrip mPagerTabStrip;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    @AfterViews
+    void init() {
         getSupportActionBar().setTitle(TITLE);
-        getSupportActionBar().setIcon(R.drawable.ic_backspace_green_500_36dp);
-        mBoModel = new BOModel(getApplicationContext());
-        mPeoples = mBoModel.getPeoples();
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mPeoples = new ArrayList<>();
         mViewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), mPeoples));
-        mPagerTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         mPagerTabStrip.setViewPager(mViewPager);
     }
 
@@ -42,15 +45,14 @@ public class HomeActivity extends AppCompatActivity implements AddFragmentDialog
         Dialog dialogview = dialog.getDialog();
         EditText edtName = (EditText) dialogview.findViewById(R.id.edtUsername);
         EditText edtPhoneNumber = (EditText) dialogview.findViewById(R.id.edtPhoneNumber);
-        mBoModel.insert(edtName.getText().toString(), edtPhoneNumber.getText().toString());
-        mPeoples = mBoModel.getPeoples();
+        RealmController realmController = new RealmController(getApplicationContext());
+        realmController.addPeople(new People(edtName.getText().toString(), edtPhoneNumber.getText().toString()));
         mViewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), mPeoples));
         mPagerTabStrip.setViewPager(mViewPager);
     }
 
     @Override
     public void onAddDialogNegativeClick(DialogFragment dialog) {
-
     }
 
     @Override

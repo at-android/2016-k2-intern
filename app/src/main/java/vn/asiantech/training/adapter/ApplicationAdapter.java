@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.adapter;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import vn.asiantech.training.R;
 
 /**
  * Created by HoangDuy on 01/12/2016.

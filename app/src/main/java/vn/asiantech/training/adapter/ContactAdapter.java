@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,16 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import vn.asiantech.training.R;
+import vn.asiantech.training.model.People;
 
 /**
  * Created by HoangDuy on 29/11/2016.
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
-    private ArrayList<People> mPeoples;
+    private List<People> mPeoples;
 
-    public ContactAdapter(ArrayList<People> peoples) {
+    public ContactAdapter(List<People> peoples) {
         this.mPeoples = peoples;
     }
 

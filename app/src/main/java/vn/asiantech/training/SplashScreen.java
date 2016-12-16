@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 public class SplashScreen extends AppCompatActivity {
 
     private Handler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreen.this, MainActivity_.class);
                 startActivity(intent);
             }
         }, 2000);
