@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import vn.asiantech.training.Adapter.RecyclerAdapter;
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 import vn.asiantech.training.Model.Contact;
+import vn.asiantech.training.Model.RealmPeople;
 
 public class AddContactFragment extends DialogFragment implements View.OnClickListener {
     private static final String ARG_LIST_CONTACT = "listcontact";
@@ -21,10 +24,8 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
     private EditText mEdNumber;
     private Button mBtnOK;
     private Button mBtnCancel;
-    private DatabaseHelper data;
-    private ArrayList<Contact> mArr = new ArrayList<Contact>();
-    private RecyclerAdapter adapter;
-
+    private RealmResults<RealmPeople> mRealmList;
+    private Realm mRealm;
     public AddContactFragment() {
     }
 
@@ -40,9 +41,13 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mArr = getArguments().getParcelableArrayList(ARG_LIST_CONTACT);
         }
-        data = new DatabaseHelper(getContext());
+        //Realm
+        Realm.init(getActivity());
+        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        Realm.setDefaultConfiguration(config);
+        mRealm = Realm.getInstance(config);
+        mRealmList = mRealm.where(RealmPeople.class).findAll();
     }
 
     @Override
@@ -63,20 +68,22 @@ public class AddContactFragment extends DialogFragment implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnOK:
-                data.open();
+                int id = mRealmList.size();
+                Log.i("realmlist",mRealmList.size()+"");
                 String name = mEdName.getText().toString();
                 String number = mEdNumber.getText().toString();
-                Log.i("create", name.toString());
-                long x = data.createData(name, number);
-                if (x > 0) {
-                    Toast.makeText(getContext(), "Successful", Toast.LENGTH_LONG).show();
-                }
-                data.close();
-                adapter = new RecyclerAdapter(mArr);
-                Contact c = new Contact(name, number);
-                mArr.add(c);
-                /*phuong thuc updateList phai tu viet trong adapter */
-                adapter.updateList(mArr);
+                mRealm.beginTransaction();
+                RealmPeople people = mRealm.createObject(RealmPeople.class,id);
+                people.setId(id);
+                people.setName(name);
+                people.setPhoneNumber(number);
+                mRealm.commitTransaction();
+                mRealmList.addChangeListener(new RealmChangeListener<RealmResults<RealmPeople>>() {
+                    @Override
+                    public void onChange(RealmResults<RealmPeople> element) {
+                        mRealmList.size();
+                    }
+                });
                 dismiss();
                 break;
             case R.id.btnCancel:

@@ -50,4 +50,10 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">@dimen/btnTextSize</item>
     </style>
+
+    <style name="frag_list_contact_edSearch" >
+        <item name="android:textSize">@dimen/btnTextSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">Name</item>
+    </style>
 </resources>

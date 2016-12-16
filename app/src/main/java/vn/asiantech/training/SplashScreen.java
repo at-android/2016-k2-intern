@@ -13,7 +13,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         mImg = (ImageView) findViewById(R.id.img);
-        mImg.setImageResource(R.drawable.ying_yang);
+        mImg.setImageResource(R.drawable.type_1);
         Thread t = new Thread() {
             @Override
             public void run() {

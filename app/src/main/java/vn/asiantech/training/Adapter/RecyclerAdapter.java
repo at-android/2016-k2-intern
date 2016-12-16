@@ -7,15 +7,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import vn.asiantech.training.Model.Contact;
+import io.realm.RealmResults;
+import vn.asiantech.training.Model.RealmPeople;
 import vn.asiantech.training.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    ArrayList<Contact> mArr = new ArrayList<Contact>();
+    List<RealmPeople> mList = new ArrayList<RealmPeople>();
+    private RealmResults<RealmPeople> mRealmList;
 
-    public RecyclerAdapter(ArrayList<Contact> arr) {
-        this.mArr = arr;
+    public RecyclerAdapter(RealmResults<RealmPeople> arr) {
+        this.mRealmList = arr;
     }
 
     @Override
@@ -27,12 +30,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTv.setText(mArr.get(position).toString());
+        holder.mTv.setText(mRealmList.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return mArr.size();
+        return mRealmList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,12 +45,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             super(itemView);
             mTv = (TextView) itemView.findViewById(R.id.tvItem);
         }
-    }
-
-    /*ham update cho recyclerView*/
-    public void updateList(ArrayList<Contact> arr) {
-        mArr = arr;
-        notifyDataSetChanged();
     }
 
 }
