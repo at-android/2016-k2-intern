@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl(API_URL).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         RequesService requesService = retrofit.create(RequesService.class);
-        Call<User> user = requesService.registerUser("duyfpt123", "donamtrung1@gmail.com", "123dsa123");
+        Call<User> user = requesService.registerUser("duyfpt123", "testDuyMM@gmail.com", "123dsa123");
         user.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
