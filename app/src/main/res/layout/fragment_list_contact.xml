@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.Fragment.ListContactFragment">
+
+    <EditText
+        android:id="@+id/edSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/frag_list_contact_edSearch"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/edSearch"
+        android:id="@+id/recyclerViewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/listContact_imgWidth"
+        android:layout_height="@dimen/listContact_imgHeight"
+        android:src="@drawable/ic_add"
+        />
+
+</RelativeLayout>
