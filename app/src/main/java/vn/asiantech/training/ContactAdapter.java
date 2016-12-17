@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * Created by Administrator on 22/11/2016.
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
-    private ArrayList<Human> mArr = new ArrayList<Human>();
-    public ContactAdapter(ArrayList<Human> list) {
+    private ArrayList<Task> mArr = new ArrayList<Task>();
+    public ContactAdapter(ArrayList<Task> list) {
         this.mArr = list;
     }
 
@@ -29,7 +29,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ViewHolder holder1 = holder;
-        if (mArr.get(position).isInterest()) {
+        if (mArr.get(position).getInterest()==1) {
             holder1.tv.setText(mArr.get(position).getName() + "\n" + mArr.get(position).getPhoneNumber());
             holder1.img.setImageResource(R.drawable.ic_star_red_600_24dp);
         }
@@ -40,13 +40,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder1.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!mArr.get(position).isInterest()){
+                if(mArr.get(position).getInterest()==0){
                     holder1.img.setImageResource(R.drawable.ic_star_red_600_24dp);
-                    mArr.get(position).setInterest(true);
+                    mArr.get(position).setInterest(1);
                 }
                 else{
                     holder1.img.setImageResource(R.drawable.ic_star_red_100_24dp);
-                    mArr.get(position).setInterest(false);
+                    mArr.get(position).setInterest(0);
                 }
             }
         });

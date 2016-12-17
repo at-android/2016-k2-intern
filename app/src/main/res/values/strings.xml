@@ -6,20 +6,16 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="nav_item_home">Contact</string>
-    <string name="nav_item_friends">Favorite</string>
-    <string name="nav_item_notifications">Note</string>
+    <string name="nav_item_home">Task</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
-        <item>@string/nav_item_friends</item>
-        <item>@string/nav_item_notifications</item>
     </string-array>
 
     <string name="title_Note">Note</string>
     <string name="title_Favorite">Favorite</string>
-    <string name="title_Contact">Contact</string>
+    <string name="title_Contact">Task</string>
 
     <string name="Dialog_fragment_btnOK">OK</string>
     <string name="Dialog_fragment_btnCancel">Cancel</string>
