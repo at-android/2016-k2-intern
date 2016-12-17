@@ -17,8 +17,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     List<RealmPeople> mList = new ArrayList<RealmPeople>();
     private RealmResults<RealmPeople> mRealmList;
 
-    public RecyclerAdapter(RealmResults<RealmPeople> arr) {
-        this.mRealmList = arr;
+    public RecyclerAdapter(List<RealmPeople> arr) {
+        this.mList = arr;
     }
 
     @Override
@@ -30,12 +30,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTv.setText(mRealmList.get(position).toString());
+        holder.mTv.setText(mList.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return mRealmList.size();
+        return mList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

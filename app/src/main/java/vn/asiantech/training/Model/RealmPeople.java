@@ -1,35 +1,22 @@
 package vn.asiantech.training.Model;
 
 import io.realm.RealmObject;
-
-
-/**
- * Created by Administrator on 16/12/2016.
- */
+import io.realm.annotations.PrimaryKey;
 
 public class RealmPeople extends RealmObject {
-
-    private int id;
     private String name;
+    @PrimaryKey
     private String phoneNumber;
 
-    public RealmPeople(){
+    public RealmPeople() {
 
     }
 
-    public RealmPeople(int id, String name, String phoneNumber) {
-        this.id = id;
+    public RealmPeople(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -47,7 +34,7 @@ public class RealmPeople extends RealmObject {
         this.phoneNumber = phoneNumber;
     }
 
-    public String toString(){
-        return this.id+"--"+this.name+"--"+this.phoneNumber;
+    public String toString() {
+        return this.name + "--" + this.phoneNumber;
     }
 }

@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.androidannotations.annotations.EFragment;
+
 import java.util.ArrayList;
 
-
+@EFragment
 public class ContentProContactFragment extends Fragment {
     private String s = "";
     private String name = "";

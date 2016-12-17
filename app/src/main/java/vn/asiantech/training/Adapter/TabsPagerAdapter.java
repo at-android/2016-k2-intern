@@ -5,8 +5,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import vn.asiantech.training.ContentProContactFragment;
+import vn.asiantech.training.ContentProContactFragment_;
 import vn.asiantech.training.Fragment.ListContactFragment;
+import vn.asiantech.training.Fragment.ListContactFragment_;
 import vn.asiantech.training.Fragment.ShowAppFragment;
+import vn.asiantech.training.Fragment.ShowAppFragment_;
 
 /**
  * Created by Administrator on 29/11/2016.
@@ -19,19 +22,18 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment frag = null;
         switch (position) {
             case 0:
-                frag = ListContactFragment.newInstance();
-                break;
+                ListContactFragment frag = new ListContactFragment_();
+                return frag;
             case 1:
-                frag = ContentProContactFragment.newInstance();
-                break;
+                ContentProContactFragment frag1 = new ContentProContactFragment_();
+                return frag1;
             case 2:
-                frag = ShowAppFragment.newInstance();
-                break;
+                ShowAppFragment frag2 = new ShowAppFragment_();
+                return frag2;
+            default: return null;
         }
-        return frag;
     }
 
     @Override

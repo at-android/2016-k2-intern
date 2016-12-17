@@ -5,61 +5,60 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+@EActivity
 public class RegisterActivity extends AppCompatActivity {
-    private EditText mEdName;
-    private EditText mEdEmail;
-    private EditText mEdPass;
-    private EditText mEdConfirmPass;
-    private Button mBtnSubmit;
+    @ViewById(R.id.edName)
+    EditText mEdName;
+    @ViewById(R.id.edEmail)
+    EditText mEdEmail;
+    @ViewById(R.id.edPassword)
+    EditText mEdPass;
+    @ViewById(R.id.edConfirm)
+    EditText mEdConfirmPass;
+    @ViewById(R.id.btnSubmit)
+    Button mBtnSubmit;
     public static final String prefname = "my_data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getFormWidget();
-        mBtnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!validate()) {
-                    failRegister();
-                } else {
-                    AlertDialog.Builder b = new AlertDialog.Builder(RegisterActivity.this);
-                    b.setTitle("Confirm");
-                    b.setMessage("Continue to submit");
-                    b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
+    }
 
-                    b.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    b.show();
+    @Click(R.id.btnSubmit)
+    public void ClickBtnSubmit(){
+        if (!validate()) {
+            failRegister();
+        } else {
+            AlertDialog.Builder b = new AlertDialog.Builder(RegisterActivity.this);
+            b.setTitle("Confirm");
+            b.setMessage("Continue to submit");
+            b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
                 }
-            }
-        });
+            });
+
+            b.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            b.show();
+        }
     }
 
-    public void getFormWidget() {
-        mEdName = (EditText) findViewById(R.id.edName);
-        mEdEmail = (EditText) findViewById(R.id.edEmail);
-        mEdPass = (EditText) findViewById(R.id.edPassword);
-        mEdConfirmPass = (EditText) findViewById(R.id.edConfirm);
-        mBtnSubmit = (Button) findViewById(R.id.btnSubmit);
-    }
+
 
     public void failRegister() {
         Toast.makeText(getApplicationContext(), "Please check form again", Toast.LENGTH_LONG).show();
@@ -132,7 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
         editor.putString("name", name);
         editor.putString("pwd", pwd);
         editor.putString("email", email);
-        Log.i("XXX", name);
         editor.commit();
     }
 }

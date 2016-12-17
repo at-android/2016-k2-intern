@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +21,10 @@ import vn.asiantech.training.Adapter.RecyclerAppAdapter;
 import vn.asiantech.training.Model.AppInfo;
 import vn.asiantech.training.R;
 
-
+@EFragment
 public class ShowAppFragment extends Fragment {
-    private RecyclerView recyclerView;
+    @ViewById(R.id.recyclerViewListApp)
+    RecyclerView recyclerView;
     private RecyclerAppAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<AppInfo> mArr = new ArrayList<AppInfo>();
@@ -45,13 +50,16 @@ public class ShowAppFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_show_app, container, false);
+        return view;
+    }
+    @AfterViews
+
+    public void init(){
         getInstalledApps(true);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListApp);
         layoutManager = new LinearLayoutManager(getContext());
         adapter = new RecyclerAppAdapter(mArr);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        return view;
     }
 
     private ArrayList<AppInfo> getInstalledApps(boolean getSysPackages) {
