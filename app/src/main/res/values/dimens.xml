@@ -2,4 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tv_custom_name_size">26sp</dimen>
+    <dimen name="recycler_view_height">400dp</dimen>
+    <dimen name="line_height">1dp</dimen>
 </resources>

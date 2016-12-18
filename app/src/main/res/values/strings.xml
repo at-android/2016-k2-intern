@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="btn_register_text">Register</string>
+    <string name="btn_login_text">Login</string>
+    <string name="edt_hint_name">Name</string>
+    <string name="edt_hint_email">Email</string>
+    <string name="edt_hint_password">Password</string>
+    <string name="btn_hint_confirm_password">Confirm Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edt_hint_phone">Phone</string>
+    <string name="btn_add_text">Add</string>
 </resources>
