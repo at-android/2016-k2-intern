@@ -35,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (mName.equals(mEdtName.getText().toString()) && mPassword.equals(mEdtPassword.getText().toString())) {
                     Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    SharedPreferences pre = getSharedPreferences(PRIMARY_KEY, MODE_PRIVATE);
+                    SharedPreferences.Editor edit = pre.edit();
+                    edit.putString("status", "true");
+                    edit.apply();
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Fail", Toast.LENGTH_SHORT).show();

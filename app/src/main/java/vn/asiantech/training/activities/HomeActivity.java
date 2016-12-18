@@ -11,7 +11,6 @@ import vn.asiantech.training.fragments.ListAddressFragment;
 
 public class HomeActivity extends AppCompatActivity implements ListAddressFragment.OnFragmentInteractionListener {
     private ViewPager mViewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
