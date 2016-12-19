@@ -8,22 +8,22 @@ import android.os.Parcelable;
  */
 
 public class Task implements Parcelable {
-    private String name;
-    private String phoneNumber;
+    private String title;
+    private String content;
     private int interest;
 
     public Task() {
     }
 
-    public Task(String name, String phoneNumber, int interest) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+    public Task(String title, String content, int interest) {
+        this.title = title;
+        this.content = content;
         this.interest = interest;
     }
 
     protected Task(Parcel in) {
-        name = in.readString();
-        phoneNumber = in.readString();
+        title = in.readString();
+        content = in.readString();
         interest = in.readInt();
     }
 
@@ -39,20 +39,20 @@ public class Task implements Parcelable {
         }
     };
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getContent() {
+        return content;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getInterest() {
@@ -70,8 +70,8 @@ public class Task implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
-        parcel.writeString(phoneNumber);
+        parcel.writeString(title);
+        parcel.writeString(content);
         parcel.writeInt(interest);
     }
 }

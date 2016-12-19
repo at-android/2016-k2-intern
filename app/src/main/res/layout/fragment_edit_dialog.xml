@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="vn.asiantech.training.EditDialogFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TvDialogFrag_Edit"/>
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_below="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TvDialogFrag_Edit"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnEdit"
+            style="@style/EdFrag_Btn"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:text="@string/BtnEdit"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/EdFrag_Btn"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:text="@string/BtnCancel"/>
+    </LinearLayout>
+</RelativeLayout>

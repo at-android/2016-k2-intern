@@ -9,4 +9,6 @@
     <dimen name="layout_height_for_view_customItem">1dp</dimen>
     <dimen name="open_note_frag_tvTitle">25sp</dimen>
     <dimen name="open_note_frag_tvTimeMargintop">40dp</dimen>
+    <dimen name="plusImgViewHeight">70dp</dimen>
+    <dimen name="plusImgViewWidth">70dp</dimen>
 </resources>
