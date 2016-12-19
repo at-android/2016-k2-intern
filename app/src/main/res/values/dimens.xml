@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textview_text_title_size">30sp</dimen>
+    <dimen name="editext_margin_top_name">20dp</dimen>
+    <dimen name="editext_padding_email">10dp</dimen>
+    <dimen name="button_margin_left_cancel">20dp</dimen>
+    <dimen name="textview_text_task">20sp</dimen>
+    <dimen name="textview_margin_left_title_item_task">10dp</dimen>
+    <dimen name="textview_content_dialog_fragment">20sp</dimen>
 </resources>

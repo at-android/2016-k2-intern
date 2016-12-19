@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="button_text_login">Login</string>
+    <string name="button_text_register">Register</string>
+    <string name="textview_text_title">Login</string>
+    <string name="editext_hint_email">Enter Email</string>
+    <string name="editext_hint_password">Enter Password</string>
+    <string name="textview_text_title_register">Register</string>
+    <string name="editext_hint_name_register">Enter Name</string>
+    <string name="editext_hint_email_register">Enter Email</string>
+    <string name="editext_hint_password_register">Enter Password</string>
+    <string name="editext_hint_confirm_password_register">Confirm Password</string>
+    <string name="button_text_cancel">Cancel</string>
+    <string name="item_menu_logout">logout</string>
+    <string name="button_edit">Edit</string>
+    <string name="textview_text_title_add">Thêm Task</string>
+    <string name="edittext_hint_title">Enter Title</string>
+    <string name="edittext_hint_content">Enter Content</string>
+    <string name="button_add">Add</string>
 </resources>

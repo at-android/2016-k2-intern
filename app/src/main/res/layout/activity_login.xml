@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/textview_text_title"
+        android:textSize="@dimen/textview_text_title_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvRegister"
+        android:layout_marginTop="@dimen/editext_margin_top_name"
+        android:hint="@string/editext_hint_email"
+        android:inputType="text"
+        android:padding="@dimen/editext_padding_email" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtEmail"
+        android:layout_marginTop="@dimen/editext_margin_top_name"
+        android:hint="@string/editext_hint_password"
+        android:inputType="textPassword"
+        android:padding="@dimen/editext_padding_email" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtPassword"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/button_text_login"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtPassword"
+        android:layout_marginLeft="@dimen/button_margin_left_cancel"
+        android:layout_marginStart="@dimen/button_margin_left_cancel"
+        android:layout_toEndOf="@id/btnLogin"
+        android:layout_toRightOf="@id/btnLogin"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/button_text_cancel"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
