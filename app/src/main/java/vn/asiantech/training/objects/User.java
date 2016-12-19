@@ -1,14 +1,20 @@
 package vn.asiantech.training.objects;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by MaiManhDuy on 12/16/2016.
  */
 
 public class User {
-    private String name;
-    private String email;
-    private String password;
-
+    @SerializedName("name")
+    public String name;
+    @SerializedName("email")
+    public String email;
+    @SerializedName("password")
+    public String password;
+    @SerializedName("access_token")
+    public String accessToken;
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
