@@ -1,6 +1,7 @@
 package vn.asiantech.training.activities;
 
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import vn.asiantech.training.fragments.EditTaskFragment_;
 import vn.asiantech.training.listeners.ItemClickListener;
 import vn.asiantech.training.models.LoginResult;
 import vn.asiantech.training.models.Task;
+import vn.asiantech.training.models.TaskResult;
 import vn.asiantech.training.networks.Api;
 import vn.asiantech.training.networks.ApiClient;
 
@@ -44,7 +46,7 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
     @Override
     void inits() {
         initData();
-        //abc();
+        abc();
         mTaskAdapter = new TaskAdapter(mTasks, this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         mRecyclerViewTask.setLayoutManager(layoutManager);
@@ -61,20 +63,28 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
     }
 
     public void abc(){
-        SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
-        String access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
-        Api api = ApiClient.retrofit().create(Api.class);
-        Call<List<Task>> result = api.listTasks(1,2,access_token);
-        result.enqueue(new Callback<List<Task>>() {
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
             @Override
-            public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
-                Log.d("tag",response.body().size()+"");
-            }
+            public void run() {
+                Log.d("tag","connect");
+                SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
+                String access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
+                Api api = ApiClient.retrofit().create(Api.class);
+                Call<List<TaskResult>> result = api.listTasks(1,2,access_token);
+                result.enqueue(new Callback<List<TaskResult>>() {
+                    @Override
+                    public void onResponse(Call<List<TaskResult>> call, Response<List<TaskResult>> response) {
+                        Log.d("tag",response.body().size()+"");
+                        Log.d("tag"," connect 123");
+                    }
 
-            @Override
-            public void onFailure(Call<List<Task>> call, Throwable t) {
-                Log.d("tag","no connect");
+                    @Override
+                    public void onFailure(Call<List<TaskResult>> call, Throwable t) {
+                        Log.d("tag","no connect");
 
+                    }
+                });
             }
         });
     }

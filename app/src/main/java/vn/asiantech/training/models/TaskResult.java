@@ -2,6 +2,8 @@ package vn.asiantech.training.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,4 +17,6 @@ public class TaskResult {
     private String message;
     @SerializedName("task_id")
     private int taskId;
+    @SerializedName("list_tasks")
+    List<Task> listTasks;
 }
