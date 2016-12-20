@@ -2,15 +2,23 @@ package vn.asiantech.training;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import vn.asiantech.training.model.Task;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import vn.asiantech.training.API.Api;
+import vn.asiantech.training.API.ApiClient;
+import vn.asiantech.training.model.TaskResult;
 
 public class AddFragment extends Fragment implements View.OnClickListener{
     private Button mBtnAdd;
@@ -18,12 +26,13 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     private EditText mEdTitle;
     private EditText mEdContent;
     private DataFromEdFrag mCallback;
+    private String mAccessToken;
     public AddFragment() {
         // Required empty public constructor
     }
 
 
-    public static AddFragment newInstance(String param1, String param2) {
+    public static AddFragment newInstance() {
         AddFragment fragment = new AddFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -33,8 +42,10 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
+        if(getArguments()!=null){
+            Bundle bundle = getArguments();
+            mAccessToken = bundle.getString(MainActivity.ACCESS_TOKEN);
+            Log.i("add AToken",mAccessToken);
         }
     }
 
@@ -56,9 +67,30 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnAdd:
-                Task task = new Task(mEdTitle.getText().toString(),mEdContent.getText().toString(),0);
-                mCallback.SendDataFromAddFrag(task);
-                getActivity().onBackPressed();
+                Api api = ApiClient.retrofit().create(Api.class);
+                Call<TaskResult> result = api.createTask(mEdTitle.getText().toString(), mEdContent.getText().toString(), 0, mAccessToken);
+                result.enqueue(new Callback<TaskResult>() {
+                    @Override
+                    public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(getActivity().getApplication(), "Created Task Success", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        else{
+                            Toast.makeText(getActivity().getApplication(), "Create Fail", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<TaskResult> call, Throwable t) {
+                        Toast.makeText(getActivity().getApplication(), "Error Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                mCallback.SendDataFromAddFrag();
                 break;
             case R.id.btnCancel:
                 getActivity().onBackPressed();
@@ -67,7 +99,7 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface DataFromEdFrag {
-        public void SendDataFromAddFrag(Task task);
+        public void SendDataFromAddFrag();
     }
 
     @Override

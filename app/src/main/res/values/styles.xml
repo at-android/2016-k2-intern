@@ -100,10 +100,17 @@
         <item name="android:layout_marginTop">@dimen/Home_btnMarginTop</item>
     </style>
 
-    <style name="RegisterEd">
+    <style name="RegisterEdEmail">
         <item name="android:textSize">25sp</item>
         <item name="android:gravity">center</item>
         <item name="android:inputType">text</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="RegisterEdPass">
+        <item name="android:textSize">25sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">textPassword</item>
         <item name="android:maxLines">1</item>
     </style>
 </resources>

@@ -12,14 +12,14 @@
         android:hint="@string/emailHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdEmail"/>
     <EditText
         android:id="@+id/edPassword"
         android:hint="@string/passwordHint"
         android:layout_below="@id/edEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdPass"/>
 
 
     <Button

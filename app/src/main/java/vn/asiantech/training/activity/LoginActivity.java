@@ -26,6 +26,7 @@ import vn.asiantech.training.model.LoginResult;
 public class LoginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "my_data";
     public static final String ACCESS_TOKEN = "access_token";
+    private String mAuthorization;
     @ViewById(R.id.edEmail)
     EditText mEdEmail;
     @ViewById(R.id.edPassword)
@@ -42,24 +43,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Click(R.id.btnCancel)
-    void CancelAction(){
-        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+    void CancelAction() {
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
     @Click(R.id.btnLogin)
-    void LoginAction(){
+    void LoginAction() {
         Api api = ApiClient.retrofit().create(Api.class);
         Call<LoginResult> result = api.login(mEdEmail.getText().toString(), mEdPass.getText().toString());
         result.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 if (!response.body().isError()) {
-                    SharedPreferences pre=getSharedPreferences
-                            (SHARED_PREFS, MODE_PRIVATE);
-                    SharedPreferences.Editor editor=pre.edit();
-                    String authorization = response.body().getAccount().getAccess_token();
-                    editor.putString("accesstoken",authorization);
+                    mAuthorization = response.body().getAccount().getAccess_token();
+                    savingPreferences();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -73,4 +71,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void savingPreferences(){
+        SharedPreferences pre = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pre.edit();
+        Log.i("loginAccesstoken", mAuthorization);
+        editor.putString(ACCESS_TOKEN, mAuthorization);
+        editor.commit();
+    }
+
+
 }

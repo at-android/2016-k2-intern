@@ -11,28 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nameHint"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdEmail"/>
     <EditText
         android:id="@+id/edEmail"
         android:hint="@string/emailHint"
         android:layout_below="@id/edName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdEmail"/>
     <EditText
         android:id="@+id/edPassword"
         android:hint="@string/passwordHint"
         android:layout_below="@id/edEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdPass"/>
     <EditText
         android:id="@+id/edPassConfirm"
         android:hint="@string/passConfirmHint"
         android:layout_below="@id/edPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEd"/>
+        style="@style/RegisterEdPass"/>
 
     <Button
         android:id="@+id/btnSubmit"

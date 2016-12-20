@@ -14,7 +14,10 @@ public class Task implements Parcelable {
     private String title;
     @SerializedName("content")
     private String content;
+    @SerializedName("favorite")
     private int interest;
+    @SerializedName("id")
+    private int id;
 
     public Task() {
     }
@@ -29,6 +32,7 @@ public class Task implements Parcelable {
         title = in.readString();
         content = in.readString();
         interest = in.readInt();
+        id = in.readInt();
     }
 
     public static final Creator<Task> CREATOR = new Creator<Task>() {
@@ -67,6 +71,14 @@ public class Task implements Parcelable {
         this.interest = interest;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -77,5 +89,6 @@ public class Task implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(content);
         parcel.writeInt(interest);
+        parcel.writeInt(id);
     }
 }

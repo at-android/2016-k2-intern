@@ -24,6 +24,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView mImgViewPlus;
     private SendFromContact mCallback;
+
     public TaskFragment() {
         // Required empty public constructor
     }
@@ -43,6 +44,8 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             mArrTask = getArguments().getParcelableArrayList(ARG_LIST_TASK);
         }
+
+
     }
 
     @Override
@@ -51,7 +54,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contact2, container, false);
         mRecyclerview = (RecyclerView) view.findViewById(R.id.recyclerViewContact);
-        mImgViewPlus = (ImageView)view.findViewById(R.id.imgView);
+        mImgViewPlus = (ImageView) view.findViewById(R.id.imgView);
         mAdapter = new TaskAdapter(mArrTask);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
@@ -62,7 +65,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imgView:
                 mCallback.SendFromContactFrag();
                 break;
@@ -86,5 +89,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
+
 }
+
 
