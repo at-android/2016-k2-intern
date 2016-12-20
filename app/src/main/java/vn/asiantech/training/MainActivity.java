@@ -11,16 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.activity.FragmentDrawer;
 import vn.asiantech.training.model.Task;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,ContactAdapter.DataFromAdapter,EditDialogFragment.DataFromEdDialogFrag,EditFragment.DataFromEdFrag,AddFragment.DataFromEdFrag,ContactFragment.SendFromContact,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,TaskAdapter.DataFromAdapter,EditDialogFragment.DataFromEdDialogFrag,EditFragment.DataFromEdFrag,AddFragment.DataFromEdFrag,TaskFragment.SendFromContact,View.OnClickListener {
     private static String TAG = MainActivity.class.getSimpleName();
     private static String TAG2 = "EditFragment";
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-    private ArrayList<Task> mArrTask = new ArrayList<Task>();
+    private List<Task> mArrTask = new ArrayList<Task>();
     private int mPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setDrawerListener(this);
         // display the first navigation drawer view on app launch
         displayView(0);
-
 
     }
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 title = getString(R.string.title_Contact);
-                ContactFragment frag0 = ContactFragment.newInstance(mArrTask);
+                TaskFragment frag0 = TaskFragment.newInstance(mArrTask);
                 ft.replace(R.id.container_body, frag0).commit();
                 getSupportActionBar().setTitle(title);
                 break;

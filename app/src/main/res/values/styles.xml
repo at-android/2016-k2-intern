@@ -85,4 +85,25 @@
         <item name="android:inputType">text</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="home_btn">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@color/colorButton</item>
+        <item name="android:layout_marginTop">@dimen/Home_btnMarginTop</item>
+    </style>
+
+    <style name="register_btn">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@color/colorButton</item>
+        <item name="android:layout_marginTop">@dimen/Home_btnMarginTop</item>
+    </style>
+
+    <style name="RegisterEd">
+        <item name="android:textSize">25sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLines">1</item>
+    </style>
 </resources>

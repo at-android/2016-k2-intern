@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import vn.asiantech.training.model.Task;
@@ -18,9 +19,9 @@ import vn.asiantech.training.model.Task;
 /**
  * Created by Administrator on 22/11/2016.
  */
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
-    private ArrayList<Task> mArr = new ArrayList<Task>();
-    public ContactAdapter(ArrayList<Task> list) {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
+    private List<Task> mArr = new ArrayList<Task>();
+    public TaskAdapter(List<Task> list) {
         this.mArr = list;
     }
     private DataFromAdapter mCallback;

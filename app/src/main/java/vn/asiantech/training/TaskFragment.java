@@ -12,24 +12,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.asiantech.training.model.Task;
 
-public class ContactFragment extends Fragment implements View.OnClickListener {
+public class TaskFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_LIST_TASK = "Task";
-    private ArrayList<Task> mArrTask = new ArrayList<Task>();
+    private List<Task> mArrTask = new ArrayList<Task>();
     private RecyclerView mRecyclerview;
-    private ContactAdapter mAdapter;
+    private TaskAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView mImgViewPlus;
     private SendFromContact mCallback;
-    public ContactFragment() {
+    public TaskFragment() {
         // Required empty public constructor
     }
 
 
-    public static ContactFragment newInstance(ArrayList<Task> arr) {
-        ContactFragment fragment = new ContactFragment();
+    public static TaskFragment newInstance(List<Task> arr) {
+        TaskFragment fragment = new TaskFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ARG_LIST_TASK, (ArrayList<Task>) arr);
         fragment.setArguments(args);
@@ -51,7 +52,7 @@ public class ContactFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_contact2, container, false);
         mRecyclerview = (RecyclerView) view.findViewById(R.id.recyclerViewContact);
         mImgViewPlus = (ImageView)view.findViewById(R.id.imgView);
-        mAdapter = new ContactAdapter(mArrTask);
+        mAdapter = new TaskAdapter(mArrTask);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setAdapter(mAdapter);

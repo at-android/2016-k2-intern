@@ -10,4 +10,5 @@
     <color name="colorTvTitleTextColor">#FFFFFF</color>
     <color name="colorTvTime">#6210e6</color>
     <color name="colorNoteItemTv">#10dbe6</color>
+    <color name="colorButton">#F50057</color>
 </resources>

@@ -34,5 +34,14 @@
     <string name="edFragTitleHint">Set Title</string>
     <string name="edFragContentHint">Set Content</string>
 
+    <string name="btnRegister">Register</string>
+
+    <string name="nameHint">Name</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="passConfirmHint">Password Confirmation</string>
+    <string name="btnSubmit">Submit</string>
+    <string name="btnLogin">Login</string>
+
 
 </resources>

@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-/**
- * Created by Administrator on 20/12/2016.
- */
 @Data
 @AllArgsConstructor(suppressConstructorProperties = true)
 public class Account {

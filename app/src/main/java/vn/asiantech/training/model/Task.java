@@ -3,12 +3,16 @@ package vn.asiantech.training.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Administrator on 22/11/2016.
  */
 
 public class Task implements Parcelable {
+    @SerializedName("title")
     private String title;
+    @SerializedName("content")
     private String content;
     private int interest;
 

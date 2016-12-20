@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @AllArgsConstructor(suppressConstructorProperties = true)
 @Data
+
 public class LoginResult {
     @SerializedName("error")
     private boolean error;
