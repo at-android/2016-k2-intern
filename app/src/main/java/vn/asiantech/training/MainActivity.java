@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,15 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnRegister;
     private EditText mEdtEmail;
     private EditText mEdtPassword;
-    private Toolbar mToolbar;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        mToolbar.setTitle("Login");
-        setSupportActionBar(mToolbar);
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         mBtnRegister = (Button) findViewById(R.id.btnRegister);
         mEdtEmail = (EditText) findViewById(R.id.edtEmail);
         mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mToolbar = (Toolbar) findViewById(R.id.toolbarMain);
     }
 
     private void loginUser() {
@@ -68,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
-                    if ("true".equals(response.body().error.toString())) {
+                    if ("true".equals(response.body().error)) {
                         Toast.makeText(MainActivity.this, "Email or Password is missing!!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
                         SharedPreferences pre = getSharedPreferences(KEY_SHARE, MODE_PRIVATE);
                         SharedPreferences.Editor edit = pre.edit();
-                        edit.putString("token", response.body().user.accessToken.toString());
+                        edit.putString("token", response.body().user.accessToken);
                         edit.apply();
-                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     }
                 }
             }
