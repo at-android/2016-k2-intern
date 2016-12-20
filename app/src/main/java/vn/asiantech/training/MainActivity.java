@@ -13,6 +13,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import vn.asiantech.training.activity.FragmentDrawer;
+import vn.asiantech.training.model.Task;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,ContactAdapter.DataFromAdapter,EditDialogFragment.DataFromEdDialogFrag,EditFragment.DataFromEdFrag,AddFragment.DataFromEdFrag,ContactFragment.SendFromContact,View.OnClickListener {
     private static String TAG = MainActivity.class.getSimpleName();

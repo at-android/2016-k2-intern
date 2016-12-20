@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import vn.asiantech.training.model.Task;
+
 public class ContactFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_LIST_TASK = "Task";
     private ArrayList<Task> mArrTask = new ArrayList<Task>();

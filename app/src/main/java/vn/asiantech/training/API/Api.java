@@ -1,0 +1,41 @@
+package vn.asiantech.training.API;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import vn.asiantech.training.model.LoginResult;
+import vn.asiantech.training.model.RegisterResult;
+import vn.asiantech.training.model.Task;
+import vn.asiantech.training.model.TaskResult;
+
+/**
+ * Created by Administrator on 20/12/2016.
+ */
+
+public interface  Api {
+    @FormUrlEncoded
+    @POST("register")
+    Call<RegisterResult> createAccount(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<LoginResult> login(@Field("email") String email, @Field("password") String password);
+
+    @GET("tasks")
+    Call<List<TaskResult>> listTasks(@Path("offset") int offset, @Path("limit") int limit, @Header("Authorization") String access_token);
+
+    @FormUrlEncoded
+    @POST("tasks")
+    Call<TaskResult> createTask(@Field("title") String title,@Field("content") String content, @Field("favorite") int fav,@Header("Authorization") String access_token);
+
+    @PUT("task/{id}")
+    Call<Task> editTask(@Path("title") String title, @Path("content") String content, @Path("favorite") int fav, @Header("Authorization")String access_token);
+
+}

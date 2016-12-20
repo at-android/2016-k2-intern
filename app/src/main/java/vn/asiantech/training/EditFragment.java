@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import vn.asiantech.training.model.Task;
+
 
 public class EditFragment extends Fragment implements View.OnClickListener{
     private EditText mEdTitle;

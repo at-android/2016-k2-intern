@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
+import vn.asiantech.training.model.Task;
+
 
 /**
  * Created by Administrator on 22/11/2016.
