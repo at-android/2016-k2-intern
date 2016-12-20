@@ -1,8 +1,7 @@
 package vn.asiantech.training.networks;
 
-import java.util.List;
-
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -10,6 +9,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import vn.asiantech.training.models.LoginResult;
 import vn.asiantech.training.models.RegisterResult;
 import vn.asiantech.training.models.Task;
@@ -27,16 +27,19 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("login")
-    Call<LoginResult> login(@Field("email") String email,@Field("password") String password);
+    Call<LoginResult> login(@Field("email") String email, @Field("password") String password);
 
     @GET("tasks")
-    Call<List<TaskResult>> listTasks(@Path("offset") int offset, @Path("limit") int limit, @Header("Authorization") String access_token);
+    Call<TaskResult> listTasks(@Query("offset") int offset, @Query("limit") int limit, @Header("Authorization") String access_token);
 
     @FormUrlEncoded
     @POST("tasks")
-    Call<TaskResult> createTask(@Field("title") String title,@Field("content") String content, @Field("favorite") int fav,@Header("Authorization") String access_token);
+    Call<TaskResult> createTask(@Field("title") String title, @Field("content") String content, @Field("favorite") int fav, @Header("Authorization") String access_token);
 
-    @PUT("task/{id}")
-    Call<Task> editTask(@Path("title") String title,@Path("content") String content,@Path("favorite") int fav,@Header("Authorization")String access_token);
+    @FormUrlEncoded
+    @PUT("tasks/{id}")
+    Call<TaskResult> editTask(@Path("id") int id, @Field("title") String title, @Field("content") String content, @Field("favorite") int fav, @Header("Authorization") String access_token);
 
+    @DELETE("tasks/{id}")
+    Call<TaskResult> deleteTask(@Path("id") int id,@Header("Authorization") String access_token);
 }

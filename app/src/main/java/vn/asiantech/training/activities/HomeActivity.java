@@ -1,12 +1,14 @@
 package vn.asiantech.training.activities;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -21,10 +23,9 @@ import retrofit2.Response;
 import vn.asiantech.training.R;
 import vn.asiantech.training.adapters.TaskAdapter;
 import vn.asiantech.training.dialogUtils.DetailTaskDialog;
+import vn.asiantech.training.dialogUtils.DetailTaskDialog_;
 import vn.asiantech.training.fragments.AddTaskFragment_;
-import vn.asiantech.training.fragments.EditTaskFragment_;
 import vn.asiantech.training.listeners.ItemClickListener;
-import vn.asiantech.training.models.LoginResult;
 import vn.asiantech.training.models.Task;
 import vn.asiantech.training.models.TaskResult;
 import vn.asiantech.training.networks.Api;
@@ -35,67 +36,101 @@ import vn.asiantech.training.networks.ApiClient;
  */
 @EActivity(R.layout.activity_home)
 public class HomeActivity extends BaseActivity implements ItemClickListener {
+    public static final String EDIT_BUNDLE = "edit_bundle";
     @ViewById(R.id.recyclerViewTasks)
     RecyclerView mRecyclerViewTask;
     @ViewById(R.id.btnAdd)
     FloatingActionButton mBtnAdd;
-
+    private List<Task> tasks;
     private List<Task> mTasks;
     private TaskAdapter mTaskAdapter;
 
     @Override
     void inits() {
-        initData();
-        abc();
+        mTasks = new ArrayList<>();
+        getListTasks(0);
         mTaskAdapter = new TaskAdapter(mTasks, this, this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
+        mTaskAdapter.setLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                int index = mTasks.size() - 1;
+                getListTasks(index);
+            }
+        });
+        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         mRecyclerViewTask.setLayoutManager(layoutManager);
         mRecyclerViewTask.setAdapter(mTaskAdapter);
     }
 
-    public void initData() {
-        mTasks = new ArrayList<>();
-        Task task = new Task();
-        task.setMTitle("avc");
-        task.setMContent("avc");
-        task.setMIsFavorite(true);
-        mTasks.add(task);
-    }
-
-    public void abc(){
+    public void getListTasks(final int index) {
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d("tag","connect");
                 SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
                 String access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
                 Api api = ApiClient.retrofit().create(Api.class);
-                Call<List<TaskResult>> result = api.listTasks(1,2,access_token);
-                result.enqueue(new Callback<List<TaskResult>>() {
+                Call<TaskResult> result = api.listTasks(index, index + 10, access_token);
+                tasks = new ArrayList<Task>();
+                result.enqueue(new Callback<TaskResult>() {
                     @Override
-                    public void onResponse(Call<List<TaskResult>> call, Response<List<TaskResult>> response) {
-                        Log.d("tag",response.body().size()+"");
-                        Log.d("tag"," connect 123");
+                    public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
+                        if (response.body().getListTasks().size() > 0) {
+                            tasks = response.body().getListTasks();
+                            mTasks.addAll(tasks);
+                            mTaskAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getApplication(), "No Data Availble", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<List<TaskResult>> call, Throwable t) {
-                        Log.d("tag","no connect");
+                    public void onFailure(Call<TaskResult> call, Throwable t) {
+                        Log.d("tag", "no connect");
 
                     }
                 });
             }
         });
     }
+
     @Override
-    public void itemClick() {
+    public void itemClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(EDIT_BUNDLE, mTasks.get(position));
+        DetailTaskDialog detailTaskDialog = DetailTaskDialog_.builder().build();
+        detailTaskDialog.setArguments(bundle);
         FragmentManager fm = getSupportFragmentManager();
-        (new DetailTaskDialog()).show(fm, DetailTaskDialog.class.getName());
+        detailTaskDialog.show(fm, DetailTaskDialog.class.getName());
+    }
+
+    @Override
+    public void favClick(int position) {
+        SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
+        String access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
+        int fav = 1;
+        if (mTasks.get(position).getFavorite() == 1) {
+            fav = 0;
+        }
+        Api api = ApiClient.retrofit().create(Api.class);
+        Call<TaskResult> result = api.editTask(mTasks.get(position).getId(), mTasks.get(position).getMTitle(), mTasks.get(position).getMContent(), fav, access_token);
+        result.enqueue(new Callback<TaskResult>() {
+            @Override
+            public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
+                Log.d("tag", response.body().getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<TaskResult> call, Throwable t) {
+                Log.d("tag", "fail");
+            }
+        });
     }
 
     @Click(R.id.btnAdd)
     void addAction() {
         getSupportFragmentManager().beginTransaction().replace(R.id.frContainer, AddTaskFragment_.builder().build()).commit();
     }
+
+
 }

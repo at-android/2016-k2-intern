@@ -64,7 +64,6 @@ public class LoginActivity extends BaseActivity {
                     editor.putString(ACCESS_TOKEN, response.body().getAccount().getAccess_token());
                     editor.commit();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity_.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else
                     Toast.makeText(getApplication(), "Login Fail", Toast.LENGTH_SHORT).show();

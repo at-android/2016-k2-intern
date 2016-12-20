@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_text_message_delete"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvTitle"
+        android:layout_marginBottom="@dimen/editext_margin_top_name"
+        android:layout_marginTop="@dimen/editext_margin_top_name"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnOk"
+        android:layout_below="@+id/tvTitle"
+        android:text="@string/button_Ok"
+        android:layout_marginLeft="@dimen/button_margin_left_cancel"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_toRightOf="@+id/btnOk"
+        android:layout_marginLeft="@dimen/button_margin_left_cancel"
+        android:text="@string/button_text_cancel"
+        android:id="@+id/btnCancel"
+        />
+</RelativeLayout>

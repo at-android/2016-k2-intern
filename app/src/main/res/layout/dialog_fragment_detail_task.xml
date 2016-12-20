@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:clickable="true"
     android:orientation="vertical">
 
     <TextView
@@ -36,12 +37,22 @@
         android:text="@string/button_edit" />
 
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvContent"
         android:layout_marginTop="@dimen/editext_margin_top_name"
         android:layout_toEndOf="@+id/btnEdit"
+        android:layout_toRightOf="@+id/btnEdit"
+        android:text="@string/button_text_delete" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvContent"
+        android:layout_marginTop="@dimen/editext_margin_top_name"
+        android:layout_toEndOf="@+id/btnDelete"
         android:layout_toRightOf="@+id/btnEdit"
         android:text="@string/button_text_cancel" />
 </RelativeLayout>

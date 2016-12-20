@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MenuActivity_"/>
-        <activity android:name=".activities.LoginActivity_"/>
+        <activity android:name=".activities.LoginActivity_"
+            android:noHistory="true"/>
         <activity android:name=".activities.RegisterActivity_"/>
         <activity android:name=".activities.HomeActivity_"/>
     </application>

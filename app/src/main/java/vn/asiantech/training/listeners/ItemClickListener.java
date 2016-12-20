@@ -5,5 +5,6 @@ package vn.asiantech.training.listeners;
  */
 
 public interface ItemClickListener {
-    void itemClick();
+    void itemClick(int position);
+    void favClick(int position);
 }

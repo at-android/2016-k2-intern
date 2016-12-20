@@ -17,4 +17,7 @@
     <string name="edittext_hint_title">Enter Title</string>
     <string name="edittext_hint_content">Enter Content</string>
     <string name="button_add">Add</string>
+    <string name="textview_text_message_delete">Are you sure delete this task?</string>
+    <string name="button_Ok">OK</string>
+    <string name="button_text_delete">Delete</string>
 </resources>
