@@ -62,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
     private Retrofit mRetrofit;
     private RequesService mRequesService;
     private String mPosUpdate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
-                    if ("true".equals(response.body().error.toString())) {
+                    if ("true".equals(response.body().error)) {
                         Toast.makeText(HomeActivity.this, "Email or Password is missing!!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(HomeActivity.this, response.body().taskID + "", Toast.LENGTH_SHORT).show();
@@ -150,7 +151,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
         final Dialog dialog = new Dialog(HomeActivity.this);
         dialog.setContentView(R.layout.dialog_new_task);
         dialog.setTitle("New Task");
-        mPosUpdate = arrTasks.get(id).getId().toString();
+        mPosUpdate = arrTasks.get(id).getId();
         mBtnDialogAdd = (Button) dialog.findViewById(R.id.btnDialogAddTask);
         mEdtDialogContent = (EditText) dialog.findViewById(R.id.edtDialogContent);
         mEdtDialogTitle = (EditText) dialog.findViewById(R.id.edtDialogTitle);
@@ -170,7 +171,6 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                         a = 0;
                         break;
                 }
-                // onAddNewTask(mEdtDialogTitle.getText().toString(), mEdtDialogContent.getText().toString(), a);
                 onUpdateTask(mPosUpdate, mEdtDialogTitle.getText().toString(), mEdtDialogContent.getText().toString(), a);
                 onGetTask(0, 10);
                 dialog.dismiss();
@@ -206,13 +206,32 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                                     //Remove loading item
                                     arrTasks.remove(arrTasks.size() - 1);
                                     mAdapter.notifyItemRemoved(arrTasks.size());
-
                                     //Load data
                                     int index = arrTasks.size();
                                     int end = index + 10;
-                                    onLoadTask(index, end);
-                                    mAdapter.notifyDataSetChanged();
-                                    mAdapter.setLoaded();
+                                    Log.d("d", index + " " + end);
+                                    // onLoadTask(index, end);
+                                   /* for (int i = index; i < end; i++) {
+                                        arrTasks.add(new Task("1","new"+i,"name",1));
+                                    }*/
+                                    Call<Result> user = mRequesService.getTask(arrTasks.size(), end);
+                                    user.enqueue(new Callback<Result>() {
+                                        @Override
+                                        public void onResponse(Call<Result> call, Response<Result> response) {
+                                            if (response.isSuccessful()) {
+                                                for (int i = 0, lenght = response.body().listTasks.size(); i < lenght; i++) {
+                                                    arrTasks.add(new Task(response.body().listTasks.get(i).getId(), response.body().listTasks.get(i).getTitle(), response.body().listTasks.get(i).getContent(), response.body().listTasks.get(i).getFavorite()));
+                                                }
+                                            }
+                                            mAdapter.notifyDataSetChanged();
+                                            mAdapter.setLoaded();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Result> call, Throwable t) {
+
+                                        }
+                                    });
                                 }
                             }, 5000);
                         }
@@ -221,31 +240,9 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                     Toast.makeText(HomeActivity.this, "Fail", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
                 Toast.makeText(HomeActivity.this, "Network error " + call.request() + mToken, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void onLoadTask(int start, int stop) {
-        Call<Result> user = mRequesService.getTask(start, stop);
-        user.enqueue(new Callback<Result>() {
-            @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
-                if (response.isSuccessful()) {
-                    for (int i = 0, lenght = response.body().listTasks.size(); i < lenght; i++) {
-                        arrTasks.add(new Task(response.body().listTasks.get(i).getId(), response.body().listTasks.get(i).getTitle(), response.body().listTasks.get(i).getContent(), response.body().listTasks.get(i).getFavorite()));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                    Log.d("load", "add tasks");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Result> call, Throwable t) {
-
             }
         });
     }
