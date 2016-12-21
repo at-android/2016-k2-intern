@@ -55,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, response.body().message + "", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Required field(s) name, email, password is missing or empty", Toast.LENGTH_SHORT).show();
                 }
