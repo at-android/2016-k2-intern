@@ -1,5 +1,6 @@
 package vn.asiantech.training.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,7 +8,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.Click;
@@ -41,12 +45,18 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
     RecyclerView mRecyclerViewTask;
     @ViewById(R.id.btnAdd)
     FloatingActionButton mBtnAdd;
+    @ViewById(R.id.toolbar)
+    Toolbar mToolbar;
+
     private List<Task> tasks;
     private List<Task> mTasks;
     private TaskAdapter mTaskAdapter;
 
+
     @Override
     void inits() {
+        setSupportActionBar(mToolbar);
+
         mTasks = new ArrayList<>();
         getListTasks(0);
         mTaskAdapter = new TaskAdapter(mTasks, this, this);
@@ -60,6 +70,22 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         mRecyclerViewTask.setLayoutManager(layoutManager);
         mRecyclerViewTask.setAdapter(mTaskAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.actionLogout:
+                Intent intent = new Intent(HomeActivity.this,MenuActivity_.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void getListTasks(final int index) {
