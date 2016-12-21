@@ -14,4 +14,5 @@
     <string name="activity_login_tvReg_text">Create Account</string>
     <string name="fragment_add_btnAdd_text">Add</string>
     <string name="fragment_edit_edtContent_text">Content</string>
+    <string name="fragment_add_tvTitle_text">Title</string>
 </resources>

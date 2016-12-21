@@ -3,7 +3,6 @@ package vn.asiantech.training;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +19,9 @@ import vn.asiantech.training.model.RegisterResult;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity {
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_BUNDLE = "bundle";
     @ViewById(R.id.edtUsername)
     EditText mEdtName;
     @ViewById(R.id.edtEmail)
@@ -28,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mEdtPassword;
     @ViewById(R.id.edtRetypePwd)
     EditText mEdtRetypePwd;
-
     @Click(R.id.btnSignUp)
     void signUp() {
         String name = mEdtName.getText().toString();
@@ -44,12 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {
                     if (response.isSuccessful()) {
-                        Log.i("successful", "successful");
                         Bundle bundle = new Bundle();
-                        bundle.putString("email", mEdtEmail.getText().toString());
-                        bundle.putString("password", mEdtPassword.getText().toString());
+                        bundle.putString(KEY_EMAIL, mEdtEmail.getText().toString());
+                        bundle.putString(KEY_PASSWORD, mEdtPassword.getText().toString());
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity_.class);
-                        intent.putExtra("bundle", bundle);
+                        intent.putExtra(KEY_BUNDLE, bundle);
                         startActivity(intent);
                         finish();
                     } else {
@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<RegisterResult> call, Throwable t) {
-                    Log.d("error", t.getMessage());
                 }
             });
         }

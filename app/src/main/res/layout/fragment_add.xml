@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:hint="@string/fragment_edit_edtContent_text" />
+        android:hint="@string/fragment_add_tvTitle_text" />
 
     <EditText
         android:id="@+id/edtContent"

@@ -24,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String MYPREFERENCE = "mypref";
     public static final String ACCESS_TOKEN = "access_token";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_BUNDLE = "bundle";
     @ViewById(R.id.edtEmail)
     EditText mEdtEmail;
     @ViewById(R.id.edtPassword)
@@ -31,18 +34,23 @@ public class LoginActivity extends AppCompatActivity {
 
     @AfterViews
     void init() {
-        Bundle bundle = getIntent().getBundleExtra("bundle");
+        Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
         if (bundle != null) {
-            mEdtEmail.setText(bundle.getString("email").toString());
-            mEdtPassword.setText(bundle.getString("password").toString());
+            mEdtEmail.setText(bundle.getString(KEY_EMAIL).toString());
+            mEdtPassword.setText(bundle.getString(KEY_PASSWORD).toString());
         }
+    }
+
+    @Click(R.id.tvRegister)
+    void register() {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity_.class);
+        startActivity(intent);
+        finish();
     }
 
     @Click(R.id.btnLogin)
     void login() {
         String email = String.valueOf(mEdtEmail.getText()).toString();
-        Log.i("ad", email);
-        Log.i("123", mEdtPassword.getText().toString());
         Api api = ApiClient.getClient().create(Api.class);
         retrofit2.Call<LoginResult> loginResultCall = api.login(email, mEdtPassword.getText().toString());
         loginResultCall.enqueue(new Callback<LoginResult>() {
@@ -57,9 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.commit();
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                 startActivity(intent);
-                                                finish();
                                             } else {
-                                                Log.i("fail", response.message());
                                             }
                                         }
                                     }
