@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.fragment.TaskFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="@dimen/plusImgViewWidth"
+        android:layout_height="@dimen/plusImgViewHeight"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/ProgressBarWidth"
+        android:layout_height="@dimen/ProgressBarHeight"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

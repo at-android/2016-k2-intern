@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/taskItemLayoutMargin"
+    card_view:cardCornerRadius="@dimen/taskItemRadiusCorner">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/itemLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/taskItemHeight"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvContact"
+                style="@style/contact_item_tv"
+                android:layout_width="@dimen/contact_item_width"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imgViewContact"
+                style="@style/contact_item_imgView"
+                android:layout_width="@dimen/contact_item_width"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height_for_view_customItem"></View>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

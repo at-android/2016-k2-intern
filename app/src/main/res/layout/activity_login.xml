@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.asiantech.training.activity.LoginActivity">
+
+    <EditText
+        android:id="@+id/edEmail"
+        style="@style/RegisterEdEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/emailHint" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/RegisterEdPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edEmail"
+        android:hint="@string/passwordHint" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/register_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edPassword"
+        android:text="@string/btnLogin" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/register_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:text="@string/BtnCancel" />
+</RelativeLayout>

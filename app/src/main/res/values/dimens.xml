@@ -2,4 +2,19 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="contact_item_width">0dp</dimen>
+    <dimen name="DialogFragment_tv">25dp</dimen>
+    <dimen name="nav_drawer_row_tv">25dp</dimen>
+    <dimen name="layout_height_for_view_customItem">1dp</dimen>
+    <dimen name="open_note_frag_tvTitle">25sp</dimen>
+    <dimen name="open_note_frag_tvTimeMargintop">40dp</dimen>
+    <dimen name="plusImgViewHeight">70dp</dimen>
+    <dimen name="plusImgViewWidth">70dp</dimen>
+    <dimen name="Home_btnMarginTop">30dp</dimen>
+    <dimen name="taskItemHeight">200dp</dimen>
+    <dimen name="taskItemLayoutMargin">5dp</dimen>
+    <dimen name="taskItemRadiusCorner">4dp</dimen>
+    <dimen name="ProgressBarHeight">100dp</dimen>
+    <dimen name="ProgressBarWidth">100dp</dimen>
 </resources>

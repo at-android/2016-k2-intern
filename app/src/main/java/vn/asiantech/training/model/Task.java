@@ -1,0 +1,94 @@
+package vn.asiantech.training.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by Administrator on 22/11/2016.
+ */
+
+public class Task implements Parcelable {
+    @SerializedName("title")
+    private String title;
+    @SerializedName("content")
+    private String content;
+    @SerializedName("favorite")
+    private int interest;
+    @SerializedName("id")
+    private int id;
+
+    public Task() {
+    }
+
+    public Task(String title, String content, int interest) {
+        this.title = title;
+        this.content = content;
+        this.interest = interest;
+    }
+
+    protected Task(Parcel in) {
+        title = in.readString();
+        content = in.readString();
+        interest = in.readInt();
+        id = in.readInt();
+    }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getInterest() {
+        return interest;
+    }
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(content);
+        parcel.writeInt(interest);
+        parcel.writeInt(id);
+    }
+}
