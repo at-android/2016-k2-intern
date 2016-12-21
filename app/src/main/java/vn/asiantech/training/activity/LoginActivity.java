@@ -18,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.asiantech.training.API.Api;
 import vn.asiantech.training.API.ApiClient;
-import vn.asiantech.training.MainActivity;
 import vn.asiantech.training.R;
 import vn.asiantech.training.model.LoginResult;
 

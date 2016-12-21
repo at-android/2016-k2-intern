@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.fragment;
 
 
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import vn.asiantech.training.R;
 import vn.asiantech.training.model.Task;
 
 

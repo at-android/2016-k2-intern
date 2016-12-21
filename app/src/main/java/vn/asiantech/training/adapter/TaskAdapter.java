@@ -1,24 +1,22 @@
-package vn.asiantech.training;
+package vn.asiantech.training.adapter;
+
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.view.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import vn.asiantech.training.R;
+import vn.asiantech.training.activity.MainActivity;
 import vn.asiantech.training.model.Task;
 
-
-/**
- * Created by Administrator on 22/11/2016.
- */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     private List<Task> mArr = new ArrayList<Task>();
     public TaskAdapter(List<Task> list) {
@@ -29,7 +27,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemview = inflater.inflate(R.layout.contact_item, parent, false);
+        View itemview = inflater.inflate(R.layout.task_item, parent, false);
         mCallback = (MainActivity) parent.getContext();
         return new ViewHolder(itemview);
     }
@@ -40,11 +38,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
         currentStrokeColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         holder1.linearLayout.setBackgroundColor(currentStrokeColor);
         if (mArr.get(position).getInterest()==1) {
-            holder1.tv.setText(mArr.get(position).getTitle() + "\n" + mArr.get(position).getContent());
+            holder1.tv.setText("Title:\n"+mArr.get(position).getTitle() + "\n" +"Content:\n"+ mArr.get(position).getContent());
             holder1.img.setImageResource(R.drawable.ic_star_red_600_24dp);
         }
         else{
-            holder1.tv.setText(mArr.get(position).getTitle() + "\n" + mArr.get(position).getContent());
+            holder1.tv.setText("Title:\n"+mArr.get(position).getTitle() + "\n" +"Content:\n"+ mArr.get(position).getContent());
             holder1.img.setImageResource(R.drawable.ic_star_red_100_24dp);
         }
         holder1.img.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +83,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
         }
     }
 
-    interface DataFromAdapter{
+    public interface DataFromAdapter{
         public void SendData(int position);
     }
 
 }
+
+

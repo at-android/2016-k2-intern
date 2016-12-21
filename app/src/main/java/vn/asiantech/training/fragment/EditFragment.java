@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.fragment;
 
 
 import android.content.Context;
@@ -18,23 +18,32 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.asiantech.training.API.Api;
 import vn.asiantech.training.API.ApiClient;
+import vn.asiantech.training.activity.MainActivity;
+import vn.asiantech.training.R;
+import vn.asiantech.training.model.Task;
 import vn.asiantech.training.model.TaskResult;
 
-public class AddFragment extends Fragment implements View.OnClickListener{
-    private Button mBtnAdd;
-    private Button mBtnCancel;
+
+public class EditFragment extends Fragment implements View.OnClickListener{
     private EditText mEdTitle;
     private EditText mEdContent;
+    private Button mBtnEdit;
+    private Button mBtnCancel;
     private DataFromEdFrag mCallback;
+    private Task mTask;
+    private int mPosition;
     private String mAccessToken;
-    public AddFragment() {
+    public EditFragment() {
         // Required empty public constructor
     }
 
 
-    public static AddFragment newInstance() {
-        AddFragment fragment = new AddFragment();
+    public static EditFragment newInstance(Task task,int position,String mAccessToken) {
+        EditFragment fragment = new EditFragment();
         Bundle args = new Bundle();
+        args.putParcelable("task",task);
+        args.putInt("position",position);
+        args.putString("access_token",mAccessToken);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,10 +51,10 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments()!=null){
-            Bundle bundle = getArguments();
-            mAccessToken = bundle.getString(MainActivity.ACCESS_TOKEN);
-            Log.i("add AToken",mAccessToken);
+        if (getArguments() != null) {
+            mTask = getArguments().getParcelable("task");
+            mPosition = getArguments().getInt("position");
+            mAccessToken = getArguments().getString("access_token");
         }
     }
 
@@ -53,12 +62,15 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add, container, false);
-        mBtnAdd = (Button)view.findViewById(R.id.btnAdd);
+        View view = inflater.inflate(R.layout.fragment_edit, container, false);
+        mBtnEdit = (Button)view.findViewById(R.id.btnEdit);
         mBtnCancel = (Button)view.findViewById(R.id.btnCancel);
         mEdTitle = (EditText)view.findViewById(R.id.edTitle);
         mEdContent = (EditText)view.findViewById(R.id.edContent);
-        mBtnAdd.setOnClickListener(this);
+
+        mEdTitle.setText(mTask.getTitle());
+        mEdContent.setText(mTask.getContent());
+        mBtnEdit.setOnClickListener(this);
         mBtnCancel.setOnClickListener(this);
         return view;
     }
@@ -66,32 +78,33 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnAdd:
+            case R.id.btnEdit:
+                Log.i("EdFragToken",mAccessToken);
+
+                mTask.setTitle(mEdTitle.getText().toString());
+                mTask.setContent(mEdContent.getText().toString());
                 Api api = ApiClient.retrofit().create(Api.class);
-                Call<TaskResult> result = api.createTask(mEdTitle.getText().toString(), mEdContent.getText().toString(), 0, mAccessToken);
+
+                Call<TaskResult> result = api.editTask(mTask.getId(), mTask.getTitle(), mTask.getContent(), mTask.getInterest(), mAccessToken);
                 result.enqueue(new Callback<TaskResult>() {
                     @Override
                     public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
-                        if(response.isSuccessful()){
-                            Toast.makeText(getActivity().getApplication(), "Created Task Success", Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            mCallback.SendData2(mTask,mPosition);
+                            Toast.makeText(getActivity().getApplication(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         }
-                        else{
-                            Toast.makeText(getActivity().getApplication(), "Create Fail", Toast.LENGTH_SHORT).show();
-
-                        }
-
                     }
 
                     @Override
                     public void onFailure(Call<TaskResult> call, Throwable t) {
-                        Toast.makeText(getActivity().getApplication(), "Error Connection", Toast.LENGTH_SHORT).show();
+                        Log.d("tag", "fail" + t.getMessage());
                     }
                 });
-                mCallback.SendDataFromAddFrag();
                 break;
+
             case R.id.btnCancel:
                 getActivity().onBackPressed();
                 break;
@@ -99,7 +112,7 @@ public class AddFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface DataFromEdFrag {
-        public void SendDataFromAddFrag();
+        public void SendData2(Task task,int position);
     }
 
     @Override
@@ -115,4 +128,5 @@ public class AddFragment extends Fragment implements View.OnClickListener{
                     + " must implement OnHeadlineSelectedListener");
         }
     }
+
 }

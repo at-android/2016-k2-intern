@@ -12,4 +12,7 @@
     <dimen name="plusImgViewHeight">70dp</dimen>
     <dimen name="plusImgViewWidth">70dp</dimen>
     <dimen name="Home_btnMarginTop">30dp</dimen>
+    <dimen name="taskItemHeight">200dp</dimen>
+    <dimen name="taskItemLayoutMargin">5dp</dimen>
+    <dimen name="taskItemRadiusCorner">4dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package vn.asiantech.training;
+package vn.asiantech.training.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,8 +21,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.asiantech.training.API.Api;
 import vn.asiantech.training.API.ApiClient;
-import vn.asiantech.training.activity.FragmentDrawer;
-import vn.asiantech.training.activity.HomeActivity;
+import vn.asiantech.training.R;
+import vn.asiantech.training.adapter.TaskAdapter;
+import vn.asiantech.training.fragment.AddFragment;
+import vn.asiantech.training.fragment.EditDialogFragment;
+import vn.asiantech.training.fragment.EditFragment;
+import vn.asiantech.training.fragment.TaskFragment;
 import vn.asiantech.training.model.Task;
 import vn.asiantech.training.model.TaskResult;
 
@@ -123,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     @Override
-    public void SendData2() {
-        GetDataFromService();
+    public void SendData2(Task task,int position) {
+        mArrTask.set(position,task);
     }
 
     //Callback from AddFragment
@@ -154,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public void GetDataFromService() {
         Log.d("tag", "connect");
         Api api = ApiClient.retrofit().create(Api.class);
-        Call<TaskResult> result = api.listTasks(1, 7, mAccessToken);
+        Call<TaskResult> result = api.listTasks(1, 10, mAccessToken);
         result.enqueue(new Callback<TaskResult>() {
             @Override
             public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
