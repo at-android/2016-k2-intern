@@ -3,4 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_demo_intent_btn_width">100dp</dimen>
+    <dimen name="cardView_layout_height">100dp</dimen>
+    <dimen name="cardView_corner">7dp</dimen>
+    <dimen name="row_task_tvTitle_fontsize">30sp</dimen>
+    <dimen name="row_task_tvContent_fontsize">15sp</dimen>
+    <dimen name="dialog_img_marginTop">30dp</dimen>
+    <dimen name="activity_login_tvReg_textSize">20sp</dimen>
 </resources>

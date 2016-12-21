@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Training</string>
-    <string name="btn_call">Call</string>
-    <string name="btn_message">Message</string>
-    <string name="btn_sendMail">Send Mail</string>
-    <string name="btn_launchWeb">Launch Vnexpress</string>
-    <string name="btn_openGGstore">Open Google Store</string>
-    <string name="btn_openGGmap">Open Google Map</string>
-    <string name="btn_openGallery">Open Gallery</string>
-    <string name="btn_camera">Camera</string>
+    <string name="exit_to_app">Log Out</string>
+    <string name="activity_register_edtUsername_hint">Username</string>
+    <string name="activity_register_edtPassword_hint">Password</string>
+    <string name="activity_register_edtRetypePwd_hint">Retype-Password</string>
+    <string name="activity_register_btnSignup_text">Sign Up</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_edit_btnUpdate_text">Update</string>
+    <string name="activity_register_edtEmail_hint">Email</string>
+    <string name="activity_login_btnLogin_text">Login</string>
+    <string name="activity_login_tvReg_text">Create Account</string>
+    <string name="fragment_add_btnAdd_text">Add</string>
+    <string name="fragment_edit_edtContent_text">Content</string>
 </resources>
