@@ -15,4 +15,6 @@
     <dimen name="taskItemHeight">200dp</dimen>
     <dimen name="taskItemLayoutMargin">5dp</dimen>
     <dimen name="taskItemRadiusCorner">4dp</dimen>
+    <dimen name="ProgressBarHeight">100dp</dimen>
+    <dimen name="ProgressBarWidth">100dp</dimen>
 </resources>

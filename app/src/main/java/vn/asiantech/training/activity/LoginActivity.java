@@ -71,13 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void savingPreferences(){
+    public void savingPreferences() {
         SharedPreferences pre = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = pre.edit();
         Log.i("loginAccesstoken", mAuthorization);
         editor.putString(ACCESS_TOKEN, mAuthorization);
         editor.commit();
     }
-
-
 }

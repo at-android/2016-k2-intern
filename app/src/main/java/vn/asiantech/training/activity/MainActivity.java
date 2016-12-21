@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.action_logout:
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -120,15 +120,15 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onArticleSelected(Task task, int position) {
         mPosition = position;
-        EditFragment frag = EditFragment.newInstance(task, position,mAccessToken);
+        EditFragment frag = EditFragment.newInstance(task, position, mAccessToken);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container_body, frag).addToBackStack(TAG2).commit();
     }
 
     @Override
-    public void SendData2(Task task,int position) {
-        mArrTask.set(position,task);
+    public void SendData2(Task task, int position) {
+        mArrTask.set(position, task);
     }
 
     //Callback from AddFragment

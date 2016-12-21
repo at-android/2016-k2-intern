@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button mBtnSubmit;
     @ViewById(R.id.btnCancel)
     Button mBtnCancel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +43,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     @Click(R.id.btnCancel)
-    void CancelAction(){
-        Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+    void CancelAction() {
+        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
     @Click(R.id.btnSubmit)
-    void SubmitAction(){
+    void SubmitAction() {
         String name = mEdName.getText().toString();
         final String email = mEdEmail.getText().toString();
         final String password = mEdPass.getText().toString();

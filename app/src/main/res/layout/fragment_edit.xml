@@ -6,24 +6,24 @@
 
     <EditText
         android:id="@+id/edTitle"
+        style="@style/edFrag_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/edFrag_Edit"
-        android:hint="@string/edFragTitleHint"/>
+        android:hint="@string/edFragTitleHint" />
 
     <EditText
         android:id="@+id/edContent"
-        android:layout_below="@+id/edTitle"
+        style="@style/edFrag_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/edFrag_Edit"
-        android:hint="@string/edFragContentHint"/>
+        android:layout_below="@+id/edTitle"
+        android:hint="@string/edFragContentHint" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_below="@+id/edContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edContent"
         android:orientation="horizontal">
 
         <Button
@@ -31,14 +31,13 @@
             style="@style/EdFrag_Btn"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:text="@string/BtnEdit"/>
+            android:text="@string/BtnEdit" />
 
         <Button
             android:id="@+id/btnCancel"
             style="@style/EdFrag_Btn"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:text="@string/BtnCancel"/>
+            android:text="@string/BtnCancel" />
     </LinearLayout>
-
 </RelativeLayout>

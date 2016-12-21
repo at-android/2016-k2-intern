@@ -4,7 +4,6 @@ package vn.asiantech.training.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,7 @@ import vn.asiantech.training.R;
 import vn.asiantech.training.model.Task;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditDialogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EditDialogFragment extends DialogFragment implements View.OnClickListener{
+public class EditDialogFragment extends DialogFragment implements View.OnClickListener {
     private Button mBtnEdit;
     private Button mBtnCancel;
     private TextView mTvTitle;
@@ -28,6 +22,7 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
     private Task mTask;
     private int mPosition;
     private DataFromEdDialogFrag mCallback;
+
     public EditDialogFragment() {
         // Required empty public constructor
     }
@@ -55,10 +50,10 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_dialog, container, false);
         getDialog().setCanceledOnTouchOutside(false);
-        mBtnEdit = (Button)view.findViewById(R.id.btnEdit);
-        mBtnCancel = (Button)view.findViewById(R.id.btnCancel);
-        mTvTitle = (TextView)view.findViewById(R.id.tvTitle);
-        mTvContent = (TextView)view.findViewById(R.id.tvContent);
+        mBtnEdit = (Button) view.findViewById(R.id.btnEdit);
+        mBtnCancel = (Button) view.findViewById(R.id.btnCancel);
+        mTvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        mTvContent = (TextView) view.findViewById(R.id.tvContent);
         mTvTitle.setText(mTask.getTitle());
         mTvContent.setText(mTask.getContent());
         mBtnEdit.setOnClickListener(this);
@@ -69,9 +64,9 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnEdit:
-                mCallback.onArticleSelected(mTask,mPosition);
+                mCallback.onArticleSelected(mTask, mPosition);
                 dismiss();
                 break;
             case R.id.btnCancel:
@@ -81,7 +76,7 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
     }
 
     public interface DataFromEdDialogFrag {
-        public void onArticleSelected(Task task,int position);
+        public void onArticleSelected(Task task, int position);
     }
 
     @Override

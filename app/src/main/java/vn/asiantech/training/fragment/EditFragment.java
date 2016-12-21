@@ -24,7 +24,7 @@ import vn.asiantech.training.model.Task;
 import vn.asiantech.training.model.TaskResult;
 
 
-public class EditFragment extends Fragment implements View.OnClickListener{
+public class EditFragment extends Fragment implements View.OnClickListener {
     private EditText mEdTitle;
     private EditText mEdContent;
     private Button mBtnEdit;
@@ -33,17 +33,17 @@ public class EditFragment extends Fragment implements View.OnClickListener{
     private Task mTask;
     private int mPosition;
     private String mAccessToken;
+
     public EditFragment() {
         // Required empty public constructor
     }
 
-
-    public static EditFragment newInstance(Task task,int position,String mAccessToken) {
+    public static EditFragment newInstance(Task task, int position, String mAccessToken) {
         EditFragment fragment = new EditFragment();
         Bundle args = new Bundle();
-        args.putParcelable("task",task);
-        args.putInt("position",position);
-        args.putString("access_token",mAccessToken);
+        args.putParcelable("task", task);
+        args.putInt("position", position);
+        args.putString("access_token", mAccessToken);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,10 +63,10 @@ public class EditFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit, container, false);
-        mBtnEdit = (Button)view.findViewById(R.id.btnEdit);
-        mBtnCancel = (Button)view.findViewById(R.id.btnCancel);
-        mEdTitle = (EditText)view.findViewById(R.id.edTitle);
-        mEdContent = (EditText)view.findViewById(R.id.edContent);
+        mBtnEdit = (Button) view.findViewById(R.id.btnEdit);
+        mBtnCancel = (Button) view.findViewById(R.id.btnCancel);
+        mEdTitle = (EditText) view.findViewById(R.id.edTitle);
+        mEdContent = (EditText) view.findViewById(R.id.edContent);
 
         mEdTitle.setText(mTask.getTitle());
         mEdContent.setText(mTask.getContent());
@@ -77,9 +77,9 @@ public class EditFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnEdit:
-                Log.i("EdFragToken",mAccessToken);
+                Log.i("EdFragToken", mAccessToken);
 
                 mTask.setTitle(mEdTitle.getText().toString());
                 mTask.setContent(mEdContent.getText().toString());
@@ -90,7 +90,7 @@ public class EditFragment extends Fragment implements View.OnClickListener{
                     @Override
                     public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
                         if (response.isSuccessful()) {
-                            mCallback.SendData2(mTask,mPosition);
+                            mCallback.SendData2(mTask, mPosition);
                             Toast.makeText(getActivity().getApplication(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
@@ -112,7 +112,7 @@ public class EditFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface DataFromEdFrag {
-        public void SendData2(Task task,int position);
+        public void SendData2(Task task, int position);
     }
 
     @Override
@@ -128,5 +128,4 @@ public class EditFragment extends Fragment implements View.OnClickListener{
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
 }

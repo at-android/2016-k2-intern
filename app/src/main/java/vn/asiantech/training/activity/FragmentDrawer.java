@@ -22,9 +22,6 @@ import vn.asiantech.training.adapter.NavigationDrawerAdapter;
 import vn.asiantech.training.model.NavDrawerItem;
 
 public class FragmentDrawer extends Fragment {
-
-    private static String TAG = FragmentDrawer.class.getSimpleName();
-
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -165,7 +162,6 @@ public class FragmentDrawer extends Fragment {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
-
     }
 
     public interface FragmentDrawerListener {

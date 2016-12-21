@@ -8,45 +8,48 @@
 
     <EditText
         android:id="@+id/edName"
+        style="@style/RegisterEdEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nameHint"
-        style="@style/RegisterEdEmail"/>
+        android:hint="@string/nameHint" />
+
     <EditText
         android:id="@+id/edEmail"
-        android:hint="@string/emailHint"
-        android:layout_below="@id/edName"
+        style="@style/RegisterEdEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEdEmail"/>
+        android:layout_below="@id/edName"
+        android:hint="@string/emailHint" />
+
     <EditText
         android:id="@+id/edPassword"
-        android:hint="@string/passwordHint"
-        android:layout_below="@id/edEmail"
+        style="@style/RegisterEdPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEdPass"/>
+        android:layout_below="@id/edEmail"
+        android:hint="@string/passwordHint" />
+
     <EditText
         android:id="@+id/edPassConfirm"
-        android:hint="@string/passConfirmHint"
-        android:layout_below="@id/edPassword"
+        style="@style/RegisterEdPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEdPass"/>
+        android:layout_below="@id/edPassword"
+        android:hint="@string/passConfirmHint" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_below="@+id/edPassConfirm"
+        style="@style/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnSubmit"
-        style="@style/register_btn"/>
+        android:layout_below="@+id/edPassConfirm"
+        android:text="@string/btnSubmit" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_below="@+id/btnSubmit"
+        style="@style/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BtnCancel"
-        style="@style/register_btn"/>
+        android:layout_below="@+id/btnSubmit"
+        android:text="@string/BtnCancel" />
 </RelativeLayout>

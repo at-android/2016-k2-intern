@@ -6,35 +6,34 @@
     android:layout_height="match_parent"
     tools:context="vn.asiantech.training.activity.LoginActivity">
 
-
     <EditText
         android:id="@+id/edEmail"
-        android:hint="@string/emailHint"
+        style="@style/RegisterEdEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEdEmail"/>
+        android:hint="@string/emailHint" />
+
     <EditText
         android:id="@+id/edPassword"
-        android:hint="@string/passwordHint"
-        android:layout_below="@id/edEmail"
+        style="@style/RegisterEdPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/RegisterEdPass"/>
-
+        android:layout_below="@id/edEmail"
+        android:hint="@string/passwordHint" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_below="@+id/edPassword"
+        style="@style/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnLogin"
-        style="@style/register_btn"/>
+        android:layout_below="@+id/edPassword"
+        android:text="@string/btnLogin" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_below="@+id/btnLogin"
+        style="@style/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BtnCancel"
-        style="@style/register_btn"/>
+        android:layout_below="@+id/btnLogin"
+        android:text="@string/BtnCancel" />
 </RelativeLayout>
