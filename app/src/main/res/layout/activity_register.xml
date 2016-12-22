@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.asiantech.training.MainActivity">
+    tools:context="vn.asiantech.training.activities.RegisterActivity">
 
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtRegName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/hint_name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtRegEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtRegName"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edtRegPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtEmail"
+        android:layout_below="@id/edtRegEmail"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:hint="@string/hint_password"
         android:inputType="textPassword" />
+
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegisterNewUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtPassword"
+        android:layout_below="@+id/edtRegPassword"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/btn_login_text" />
-
-    <TextView
-        android:id="@+id/tvOr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
-        android:text="@string/or_text"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOr"
         android:text="@string/btn_register_text" />
 </RelativeLayout>
