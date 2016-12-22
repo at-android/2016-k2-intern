@@ -83,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
         }, 2000);
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                DialogDetail dialogDetail = new DialogDetail_().builder()
+                        .mTask(mTasks.get(position)).mPos(position)
+                        .build();
+                dialogDetail.setCancelable(false);
+                dialogDetail.show(getFragmentManager(), "");
+            }
+        }));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     public void getList(final int index) {
@@ -103,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
                         mTaskAdapter.setOnLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
                             @Override
                             public void onLoadMore() {
-                                mTasks.add(null);
-                                mTaskAdapter.notifyItemInserted(mTasks.size() - 1);
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -113,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
                                         mTaskAdapter.notifyDataSetChanged();
                                         mTaskAdapter.setLoaded();
                                     }
-                                }, 5000);
+                                }, 3000);
                             }
                         });
                     }
@@ -155,17 +164,6 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
         for (int i = 0; i < mTasks.size(); i++) {
             mColors.add(Color.rgb(mRandom.nextInt(200), mRandom.nextInt(200), mRandom.nextInt(200)));
         }
-        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                DialogDetail dialogDetail = new DialogDetail_().builder()
-                        .mTask(mTasks.get(position)).mPos(position)
-                        .build();
-                dialogDetail.setCancelable(false);
-                dialogDetail.show(getFragmentManager(), "");
-            }
-        }));
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override

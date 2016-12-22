@@ -22,7 +22,7 @@ import vn.asiantech.training.model.Task;
  */
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public final int TYPE_MOVIE = 0;
+    public final int TYPE_TASK = 0;
     public final int TYPE_LOAD = 1;
     public onAdapterInteraction mListener;
     OnLoadMoreListener loadMoreListener;
@@ -36,7 +36,6 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public TaskAdapter(List<Task> tasks, List<Integer> colors, RecyclerView mRecyclerView) {
         mTasks = tasks;
         mColors = colors;
-        Log.i("task size", mTasks.size() + "");
         final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -45,7 +44,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 totalItemCount = linearLayoutManager.getItemCount();
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
                 Log.i("zzz", totalItemCount + " " + lastVisibleItem);
-                if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                if (!isLoading && totalItemCount <= (lastVisibleItem + 1)) {
                     if (mOnLoadMoreListener != null) {
                         Log.i("aa", "aaavo");
                         mOnLoadMoreListener.onLoadMore();
@@ -59,7 +58,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return mTasks.get(position) == null ? TYPE_LOAD : TYPE_MOVIE;
+        return mTasks.get(position) == null ? TYPE_LOAD : TYPE_TASK;
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
@@ -76,7 +75,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         mListener = (MainActivity) parent.getContext();
         Log.i("viewtype", viewType + "");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        if (viewType == TYPE_MOVIE) {
+        if (viewType == TYPE_TASK) {
             return new ViewHolder(inflater.inflate(R.layout.row_task, parent, false));
         } else {
             Log.i("info", "loading");
