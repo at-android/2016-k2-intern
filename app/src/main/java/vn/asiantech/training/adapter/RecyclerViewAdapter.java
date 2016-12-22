@@ -93,7 +93,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    mListener.onShowDialog(pos);
+                    mListener.onShowDialog(position);
                     return false;
                 }
             });
