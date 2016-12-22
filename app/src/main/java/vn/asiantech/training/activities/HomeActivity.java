@@ -51,25 +51,18 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
     private List<Task> tasks;
     private List<Task> mTasks;
     private TaskAdapter mTaskAdapter;
-
+    private String access_token;
 
     @Override
     void inits() {
-        setSupportActionBar(mToolbar);
-
-        mTasks = new ArrayList<>();
-        getListTasks(0);
-        mTaskAdapter = new TaskAdapter(mTasks, this, this);
-        mTaskAdapter.setLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                int index = mTasks.size() - 1;
-                getListTasks(index);
-            }
-        });
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         mRecyclerViewTask.setLayoutManager(layoutManager);
-        mRecyclerViewTask.setAdapter(mTaskAdapter);
+        setSupportActionBar(mToolbar);
+        mTasks = new ArrayList<>();
+        getListTasks(0);
+
+        SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
+        access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
     }
 
     @Override
@@ -80,9 +73,9 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.actionLogout:
-                Intent intent = new Intent(HomeActivity.this,MenuActivity_.class);
+                Intent intent = new Intent(HomeActivity.this, MenuActivity_.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -93,8 +86,7 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences settings = getSharedPreferences(LoginActivity_.NAME_SHAREPREFERENCE, 0);
-                String access_token = settings.getString(LoginActivity_.ACCESS_TOKEN, "");
+
                 Api api = ApiClient.retrofit().create(Api.class);
                 Call<TaskResult> result = api.listTasks(index, index + 10, access_token);
                 tasks = new ArrayList<Task>();
@@ -104,7 +96,29 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
                         if (response.body().getListTasks().size() > 0) {
                             tasks = response.body().getListTasks();
                             mTasks.addAll(tasks);
-                            mTaskAdapter.notifyDataSetChanged();
+                            mTaskAdapter = new TaskAdapter(mTasks, HomeActivity.this, HomeActivity.this,mRecyclerViewTask);
+                            mRecyclerViewTask.setAdapter(mTaskAdapter);
+                            mTaskAdapter.setLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
+                                @Override
+                                public void onLoadMore() {
+                                    mTaskAdapter.setVisiBleProgressBar(true);
+                                    mTaskAdapter.notifyItemInserted(mTasks.size() - 1);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                           // mTasks.remove(mTasks.size() - 1);
+                                            //mTaskAdapter.notifyItemRemoved(mTasks.size());
+                                            //mTaskAdapter.notifyDataSetChanged();
+                                            //Load data
+                                            mTaskAdapter.setVisiBleProgressBar(false);
+                                            int index = mTasks.size();
+                                            getListTasksLoadMore(index);
+                                            mTaskAdapter.notifyDataSetChanged();
+                                            mTaskAdapter.setLoaded();
+                                        }
+                                    }, 3000);
+                                }
+                            });
                         } else {
                             Toast.makeText(getApplication(), "No Data Availble", Toast.LENGTH_SHORT).show();
                         }
@@ -158,5 +172,22 @@ public class HomeActivity extends BaseActivity implements ItemClickListener {
         getSupportFragmentManager().beginTransaction().replace(R.id.frContainer, AddTaskFragment_.builder().build()).commit();
     }
 
+    public void getListTasksLoadMore(int index){
+        Api api = ApiClient.retrofit().create(Api.class);
+        Call<TaskResult> result = api.listTasks(index, index + 10, access_token);
+        tasks = new ArrayList<Task>();
+        result.enqueue(new Callback<TaskResult>() {
+            @Override
+            public void onResponse(Call<TaskResult> call, Response<TaskResult> response) {
+                tasks = response.body().getListTasks();
+                mTasks.addAll(tasks);
+                mTaskAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onFailure(Call<TaskResult> call, Throwable t) {
+
+            }
+        });
+    }
 }
