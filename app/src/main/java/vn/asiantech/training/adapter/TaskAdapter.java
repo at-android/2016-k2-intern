@@ -29,7 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Task> mTasks;
     private List<Integer> mColors;
     private boolean isLoading;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
 
@@ -44,9 +44,10 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 super.onScrolled(recyclerView, dx, dy);
                 totalItemCount = linearLayoutManager.getItemCount();
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-
+                Log.i("zzz", totalItemCount + " " + lastVisibleItem);
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                     if (mOnLoadMoreListener != null) {
+                        Log.i("aa", "aaavo");
                         mOnLoadMoreListener.onLoadMore();
                     }
                     isLoading = true;

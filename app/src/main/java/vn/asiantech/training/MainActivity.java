@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.VISIBLE);
         mTasks = new ArrayList<>();
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mImgAdd = (ImageView) findViewById(R.id.imgAdd);
@@ -72,45 +75,78 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
             }
         });
         mTaskAdapter = new TaskAdapter(mTasks, mColors, mRecyclerView);
+        mRecyclerView.setAdapter(mTaskAdapter);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 getList(0);
-                mTaskAdapter = new TaskAdapter(mTasks, mColors, mRecyclerView);
-                mRecyclerView.setAdapter(mTaskAdapter);
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
         }, 2000);
-        mTaskAdapter.setOnLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
+    }
+
+    public void getList(final int index) {
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
             @Override
-            public void onLoadMore() {
-                mTasks.add(null);
-                mTaskAdapter.notifyItemInserted(mTasks.size() - 1);
-                new Handler().postDelayed(new Runnable() {
+            public void run() {
+                Api api = ApiClient.getClient().create(Api.class);
+                Call<GetTaskResult> getTaskResultCall = api.listTasks(index, index + 10, mAccess_token);
+                getTaskResultCall.enqueue(new Callback<GetTaskResult>() {
                     @Override
-                    public void run() {
-                        int index = mTasks.size();
-                        getList(index);
+                    public void onResponse(Call<GetTaskResult> call, Response<GetTaskResult> response) {
+                        mTasks = response.body().getTasks();
+                        Log.i("mtasksize", mTasks.size() + "");
+                        init();
+                        mTaskAdapter = new TaskAdapter(mTasks, mColors, mRecyclerView);
+                        mRecyclerView.setAdapter(mTaskAdapter);
+                        mTaskAdapter.setOnLoadMoreListener(new TaskAdapter.OnLoadMoreListener() {
+                            @Override
+                            public void onLoadMore() {
+                                mTasks.add(null);
+                                mTaskAdapter.notifyItemInserted(mTasks.size() - 1);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = mTasks.size();
+                                        getListLoadmore(index);
+                                        mTaskAdapter.notifyDataSetChanged();
+                                        mTaskAdapter.setLoaded();
+                                    }
+                                }, 5000);
+                            }
+                        });
                     }
-                }, 5000);
+
+                    @Override
+                    public void onFailure(Call<GetTaskResult> call, Throwable t) {
+                    }
+                });
             }
         });
     }
 
-    public void getList(final int index) {
+
+    public void getListLoadmore(final int index) {
         Api api = ApiClient.getClient().create(Api.class);
-        Call<GetTaskResult> getTaskResultCall = api.listTasks(0, index + 10, mAccess_token);
+        Call<GetTaskResult> getTaskResultCall = api.listTasks(index, index + 10, mAccess_token);
         getTaskResultCall.enqueue(new Callback<GetTaskResult>() {
             @Override
             public void onResponse(Call<GetTaskResult> call, Response<GetTaskResult> response) {
-                mTasks = response.body().getTasks();
-                init();
+                mTasks.addAll(response.body().getTasks());
+                for (int i = 0; i < mTasks.size(); i++) {
+                    mColors.add(Color.rgb(mRandom.nextInt(200), mRandom.nextInt(200), mRandom.nextInt(200)));
+                }
+                mTaskAdapter = new TaskAdapter(mTasks, mColors, mRecyclerView);
+                mRecyclerView.setAdapter(mTaskAdapter);
             }
 
             @Override
             public void onFailure(Call<GetTaskResult> call, Throwable t) {
+
             }
         });
+
     }
 
     public void init() {
@@ -119,11 +155,6 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
         for (int i = 0; i < mTasks.size(); i++) {
             mColors.add(Color.rgb(mRandom.nextInt(200), mRandom.nextInt(200), mRandom.nextInt(200)));
         }
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        mTaskAdapter = new TaskAdapter(mTasks, mColors, mRecyclerView);
-        mRecyclerView.setAdapter(mTaskAdapter);
-        mTaskAdapter.setLoaded();
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -205,7 +236,6 @@ public class MainActivity extends AppCompatActivity implements DialogDetail.Dial
             mColors.add(Color.rgb(mRandom.nextInt(200), mRandom.nextInt(200), mRandom.nextInt(200)));
         }
         mTaskAdapter.notifyDataSetChanged();
-        //startActivity(getIntent());
     }
 
     @Override
