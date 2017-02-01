@@ -16,6 +16,7 @@
     <string name="minuteHint">Minute</string>
     <string name="time_picker_btn">Close</string>
     <string name="set_time_frag_btn">Set Time</string>
+    <string name="db_onUpgrade">DROP TABLE IF EXISTS %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

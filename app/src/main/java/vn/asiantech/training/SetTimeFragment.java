@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SetTimeFragment extends DialogFragment implements View.OnClickListener {
     private Button mBtnStart;
@@ -31,9 +32,11 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
     private SendData mCallback;
     private int mSaveHour;
     private int mSaveMinute;
-    private String s = "";
     private DatabaseHelper db;
-    private ArrayList<Time> mArrTime = new ArrayList<Time>();
+    private List<Time> mArrTime = new ArrayList<Time>();
+    private StringBuilder mSaveDay;
+    private StringBuilder mNameOfDay;
+
     public SetTimeFragment() {
         // Required empty public constructor
     }
@@ -76,49 +79,50 @@ public class SetTimeFragment extends DialogFragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnStart:
-                s = "";
-                String nameOfDay = "";
+                mSaveDay = new StringBuilder();
+                mNameOfDay = new StringBuilder();
+
                 Time t = new Time();
                 t.setHour(mSaveHour + "");
                 t.setMinute(mSaveMinute + "");
                 if (mCkMonday.isChecked()) {
-                    s += "2 ";
-                    nameOfDay += "Monday ";
+                    mSaveDay.append("2 ");
+                    mNameOfDay.append("Monday ");
                 }
                 if (mCkTuesday.isChecked()) {
-                    s += "3 ";
-                    nameOfDay += "Tuesday ";
+                    mSaveDay.append("3 ");
+                    mNameOfDay.append("Tuesday ");
                 }
                 if (mCkWednesday.isChecked()) {
-                    s += "4 ";
-                    nameOfDay += "Wednesday ";
+                    mSaveDay.append("4 ");
+                    mNameOfDay.append("Wednesday ");
                 }
                 if (mCkThursday.isChecked()) {
-                    s += "5 ";
-                    nameOfDay += "Thursday ";
+                    mSaveDay.append("5 ");
+                    mNameOfDay.append("Thursday ");
                 }
                 if (mCkFriday.isChecked()) {
-                    s += "6 ";
-                    nameOfDay += "Friday ";
+                    mSaveDay.append("6 ");
+                    mNameOfDay.append("Friday ");
                 }
                 if (mCkSaturday.isChecked()) {
-                    s += "7 ";
-                    nameOfDay += "Saturday ";
+                    mSaveDay.append("7 ");
+                    mNameOfDay.append("Saturday ");
                 }
                 if (mCkSunday.isChecked()) {
-                    s += "8 ";
-                    nameOfDay += "Sunday ";
+                    mSaveDay.append("1 ");
+                    mNameOfDay.append("Sunday ");
                 }
-                t.setDate(s);
-                t.setNameOfDay(nameOfDay);
-                //lay so luong trong db de tinh ra dc ID cho time
+                t.setDate(mSaveDay + "");
+                t.setNameOfDay(mNameOfDay + "");
+                //lay so luong trong mDb de tinh ra dc ID cho time
                 db.open();
                 mArrTime = db.getData();
                 db.close();
-                t.setId(mArrTime.size()+"");
+                t.setId(mArrTime.size() + "");
                 mCallback.onArticleSelected(t);
                 db.open();
-                long x = db.createData(t.getDate(), t.getHour(), t.getMinute(),t.getId());
+                long x = db.createData(t.getDate(), t.getHour(), t.getMinute(), t.getId());
                 db.close();
                 dismiss();
                 break;

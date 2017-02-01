@@ -12,41 +12,46 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SetTimeFragment.SendData, View.OnClickListener, EditFragment.SendDataFromEditFrag {
     public static final String ACTION = "vn.asiantech.training.CUSTOM_INTENT";
+    public static final String GET_TIME_BUNDLE = "time";
+    public static final String GET_POSITION_BUNDLE = "position";
+    public static final String GET_FLAG_BUNDLE = "Flag";
+    public static final String GET_DATA_BUNDLE = "data";
     private Button mBtnStart;
-    private ImageView imgView;
+    private ImageView mImgView;
     private int mHour;
     private int mMinute;
     private int mFlag = 0;
-    private ArrayList<Time> mArr = new ArrayList<Time>();
-    private RecyclerView recyclerView;
+    private List<Time> mArrs = new ArrayList<Time>();
+    private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private DatabaseHelper db;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private DatabaseHelper mDb;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFormWidget();
-        layoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerView.setLayoutManager(layoutManager);
+        mLayoutManager = new LinearLayoutManager(getBaseContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         mBtnStart.setOnClickListener(this);
-        imgView.setOnClickListener(this);
-        db = new DatabaseHelper(getBaseContext());
-        db.open();
-        mArr = db.getData();
-        db.close();
-        mAdapter = new MyAdapter(mArr, MainActivity.this);
-        recyclerView.setAdapter(mAdapter);
+        mImgView.setOnClickListener(this);
+        mDb = new DatabaseHelper(getBaseContext());
+        mDb.open();
+        mArrs = mDb.getData();
+        mDb.close();
+        mAdapter = new MyAdapter(mArrs, MainActivity.this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     public void getFormWidget() {
         mBtnStart = (Button) findViewById(R.id.btnStart);
-        imgView = (ImageView) findViewById(R.id.imgView);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mImgView = (ImageView) findViewById(R.id.imgView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
     }
 
     @Override
@@ -55,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
         mMinute = Integer.parseInt(t.getMinute());
         Log.i("hourFromFrag", mHour + "");
         Log.i("minuteFromFrag", mMinute + "");
-        Log.i("mArrSize", mArr.size() + "");
-        //   mAdapter.addItem(mArr.size(), t);
-        mArr.add(t);
-        mAdapter.updateList(mArr);
+        Log.i("mArrSize", mArrs.size() + "");
+        //   mAdapter.addItem(mArrs.size(), t);
+        mArrs.add(t);
+        mAdapter.updateList(mArrs);
     }
 
     @Override
@@ -71,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
                 } else {
                     Intent i = new Intent(ACTION);
                     Bundle bundle = new Bundle();
-                    bundle.putInt("Flag", mFlag);
-                    i.putExtra("data", bundle);
+                    bundle.putInt(GET_FLAG_BUNDLE, mFlag);
+                    i.putExtra(GET_DATA_BUNDLE, bundle);
                     sendBroadcast(i);
                 }
                 break;
@@ -84,11 +89,11 @@ public class MainActivity extends AppCompatActivity implements SetTimeFragment.S
     }
 
     @Override
-    public void TimeEdited(Time t, int position) {
-        mHour = Integer.parseInt(t.getHour());
-        mMinute = Integer.parseInt(t.getMinute());
+    public void TimeEdited(Time time, int position) {
+        mHour = Integer.parseInt(time.getHour());
+        mMinute = Integer.parseInt(time.getMinute());
         Log.i("position", position + "");
-        mArr.set(position, t);
-        mAdapter.updateList(mArr);
+        mArrs.set(position, time);
+        mAdapter.updateList(mArrs);
     }
 }

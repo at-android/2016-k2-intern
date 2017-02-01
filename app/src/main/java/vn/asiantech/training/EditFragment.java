@@ -13,9 +13,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import java.util.ArrayList;
 
 public class EditFragment extends DialogFragment implements View.OnClickListener {
+
     private Button mBtnEdit;
     private Button mBtnSetTime;
     private Button mBtnClose;
@@ -28,11 +28,11 @@ public class EditFragment extends DialogFragment implements View.OnClickListener
     private CheckBox mCkFriday;
     private CheckBox mCkSaturday;
     private CheckBox mCkSunday;
-    private DatabaseHelper db;
+    private DatabaseHelper mDb;
     private int mSaveHour;
     private int mSaveMinute;
-    private String s = "";
-    private ArrayList<Time> mArrTime = new ArrayList<Time>();
+    private StringBuilder mSaveDay;
+    private StringBuilder mNameOfDay;
     private int mPosition;
     private Time mTime;
     private SendDataFromEditFrag mCallback;
@@ -41,7 +41,6 @@ public class EditFragment extends DialogFragment implements View.OnClickListener
 
     public static EditFragment newInstance() {
         EditFragment fragment = new EditFragment();
-
         return fragment;
     }
 
@@ -50,10 +49,10 @@ public class EditFragment extends DialogFragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             Bundle bundle = getArguments();
-            mTime = bundle.getParcelable("time");
-            mPosition = bundle.getInt("position");
+            mTime = bundle.getParcelable(MainActivity.GET_TIME_BUNDLE);
+            mPosition = bundle.getInt(MainActivity.GET_POSITION_BUNDLE);
         }
-        db = new DatabaseHelper(getContext());
+        mDb = new DatabaseHelper(getContext());
     }
 
     @Override
@@ -87,46 +86,46 @@ public class EditFragment extends DialogFragment implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnEdit:
-                s = "";
-                String nameOfDay = "";
+                mSaveDay = new StringBuilder();
+                mNameOfDay = new StringBuilder();
                 mTime.setHour(mSaveHour + "");
                 mTime.setMinute(mSaveMinute + "");
                 if (mCkMonday.isChecked()) {
-                    s += "2 ";
-                    nameOfDay += "Monday ";
+                    mSaveDay.append("2 ");
+                    mNameOfDay.append("Monday ");
                 }
                 if (mCkTuesday.isChecked()) {
-                    s += "3 ";
-                    nameOfDay += "Tuesday ";
+                    mSaveDay.append("3 ");
+                    mNameOfDay.append("Tuesday ");
                 }
                 if (mCkWednesday.isChecked()) {
-                    s += "4 ";
-                    nameOfDay += "Wednesday ";
+                    mSaveDay.append("4 ");
+                    mNameOfDay.append("Wednesday ");
                 }
                 if (mCkThursday.isChecked()) {
-                    s += "5 ";
-                    nameOfDay += "Thursday ";
+                    mSaveDay.append("5 ");
+                    mNameOfDay.append("Thursday ");
                 }
                 if (mCkFriday.isChecked()) {
-                    s += "6 ";
-                    nameOfDay += "Friday ";
+                    mSaveDay.append("6 ");
+                    mNameOfDay.append("Friday ");
                 }
                 if (mCkSaturday.isChecked()) {
-                    s += "7 ";
-                    nameOfDay += "Saturday ";
+                    mSaveDay.append("7 ");
+                    mNameOfDay.append("Saturday ");
                 }
                 if (mCkSunday.isChecked()) {
-                    s += "1 ";
-                    nameOfDay += "Sunday ";
+                    mSaveDay.append("1 ");
+                    mNameOfDay.append("Sunday ");
                 }
-                mTime.setDate(s);
-                mTime.setNameOfDay(nameOfDay);
+                mTime.setDate(mSaveDay+"");
+                mTime.setNameOfDay(mNameOfDay+"");
                 Log.i("mTime.getDay",mTime.getDate());
                 Log.i("mTime.getHour",mTime.getHour());
                 Log.i("mTime.getMinute",mTime.getMinute());
-                db.open();
-                db.updateData(mTime.getDate(),mTime.getHour(),mTime.getMinute(),mTime.getId());
-                db.close();
+                mDb.open();
+                mDb.updateData(mTime.getDate(),mTime.getHour(),mTime.getMinute(),mTime.getId());
+                mDb.close();
                 mCallback.TimeEdited(mTime,mPosition);
                 dismiss();
                 break;

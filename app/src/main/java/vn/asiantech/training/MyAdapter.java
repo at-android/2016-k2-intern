@@ -10,16 +10,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 6/12/2016.
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private ArrayList<Time> mArr = new ArrayList<Time>();
+    private List<Time> mArrs = new ArrayList<Time>();
     private MainActivity main;
 
-    public MyAdapter(ArrayList<Time> arr, MainActivity main) {
-        this.mArr = arr;
+    public MyAdapter(List<Time> arr, MainActivity main) {
+        this.mArrs = arr;
         this.main = main;
     }
 
@@ -33,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.mTv.setText(mArr.get(position).toString());
+        holder.mTv.setText(mArrs.get(position).toString());
         holder.mTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 FragmentTransaction ft = fm.beginTransaction();
                 EditFragment frag = new EditFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("time", mArr.get(position));
+                bundle.putParcelable("time", mArrs.get(position));
                 bundle.putInt("position",position);
                 frag.setArguments(bundle);
                 frag.show(main.getSupportFragmentManager(),"abc");
@@ -51,16 +52,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mArr.size();
+        return mArrs.size();
     }
 
     public void addItem(int position, Time t) {
-        mArr.add(position, t);
+        mArrs.add(position, t);
         notifyItemInserted(position);
     }
 
-    public void updateList(ArrayList<Time> data) {
-        mArr = data;
+    public void updateList(List<Time> datas) {
+        mArrs = datas;
         notifyDataSetChanged();
     }
 

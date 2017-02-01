@@ -19,6 +19,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Administrator on 4/12/2016.
@@ -28,8 +29,8 @@ public class myService extends Service {
     public static final String ACTION = "vn.asiantech.training.CUSTOM_INTENT";
     private DatabaseHelper db;
     private Handler mHandler;
-    private ArrayList<Time> ArrContentTime = new ArrayList<Time>();
-    private ArrayList<Time> ArrFromDB = new ArrayList<Time>();
+    private List<Time> ArrContentTime = new ArrayList<Time>();
+    private List<Time> ArrFromDB = new ArrayList<Time>();
     private long mSecond;
     private long mTimeMin;
     private int mFlag;
@@ -216,8 +217,8 @@ public class myService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION)) {
-                Bundle bundle = intent.getBundleExtra("data");
-                mFlag = bundle.getInt("Flag");
+                Bundle bundle = intent.getBundleExtra(MainActivity.GET_DATA_BUNDLE);
+                mFlag = bundle.getInt(MainActivity.GET_FLAG_BUNDLE);
                 if (mFlag > 0) {
                     mSecond = 0;
                     countSecond();

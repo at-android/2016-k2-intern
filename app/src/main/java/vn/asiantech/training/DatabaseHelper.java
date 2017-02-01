@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private ArrayList<Time> mArr = new ArrayList<Time>();
     /*Tên database*/
     private static final String DATABASE_NAME = "DB_TIMER";
 
@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MINUTE = "minute";
 
     /*Các đối tượng khác*/
-    static SQLiteDatabase db;
+    static SQLiteDatabase mDb;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,14 +49,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public DatabaseHelper open() throws SQLException {
-        db = getWritableDatabase();
+        mDb = getWritableDatabase();
         return this;
     }
 
     /*Hàm đóng kết nối với database*/
     public void close() {
         try {
-            db.close();
+            mDb.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,12 +68,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_HOUR, hour);
         cv.put(COLUMN_MINUTE, minute);
         cv.put(COLUMN_ID, id);
-        return db.insert(TABLE_TIME, null, cv);
+        return mDb.insert(TABLE_TIME, null, cv);
     }
 
-    public ArrayList<Time> getData() {
-        Cursor c = db.query(TABLE_TIME, null, null, null, null, null, null);
-        mArr = new ArrayList<Time>();
+    public List<Time> getData() {
+        Cursor c = mDb.query(TABLE_TIME, null, null, null, null, null, null);
+        List<Time> mArrs = new ArrayList<Time>();
         c.moveToFirst();
         //Vòng lặp lấy dữ liệu của con trỏ
         while (!c.isAfterLast()) {
@@ -81,35 +81,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             t.setDate(c.getString(c.getColumnIndex(COLUMN_DATE)));
             t.setHour(c.getString(c.getColumnIndex(COLUMN_HOUR)));
             t.setMinute(c.getString(c.getColumnIndex(COLUMN_MINUTE)));
-            mArr.add(t);
+            mArrs.add(t);
             c.moveToNext();
         }
         c.close();
-        return mArr;
+        return mArrs;
     }
 
     public void deleteData() {
-        db.delete(TABLE_TIME, null, null);
+        mDb.delete(TABLE_TIME, null, null);
     }
 
     public void updateData(String date,String hour,String minute,String id){
         ContentValues cv = new ContentValues();
         cv.put("date",date);
-        db.update(TABLE_TIME,cv,"id=?",new String[]{id});
+        mDb.update(TABLE_TIME,cv,"id=?",new String[]{id});
 
         ContentValues cv2 = new ContentValues();
         cv2.put("hour",hour);
-        db.update(TABLE_TIME,cv2,"id=?",new String[]{id});
+        mDb.update(TABLE_TIME,cv2,"id=?",new String[]{id});
 
         ContentValues cv3 = new ContentValues();
         cv3.put("minute",minute);
-        db.update(TABLE_TIME,cv3,"id=?",new String[]{id});
+        mDb.update(TABLE_TIME,cv3,"id=?",new String[]{id});
     }
 
     public void updateNextDay(String date,String id){
         ContentValues cv = new ContentValues();
         cv.put("date",date);
-        db.update(TABLE_TIME,cv,"id=?",new String[]{id});
+        mDb.update(TABLE_TIME,cv,"id=?",new String[]{id});
     }
 
 
@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    public void deleteTable(){
 //        open();
 //        String sql = "DROP TABLE " + TABLE_TIME;
-//        db.execSQL(sql);
+//        mDb.execSQL(sql);
 //        close();
 //    }
 
